@@ -2680,65 +2680,85 @@
   <!-- ==========================================================================
        17. SITE FOOTER
        ========================================================================== -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-top reveal-up">
+  <footer class="footer footer-brand">
+    <div class="footer-ambient-glow"></div>
+    <div class="wrap">
+      <div class="footer-grid">
+        <!-- Col 1: Brand Info -->
         <div>
-          <a href="#hero" class="nav-brand footer-brand" aria-label="Nexprobyte Technologies">
-            <div class="brand-icon footer-brand-icon">
-              <img src="assets/logo-transparent.png" alt="Nexprobyte Logo" class="brand-logo-img" width="28" height="18">
-            </div>
-            <span>NEXPROBYTE TECHNOLOGIES</span>
-          </a>
-          <p class="footer-brand-desc">
-            Virtual Assistance • Remote Development Teams • AI Automation • Business Software Solutions. The unified partner for high-velocity modern teams.
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <img src="/images/nxtpro-logo.png" alt="Nexprobyte Logo" style="height: 48px; width: auto; object-fit: contain;">
+          </div>
+          <p class="f-desc">
+            Nexprobyte Technologies is a digital marketing agency and software development company in Coimbatore. We help startups and SMEs grow with website development, SEO, social media marketing and AI-powered automation.
           </p>
+          <div class="socials">
+            <a href="https://www.facebook.com/nexprobyte" target="_blank" rel="noopener noreferrer" class="social" aria-label="Facebook profile">f</a>
+            <a href="https://twitter.com/nexprobyte" target="_blank" rel="noopener noreferrer" class="social" aria-label="X (Twitter) profile">X</a>
+            <a href="https://www.linkedin.com/in/nextprobytetechnologies" target="_blank" rel="noopener noreferrer" class="social" aria-label="LinkedIn profile">in</a>
+            <a href="https://www.instagram.com/nexprobyte" target="_blank" rel="noopener noreferrer" class="social" aria-label="Instagram profile">ig</a>
+          </div>
         </div>
 
+        <!-- Col 2: Company -->
         <div>
-          <h4 class="footer-heading">Services Suite</h4>
-          <ul class="footer-links">
-            <li><a href="services.html" class="footer-link">All 8 Core Production Disciplines</a></li>
-            <li><a href="services.html#service-va" class="footer-link">Virtual Assistant Services</a></li>
-            <li><a href="services.html#service-dev" class="footer-link">Software Dev Manpower</a></li>
-            <li><a href="services.html#service-ai" class="footer-link">AI &amp; Automation VA</a></li>
-            <li><a href="services.html#service-support" class="footer-link">E-Commerce Technical Support</a></li>
-            <li><a href="services.html#service-custom" class="footer-link">CRM &amp; Software Solutions</a></li>
+          <h4>Company</h4>
+          <ul>
+            <li><a href="/" class="footer-link">Home</a></li>
+            <li><a href="/about" class="footer-link">About</a></li>
+            <li><a href="/services" class="footer-link">Services</a></li>
+            <li><a href="/careers" class="footer-link">Careers</a></li>
+            <li><a href="/blog" class="footer-link">Blog</a></li>
+            <li><a href="/contact" class="footer-link">Contact</a></li>
           </ul>
         </div>
 
+        <!-- Col 3: Business -->
         <div>
-          <h4 class="footer-heading">Company &amp; Pages</h4>
-          <ul class="footer-links">
-            <li><a href="about.html" class="footer-link">About Coimbatore Studio</a></li>
-            <li><a href="blog.html" class="footer-link">Blog &amp; Technical Insights</a></li>
-            <li><a href="careers.html" class="footer-link">Tech Careers (5 Openings)</a></li>
-            <li><a href="interview-data.html" class="footer-link">Candidate Interview Intake</a></li>
-            <li><a href="#pricing" class="footer-link">Pricing &amp; ROI</a></li>
-            <li><a href="#faq" class="footer-link">Frequently Asked Questions</a></li>
-            <li><a href="contact.html" class="footer-link">Contact Studio</a></li>
+          <h4>Business</h4>
+          <ul>
+            <li><a href="/services/website-development" class="footer-link">Website Development</a></li>
+            <li><a href="/services/mobile-app-development" class="footer-link">Mobile App Development</a></li>
+            <li><a href="/services/application-development" class="footer-link">Application Development</a></li>
+            <li><a href="/services/ui-ux-design" class="footer-link">UI/UX Design</a></li>
+            <li><a href="/services/branding-identity" class="footer-link">Branding &amp; Identity</a></li>
+            <li><a href="/services/digital-marketing" class="footer-link">Digital Marketing &amp; SEO</a></li>
+            <li><a href="/services/social-media-marketing" class="footer-link">Social Media Marketing</a></li>
           </ul>
         </div>
 
+        <!-- Col 4: Get In Touch -->
         <div>
-          <h4 class="footer-heading">Newsletter</h4>
-          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
-            Tech team insights, automation blueprints, and hiring playbooks. One email a month.
-          </p>
-          <form class="newsletter-form" id="newsletter-form">
-            <input type="email" class="newsletter-input" placeholder="you@company.com" required>
+          <h4>Get In Touch</h4>
+          <ul style="gap: 10px;">
+            <li>
+              <a href="https://maps.google.com/?q=+10.9994017,76.9686834" target="_blank" rel="noreferrer" style="line-height: 1.45; font-size: 13px;">
+                1st Floor, Nanjiammal Complex, Above City Bakery, Maniyakarampalayam, Coimbatore, Tamil Nadu 641006
+              </a>
+            </li>
+            <li><a href="mailto:info@nexprobyte.com">info@nexprobyte.com</a></li>
+            <li><a href="tel:+919500042426">+91 95000 42426</a></li>
+          </ul>
+          <form class="newsletter-form" id="newsletter-form" style="display: none;">
+            <input type="email" class="newsletter-input" placeholder="you@company.com">
             <button type="submit" class="newsletter-btn">Subscribe</button>
           </form>
         </div>
       </div>
 
-      <div class="footer-bottom">
-        <div>&copy; 2026 Nexprobyte Technologies. All rights reserved.</div>
-        <div style="display: flex; gap: 20px;">
-          <a href="#" class="footer-link">Privacy Policy</a>
-          <a href="#" class="footer-link">Terms of Service</a>
-          <a href="#" class="footer-link">Security Protocols</a>
-        </div>
+      <!-- Center Pill Divider Badge: Coimbatore Wikipedia Emblem -->
+      <div class="footer-divider-badge-wrap">
+        <a href="https://en.wikipedia.org/wiki/Coimbatore" target="_blank" rel="noopener noreferrer" class="footer-divider-badge" title="Explore Coimbatore on Wikipedia" aria-label="Coimbatore Wikipedia">
+          <img src="/assets/cropped-cbe-blue-logo-5.png" alt="Coimbatore Emblem" class="footer-center-emblem">
+        </a>
+      </div>
+
+      <!-- Base -->
+      <div class="base">
+        <span style="align-self: center;">
+          Copyright &copy; 2026 <strong style="font-weight: 700;">Nexprobyte Technologies</strong>. All rights reserved.
+        </span>
+        <span style="align-self: center;">Made with Motion in Coimbatore</span>
       </div>
     </div>
   </footer>

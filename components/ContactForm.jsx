@@ -209,16 +209,14 @@ export default function ContactForm() {
       </section>
 
       {/* Floating Confirmation Toast */}
-      {toastVisible && (
-        <div className="toast-modal" id="toast-modal" role="status">
-          <div className="toast-content">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00d6b2" strokeWidth="2.5">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-            <span>{toastText}</span>
-          </div>
+      <div className={`toast-modal ${toastVisible ? 'show' : ''}`} id="toast-modal" role="status" aria-hidden={!toastVisible}>
+        <div className="toast-content">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00d6b2" strokeWidth="2.5">
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+          <span>{toastText || 'Your message has been received! Our team will respond shortly.'}</span>
         </div>
-      )}
+      </div>
     </>
   );
 }

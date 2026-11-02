@@ -1,11 +1,15 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { JOBS } from '@/data/siteContent';
 
 export default function JobApplicationForm({ defaultJob = '' }) {
+  const searchParams = useSearchParams();
+  const queryJob = searchParams?.get('job') || '';
+
   const [formData, setFormData] = useState({
-    jobTitle: defaultJob || (JOBS[0] ? JOBS[0].title : ''),
+    jobTitle: defaultJob || queryJob || (JOBS[0] ? JOBS[0].title : ''),
     name: '',
     email: '',
     phone: '',
@@ -14,6 +18,12 @@ export default function JobApplicationForm({ defaultJob = '' }) {
     linkedinUrl: '',
     coverLetter: '',
   });
+
+  useEffect(() => {
+    if (queryJob) {
+      setFormData((prev) => ({ ...prev, jobTitle: queryJob }));
+    }
+  }, [queryJob]);
 
   const [resumeFile, setResumeFile] = useState(null);
   const [resumeName, setResumeName] = useState('');

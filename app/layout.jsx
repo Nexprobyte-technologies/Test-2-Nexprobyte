@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import NexiChatbot from '@/components/NexiChatbot';
 import FloatingCallButton from '@/components/FloatingCallButton';
+import ScrollRevealManager from '@/components/ScrollRevealManager';
 
 export const metadata = {
   metadataBase: new URL('https://nexprobyte.com'),
@@ -116,6 +117,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
+        <ScrollRevealManager />
         <Navbar />
         {children}
         <Footer />

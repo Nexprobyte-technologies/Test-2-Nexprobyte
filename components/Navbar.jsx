@@ -15,7 +15,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      setIsScrolled(scrollY > 40);
+      setIsScrolled(scrollY > 25);
 
       // Top scroll progress bar
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -73,12 +73,34 @@ export default function Navbar() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
+  // Prevent background scroll when mobile drawer is open
+  useEffect(() => {
+    if (drawerOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [drawerOpen]);
+
   const navLinks = [
     { label: 'About', href: '/about', id: 'about' },
     { label: 'Insights', href: '/blog', id: 'blog' },
     { label: 'Careers', href: '/careers', id: 'careers' },
     { label: 'Onboarding', href: '/interview-data', id: 'interview-data' },
     { label: 'Contact', href: '/contact', id: 'contact' },
+  ];
+
+  const mobileNavItems = [
+    { label: 'Home', href: '/', badge: 'HQ', num: '01' },
+    { label: 'Services Suite', href: '/services', badge: '8 Disciplines', num: '02' },
+    { label: 'About Coimbatore Studio', href: '/about', badge: 'Team', num: '03' },
+    { label: 'Insights & Technical Journal', href: '/blog', badge: 'Engineering', num: '04' },
+    { label: 'Careers & Positions', href: '/careers', badge: '5 Open Roles', num: '05' },
+    { label: 'Candidate Onboarding', href: '/interview-data', badge: 'Talent Portal', num: '06' },
+    { label: 'Contact Us', href: '/contact', badge: 'Free Consultation', num: '07' },
   ];
 
   return (
@@ -91,19 +113,23 @@ export default function Navbar() {
         style={{ transform: `scaleX(${scrollProgress})` }}
       />
 
-      {/* Floating Navigation Dock */}
-      <header className="nav-wrapper">
-        <nav
-          className="nav-dock"
+      {/* Floating Navigation Dock with Framer Motion Entrance Animation */}
+      <motion.header
+        className="nav-wrapper"
+        initial={{ y: -45, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <motion.nav
+          className={`nav-dock ${isScrolled ? 'scrolled' : ''}`}
           id="main-nav"
-          style={{
-            background: isScrolled ? 'rgba(255, 255, 255, 0.96)' : 'rgba(255, 255, 255, 0.88)',
-            boxShadow: isScrolled
-              ? '0 12px 36px rgba(0, 0, 0, 0.12), 0 0 1px rgba(0, 0, 0, 0.2)'
-              : 'var(--shadow-dock)',
+          animate={{
+            scale: isScrolled ? 0.985 : 1,
+            y: isScrolled ? 2 : 0,
           }}
+          transition={{ duration: 0.25, ease: 'easeOut' }}
         >
-          {/* Logo */}
+          {/* Logo with Live Status Indicator */}
           <Link href="/" className="nav-brand" aria-label="Nexprobyte Technologies">
             <div className="brand-icon">
               <img
@@ -114,15 +140,25 @@ export default function Navbar() {
                 height={18}
               />
             </div>
-            <span>NEXPROBYTE</span>
+            <div className="brand-text-wrapper">
+              <span className="brand-title">NEXPROBYTE</span>
+              <span className="brand-live-pill">
+                <span className="brand-live-pulse"></span>
+                <span className="brand-live-core"></span>
+                <span className="brand-live-label">Ready 48h</span>
+              </span>
+            </div>
           </Link>
 
-          {/* Desktop Links */}
+          {/* Desktop Links with Framer Sliding Hover Pill */}
           <ul className="nav-links" onMouseLeave={() => setHoveredNav(null)}>
             {/* Services Dropdown */}
             <li
               className="nav-item"
-              onMouseEnter={() => setServicesOpen(true)}
+              onMouseEnter={() => {
+                setServicesOpen(true);
+                setHoveredNav('services');
+              }}
               onMouseLeave={() => setServicesOpen(false)}
             >
               <Link
@@ -141,7 +177,7 @@ export default function Navbar() {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="2"
+                  strokeWidth="2.2"
                   style={{
                     transform: servicesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
                     transition: 'transform 0.2s ease',
@@ -149,16 +185,23 @@ export default function Navbar() {
                 >
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
+                {hoveredNav === 'services' && (
+                  <motion.span
+                    layoutId="navbar-hover-indicator"
+                    className="nav-hover-pill"
+                    transition={{ type: 'spring', stiffness: 450, damping: 32 }}
+                  />
+                )}
               </Link>
 
               <AnimatePresence>
                 {servicesOpen && (
                   <motion.div
                     className="nav-dropdown"
-                    initial={{ opacity: 0, y: 10, scale: 0.96 }}
+                    initial={{ opacity: 0, y: 12, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 8, scale: 0.96 }}
-                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
                   >
                     <div style={{ padding: '8px 16px 10px', borderBottom: '1px solid rgba(0,0,0,0.06)', marginBottom: '8px' }}>
                       <Link
@@ -249,12 +292,23 @@ export default function Navbar() {
 
             {/* Standard Nav Items */}
             {navLinks.map((link) => (
-              <li key={link.id} className="nav-item">
+              <li
+                key={link.id}
+                className="nav-item"
+                onMouseEnter={() => setHoveredNav(link.id)}
+              >
                 <Link
                   href={link.href}
                   className={`nav-link ${activeSection === link.id ? 'active' : ''}`}
                 >
                   {link.label}
+                  {hoveredNav === link.id && (
+                    <motion.span
+                      layoutId="navbar-hover-indicator"
+                      className="nav-hover-pill"
+                      transition={{ type: 'spring', stiffness: 450, damping: 32 }}
+                    />
+                  )}
                 </Link>
               </li>
             ))}
@@ -262,34 +316,35 @@ export default function Navbar() {
 
           {/* Right Action */}
           <div className="nav-actions">
-            <a href="tel:+919500042426" className="nav-call-btn" title="Call Coimbatore Office">
+            <a href="tel:+919500042426" className="nav-call-btn" title="Call Coimbatore Studio">
               <span>📞 +91 95000 42426</span>
             </a>
             <Link href="/contact" className="nav-cta-btn">
+              <span className="cta-shimmer-sweep"></span>
               <span>Consult Architect</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg className="cta-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </Link>
 
-            {/* Mobile Hamburger */}
+            {/* Saro-style Animated 2-Bar Hamburger Toggle */}
             <button
               type="button"
               className={`nav-hamburger ${drawerOpen ? 'open' : ''}`}
               id="nav-toggle"
               aria-label="Toggle navigation menu"
+              aria-expanded={drawerOpen}
               onClick={() => setDrawerOpen(!drawerOpen)}
             >
-              <span></span>
-              <span></span>
-              <span></span>
+              <span className="ham-line ham-top"></span>
+              <span className="ham-line ham-bottom"></span>
             </button>
           </div>
-        </nav>
-      </header>
+        </motion.nav>
+      </motion.header>
 
-      {/* Mobile Drawer */}
+      {/* Saro Framer-Style Luxurious Frosted Mobile Navigation Drawer */}
       <AnimatePresence>
         {drawerOpen && (
           <>
@@ -298,22 +353,27 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
               onClick={() => setDrawerOpen(false)}
             />
             <motion.div
-              className="mobile-drawer open"
+              className="mobile-drawer saro-mobile-drawer open"
               id="mobile-drawer"
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ type: 'spring', damping: 28, stiffness: 300 }}
+              initial={{ opacity: 0, y: -20, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -15, scale: 0.98 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             >
+              {/* Drawer Top Header */}
               <div className="mobile-drawer-header">
                 <Link href="/" className="mobile-drawer-brand" onClick={() => setDrawerOpen(false)}>
                   <div className="brand-icon">
                     <img src="/assets/logo-transparent.png" alt="Nexprobyte Logo" className="brand-logo-img" width={28} height={18} />
                   </div>
-                  <span>NEXPROBYTE</span>
+                  <div>
+                    <div className="drawer-brand-name">NEXPROBYTE</div>
+                    <div className="drawer-brand-sub">Coimbatore • Worldwide Delivery</div>
+                  </div>
                 </Link>
                 <button
                   type="button"
@@ -322,28 +382,63 @@ export default function Navbar() {
                   aria-label="Close menu"
                   onClick={() => setDrawerOpen(false)}
                 >
-                  ✕
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
                 </button>
               </div>
 
+              {/* Drawer Staggered Nav List */}
               <div className="mobile-drawer-body">
                 <ul className="mobile-nav-list">
-                  <li><Link href="/" onClick={() => setDrawerOpen(false)}>Home</Link></li>
-                  <li><Link href="/services" onClick={() => setDrawerOpen(false)}>Services Suite (8 Disciplines &amp; 52 Turnkey)</Link></li>
-                  <li><Link href="/about" onClick={() => setDrawerOpen(false)}>About Coimbatore Studio</Link></li>
-                  <li><Link href="/blog" onClick={() => setDrawerOpen(false)}>Insights &amp; Technical Journal</Link></li>
-                  <li><Link href="/careers" onClick={() => setDrawerOpen(false)}>Careers (5 Active Positions)</Link></li>
-                  <li><Link href="/interview-data" onClick={() => setDrawerOpen(false)}>Candidate Onboarding</Link></li>
-                  <li><Link href="/contact" onClick={() => setDrawerOpen(false)}>Contact Us</Link></li>
+                  {mobileNavItems.map((item, index) => (
+                    <motion.li
+                      key={item.href}
+                      initial={{ opacity: 0, x: -16 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.05 + index * 0.04, duration: 0.3, ease: 'easeOut' }}
+                    >
+                      <Link
+                        href={item.href}
+                        className="saro-mobile-nav-link"
+                        onClick={() => setDrawerOpen(false)}
+                      >
+                        <div className="saro-link-left">
+                          <span className="saro-link-num">{item.num}</span>
+                          <span className="saro-link-title">{item.label}</span>
+                        </div>
+                        <div className="saro-link-right">
+                          <span className="saro-link-pill">{item.badge}</span>
+                          <span className="saro-link-arrow">&rarr;</span>
+                        </div>
+                      </Link>
+                    </motion.li>
+                  ))}
                 </ul>
 
-                <div style={{ marginTop: '30px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  <Link href="/contact" className="btn-primary-hero" style={{ justifyContent: 'center' }} onClick={() => setDrawerOpen(false)}>
-                    Start Project Consultation &rarr;
+                {/* Direct High-Impact CTAs in Mobile Drawer */}
+                <div className="mobile-drawer-footer-actions">
+                  <Link
+                    href="/contact"
+                    className="btn-primary-hero mobile-drawer-cta"
+                    onClick={() => setDrawerOpen(false)}
+                  >
+                    <span>Consult Lead Architect</span>
+                    <span>&rarr;</span>
                   </Link>
-                  <a href="tel:+919500042426" className="btn-secondary-hero" style={{ justifyContent: 'center' }}>
-                    📞 Call +91 95000 42426
+                  <a
+                    href="tel:+919500042426"
+                    className="btn-secondary-hero mobile-drawer-call"
+                  >
+                    <span>📞 +91 95000 42426</span>
+                    <span className="call-hint">Instant Call</span>
                   </a>
+                  <div className="drawer-footer-note">
+                    <span>📍 Coimbatore, Tamil Nadu, India</span>
+                    <span>•</span>
+                    <span>48-Hour Sprint Onboarding</span>
+                  </div>
                 </div>
               </div>
             </motion.div>

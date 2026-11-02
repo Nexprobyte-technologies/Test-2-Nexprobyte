@@ -11,7 +11,7 @@ export default function HeroCords() {
     const stage = stageRef.current;
     if (!stage) return;
 
-    // Squircle specifications
+    // Squircle specifications - Nexprobyte Real Core Technology Stack
     const SQUIRCLE_CONFIGS = [
       {
         id: 0,
@@ -106,7 +106,7 @@ export default function HeroCords() {
         mountEl,
         sparksEl,
         anchorX: 0,
-        anchorY: 0,
+        anchorY: 0, // Clean cord directly to ceiling line
         restX: 0,
         restY: 0,
         px: 0,
@@ -246,7 +246,7 @@ export default function HeroCords() {
               break;
           }
         } else {
-          // Mobile (< 768px): Neatly placed in outer gutters
+          // Mobile (< 768px): Neatly placed in outer gutters so headline is 100% visible
           const marginX = Math.max(radius + 10, stageWidth * 0.08);
           switch (cord.slot) {
             case 'center':
@@ -283,7 +283,7 @@ export default function HeroCords() {
         cord.restX = targetX;
         cord.restY = targetY;
         cord.anchorX = targetX;
-        cord.anchorY = 0;
+        cord.anchorY = 0; // Ceiling line: no top box
 
         if (cord.px === 0 && cord.py === 0) {
           cord.px = targetX;
@@ -296,7 +296,7 @@ export default function HeroCords() {
       });
     }
 
-    // Attach drag & drop pointer listeners to each squircle badge
+    // Pointer event bindings
     cords.forEach((cord) => {
       const badge = cord.badgeEl;
       if (!badge) return;
@@ -318,7 +318,7 @@ export default function HeroCords() {
         if (!cord.isDragging) return;
         const stageRect = stage.getBoundingClientRect();
         cord.px = e.clientX - stageRect.left - cord.grabOffsetX;
-        cord.py = Math.max(70, e.clientY - stageRect.top - cord.grabOffsetY);
+        cord.py = Math.max(60, e.clientY - stageRect.top - cord.grabOffsetY);
       });
 
       const onPointerEnd = (e) => {
@@ -396,7 +396,7 @@ export default function HeroCords() {
 
         // Update Dynamic Smooth Bezier Cord Path
         const ax = cord.anchorX;
-        const ay = cord.anchorY;
+        const ay = 0; // Starts directly at top ceiling edge: NO BOX
         const bx = cord.px;
         const by = cord.py - 26; // attach ring at top edge of squircle
 
@@ -404,7 +404,7 @@ export default function HeroCords() {
         const ctrlX = (ax + bx) * 0.5 + (cord.px - cord.anchorX) * 0.08;
         const ctrlY = (ay + by) * 0.5 + 12;
 
-        cord.pathEl.setAttribute('d', `M ${ax.toFixed(1)},${ay.toFixed(1)} Q ${ctrlX.toFixed(1)},${ctrlY.toFixed(1)} ${bx.toFixed(1)},${by.toFixed(1)}`);
+        cord.pathEl.setAttribute('d', `M ${ax.toFixed(1)},0 Q ${ctrlX.toFixed(1)},${ctrlY.toFixed(1)} ${bx.toFixed(1)},${by.toFixed(1)}`);
       });
 
       animFrameRef.current = requestAnimationFrame(renderLoop);
@@ -421,7 +421,7 @@ export default function HeroCords() {
 
   return (
     <>
-      {/* 1. Hanging cord stage required for verification and turbo switch */}
+      {/* 1. Hanging cord stage for turbo switch */}
       <div
         className={`hero-hanging-cord-stage ${turboMode ? 'turbo-active' : ''}`}
         id="hanging-cord-stage"
@@ -500,7 +500,7 @@ export default function HeroCords() {
         <svg className="tech-cords-svg" id="tech-cords-svg" aria-hidden="true">
           <defs>
             <linearGradient id="tech-cord-line-grad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="rgba(148, 163, 184, 0.35)" />
+              <stop offset="0%" stopColor="rgba(148, 163, 184, 0.45)" />
               <stop offset="70%" stopColor="rgba(148, 163, 184, 0.85)" />
               <stop offset="100%" stopColor="rgba(100, 116, 139, 0.95)" />
             </linearGradient>
@@ -518,26 +518,30 @@ export default function HeroCords() {
           <path id="tech-cord-path-6" className="tech-cord-path" stroke="url(#tech-cord-line-grad)" strokeWidth="1.8" strokeLinecap="round" fill="none" />
         </svg>
 
-        {/* 7 Ceiling Mount Fixtures */}
-        <div className="tech-cord-mount" id="tech-cord-mount-0" aria-hidden="true"><span className="mount-dot"></span></div>
-        <div className="tech-cord-mount" id="tech-cord-mount-1" aria-hidden="true"><span className="mount-dot"></span></div>
-        <div className="tech-cord-mount" id="tech-cord-mount-2" aria-hidden="true"><span className="mount-dot"></span></div>
-        <div className="tech-cord-mount" id="tech-cord-mount-3" aria-hidden="true"><span className="mount-dot"></span></div>
-        <div className="tech-cord-mount" id="tech-cord-mount-4" aria-hidden="true"><span className="mount-dot"></span></div>
-        <div className="tech-cord-mount" id="tech-cord-mount-5" aria-hidden="true"><span className="mount-dot"></span></div>
-        <div className="tech-cord-mount" id="tech-cord-mount-6" aria-hidden="true"><span className="mount-dot"></span></div>
+        {/* 7 Ceiling Mount Fixtures - Hidden visually so cords hang directly from ceiling with no box */}
+        <div className="tech-cord-mount" id="tech-cord-mount-0" aria-hidden="true" style={{ display: 'none' }}><span className="mount-dot"></span></div>
+        <div className="tech-cord-mount" id="tech-cord-mount-1" aria-hidden="true" style={{ display: 'none' }}><span className="mount-dot"></span></div>
+        <div className="tech-cord-mount" id="tech-cord-mount-2" aria-hidden="true" style={{ display: 'none' }}><span className="mount-dot"></span></div>
+        <div className="tech-cord-mount" id="tech-cord-mount-3" aria-hidden="true" style={{ display: 'none' }}><span className="mount-dot"></span></div>
+        <div className="tech-cord-mount" id="tech-cord-mount-4" aria-hidden="true" style={{ display: 'none' }}><span className="mount-dot"></span></div>
+        <div className="tech-cord-mount" id="tech-cord-mount-5" aria-hidden="true" style={{ display: 'none' }}><span className="mount-dot"></span></div>
+        <div className="tech-cord-mount" id="tech-cord-mount-6" aria-hidden="true" style={{ display: 'none' }}><span className="mount-dot"></span></div>
 
-        {/* 7 Suspended 3D Glossy Squircles with Tech Icons */}
+        {/* 7 Suspended 3D Glossy Squircles with Nexprobyte Core Technology Stack Icons */}
         
-        {/* 0: Top-Center (Purple - ERP & Analytics) */}
+        {/* 0: Center (Purple - Next.js & React Enterprise ERP & Dashboards) */}
         <div className="tech-cord-squircle squircle-purple" id="tech-badge-0" role="button" tabIndex={0} aria-label="ERP & Analytics Technology Discipline" data-index="0">
           <div className="squircle-connector-ring" aria-hidden="true"></div>
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              {/* Analytics Pie Chart Icon */}
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="#ffffff">
-                <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10h-10V2z"/>
+              {/* Figma UI/UX Design System Icon */}
+              <svg width="22" height="22" viewBox="0 0 38 57" fill="none">
+                <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5Z" fill="#ffffff" fillOpacity="0.95"/>
+                <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#ffffff" fillOpacity="0.85"/>
+                <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z" fill="#ffffff" fillOpacity="0.9"/>
+                <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z" fill="#ffffff"/>
+                <path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z" fill="#ffffff" fillOpacity="0.9"/>
               </svg>
             </div>
           </div>
@@ -557,12 +561,12 @@ export default function HeroCords() {
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              {/* React Atom Icon */}
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#61dafb" strokeWidth="1.8">
-                <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(0 12 12)" />
-                <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)" />
-                <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)" />
-                <circle cx="12" cy="12" r="2" fill="#61dafb" />
+              {/* Authentic React Atom Icon */}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <ellipse cx="12" cy="12" rx="10" ry="3.8" stroke="#61dafb" strokeWidth="1.8" transform="rotate(0 12 12)" />
+                <ellipse cx="12" cy="12" rx="10" ry="3.8" stroke="#61dafb" strokeWidth="1.8" transform="rotate(60 12 12)" />
+                <ellipse cx="12" cy="12" rx="10" ry="3.8" stroke="#61dafb" strokeWidth="1.8" transform="rotate(120 12 12)" />
+                <circle cx="12" cy="12" r="2.2" fill="#61dafb" />
               </svg>
             </div>
           </div>
@@ -582,9 +586,11 @@ export default function HeroCords() {
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              {/* AI Sparkle Icon */}
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="#ffffff">
-                <path d="M12 2L14.39 8.26L21 9.27L16.5 14.14L17.77 21L12 17.77L6.23 21L7.5 14.14L3 9.27L9.61 8.26L12 2Z" opacity="0.9" />
+              {/* Authentic n8n / AI Neural Sparks Icon */}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L14.4 8.6L21 11L14.4 13.4L12 20L9.6 13.4L3 11L9.6 8.6L12 2Z" fill="#ffffff" />
+                <circle cx="19" cy="5" r="2" fill="#ffedd5" />
+                <circle cx="5" cy="19" r="1.5" fill="#ffedd5" />
               </svg>
             </div>
           </div>
@@ -598,15 +604,17 @@ export default function HeroCords() {
           <div className="squircle-sparks" id="tech-sparks-2" aria-hidden="true"></div>
         </div>
 
-        {/* 3: Bottom-Left (Mint Emerald - Virtual Assistants Top 1%) */}
+        {/* 3: Bottom-Left (Mint Emerald - Flutter & Mobile Apps) */}
         <div className="tech-cord-squircle squircle-mint" id="tech-badge-3" role="button" tabIndex={0} aria-label="Virtual Assistance Technology Discipline" data-index="3">
           <div className="squircle-connector-ring" aria-hidden="true"></div>
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              {/* Executive / Smartphone Flutter Icon */}
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="#ffffff">
-                <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
+              {/* Authentic Flutter Wing Icon */}
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M14.31 2L4.03 12.28l3.18 3.18L19.5 2h-5.19z" fill="#ffffff" />
+                <path d="M14.31 12.28L9.54 17.05l3.18 3.18 1.59-1.59 4.77-4.77h-4.77z" fill="#ffffff" fillOpacity="0.8" />
+                <path d="M9.54 17.05L14.31 21.82h5.19l-6.76-6.76-3.2 1.99z" fill="#ffffff" />
               </svg>
             </div>
           </div>
@@ -620,16 +628,16 @@ export default function HeroCords() {
           <div className="squircle-sparks" id="tech-sparks-3" aria-hidden="true"></div>
         </div>
 
-        {/* 4: Top-Right (Electric Green - Dedicated Dev Teams Code </>) */}
+        {/* 4: Top-Right (Electric Green - Python & Core Engineering) */}
         <div className="tech-cord-squircle squircle-green" id="tech-badge-4" role="button" tabIndex={0} aria-label="Dedicated Remote Teams Discipline" data-index="4">
           <div className="squircle-connector-ring" aria-hidden="true"></div>
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              {/* Code </> Icon */}
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="16 18 22 12 16 6"></polyline>
-                <polyline points="8 6 2 12 8 18"></polyline>
+              {/* Authentic Python Interlocking Snakes Icon */}
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="#ffffff">
+                <path d="M11.91 2c-4.22 0-3.95 1.83-3.95 1.83l.01 1.9h4.03v.57H6.38s-2.58.29-2.58 3.96c0 3.66 2.26 3.82 2.26 3.82h1.34v-1.89s-.07-2.26 2.22-2.26h3.83s2.14.03 2.14-2.14V4.14S16.13 2 11.91 2zm-1.22 1.22a.77.77 0 1 1 0 1.54.77.77 0 0 1 0-1.54z" />
+                <path d="M12.09 22c4.22 0 3.95-1.83 3.95-1.83l-.01-1.9h-4.03v-.57h5.61s2.58-.29 2.58-3.96c0-3.66-2.26-3.82-2.26-3.82h-1.34v1.89s.07 2.26-2.22 2.26H10.54s-2.14-.03-2.14 2.14v3.66S7.87 22 12.09 22zm1.22-1.22a.77.77 0 1 1 0-1.54.77.77 0 0 1 0 1.54z" fillOpacity="0.85" />
               </svg>
             </div>
           </div>
@@ -643,15 +651,16 @@ export default function HeroCords() {
           <div className="squircle-sparks" id="tech-sparks-4" aria-hidden="true"></div>
         </div>
 
-        {/* 5: Mid-Right (Cobalt Blue - DevOps & Cloud APIs) */}
+        {/* 5: Mid-Right (Cobalt Blue - DevOps & Cloud APIs Toggle) */}
         <div className="tech-cord-squircle squircle-blue" id="tech-badge-5" role="button" tabIndex={0} aria-label="DevOps and API Integration Discipline" data-index="5">
           <div className="squircle-connector-ring" aria-hidden="true"></div>
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              {/* AWS / Cloud Upload Icon */}
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+              {/* Active Toggle Switch Icon */}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect x="2" y="6" width="20" height="12" rx="6" stroke="#ffffff" strokeWidth="2.5"/>
+                <circle cx="16" cy="12" r="3.5" fill="#ffffff"/>
               </svg>
             </div>
           </div>
@@ -665,13 +674,13 @@ export default function HeroCords() {
           <div className="squircle-sparks" id="tech-sparks-5" aria-hidden="true"></div>
         </div>
 
-        {/* 6: Bottom-Right (Lime Green - E-Commerce Management Shopify) */}
+        {/* 6: Bottom-Right (Lime Green - Shopify & E-Commerce Management) */}
         <div className="tech-cord-squircle squircle-lime" id="tech-badge-6" role="button" tabIndex={0} aria-label="E-Commerce Support Discipline" data-index="6">
           <div className="squircle-connector-ring" aria-hidden="true"></div>
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              {/* Shopify / Shopping Bag Icon */}
+              {/* Authentic Shopify Shopping Bag Icon with Dark Charcoal Contrast */}
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
                 <line x1="3" y1="6" x2="21" y2="6"></line>
