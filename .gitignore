@@ -48,6 +48,12 @@ lerna-debug.log*
 
 # Operating System Files
 .DS_Store
+*.pem
+
+# Reference and extraction scratch files
+saro_site.html
+saro_extracted_styles.css
+scratch/
 .DS_Store?
 ._*
 .Spotlight-V100
