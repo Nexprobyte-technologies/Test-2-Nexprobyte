@@ -743,7 +743,6 @@ input, textarea, select {
    HERO HANGING THREAD / PULL CORD (PHYSICS SIMULATION)
    ========================================================================== */
 .hero-hanging-cord-stage {
-  display: none !important;
   position: absolute;
   top: 0;
   right: clamp(12px, 3.5vw, 48px);

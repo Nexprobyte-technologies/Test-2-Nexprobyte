@@ -11,7 +11,9 @@ export default function HeroCords() {
     const stage = stageRef.current;
     if (!stage) return;
 
-    // Squircle specifications - Nexprobyte Real Core Technology Stack
+    // -------------------------------------------------------------
+    // PART A: SUSPENDED 7-CORD SQUIRCLE ARCHITECTURE
+    // -------------------------------------------------------------
     const SQUIRCLE_CONFIGS = [
       {
         id: 0,
@@ -92,7 +94,6 @@ export default function HeroCords() {
       },
     ];
 
-    // State for cords physics simulation
     const cords = SQUIRCLE_CONFIGS.map((cfg) => {
       const badgeEl = document.getElementById(`tech-badge-${cfg.id}`);
       const pathEl = document.getElementById(`tech-cord-path-${cfg.id}`);
@@ -106,7 +107,7 @@ export default function HeroCords() {
         mountEl,
         sparksEl,
         anchorX: 0,
-        anchorY: 0, // Clean cord directly to ceiling line
+        anchorY: 0,
         restX: 0,
         restY: 0,
         px: 0,
@@ -126,19 +127,34 @@ export default function HeroCords() {
     let currentParallaxX = 0;
     let currentParallaxY = 0;
 
-    // Web Audio synthesizer for harmonic chime
+    // Shared AudioContext for low latency click sounds
+    let sharedAudioCtx = null;
+    function getAudioContext() {
+      try {
+        if (!sharedAudioCtx) {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (AudioCtx) sharedAudioCtx = new AudioCtx();
+        }
+        if (sharedAudioCtx && sharedAudioCtx.state === 'suspended') {
+          sharedAudioCtx.resume().catch(() => {});
+        }
+        return sharedAudioCtx;
+      } catch (_) {
+        return null;
+      }
+    }
+
     function playSquirclePing(freq = 800) {
       try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!AudioCtx) return;
-        const ctx = new AudioCtx();
+        const ctx = getAudioContext();
+        if (!ctx) return;
         const now = ctx.currentTime;
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         osc.type = 'triangle';
         osc.frequency.setValueAtTime(freq, now);
         osc.frequency.exponentialRampToValueAtTime(260, now + 0.04);
-        gain.gain.setValueAtTime(0.05, now);
+        gain.gain.setValueAtTime(0.04, now);
         gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
         osc.connect(gain);
         gain.connect(ctx.destination);
@@ -147,7 +163,6 @@ export default function HeroCords() {
       } catch (_) {}
     }
 
-    // Spark particle burst on release
     function emitCordSparks(cord) {
       if (!cord.sparksEl) return;
       const count = 12;
@@ -169,7 +184,6 @@ export default function HeroCords() {
       }
     }
 
-    // Responsive layout calculation
     function updateLayout() {
       stageWidth = stage.clientWidth || window.innerWidth;
       const centerX = stageWidth * 0.5;
@@ -178,7 +192,7 @@ export default function HeroCords() {
       const isDesktop = stageWidth >= 1024;
 
       cords.forEach((cord) => {
-        const radius = 28;
+        const radius = isMobile ? 16 : isTablet ? 22 : 28;
         let targetX = centerX;
         let targetY = 110;
 
@@ -283,7 +297,7 @@ export default function HeroCords() {
         cord.restX = targetX;
         cord.restY = targetY;
         cord.anchorX = targetX;
-        cord.anchorY = 0; // Ceiling line: no top box
+        cord.anchorY = 0;
 
         if (cord.px === 0 && cord.py === 0) {
           cord.px = targetX;
@@ -296,7 +310,7 @@ export default function HeroCords() {
       });
     }
 
-    // Pointer event bindings
+    // Pointer event bindings for squircle cords
     cords.forEach((cord) => {
       const badge = cord.badgeEl;
       if (!badge) return;
@@ -305,7 +319,9 @@ export default function HeroCords() {
         e.preventDefault();
         cord.isDragging = true;
         cord.pointerId = e.pointerId;
-        badge.setPointerCapture(e.pointerId);
+        try {
+          badge.setPointerCapture(e.pointerId);
+        } catch (_) {}
         badge.classList.add('is-dragging');
 
         const rect = badge.getBoundingClientRect();
@@ -330,7 +346,6 @@ export default function HeroCords() {
             badge.releasePointerCapture(e.pointerId);
           } catch (_) {}
 
-          // Impart rebound spring velocity
           cord.vx = (cord.restX - cord.px) * 0.22;
           cord.vy = (cord.restY - cord.py) * 0.22;
           emitCordSparks(cord);
@@ -342,44 +357,295 @@ export default function HeroCords() {
       badge.addEventListener('pointercancel', onPointerEnd);
     });
 
-    // Window parallax tracking
+    // -------------------------------------------------------------
+    // PART B: INTERACTIVE HANGING PULL-THREAD (TURBO SWITCH)
+    // -------------------------------------------------------------
+    const pullStage = document.getElementById('hanging-cord-stage');
+    const pullCordPath = document.getElementById('cord-path');
+    const pullCordPathGlow = document.getElementById('cord-path-glow');
+    const pullBead1 = document.getElementById('cord-bead-1');
+    const pullBead2 = document.getElementById('cord-bead-2');
+    const pullBob = document.getElementById('cord-bob');
+    const pullBobTag = document.getElementById('bob-tag');
+    const pullBobState = document.getElementById('bob-state');
+    const pullSparksContainer = document.getElementById('cord-sparks');
+
+    const pullAnchorX = 80;
+    const pullAnchorY = 0;
+    const pullRestLength = 170;
+    const PULL_THRESHOLD = 50;
+    const MAX_STRETCH = 85;
+
+    let pullPx = pullAnchorX;
+    let pullPy = pullRestLength;
+    let pullVx = 0;
+    let pullVy = 0;
+    let isPullDragging = false;
+    let isPrimed = false;
+    let pullPointerId = null;
+    let pullMagneticX = 0;
+    let pullMagneticY = 0;
+
+    let pullStartPointerX = 0;
+    let pullStartPointerY = 0;
+    let pullStartTime = 0;
+    let pullHasMovedFar = false;
+
+    function bezierPoint(p0, p1, p2, p3, t) {
+      const mt = 1 - t;
+      const mt2 = mt * mt;
+      const mt3 = mt2 * mt;
+      const t2 = t * t;
+      const t3 = t2 * t;
+      return {
+        x: mt3 * p0.x + 3 * mt2 * t * p1.x + 3 * mt * t2 * p2.x + t3 * p3.x,
+        y: mt3 * p0.y + 3 * mt2 * t * p1.y + 3 * mt * t2 * p2.y + t3 * p3.y,
+      };
+    }
+
+    function playPullClick() {
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+
+        const osc1 = ctx.createOscillator();
+        const gain1 = ctx.createGain();
+        osc1.type = 'triangle';
+        osc1.frequency.setValueAtTime(1180, now);
+        osc1.frequency.exponentialRampToValueAtTime(320, now + 0.025);
+        gain1.gain.setValueAtTime(0.08, now);
+        gain1.gain.exponentialRampToValueAtTime(0.0001, now + 0.025);
+        osc1.connect(gain1);
+        gain1.connect(ctx.destination);
+        osc1.start(now);
+        osc1.stop(now + 0.025);
+
+        const osc2 = ctx.createOscillator();
+        const gain2 = ctx.createGain();
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(440, now + 0.02);
+        osc2.frequency.exponentialRampToValueAtTime(130, now + 0.06);
+        gain2.gain.setValueAtTime(0.06, now + 0.02);
+        gain2.gain.exponentialRampToValueAtTime(0.0001, now + 0.06);
+        osc2.connect(gain2);
+        gain2.connect(ctx.destination);
+        osc2.start(now + 0.02);
+        osc2.stop(now + 0.06);
+      } catch (_) {}
+    }
+
+    function emitPullSparks() {
+      if (!pullSparksContainer) return;
+      const count = 12;
+      const colors = ['#0066ff', '#ff6b1a', '#00d6b2', '#ffd166', '#ffffff'];
+
+      for (let i = 0; i < count; i++) {
+        const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.4;
+        const distance = 28 + Math.random() * 42;
+        const dx = Math.cos(angle) * distance;
+        const dy = Math.sin(angle) * distance;
+
+        const spark = document.createElement('span');
+        spark.className = 'cord-spark-particle';
+        spark.style.setProperty('--dx', `${dx.toFixed(1)}px`);
+        spark.style.setProperty('--dy', `${dy.toFixed(1)}px`);
+        spark.style.backgroundColor = colors[i % colors.length];
+        spark.style.boxShadow = `0 0 6px ${colors[i % colors.length]}`;
+
+        pullSparksContainer.appendChild(spark);
+        setTimeout(() => spark.remove(), 600);
+      }
+    }
+
+    function toggleTurbo() {
+      setTurboMode((prev) => {
+        const next = !prev;
+        if (pullBobState) pullBobState.textContent = next ? 'TURBO ACTIVE' : '48H READY';
+        if (pullBobTag) pullBobTag.textContent = next ? 'TURBO' : 'PULL';
+        return next;
+      });
+      playPullClick();
+      emitPullSparks();
+    }
+
+    function updatePullPointerCoords(e) {
+      if (!pullStage) return;
+      const rect = pullStage.getBoundingClientRect();
+      const scaleX = rect.width > 0 ? rect.width / 160 : 1;
+      const scaleY = rect.height > 0 ? rect.height / 340 : 1;
+      const rawX = (e.clientX - rect.left) / scaleX;
+      const rawY = (e.clientY - rect.top) / scaleY;
+
+      const moveDist = Math.hypot(e.clientX - pullStartPointerX, e.clientY - pullStartPointerY);
+      if (moveDist > 8) {
+        pullHasMovedFar = true;
+      }
+
+      const dx = rawX - pullAnchorX;
+      const dy = Math.max(20, rawY - pullAnchorY);
+      const dist = Math.hypot(dx, dy);
+
+      let effectiveDist = dist;
+      if (dist > pullRestLength) {
+        const excess = dist - pullRestLength;
+        const resistedExcess = MAX_STRETCH * Math.tanh(excess / MAX_STRETCH);
+        effectiveDist = pullRestLength + resistedExcess;
+      }
+
+      const angle = Math.max(-Math.PI / 2.6, Math.min(Math.PI / 2.6, Math.atan2(dx, dy)));
+      pullPx = pullAnchorX + Math.sin(angle) * effectiveDist;
+      pullPy = pullAnchorY + Math.cos(angle) * effectiveDist;
+
+      const pullDelta = pullPy - pullRestLength;
+      if (pullDelta >= PULL_THRESHOLD) {
+        if (!isPrimed) {
+          isPrimed = true;
+          if (pullStage) pullStage.classList.add('is-primed');
+          if (pullBobTag) pullBobTag.textContent = 'RELEASE ⚡';
+        }
+      } else {
+        if (isPrimed) {
+          isPrimed = false;
+          if (pullStage) pullStage.classList.remove('is-primed');
+          if (pullBobTag) pullBobTag.textContent = 'PULL';
+        }
+      }
+    }
+
+    if (pullBob) {
+      pullBob.addEventListener('pointerdown', (e) => {
+        if (e.button && e.button !== 0) return;
+        isPullDragging = true;
+        pullPointerId = e.pointerId;
+        try {
+          pullBob.setPointerCapture(e.pointerId);
+        } catch (_) {}
+        pullBob.classList.add('is-dragging');
+        pullMagneticX = 0;
+        pullMagneticY = 0;
+        pullStartPointerX = e.clientX;
+        pullStartPointerY = e.clientY;
+        pullStartTime = performance.now();
+        pullHasMovedFar = false;
+        updatePullPointerCoords(e);
+      });
+
+      const onPullPointerEnd = () => {
+        if (!isPullDragging) return;
+        isPullDragging = false;
+        pullBob.classList.remove('is-dragging');
+        try {
+          if (pullPointerId !== null) pullBob.releasePointerCapture(pullPointerId);
+        } catch (_) {}
+        pullPointerId = null;
+
+        const pullDelta = pullPy - pullRestLength;
+        const duration = performance.now() - pullStartTime;
+        const isQuickTap = !pullHasMovedFar && duration < 350;
+
+        if (isQuickTap) {
+          pullPy = pullRestLength + PULL_THRESHOLD + 12;
+          isPrimed = true;
+          if (pullStage) pullStage.classList.add('is-primed');
+          setTimeout(() => {
+            toggleTurbo();
+            pullVy = -20;
+            pullVx = (Math.random() - 0.5) * 8;
+            isPrimed = false;
+            if (pullStage) pullStage.classList.remove('is-primed');
+          }, 120);
+          return;
+        }
+
+        if (isPrimed || pullDelta >= PULL_THRESHOLD) {
+          toggleTurbo();
+          pullVy = -Math.min(24, pullDelta * 0.32);
+          pullVx = (pullAnchorX - pullPx) * 0.3;
+        } else {
+          pullVy = -(pullDelta * 0.22);
+          pullVx = (pullAnchorX - pullPx) * 0.25;
+        }
+
+        isPrimed = false;
+        if (pullStage) pullStage.classList.remove('is-primed');
+      };
+
+      pullBob.addEventListener('pointerup', onPullPointerEnd);
+      pullBob.addEventListener('pointercancel', onPullPointerEnd);
+
+      pullBob.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          pullPy = pullRestLength + PULL_THRESHOLD + 14;
+          isPrimed = true;
+          if (pullStage) pullStage.classList.add('is-primed');
+          setTimeout(() => {
+            toggleTurbo();
+            pullVy = -22;
+            isPrimed = false;
+            if (pullStage) pullStage.classList.remove('is-primed');
+          }, 120);
+        }
+      });
+    }
+
+    // Window level cursor listeners
     const handleMouseMove = (e) => {
       const normX = (e.clientX / window.innerWidth) * 2 - 1;
       const normY = (e.clientY / window.innerHeight) * 2 - 1;
       targetParallaxX = normX * 14;
       targetParallaxY = normY * 10;
+
+      if (isPullDragging) {
+        updatePullPointerCoords(e);
+      } else if (pullStage) {
+        const rect = pullStage.getBoundingClientRect();
+        const scaleX = rect.width > 0 ? rect.width / 160 : 1;
+        const scaleY = rect.height > 0 ? rect.height / 340 : 1;
+        const pointerX = (e.clientX - rect.left) / scaleX;
+        const pointerY = (e.clientY - rect.top) / scaleY;
+        const dist = Math.hypot(pointerX - pullPx, pointerY - pullPy);
+        if (dist < 100) {
+          pullMagneticX = (pointerX - pullPx) * 0.12;
+          pullMagneticY = Math.min(14, Math.max(0, (pointerY - pullPy) * 0.12));
+        } else {
+          pullMagneticX = 0;
+          pullMagneticY = 0;
+        }
+      }
     };
+
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('resize', updateLayout);
     updateLayout();
 
-    // Physics Animation Loop
-    let lastTime = performance.now();
+    // -------------------------------------------------------------
+    // PART C: UNIFIED HIGH-PERFORMANCE PHYSICS ANIMATION LOOP
+    // -------------------------------------------------------------
     const SPRING_K = 0.075;
     const DAMPING = 0.86;
 
     function renderLoop(time) {
-      const dt = Math.min((time - lastTime) / 1000, 0.05);
-      lastTime = time;
-
-      // Parallax smooth interpolation
       currentParallaxX += (targetParallaxX - currentParallaxX) * 0.08;
       currentParallaxY += (targetParallaxY - currentParallaxY) * 0.08;
 
       const tSec = time * 0.0015;
+      const isMobile = stageWidth < 768;
+      const isTablet = stageWidth >= 768 && stageWidth < 1024;
+      const squircleHalf = isMobile ? 16 : isTablet ? 21 : 28;
 
+      // 1. Update 7 suspended squircle cords
       cords.forEach((cord) => {
         if (!cord.badgeEl || !cord.pathEl) return;
 
         if (!cord.isDragging) {
-          // Ambient gentle pendulum sway
           const swayX = Math.sin(tSec + cord.swayPhase) * cord.swayAmp;
           const swayY = Math.cos(tSec * 1.5 + cord.swayPhase) * (cord.swayAmp * 0.25);
 
           const targetX = cord.restX + swayX + currentParallaxX;
           const targetY = cord.restY + swayY + currentParallaxY;
 
-          // Spring forces
           const fx = (targetX - cord.px) * SPRING_K;
           const fy = (targetY - cord.py) * SPRING_K;
 
@@ -390,22 +656,82 @@ export default function HeroCords() {
           cord.py += cord.vy;
         }
 
-        // Update Squircle Position & Dynamic Tilt
         const tiltAngle = Math.max(-18, Math.min(18, (cord.px - cord.anchorX) * 0.12));
-        cord.badgeEl.style.transform = `translate3d(${cord.px - 28}px, ${cord.py - 28}px, 0) rotate(${tiltAngle}deg)`;
+        cord.badgeEl.style.transform = `translate3d(${cord.px - squircleHalf}px, ${cord.py - squircleHalf}px, 0) rotate(${tiltAngle}deg)`;
 
-        // Update Dynamic Smooth Bezier Cord Path
         const ax = cord.anchorX;
-        const ay = 0; // Starts directly at top ceiling edge: NO BOX
+        const ay = 0;
         const bx = cord.px;
-        const by = cord.py - 26; // attach ring at top edge of squircle
+        const by = cord.py - (squircleHalf - 2);
 
-        // Quadratic Bezier midpoint control curvature with inertia sag
         const ctrlX = (ax + bx) * 0.5 + (cord.px - cord.anchorX) * 0.08;
         const ctrlY = (ay + by) * 0.5 + 12;
 
         cord.pathEl.setAttribute('d', `M ${ax.toFixed(1)},0 Q ${ctrlX.toFixed(1)},${ctrlY.toFixed(1)} ${bx.toFixed(1)},${by.toFixed(1)}`);
       });
+
+      // 2. Update interactive hanging pull-cord
+      if (pullCordPath && pullBob) {
+        if (!isPullDragging) {
+          const ambientSway = Math.sin(tSec * 1.1) * 3.6 + Math.cos(tSec * 2.2) * 1.2;
+          const curTargetX = pullAnchorX + ambientSway + pullMagneticX;
+          const curTargetY = pullRestLength + pullMagneticY;
+
+          const dxFromTarget = curTargetX - pullPx;
+          const dyFromTarget = curTargetY - pullPy;
+
+          const angle = Math.atan2(pullPx - pullAnchorX, pullPy - pullAnchorY);
+          const pendulumRestoreX = -Math.sin(angle) * 0.85;
+
+          const ax = dxFromTarget * 0.045 + pendulumRestoreX;
+          const ay = dyFromTarget * 0.07;
+
+          pullVx = (pullVx + ax) * 0.965;
+          pullVy = (pullVy + ay) * 0.91;
+
+          pullPx += pullVx;
+          pullPy += pullVy;
+        }
+
+        const dx = pullPx - pullAnchorX;
+        const dy = pullPy - pullAnchorY;
+        const len = Math.hypot(dx, dy);
+        const sag = Math.max(0, 16 * (1 - Math.min(1, len / pullRestLength)));
+        const lagX = -pullVx * 0.08;
+
+        const cp1 = {
+          x: pullAnchorX + dx * 0.33 + lagX,
+          y: pullAnchorY + dy * 0.33 + sag,
+        };
+        const cp2 = {
+          x: pullAnchorX + dx * 0.66 + lagX * 0.7,
+          y: pullAnchorY + dy * 0.66 + sag * 0.4,
+        };
+
+        const pathData = `M ${pullAnchorX},${pullAnchorY} C ${cp1.x.toFixed(1)},${cp1.y.toFixed(1)} ${cp2.x.toFixed(1)},${cp2.y.toFixed(1)} ${pullPx.toFixed(1)},${pullPy.toFixed(1)}`;
+        pullCordPath.setAttribute('d', pathData);
+        if (pullCordPathGlow) {
+          pullCordPathGlow.setAttribute('d', pathData);
+        }
+
+        if (pullBead1) {
+          const b1 = bezierPoint({ x: pullAnchorX, y: pullAnchorY }, cp1, cp2, { x: pullPx, y: pullPy }, 0.33);
+          pullBead1.setAttribute('cx', b1.x.toFixed(1));
+          pullBead1.setAttribute('cy', b1.y.toFixed(1));
+        }
+        if (pullBead2) {
+          const b2 = bezierPoint({ x: pullAnchorX, y: pullAnchorY }, cp1, cp2, { x: pullPx, y: pullPy }, 0.66);
+          pullBead2.setAttribute('cx', b2.x.toFixed(1));
+          pullBead2.setAttribute('cy', b2.y.toFixed(1));
+        }
+
+        const angleRad = Math.atan2(dx, dy);
+        const angleDeg = (angleRad * (180 / Math.PI) * 0.65).toFixed(1);
+        const offsetX = (pullPx - pullAnchorX).toFixed(1);
+        const offsetY = (pullPy - pullRestLength).toFixed(1);
+
+        pullBob.style.transform = `translate3d(${offsetX}px, ${offsetY}px, 0) rotate(${angleDeg}deg)`;
+      }
 
       animFrameRef.current = requestAnimationFrame(renderLoop);
     }
@@ -421,12 +747,11 @@ export default function HeroCords() {
 
   return (
     <>
-      {/* 1. Hanging cord stage for turbo switch */}
+      {/* 1. Hanging pull thread for 48H / Turbo toggle (Always visible, responsive across all viewports) */}
       <div
         className={`hero-hanging-cord-stage ${turboMode ? 'turbo-active' : ''}`}
         id="hanging-cord-stage"
         aria-label="Interactive Cord Switch"
-        style={{ display: 'none' }}
       >
         <div className="cord-ceiling-mount" aria-hidden="true">
           <span className="mount-plate"></span>
@@ -461,7 +786,6 @@ export default function HeroCords() {
           tabIndex={0}
           aria-label="Pull thread to toggle Turbo Acceleration Mode"
           aria-pressed={turboMode}
-          onClick={() => setTurboMode(!turboMode)}
         >
           <div className="bob-connector-ring" aria-hidden="true"></div>
           <div className="bob-capsule">
@@ -535,7 +859,6 @@ export default function HeroCords() {
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              {/* Figma UI/UX Design System Icon */}
               <svg width="22" height="22" viewBox="0 0 38 57" fill="none">
                 <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5Z" fill="#ffffff" fillOpacity="0.95"/>
                 <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#ffffff" fillOpacity="0.85"/>
@@ -561,7 +884,6 @@ export default function HeroCords() {
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              {/* Authentic React Atom Icon */}
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <ellipse cx="12" cy="12" rx="10" ry="3.8" stroke="#61dafb" strokeWidth="1.8" transform="rotate(0 12 12)" />
                 <ellipse cx="12" cy="12" rx="10" ry="3.8" stroke="#61dafb" strokeWidth="1.8" transform="rotate(60 12 12)" />
@@ -586,7 +908,6 @@ export default function HeroCords() {
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              {/* Authentic n8n / AI Neural Sparks Icon */}
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M12 2L14.4 8.6L21 11L14.4 13.4L12 20L9.6 13.4L3 11L9.6 8.6L12 2Z" fill="#ffffff" />
                 <circle cx="19" cy="5" r="2" fill="#ffedd5" />
@@ -610,7 +931,6 @@ export default function HeroCords() {
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              {/* Authentic Flutter Wing Icon */}
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
                 <path d="M14.31 2L4.03 12.28l3.18 3.18L19.5 2h-5.19z" fill="#ffffff" />
                 <path d="M14.31 12.28L9.54 17.05l3.18 3.18 1.59-1.59 4.77-4.77h-4.77z" fill="#ffffff" fillOpacity="0.8" />
@@ -634,7 +954,6 @@ export default function HeroCords() {
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              {/* Authentic Python Interlocking Snakes Icon */}
               <svg width="22" height="22" viewBox="0 0 24 24" fill="#ffffff">
                 <path d="M11.91 2c-4.22 0-3.95 1.83-3.95 1.83l.01 1.9h4.03v.57H6.38s-2.58.29-2.58 3.96c0 3.66 2.26 3.82 2.26 3.82h1.34v-1.89s-.07-2.26 2.22-2.26h3.83s2.14.03 2.14-2.14V4.14S16.13 2 11.91 2zm-1.22 1.22a.77.77 0 1 1 0 1.54.77.77 0 0 1 0-1.54z" />
                 <path d="M12.09 22c4.22 0 3.95-1.83 3.95-1.83l-.01-1.9h-4.03v-.57h5.61s2.58-.29 2.58-3.96c0-3.66-2.26-3.82-2.26-3.82h-1.34v1.89s.07 2.26-2.22 2.26H10.54s-2.14-.03-2.14 2.14v3.66S7.87 22 12.09 22zm1.22-1.22a.77.77 0 1 1 0-1.54.77.77 0 0 1 0 1.54z" fillOpacity="0.85" />
@@ -657,7 +976,6 @@ export default function HeroCords() {
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              {/* Active Toggle Switch Icon */}
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <rect x="2" y="6" width="20" height="12" rx="6" stroke="#ffffff" strokeWidth="2.5"/>
                 <circle cx="16" cy="12" r="3.5" fill="#ffffff"/>
@@ -680,7 +998,6 @@ export default function HeroCords() {
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              {/* Authentic Shopify Shopping Bag Icon with Dark Charcoal Contrast */}
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
                 <line x1="3" y1="6" x2="21" y2="6"></line>
