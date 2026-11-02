@@ -1,20 +1,30 @@
 {
   "name": "nexprobyte-technologies-web",
   "version": "1.0.0",
-  "description": "Reverse engineered high-fidelity web application for Nexprobyte Technologies",
-  "main": "server.js",
+  "description": "Reverse engineered high-fidelity Next.js web application for Nexprobyte Technologies",
   "scripts": {
-    "start": "node server.js",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "serve": "node server.js",
     "test": "node verify_build.js && node verify_animations.js"
+  },
+  "dependencies": {
+    "framer-motion": "^12.43.0",
+    "lucide-react": "^0.546.0",
+    "next": "^15.5.4",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
   },
   "keywords": [
     "nexprobyte",
     "framer",
     "reverse-engineered",
-    "fintech",
-    "saas"
+    "nextjs",
+    "react",
+    "framer-motion"
   ],
-  "author": "",
+  "author": "Nexprobyte Technologies",
   "license": "ISC",
   "type": "commonjs"
 }
