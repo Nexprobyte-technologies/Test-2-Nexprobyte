@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 const SOCIALS = [
   { key: 'in', label: 'LinkedIn', href: 'https://www.linkedin.com/in/nextprobytetechnologies' },
@@ -37,9 +38,9 @@ export default function Footer() {
               Join 150+ teams using Nexprobyte Technologies to engineer custom software, build high-converting websites, hire dedicated developers, deploy executive VAs, and automate workflows.
             </p>
             <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', justifyContent: 'center', marginTop: '16px' }}>
-              <a href="#contact" className="btn-primary-hero" style={{ background: '#fff', color: '#141414' }}>
+              <Link href="/contact" className="btn-primary-hero" style={{ background: '#fff', color: '#141414' }}>
                 Initiate Project Consultation
-              </a>
+              </Link>
               <a href="tel:+919500042426" className="btn-secondary-hero" style={{ background: 'transparent', color: '#fff', borderColor: 'rgba(255,255,255,0.3)' }}>
                 📞 Call +91 95000 42426
               </a>
@@ -54,12 +55,12 @@ export default function Footer() {
           <div className="footer-top reveal-up">
             {/* Col 1: Brand & Headquarters */}
             <div style={{ maxWidth: '340px' }}>
-              <a href="#hero" className="nav-brand footer-brand" aria-label="Nexprobyte Technologies">
+              <Link href="/" className="nav-brand footer-brand" aria-label="Nexprobyte Technologies">
                 <div className="brand-icon footer-brand-icon">
                   <img src="/assets/logo-transparent.png" alt="Nexprobyte Logo" className="brand-logo-img" width={28} height={18} />
                 </div>
                 <span>NEXPROBYTE TECHNOLOGIES</span>
-              </a>
+              </Link>
               <p className="footer-brand-desc" style={{ marginTop: '14px', fontSize: '0.9rem', lineHeight: 1.6, color: 'var(--text-secondary)' }}>
                 Nexprobyte Technologies is an enterprise digital solutions and AI systems company headquartered in Coimbatore. We engineer high-performance web applications, mobile architectures, autonomous automation, and conversion marketing for ambitious businesses worldwide.
               </p>
@@ -83,13 +84,14 @@ export default function Footer() {
             <div>
               <h4 className="footer-heading">Services Suite</h4>
               <ul className="footer-links">
-                <li><a href="#service-va" className="footer-link">Virtual Assistant Services</a></li>
-                <li><a href="#service-dev" className="footer-link">Software Dev Manpower</a></li>
-                <li><a href="#service-ai" className="footer-link">AI &amp; Automation VA</a></li>
-                <li><a href="#service-support" className="footer-link">E-Commerce Technical Support</a></li>
-                <li><a href="#service-custom" className="footer-link">CRM &amp; Software Solutions</a></li>
-                <li><a href="#capabilities" className="footer-link">SEO &amp; Growth Marketing</a></li>
-                <li><a href="#capabilities" className="footer-link">UI/UX Design Systems</a></li>
+                <li><Link href="/services" className="footer-link">All 8 Core Disciplines</Link></li>
+                <li><a href="/#service-va" className="footer-link">Virtual Assistant Services</a></li>
+                <li><a href="/#service-dev" className="footer-link">Software Dev Manpower</a></li>
+                <li><a href="/#service-ai" className="footer-link">AI &amp; Automation VA</a></li>
+                <li><a href="/#service-support" className="footer-link">E-Commerce Technical Support</a></li>
+                <li><a href="/#service-custom" className="footer-link">CRM &amp; Software Solutions</a></li>
+                <li><a href="/#capabilities" className="footer-link">SEO &amp; Growth Marketing</a></li>
+                <li><a href="/#capabilities" className="footer-link">UI/UX Design Systems</a></li>
               </ul>
             </div>
 
@@ -97,14 +99,15 @@ export default function Footer() {
             <div>
               <h4 className="footer-heading">Company &amp; Work</h4>
               <ul className="footer-links">
-                <li><a href="#principles" className="footer-link">Core Principles (VAL-01 to 06)</a></li>
-                <li><a href="#approach" className="footer-link">The Nexprobyte Approach</a></li>
-                <li><a href="#industries" className="footer-link">Industries We Empower</a></li>
-                <li><a href="#work" className="footer-link">6 Signature Case Studies</a></li>
-                <li><a href="#about" className="footer-link">About Coimbatore Studio</a></li>
-                <li><a href="#blog" className="footer-link">Blog &amp; Technical Insights</a></li>
-                <li><a href="#careers" className="footer-link">Tech Careers (5 Openings)</a></li>
-                <li><a href="#faq" className="footer-link">Frequently Asked Questions</a></li>
+                <li><Link href="/about" className="footer-link">About Coimbatore Studio</Link></li>
+                <li><Link href="/blog" className="footer-link">Blog &amp; Technical Insights</Link></li>
+                <li><Link href="/careers" className="footer-link">Tech Careers (5 Openings)</Link></li>
+                <li><Link href="/interview-data" className="footer-link">Candidate Interview Intake</Link></li>
+                <li><a href="/#principles" className="footer-link">Core Principles (VAL-01 to 06)</a></li>
+                <li><a href="/#approach" className="footer-link">The Nexprobyte Approach</a></li>
+                <li><a href="/#industries" className="footer-link">Industries We Empower</a></li>
+                <li><a href="/#work" className="footer-link">6 Signature Case Studies</a></li>
+                <li><a href="/#faq" className="footer-link">Frequently Asked Questions</a></li>
               </ul>
             </div>
 
@@ -159,10 +162,10 @@ export default function Footer() {
           <div className="footer-bottom">
             <div>&copy; 2026 Nexprobyte Technologies. All rights reserved. Registered in Coimbatore, Tamil Nadu, India.</div>
             <div style={{ display: 'flex', gap: '20px' }}>
-              <a href="#about" className="footer-link">About Studio</a>
-              <a href="#blog" className="footer-link">Insights</a>
-              <a href="#careers" className="footer-link">Careers</a>
-              <a href="#contact" className="footer-link">Contact</a>
+              <Link href="/about" className="footer-link">About Studio</Link>
+              <Link href="/blog" className="footer-link">Insights</Link>
+              <Link href="/careers" className="footer-link">Careers</Link>
+              <Link href="/contact" className="footer-link">Contact</Link>
             </div>
           </div>
         </div>

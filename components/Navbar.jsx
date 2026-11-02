@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Navbar() {
@@ -73,14 +74,15 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: 'Capabilities', href: '#capabilities', id: 'capabilities' },
-    { label: 'Industries', href: '#industries', id: 'industries' },
-    { label: 'Work', href: '#work', id: 'work' },
-    { label: 'Pricing', href: '#pricing', id: 'pricing' },
-    { label: 'About', href: '#about', id: 'about' },
-    { label: 'Insights', href: '#blog', id: 'blog' },
-    { label: 'Careers', href: '#careers', id: 'careers' },
-    { label: 'FAQ', href: '#faq', id: 'faq' },
+    { label: 'Services', href: '/services', id: 'services' },
+    { label: 'Capabilities', href: '/#capabilities', id: 'capabilities' },
+    { label: 'Industries', href: '/#industries', id: 'industries' },
+    { label: 'Work', href: '/#work', id: 'work' },
+    { label: 'Pricing', href: '/#pricing', id: 'pricing' },
+    { label: 'About', href: '/about', id: 'about' },
+    { label: 'Insights', href: '/blog', id: 'blog' },
+    { label: 'Careers', href: '/careers', id: 'careers' },
+    { label: 'FAQ', href: '/#faq', id: 'faq' },
   ];
 
   return (
@@ -106,7 +108,7 @@ export default function Navbar() {
           }}
         >
           {/* Logo */}
-          <a href="#hero" className="nav-brand" aria-label="Nexprobyte Technologies">
+          <Link href="/" className="nav-brand" aria-label="Nexprobyte Technologies">
             <div className="brand-icon">
               <img
                 src="/assets/logo-transparent.png"
@@ -117,7 +119,7 @@ export default function Navbar() {
               />
             </div>
             <span>NEXPROBYTE</span>
-          </a>
+          </Link>
 
           {/* Desktop Links */}
           <ul className="nav-links" onMouseLeave={() => setHoveredNav(null)}>
@@ -309,22 +311,23 @@ export default function Navbar() {
 
               <div className="mobile-drawer-body">
                 <ul className="mobile-nav-list">
-                  <li><a href="#services" onClick={() => setDrawerOpen(false)}>Services Suite (52 Services)</a></li>
-                  <li><a href="#capabilities" onClick={() => setDrawerOpen(false)}>Capabilities &amp; Stacks</a></li>
-                  <li><a href="#industries" onClick={() => setDrawerOpen(false)}>Industries We Empower</a></li>
-                  <li><a href="#work" onClick={() => setDrawerOpen(false)}>Signature Case Studies</a></li>
-                  <li><a href="#pricing" onClick={() => setDrawerOpen(false)}>Pricing &amp; Packages</a></li>
-                  <li><a href="#about" onClick={() => setDrawerOpen(false)}>About Coimbatore Studio</a></li>
-                  <li><a href="#blog" onClick={() => setDrawerOpen(false)}>Insights &amp; Guides</a></li>
-                  <li><a href="#careers" onClick={() => setDrawerOpen(false)}>Careers (5 Openings)</a></li>
-                  <li><a href="#faq" onClick={() => setDrawerOpen(false)}>FAQ</a></li>
-                  <li><a href="#contact" onClick={() => setDrawerOpen(false)}>Contact Us</a></li>
+                  <li><Link href="/services" onClick={() => setDrawerOpen(false)}>Services Suite (8 Disciplines &amp; 52 PDF)</Link></li>
+                  <li><Link href="/#capabilities" onClick={() => setDrawerOpen(false)}>Capabilities &amp; Stacks</Link></li>
+                  <li><Link href="/#industries" onClick={() => setDrawerOpen(false)}>Industries We Empower</Link></li>
+                  <li><Link href="/#work" onClick={() => setDrawerOpen(false)}>Signature Case Studies</Link></li>
+                  <li><Link href="/#pricing" onClick={() => setDrawerOpen(false)}>Pricing &amp; Packages</Link></li>
+                  <li><Link href="/about" onClick={() => setDrawerOpen(false)}>About Coimbatore Studio</Link></li>
+                  <li><Link href="/blog" onClick={() => setDrawerOpen(false)}>Insights &amp; Guides</Link></li>
+                  <li><Link href="/careers" onClick={() => setDrawerOpen(false)}>Careers (5 Openings)</Link></li>
+                  <li><Link href="/interview-data" onClick={() => setDrawerOpen(false)}>Candidate Onboarding</Link></li>
+                  <li><Link href="/#faq" onClick={() => setDrawerOpen(false)}>FAQ</Link></li>
+                  <li><Link href="/contact" onClick={() => setDrawerOpen(false)}>Contact Us</Link></li>
                 </ul>
 
                 <div style={{ marginTop: '30px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  <a href="#contact" className="btn-primary-hero" style={{ justifyContent: 'center' }} onClick={() => setDrawerOpen(false)}>
+                  <Link href="/contact" className="btn-primary-hero" style={{ justifyContent: 'center' }} onClick={() => setDrawerOpen(false)}>
                     Start Project Consultation &rarr;
-                  </a>
+                  </Link>
                   <a href="tel:+919500042426" className="btn-secondary-hero" style={{ justifyContent: 'center' }}>
                     📞 Call +91 95000 42426
                   </a>

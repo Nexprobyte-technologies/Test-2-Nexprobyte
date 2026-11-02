@@ -56,7 +56,6 @@ export default function Home() {
 
   return (
     <main>
-      <Navbar />
       <Hero />
       <EnterpriseTrustStrip />
       <Statement />
@@ -80,7 +79,6 @@ export default function Home() {
       <CareersSection />
       <FaqAccordion />
       <ContactForm />
-      <Footer />
     </main>
   );
 }

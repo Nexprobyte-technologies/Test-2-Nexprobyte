@@ -1,4 +1,8 @@
 import './globals.css';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import NexiChatbot from '@/components/NexiChatbot';
+import FloatingCallButton from '@/components/FloatingCallButton';
 
 export const metadata = {
   metadataBase: new URL('https://nexprobyte.com'),
@@ -111,7 +115,13 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <Navbar />
+        {children}
+        <Footer />
+        <NexiChatbot />
+        <FloatingCallButton />
+      </body>
     </html>
   );
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 const CORE_DISCIPLINES = [
   {
@@ -456,7 +457,14 @@ export default function AllServices() {
                 </div>
               </div>
 
-              <div className="modal-footer">
+              <div className="modal-footer" style={{ display: 'flex', gap: '12px', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Link
+                  href={`/services/${selectedCore.slug}`}
+                  className="btn-outline-hero"
+                  onClick={() => setSelectedCore(null)}
+                >
+                  Dedicated Service Page &nearr;
+                </Link>
                 <a href="#contact" className="btn-primary-hero" onClick={() => setSelectedCore(null)}>
                   Deploy {selectedCore.title} Team &rarr;
                 </a>

@@ -52,16 +52,20 @@ npm run serve
 - **Content Integrity**: All 52 PDF service items from Nexprobyte Technologies preserved 100% verbatim.
 - **Branding**: Official Nexprobyte logo (`/assets/logo-transparent.png`) in navbar, drawer, footer, and favicon.
 
-### 2. Interactive Components
-- **Real-Time Operational Stream**: Auto-injecting live operational event ticker.
-- **Interactive AI Copilot Playground**: Switch between lead qualification, 24/7 autonomous support bot, and sprint velocity analytics with live simulated metrics.
-- **Interactive 5-Tab Ecosystem Tour**: Deep dive into all 5 company pillars with rich, responsive UI mockups.
-- **Cost Savings & ROI Calculator**: Real-time slider and role selector comparing in-house costs against dedicated Nexprobyte pods with smooth number counter animation.
-- **3D Talent Card Customizer**: Interactive 3D mouse tracking tilt physics with dynamic specular glare, color theme customizer (Obsidian, Cobalt, Emerald, Nebula), and instant role profile switching.
-- **Monthly / Annual Pricing Toggle**: Dynamic switcher recalculating annual discount savings (Save 20%) across Starter, Growth, and Enterprise tiers.
-- **Dual-Group Infinite Marquees**: Seamless mathematical loop for partner brands and client testimonials.
-- **Animated Accessible FAQ Accordion**: Fluid height transitions with `aria-expanded` attributes and rotating chevrons.
-- **Interactive Discovery Call Form**: Form validation, dynamic loading state on submit, and toast confirmation modal.
+### 2. Multi-Page Next.js App Router Architecture (30 Pre-Rendered Routes)
+In addition to the home page (`/`), the application features complete, dedicated App Router pages and dynamic routes with SSG:
+- **Studio Overview (`/about`)**: Full Coimbatore founding story, "Crafted in Coimbatore" photo showcase, 4 foundational principles (VAL-01 to 04), and live metrics.
+- **Production Disciplines (`/services`)**: Comprehensive catalog of all 8 studio services plus linkage to the 52 specialized PDF capabilities.
+- **Dedicated Service Detail Pages (`/services/[slug]`)**: 8 static SSG routes (`website-development`, `application-development`, `mobile-app-development`, `digital-marketing`, `seo-services`, `social-media-marketing`, `ui-ux-design`, `branding-identity`) featuring breadcrumbs, 6 core execution capabilities, 4 turnkey deliverables, and direct inquiry CTAs.
+- **Thought Leadership Journal (`/blog`)**: Complete insights catalog with category filter pills ('All', 'Web', 'SEO', 'Design', 'Marketing', 'Agency', 'Performance').
+- **Dedicated Blog Post Articles (`/blog/[slug]`)**: 6 SSG routes with full verbatim content, structured subheadings (`h`), in-depth paragraphs (`p`), takeaways, author dossiers, and outbound reference links to Google, Mozilla, Moz, and HubSpot.
+- **Careers Studio (`/careers`)**: Active tech openings in Coimbatore/Remote, perks grid, and compensation breakdown.
+- **Dedicated Job Detail Pages (`/careers/[slug]`)**: 5 SSG routes (`frontend-developer`, `fullstack-developer`, `ui-ux-designer`, `digital-marketing-specialist`, `seo-analyst`) with detailed responsibilities, requirements, and direct application links.
+- **Interactive Job Application Portal (`/careers/apply`)**: Multi-field form with client-side PDF file validation (max 5MB), experience tier selection, and confirmation state.
+- **Contact Headquarters (`/contact`)**: Official Coimbatore physical address, Google Maps GPS coordinates (`10.9994, 76.9687`), phone, email, topic selector pills, budget tiers, and message dispatch.
+- **Candidate Onboarding Portal (`/interview-data`)**: Authentication and document dossier collection portal for candidates scheduled for technical interview rounds.
+- **Global Nexi AI Chatbot (`NexiChatbot`)**: Floating interactive assistant at bottom-right with multi-turn conversational AI, Products/Services qualification, and direct WhatsApp routing (`+91 95000 42426`).
+- **Floating Studio Hotline (`FloatingCallButton`)**: Floating direct call launcher at bottom-left with pulse ring animation (`tel:+919500042426`).
 
 ---
 
