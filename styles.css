@@ -3514,6 +3514,15 @@ input, textarea, select {
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
 }
 
+.services-tab-panel {
+  display: none;
+}
+
+.services-tab-panel.active {
+  display: block;
+  animation: modal-enter 0.3s var(--ease-framer);
+}
+
 .core-disciplines-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -4884,3 +4893,39 @@ input, textarea, select {
     right: 16px;
   }
 }
+
+.call-btn-text-full {
+  display: inline;
+}
+
+.call-btn-text-short {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .floating-call-container {
+    bottom: 16px;
+    left: 12px;
+  }
+  .floating-call-btn {
+    padding: 10px 14px 10px 12px;
+    gap: 7px;
+    font-size: 0.84rem;
+  }
+  .call-btn-text-full {
+    display: none;
+  }
+  .call-btn-text-short {
+    display: inline;
+  }
+  .nexi-fab-container {
+    bottom: 16px;
+    right: 12px;
+  }
+  .nexi-fab-btn {
+    padding: 10px 16px 10px 14px;
+    font-size: 0.84rem;
+    gap: 8px;
+  }
+}
+

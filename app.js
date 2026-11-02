@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHangingCord();
   initTechCords();
   initServicesTabs();
+  initCapabilitiesShowcase();
   initBlogSystem();
   initCareersSystem();
   initNexiChatbot();
@@ -926,6 +927,11 @@ function initContactForm() {
       btn.disabled = false;
       btn.innerHTML = originalContent;
       form.reset();
+      const topicPills = document.querySelectorAll('.topic-pill');
+      topicPills.forEach((p, idx) => {
+        if (idx === 0) p.classList.add('is-active');
+        else p.classList.remove('is-active');
+      });
 
       showToast(`Thank you, ${name}! Your request was received. Our solutions team will contact you within 2 hours.`);
     }, 1100);
@@ -1962,23 +1968,232 @@ function initServicesTabs() {
 
   if (!tabPdf || !tabCore || !panelPdf || !panelCore) return;
 
-  tabPdf.addEventListener('click', () => {
-    tabPdf.classList.add('active');
-    tabCore.classList.remove('active');
-    panelPdf.classList.add('active');
-    panelCore.classList.remove('active');
-  });
+  function switchTab(showCore) {
+    if (showCore) {
+      tabCore.classList.add('active');
+      tabPdf.classList.remove('active');
+      panelCore.classList.add('active');
+      panelCore.style.display = 'block';
+      panelPdf.classList.remove('active');
+      panelPdf.style.display = 'none';
+    } else {
+      tabPdf.classList.add('active');
+      tabCore.classList.remove('active');
+      panelPdf.classList.add('active');
+      panelPdf.style.display = 'block';
+      panelCore.classList.remove('active');
+      panelCore.style.display = 'none';
+    }
+  }
 
-  tabCore.addEventListener('click', () => {
-    tabCore.classList.add('active');
-    tabPdf.classList.remove('active');
-    panelCore.classList.add('active');
-    panelPdf.classList.remove('active');
+  tabPdf.addEventListener('click', () => switchTab(false));
+  tabCore.addEventListener('click', () => switchTab(true));
+}
+
+/* ==========================================================================
+   20. CAPABILITIES SHOWCASE SYSTEM (SYS-01 TO SYS-06)
+   ========================================================================== */
+const SITE_CAPABILITIES = [
+  {
+    code: 'SYS-01 // SEARCH-DOMINANCE',
+    badge: 'RANKING #1',
+    title: 'SEO & Search Dominance',
+    subtitle: 'Dominate Google #1 For Commercial High-Intent Queries',
+    desc: 'Technical audits, Core Web Vitals optimization, semantic schema markup, and high-authority link architectures engineered to climb Google rankings sustainably and drive qualified commercial inbound traffic.',
+    bullets: [
+      'Technical Core Web Vitals Audit (95+ Score)',
+      'High-Intent Keyword Mapping & Content Clusters',
+      'Google Business Profile & Local Map Pack Dominance',
+      'White-Hat Authority Backlink Acquisition'
+    ],
+    chips: [
+      { label: 'ORGANIC LIFT', val: '+280%' },
+      { label: 'CORE VITALS', val: '99/100' },
+      { label: 'PENALTIES', val: 'Zero' }
+    ],
+    btnText: 'Deploy SEO Architecture',
+    systemStatus: 'STAGING // GOOGLE_INDEX_v4',
+    telemetry: 'ORGANIC LIFT: +280%',
+    img: 'images/srv-seo.jpg'
+  },
+  {
+    code: 'SYS-02 // GROWTH-ENGINE',
+    badge: '4.8X AVG ROAS',
+    title: 'Performance Marketing & CRO',
+    subtitle: 'Turn Paid Ad Spend into Predictable, Compounding Revenue',
+    desc: 'High-performance multi-channel ad campaigns across Google Ads, Meta, and Instagram, paired with bespoke landing pages, automated lead capture, and ruthless conversion rate optimization.',
+    bullets: [
+      'Google Search, Display & Performance Max Campaigns',
+      'Meta & Instagram High-ROAS Funnel Architecture',
+      'Custom High-Conversion CRO Landing Pages',
+      'Full-Funnel Attribution & Google Analytics 4 Setup'
+    ],
+    chips: [
+      { label: 'AVERAGE ROAS', val: '4.8x' },
+      { label: 'LEAD INFLUX', val: '+340%' },
+      { label: 'OPTIMIZATION', val: '24/7 Live' }
+    ],
+    btnText: 'Launch Growth Campaign',
+    systemStatus: 'CAMPAIGN_ENGINE // AD_STREAMS',
+    telemetry: 'CONVERSION LIFT: 3.8X',
+    img: 'images/srv-marketing.jpg'
+  },
+  {
+    code: 'SYS-03 // CORE-ENGINEERING',
+    badge: '99.98% SLA',
+    title: 'Full-Stack Web & Mobile App Development',
+    subtitle: 'Enterprise Platforms, Microservices & Native Mobile Apps',
+    desc: 'From high-concurrency cloud web apps to native iOS & Android applications. We write clean, test-driven modular code architectures with 99.98% SLA uptime, automated CI/CD, and sub-16ms latency.',
+    bullets: [
+      'React & Next.js 15 Scalable Cloud Frontends',
+      'Node.js, Python & High-Concurrency Microservices',
+      'Cross-Platform Mobile Apps (React Native & Flutter)',
+      'Enterprise REST API & PostgreSQL / MongoDB Datastores'
+    ],
+    chips: [
+      { label: 'UPTIME SLA', val: '99.98%' },
+      { label: 'THROUGHPUT', val: '18K req/s' },
+      { label: 'API LATENCY', val: '<16ms' }
+    ],
+    btnText: 'Embed Dedicated Engineers',
+    systemStatus: 'RUNTIME_PROD // K8S_NODE_01',
+    telemetry: 'THROUGHPUT: 18K req/s',
+    img: 'images/srv-app.jpg'
+  },
+  {
+    code: 'SYS-04 // INTERFACE-DESIGN',
+    badge: 'PIXEL-PERFECT',
+    title: 'UI/UX Design Systems & Interfaces',
+    subtitle: 'Human-Centered Design Systems Built For Maximum Conversions',
+    desc: 'Research-backed user journeys, comprehensive Figma component libraries, and accessible interaction designs that eliminate cognitive friction, delight customers, and convert users effortlessly.',
+    bullets: [
+      'User Research & Journey Friction Mapping',
+      'Scalable Figma Design Systems & Design Token Kits',
+      'High-Fidelity Clickable Interactive Prototypes',
+      'WCAG 2.1 AAA Accessibility & Mobile Optimization'
+    ],
+    chips: [
+      { label: 'USER RETENTION', val: '+64%' },
+      { label: 'ACCESSIBILITY', val: 'WCAG AAA' },
+      { label: 'SPECIFICATION', val: 'Tokenized' }
+    ],
+    btnText: 'Initiate UX Architecture',
+    systemStatus: 'FIGMA_CANVAS // DESIGN_SYSTEM',
+    telemetry: 'RETENTION: +64%',
+    img: 'images/cover-design.jpg'
+  },
+  {
+    code: 'SYS-05 // AUTONOMOUS-OPS',
+    badge: '400+ CONNECTORS',
+    title: 'n8n Workflow Automation & Pipelines',
+    subtitle: 'Eliminate Repetitive Work with Multi-System Autonomous Flows',
+    desc: 'Autonomous workflow pipelines connecting over 400+ enterprise applications, CRM platforms, customer support systems, and internal databases with zero manual overhead.',
+    bullets: [
+      'n8n, Make & Zapier Multi-Branch Autonomous Flows',
+      'WhatsApp Business API & CRM Live Event Triggers',
+      'Instant Lead Capture & Automated SMS/Email Sequences',
+      'Automated PDF Invoicing & Accounting Pipeline Sync'
+    ],
+    chips: [
+      { label: 'HUMAN HOURS SAVED', val: '120h/mo' },
+      { label: 'SYNC LATENCY', val: '<250ms' },
+      { label: 'REDUNDANCY', val: 'Dual Fallback' }
+    ],
+    btnText: 'Automate Internal Workflows',
+    systemStatus: 'EVENT_BUS // 412_NODES_ACTIVE',
+    telemetry: 'SAVED HOURS: 120H/MO',
+    img: 'images/new-automation.jpg'
+  },
+  {
+    code: 'SYS-06 // INTELLIGENT-AI',
+    badge: 'SUB-SECOND RAG',
+    title: 'AI Copilots, Custom RAG & Autonomous Agents',
+    subtitle: 'Transform Proprietary Company Knowledge into 24/7 Intelligence',
+    desc: 'Enterprise generative AI architectures combining Retrieval-Augmented Generation (RAG), vector embeddings, and autonomous agent loops for 24/7 customer support and internal decision intelligence.',
+    bullets: [
+      'Proprietary Document RAG & Vector Database Search',
+      'Multi-Turn Conversational AI Concierge & Chatbots',
+      'Local LLM Deployment & Secure Private VPC Inference',
+      'Automated Ticket Classification & Intent Parsing'
+    ],
+    chips: [
+      { label: 'QUERY LATENCY', val: '380ms' },
+      { label: 'ACCURACY', val: '99.4%' },
+      { label: 'VECTOR INDEX', val: 'Milvus / pgvector' }
+    ],
+    btnText: 'Deploy AI Copilot System',
+    systemStatus: 'LLM_INFRA // VECTOR_CLUSTER',
+    telemetry: 'ACCURACY: 99.4%',
+    img: 'images/ai/ai-brain-neural.jpg'
+  }
+];
+
+function initCapabilitiesShowcase() {
+  const buttons = document.querySelectorAll('.cap-nav-btn[data-cap]');
+  const capCode = document.getElementById('cap-code');
+  const capBadge = document.getElementById('cap-badge');
+  const capTitle = document.getElementById('cap-title');
+  const capSubtitle = document.getElementById('cap-subtitle');
+  const capDesc = document.getElementById('cap-desc');
+  const capBullets = document.getElementById('cap-bullets');
+  const capChips = document.getElementById('cap-chips');
+  const capBtnText = document.getElementById('cap-btn-text');
+  const capImg = document.getElementById('cap-img');
+  const capTelemetry = document.getElementById('cap-telemetry');
+  const capSystemStatus = document.getElementById('cap-system-status');
+
+  if (!buttons.length || !capCode) return;
+
+  function renderCapability(index) {
+    const data = SITE_CAPABILITIES[index];
+    if (!data) return;
+
+    buttons.forEach((btn, idx) => {
+      if (idx === index) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    if (capCode) capCode.textContent = data.code;
+    if (capBadge) capBadge.textContent = data.badge;
+    if (capTitle) capTitle.textContent = data.title;
+    if (capSubtitle) capSubtitle.textContent = data.subtitle;
+    if (capDesc) capDesc.textContent = data.desc;
+    if (capBtnText) capBtnText.textContent = data.btnText;
+    if (capImg) {
+      capImg.src = data.img;
+      capImg.alt = data.title;
+    }
+    if (capTelemetry) capTelemetry.textContent = data.telemetry;
+    if (capSystemStatus) capSystemStatus.textContent = data.systemStatus;
+
+    if (capBullets) {
+      capBullets.innerHTML = data.bullets.map(b => `
+        <div class="cap-bullet-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+          <span>${b}</span>
+        </div>
+      `).join('');
+    }
+
+    if (capChips) {
+      capChips.innerHTML = data.chips.map(c => `
+        <div class="cap-chip"><span class="cap-chip-val">${c.val}</span><span class="cap-chip-label">${c.label}</span></div>
+      `).join('');
+    }
+  }
+
+  buttons.forEach((btn, idx) => {
+    btn.addEventListener('click', () => {
+      renderCapability(idx);
+    });
   });
 }
 
 /* ==========================================================================
-   20. 8 CORE DISCIPLINES & MODAL SYSTEM
+   21. 8 CORE DISCIPLINES & MODAL SYSTEM
    ========================================================================== */
 const SITE_CORE_SERVICES = [
   {
@@ -2212,7 +2427,10 @@ window.openCoreServiceModal = function(slug) {
     `;
   }
 
-  if (modal) modal.style.display = 'flex';
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
 };
 
 /* ==========================================================================
@@ -2407,7 +2625,10 @@ window.openBlogReaderModal = function(slug) {
     `;
   }
 
-  if (modal) modal.style.display = 'flex';
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
 };
 
 /* ==========================================================================
@@ -2569,7 +2790,10 @@ window.openJobDetailModal = function(slug) {
     };
   }
 
-  if (modal) modal.style.display = 'flex';
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
 };
 
 window.openJobApplyModal = function(roleTitle, location, salary) {
@@ -2585,7 +2809,10 @@ window.openJobApplyModal = function(roleTitle, location, salary) {
   if (title) title.textContent = `Apply for ${roleTitle}`;
   if (hiddenRole) hiddenRole.value = roleTitle;
 
-  if (modal) modal.style.display = 'flex';
+  if (modal) {
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
 };
 
 function initCareersSystem() {
@@ -2607,7 +2834,10 @@ function initCareersSystem() {
 
       applyForm.reset();
       const applyModal = document.getElementById('job-apply-modal');
-      if (applyModal) applyModal.style.display = 'none';
+      if (applyModal) {
+        applyModal.style.display = 'none';
+        document.body.style.overflow = '';
+      }
     });
   }
 }
@@ -2716,13 +2946,24 @@ function initModalBackdrops() {
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         modal.style.display = 'none';
+        document.body.style.overflow = '';
       }
     });
 
-    const closeBtns = modal.querySelectorAll('.site-modal-close-btn, #modal-blog-close-btn, #modal-job-close-btn, #modal-service-close-btn');
+    const closeBtns = modal.querySelectorAll('.site-modal-close-btn, #modal-blog-close-btn, #modal-job-close-btn, #modal-service-close-btn, #modal-apply-cancel-btn');
     closeBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         modal.style.display = 'none';
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Close modal when any in-modal anchor link (e.g. href="#contact") is clicked
+    const actionLinks = modal.querySelectorAll('a[href^="#"]');
+    actionLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
       });
     });
   });
@@ -2730,6 +2971,7 @@ function initModalBackdrops() {
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       backdrops.forEach(m => { m.style.display = 'none'; });
+      document.body.style.overflow = '';
       const nexiWin = document.getElementById('nexi-window');
       if (nexiWin) nexiWin.style.display = 'none';
     }
