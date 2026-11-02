@@ -49,6 +49,20 @@ export default function Hero() {
           </a>
         </div>
 
+        {/* Live Architectural Performance Indicators */}
+        <div className="hero-metrics-pill-bar reveal-up" style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', background: 'rgba(0, 102, 255, 0.05)', border: '1px solid rgba(0, 102, 255, 0.15)', borderRadius: '999px', padding: '6px 18px', fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.06em', color: 'var(--text-secondary)', margin: '20px 0 28px', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--accent-blue)' }}>
+            <span className="badge-dot" style={{ width: 6, height: 6, background: 'var(--accent-blue)' }} />
+            <span>SUB-14MS API LATENCY</span>
+          </div>
+          <span>•</span>
+          <span>99.98% SLA UPTIME</span>
+          <span>•</span>
+          <span>40+ ENTERPRISE SYSTEMS SHIPPED</span>
+          <span>•</span>
+          <span style={{ color: 'var(--accent-green)' }}>120+ PROJECTS COMPLETED</span>
+        </div>
+
         {/* 5 Quick Hero Service Folders */}
         <div className="hero-features-grid stagger-group">
           <a href="#service-va" className="feature-folder-card spotlight-card reveal-up">

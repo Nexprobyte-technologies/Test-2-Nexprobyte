@@ -1,6 +1,6 @@
 # Nexprobyte Technologies - Next.js Web Application
 
-A clean-room, pixel-accurate reverse engineering of the high-end fintech Framer template (`https://sarofinance.framer.website/`), built with **Next.js (App Router)** and **Framer Motion**, tailored specifically for **NEXPROBYTE TECHNOLOGIES** incorporating 100% of all 52 core services from the attached company specification.
+A clean-room, pixel-accurate reverse engineering of the high-end fintech Framer template (`https://sarofinance.framer.website/`) and complete integration of **all content from `https://test-nexprobyte.vercel.app/`**, built with **Next.js (App Router)** and **Framer Motion**, tailored specifically for **NEXPROBYTE TECHNOLOGIES** incorporating 100% of all 52 core services from the attached company specification alongside all 8 core disciplines, case studies, Tamil Nadu testimonials, industries, and technical insights.
 
 ---
 

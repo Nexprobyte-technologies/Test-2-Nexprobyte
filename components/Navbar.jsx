@@ -22,7 +22,24 @@ export default function Navbar() {
       setScrollProgress(progress);
 
       // ScrollSpy active link detection
-      const sections = ['hero', 'statement', 'platform', 'services', 'ai-copilot', 'tour', 'pricing', 'faq', 'contact'];
+      const sections = [
+        'hero',
+        'principles',
+        'platform',
+        'services',
+        'capabilities',
+        'industries',
+        'work',
+        'ai-copilot',
+        'approach',
+        'tour',
+        'pricing',
+        'about',
+        'blog',
+        'careers',
+        'faq',
+        'contact',
+      ];
       const scrollPos = scrollY + 160;
 
       for (const sectionId of sections) {
@@ -46,17 +63,23 @@ export default function Navbar() {
   // Handle escape key to close drawer
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape') setDrawerOpen(false);
+      if (e.key === 'Escape') {
+        setDrawerOpen(false);
+        setServicesOpen(false);
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   const navLinks = [
-    { label: 'Platform', href: '#platform', id: 'platform' },
-    { label: 'AI Copilot', href: '#ai-copilot', id: 'ai-copilot' },
-    { label: 'Tour', href: '#tour', id: 'tour' },
+    { label: 'Capabilities', href: '#capabilities', id: 'capabilities' },
+    { label: 'Industries', href: '#industries', id: 'industries' },
+    { label: 'Work', href: '#work', id: 'work' },
     { label: 'Pricing', href: '#pricing', id: 'pricing' },
+    { label: 'About', href: '#about', id: 'about' },
+    { label: 'Insights', href: '#blog', id: 'blog' },
+    { label: 'Careers', href: '#careers', id: 'careers' },
     { label: 'FAQ', href: '#faq', id: 'faq' },
   ];
 
@@ -76,7 +99,7 @@ export default function Navbar() {
           className="nav-dock"
           id="main-nav"
           style={{
-            background: isScrolled ? 'rgba(255, 255, 255, 0.95)' : 'rgba(255, 255, 255, 0.85)',
+            background: isScrolled ? 'rgba(255, 255, 255, 0.96)' : 'rgba(255, 255, 255, 0.88)',
             boxShadow: isScrolled
               ? '0 12px 36px rgba(0, 0, 0, 0.12), 0 0 1px rgba(0, 0, 0, 0.2)'
               : 'var(--shadow-dock)',
@@ -101,39 +124,31 @@ export default function Navbar() {
             {/* Services Dropdown */}
             <li
               className="nav-item"
-              onMouseEnter={() => {
-                setHoveredNav('services');
-                setServicesOpen(true);
-              }}
+              onMouseEnter={() => setServicesOpen(true)}
               onMouseLeave={() => setServicesOpen(false)}
             >
               <a
                 href="#services"
                 className={`nav-link ${activeSection === 'services' ? 'active' : ''}`}
-                aria-expanded={servicesOpen}
+                onClick={() => setServicesOpen(!servicesOpen)}
               >
                 <span>Services</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  style={{
+                    transform: servicesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                    transition: 'transform 0.2s ease',
+                  }}
+                >
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </a>
 
-              {hoveredNav === 'services' && (
-                <motion.div
-                  layoutId="nav-pill"
-                  className="nav-hover-pill"
-                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  style={{
-                    position: 'absolute',
-                    inset: 0,
-                    borderRadius: '9999px',
-                    backgroundColor: 'rgba(0, 102, 255, 0.08)',
-                    zIndex: -1,
-                  }}
-                />
-              )}
-
-              {/* Spring Animated Dropdown Menu */}
               <AnimatePresence>
                 {servicesOpen && (
                   <motion.div
@@ -141,8 +156,7 @@ export default function Navbar() {
                     initial={{ opacity: 0, y: 10, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 8, scale: 0.96 }}
-                    transition={{ type: 'spring', stiffness: 420, damping: 28 }}
-                    style={{ display: 'block' }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                   >
                     <a href="#service-va" className="dropdown-item" onClick={() => setServicesOpen(false)}>
                       <div className="dropdown-icon">
@@ -150,12 +164,11 @@ export default function Navbar() {
                           <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
                           <circle cx="9" cy="7" r="4"></circle>
                           <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                         </svg>
                       </div>
                       <div>
-                        <div className="dropdown-title">Virtual Assistance</div>
-                        <div className="dropdown-desc">Executive, Admin, CRM & E-Commerce VAs</div>
+                        <div className="dropdown-title">Virtual Assistance (10 Services)</div>
+                        <div className="dropdown-desc">Executive, Admin, CRM, Real Estate &amp; E-Commerce VAs</div>
                       </div>
                     </a>
 
@@ -167,22 +180,21 @@ export default function Navbar() {
                         </svg>
                       </div>
                       <div>
-                        <div className="dropdown-title">Software Development</div>
-                        <div className="dropdown-desc">Dedicated Full-Stack, Mobile, QA & DevOps</div>
+                        <div className="dropdown-title">Software Development (12 Disciplines)</div>
+                        <div className="dropdown-desc">Dedicated Full-Stack, Frontend, Mobile, QA &amp; DevOps Teams</div>
                       </div>
                     </a>
 
                     <a href="#service-ai" className="dropdown-item" onClick={() => setServicesOpen(false)}>
                       <div className="dropdown-icon">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                          <rect x="2" y="3" width="20" height="14" rx="2"></rect>
                           <line x1="8" y1="21" x2="16" y2="21"></line>
-                          <line x1="12" y1="17" x2="12" y2="21"></line>
                         </svg>
                       </div>
                       <div>
-                        <div className="dropdown-title">AI & Automations</div>
-                        <div className="dropdown-desc">n8n, Zapier, Chatbots & Autonomous Agents</div>
+                        <div className="dropdown-title">AI &amp; Automation VA (12 Disciplines)</div>
+                        <div className="dropdown-desc">n8n, Zapier, Make, Chatbots &amp; Multi-Agent Workflows</div>
                       </div>
                     </a>
 
@@ -194,21 +206,21 @@ export default function Navbar() {
                         </svg>
                       </div>
                       <div>
-                        <div className="dropdown-title">Web & E-Commerce Support</div>
-                        <div className="dropdown-desc">Shopify, WordPress, Speed & 24/7 Security</div>
+                        <div className="dropdown-title">Web &amp; E-Commerce Support (10 Services)</div>
+                        <div className="dropdown-desc">Shopify, WordPress, Speed &amp; 24/7 Security Maintenance</div>
                       </div>
                     </a>
 
                     <a href="#service-custom" className="dropdown-item" onClick={() => setServicesOpen(false)}>
                       <div className="dropdown-icon">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                          <line x1="2" y1="10" x2="22" y2="10"></line>
+                          <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                          <path d="M3 9h18"></path>
                         </svg>
                       </div>
                       <div>
-                        <div className="dropdown-title">Custom Software & ERP</div>
-                        <div className="dropdown-desc">SaaS Applications, Dashboards & CRM Systems</div>
+                        <div className="dropdown-title">CRM &amp; Custom Software (8 Solutions)</div>
+                        <div className="dropdown-desc">Custom ERP, Billing, SaaS Platforms &amp; API Integrations</div>
                       </div>
                     </a>
                   </motion.div>
@@ -216,128 +228,112 @@ export default function Navbar() {
               </AnimatePresence>
             </li>
 
+            {/* Standard Nav Items */}
             {navLinks.map((link) => (
-              <li
-                key={link.id}
-                className="nav-item"
-                onMouseEnter={() => setHoveredNav(link.id)}
-              >
+              <li key={link.id} className="nav-item">
                 <a
                   href={link.href}
                   className={`nav-link ${activeSection === link.id ? 'active' : ''}`}
                 >
                   {link.label}
                 </a>
-                {hoveredNav === link.id && (
-                  <motion.div
-                    layoutId="nav-pill"
-                    className="nav-hover-pill"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      borderRadius: '9999px',
-                      backgroundColor: 'rgba(0, 102, 255, 0.08)',
-                      zIndex: -1,
-                    }}
-                  />
-                )}
               </li>
             ))}
           </ul>
 
-          {/* Action Button */}
+          {/* Right Action */}
           <div className="nav-actions">
-            <a href="#contact" className="btn-primary-sm">
-              <span>Get Started</span>
+            <a href="tel:+919500042426" className="nav-call-btn" title="Call Coimbatore Office">
+              <span>📞 +91 95000 42426</span>
+            </a>
+            <a href="#contact" className="nav-cta-btn">
+              <span>Consult Architect</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </a>
 
-            {/* Mobile Menu Toggle */}
+            {/* Mobile Hamburger */}
             <button
-              className="mobile-toggle"
-              id="mobile-toggle"
-              aria-label="Toggle menu"
-              aria-expanded={drawerOpen}
+              type="button"
+              className={`nav-hamburger ${drawerOpen ? 'open' : ''}`}
+              id="nav-toggle"
+              aria-label="Toggle navigation menu"
               onClick={() => setDrawerOpen(!drawerOpen)}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                {drawerOpen ? (
-                  <>
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                  </>
-                ) : (
-                  <>
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                  </>
-                )}
-              </svg>
+              <span></span>
+              <span></span>
+              <span></span>
             </button>
           </div>
         </nav>
       </header>
 
       {/* Mobile Drawer */}
-      <div
-        className={`mobile-drawer ${drawerOpen ? 'open' : ''}`}
-        id="mobile-drawer"
-        onClick={(e) => {
-          if (e.target.id === 'mobile-drawer') setDrawerOpen(false);
-        }}
-      >
-        <div className="mobile-drawer-brand">
-          <a href="#hero" className="nav-brand" onClick={() => setDrawerOpen(false)} aria-label="Nexprobyte Technologies">
-            <div className="brand-icon">
-              <img
-                src="/assets/logo-transparent.png"
-                alt="Nexprobyte Logo"
-                className="brand-logo-img"
-                width={28}
-                height={18}
-              />
-            </div>
-            <span>NEXPROBYTE</span>
-          </a>
-          <button
-            className="mobile-drawer-close"
-            onClick={() => setDrawerOpen(false)}
-            aria-label="Close menu"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </button>
-        </div>
+      <AnimatePresence>
+        {drawerOpen && (
+          <>
+            <motion.div
+              className="drawer-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setDrawerOpen(false)}
+            />
+            <motion.div
+              className="mobile-drawer open"
+              id="mobile-drawer"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 28, stiffness: 300 }}
+            >
+              <div className="mobile-drawer-header">
+                <a href="#hero" className="mobile-drawer-brand" onClick={() => setDrawerOpen(false)}>
+                  <div className="brand-icon">
+                    <img src="/assets/logo-transparent.png" alt="Nexprobyte Logo" className="brand-logo-img" width={28} height={18} />
+                  </div>
+                  <span>NEXPROBYTE</span>
+                </a>
+                <button
+                  type="button"
+                  className="mobile-drawer-close"
+                  id="drawer-close"
+                  aria-label="Close menu"
+                  onClick={() => setDrawerOpen(false)}
+                >
+                  ✕
+                </button>
+              </div>
 
-        <ul className="mobile-nav-list">
-          <li><a href="#services" className="mobile-nav-link" onClick={() => setDrawerOpen(false)}>Services <span>&rarr;</span></a></li>
-          <li><a href="#platform" className="mobile-nav-link" onClick={() => setDrawerOpen(false)}>Platform <span>&rarr;</span></a></li>
-          <li><a href="#ai-copilot" className="mobile-nav-link" onClick={() => setDrawerOpen(false)}>AI Copilot <span>&rarr;</span></a></li>
-          <li><a href="#tour" className="mobile-nav-link" onClick={() => setDrawerOpen(false)}>Tour <span>&rarr;</span></a></li>
-          <li><a href="#pricing" className="mobile-nav-link" onClick={() => setDrawerOpen(false)}>Pricing <span>&rarr;</span></a></li>
-          <li><a href="#testimonials" className="mobile-nav-link" onClick={() => setDrawerOpen(false)}>Testimonials <span>&rarr;</span></a></li>
-          <li><a href="#faq" className="mobile-nav-link" onClick={() => setDrawerOpen(false)}>FAQ <span>&rarr;</span></a></li>
-          <li><a href="#contact" className="mobile-nav-link" onClick={() => setDrawerOpen(false)}>Contact Us <span>&rarr;</span></a></li>
-        </ul>
+              <div className="mobile-drawer-body">
+                <ul className="mobile-nav-list">
+                  <li><a href="#services" onClick={() => setDrawerOpen(false)}>Services Suite (52 Services)</a></li>
+                  <li><a href="#capabilities" onClick={() => setDrawerOpen(false)}>Capabilities &amp; Stacks</a></li>
+                  <li><a href="#industries" onClick={() => setDrawerOpen(false)}>Industries We Empower</a></li>
+                  <li><a href="#work" onClick={() => setDrawerOpen(false)}>Signature Case Studies</a></li>
+                  <li><a href="#pricing" onClick={() => setDrawerOpen(false)}>Pricing &amp; Packages</a></li>
+                  <li><a href="#about" onClick={() => setDrawerOpen(false)}>About Coimbatore Studio</a></li>
+                  <li><a href="#blog" onClick={() => setDrawerOpen(false)}>Insights &amp; Guides</a></li>
+                  <li><a href="#careers" onClick={() => setDrawerOpen(false)}>Careers (5 Openings)</a></li>
+                  <li><a href="#faq" onClick={() => setDrawerOpen(false)}>FAQ</a></li>
+                  <li><a href="#contact" onClick={() => setDrawerOpen(false)}>Contact Us</a></li>
+                </ul>
 
-        <div>
-          <a
-            href="#contact"
-            className="btn-primary-hero"
-            style={{ width: '100%', justifyContent: 'center' }}
-            onClick={() => setDrawerOpen(false)}
-          >
-            Deploy Dedicated Team
-          </a>
-        </div>
-      </div>
+                <div style={{ marginTop: '30px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <a href="#contact" className="btn-primary-hero" style={{ justifyContent: 'center' }} onClick={() => setDrawerOpen(false)}>
+                    Start Project Consultation &rarr;
+                  </a>
+                  <a href="tel:+919500042426" className="btn-secondary-hero" style={{ justifyContent: 'center' }}>
+                    📞 Call +91 95000 42426
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }
