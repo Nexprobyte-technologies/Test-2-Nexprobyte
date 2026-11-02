@@ -31,7 +31,7 @@ const SOCIALS = [
 
 export default function Footer() {
   return (
-    <footer className="footer footer-brand">
+    <footer className="footer">
       <div className="footer-ambient-glow" />
       <div className="wrap">
         <div className="footer-grid">
