@@ -12,11 +12,13 @@ const MIME_TYPES = {
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
+  '.webp': 'image/webp',
   '.gif': 'image/gif',
   '.svg': 'image/svg+xml',
   '.ico': 'image/x-icon',
   '.woff': 'font/woff',
-  '.woff2': 'font/woff2'
+  '.woff2': 'font/woff2',
+  '.mp4': 'video/mp4'
 };
 
 const server = http.createServer((req, res) => {
@@ -26,10 +28,29 @@ const server = http.createServer((req, res) => {
   }
 
   const safePath = path.normalize(reqPath).replace(/^(\.\.[\/\\])+/, '');
-  const filePath = path.join(__dirname, safePath);
+  let filePath = path.join(__dirname, safePath);
+
+  // Fallback to public directory if file not in root
+  if (!fs.existsSync(filePath)) {
+    const publicPath = path.join(__dirname, 'public', safePath);
+    if (fs.existsSync(publicPath)) {
+      filePath = publicPath;
+    }
+  }
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
+      // Fallback for SPA routing to index.html
+      const indexPath = path.join(__dirname, 'index.html');
+      if (fs.existsSync(indexPath)) {
+        res.writeHead(200, {
+          'Content-Type': 'text/html; charset=UTF-8',
+          'Cache-Control': 'no-cache',
+          'Access-Control-Allow-Origin': '*'
+        });
+        fs.createReadStream(indexPath).pipe(res);
+        return;
+      }
       res.writeHead(404, { 'Content-Type': 'text/plain; charset=UTF-8' });
       res.end('404 Not Found');
       return;
@@ -50,6 +71,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Nexprobyte Technologies Server is running at http://localhost:${PORT}`);
+  console.log(`Nexprobyte Technologies Unified Server running at http://localhost:${PORT}`);
 });
-

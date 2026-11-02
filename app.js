@@ -23,6 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initNewsletterForm();
   initHangingCord();
   initTechCords();
+  initServicesTabs();
+  initBlogSystem();
+  initCareersSystem();
+  initNexiChatbot();
+  initContactTopics();
+  initModalBackdrops();
 });
 
 /* ==========================================================================
@@ -1944,3 +1950,789 @@ function initTechCords() {
 
   requestAnimationFrame(render);
 }
+
+/* ==========================================================================
+   19. UNIFIED SERVICES SWITCHER (52 PDF SERVICES vs 8 CORE DISCIPLINES)
+   ========================================================================== */
+function initServicesTabs() {
+  const tabPdf = document.getElementById('tab-btn-pdf');
+  const tabCore = document.getElementById('tab-btn-core');
+  const panelPdf = document.getElementById('panel-pdf-services');
+  const panelCore = document.getElementById('panel-core-disciplines');
+
+  if (!tabPdf || !tabCore || !panelPdf || !panelCore) return;
+
+  tabPdf.addEventListener('click', () => {
+    tabPdf.classList.add('active');
+    tabCore.classList.remove('active');
+    panelPdf.classList.add('active');
+    panelCore.classList.remove('active');
+  });
+
+  tabCore.addEventListener('click', () => {
+    tabCore.classList.add('active');
+    tabPdf.classList.remove('active');
+    panelCore.classList.add('active');
+    panelPdf.classList.remove('active');
+  });
+}
+
+/* ==========================================================================
+   20. 8 CORE DISCIPLINES & MODAL SYSTEM
+   ========================================================================== */
+const SITE_CORE_SERVICES = [
+  {
+    slug: 'website-development',
+    num: '01',
+    title: 'Website Development',
+    serif: 'Performance',
+    blurb: 'Modern, responsive and SEO-friendly websites that convert visitors into customers.',
+    image: 'images/srv-web.jpg',
+    headline: 'Your website is your digital storefront.',
+    overview: 'We design and build fast, secure and beautiful websites — from marketing sites to full e-commerce storefronts — engineered to convert.',
+    features: [
+      'Responsive, mobile-first builds',
+      'SEO-friendly architecture',
+      'CMS powered (WordPress / headless)',
+      'Speed & Core Web Vitals optimisation',
+      'E-commerce, payments & bookings',
+      'Ongoing care plans'
+    ],
+    deliverables: [
+      'UI/UX wireframes',
+      'Pixel-perfect frontend',
+      'CMS training',
+      '3 months free support'
+    ]
+  },
+  {
+    slug: 'application-development',
+    num: '02',
+    title: 'Application Development',
+    serif: 'Scalable',
+    blurb: 'Scalable and secure web applications built for performance and growth.',
+    image: 'images/srv-app.jpg',
+    headline: 'Built for performance and enterprise scale.',
+    overview: 'From internal dashboards to customer-facing SaaS, we build robust web applications with clean code, solid architecture and an eye for what your users actually need.',
+    features: [
+      'React / Node / Python stacks',
+      'API design & integrations',
+      'Cloud deployment (AWS / Azure)',
+      'Data pipelines & reporting',
+      'Role-based access & security',
+      'Agile delivery sprints'
+    ],
+    deliverables: [
+      'Architecture plan',
+      'Source code + docs',
+      'CI/CD setup',
+      'Training handover'
+    ]
+  },
+  {
+    slug: 'mobile-app-development',
+    num: '03',
+    title: 'Mobile App Development',
+    serif: 'Native Feel',
+    blurb: 'Feature-rich mobile apps for Android and iOS platforms.',
+    image: 'images/srv-mobile.jpg',
+    headline: 'Reach your customers wherever they are.',
+    overview: 'We build cross-platform and native mobile apps that feel fast, look polished and keep users coming back across iOS and Android.',
+    features: [
+      'React Native & Flutter',
+      'Native iOS & Android',
+      'Push notifications & offline sync',
+      'App store publishing',
+      'Analytics & crash reporting',
+      'Iterative release cycles'
+    ],
+    deliverables: [
+      'Prototype & design',
+      'Play/App Store listing',
+      'Backend integration',
+      'Maintenance plan'
+    ]
+  },
+  {
+    slug: 'digital-marketing',
+    num: '04',
+    title: 'Digital Marketing',
+    serif: 'Data-Driven',
+    blurb: 'Data-driven marketing strategies that bring measurable growth.',
+    image: 'images/srv-marketing.jpg',
+    headline: 'We don\'t guess — we measure.',
+    overview: 'Our campaigns are built on data, tested relentlessly and optimised to deliver a real return on every rupee you spend.',
+    features: [
+      'Performance marketing (Google, Meta)',
+      'Landing page funnels',
+      'Conversion rate optimisation',
+      'Email & automation flows',
+      'Attribution & reporting',
+      'Monthly strategy reviews'
+    ],
+    deliverables: [
+      'Audit & roadmap',
+      'Campaign setup',
+      'Creative + copy',
+      'Monthly reports'
+    ]
+  },
+  {
+    slug: 'seo-services',
+    num: '05',
+    title: 'SEO Services',
+    serif: 'Visibility',
+    blurb: 'Improve ranking, organic traffic and online visibility.',
+    image: 'images/srv-seo.jpg',
+    headline: 'Own your search results on Google.',
+    overview: 'We combine technical SEO, content and authority building to move your business to the top of Google — sustainably, not with shortcuts.',
+    features: [
+      'Technical site audits',
+      'Keyword & competitor research',
+      'On-page & content strategy',
+      'Local SEO (Google Business Profile)',
+      'Link building',
+      'Ranking & traffic tracking'
+    ],
+    deliverables: [
+      'Audit report',
+      'Keyword roadmap',
+      'Monthly content calendar',
+      'Quarterly wins deck'
+    ]
+  },
+  {
+    slug: 'social-media-marketing',
+    num: '06',
+    title: 'Social Media Marketing',
+    serif: 'Brand Voice',
+    blurb: 'Engaging content and campaigns that build your brand.',
+    image: 'images/srv-social.jpg',
+    headline: 'Turn followers into lifelong customers.',
+    overview: 'We plan, design and publish content that gives your brand a consistent, confident voice across every platform.',
+    features: [
+      'Platform strategy (Ig, Fb, Ln, X)',
+      'Content calendars & design',
+      'Reels & short-form video',
+      'Community management',
+      'Paid social boosting',
+      'Monthly analytics'
+    ],
+    deliverables: [
+      'Brand content kit',
+      '30-day calendars',
+      'Monthly reports',
+      'Growth roadmap'
+    ]
+  },
+  {
+    slug: 'ui-ux-design',
+    num: '07',
+    title: 'UI/UX Design',
+    serif: 'Human-Centric',
+    blurb: 'Intuitive, engaging interfaces and seamless experiences designed to convert visitors.',
+    image: 'images/srv-web.jpg',
+    headline: 'Design isn\'t just how it looks — it\'s how it works.',
+    overview: 'We craft intuitive user journeys, wireframes, interactive Figma prototypes, and conversion-focused digital experiences that delight users and drive real business outcomes.',
+    features: [
+      'User Research & Journey Mapping',
+      'Wireframing & Interactive Prototypes (Figma)',
+      'Design Systems & Component Libraries',
+      'Mobile & Web App Interface Design',
+      'Usability Testing & Conversion Rate Optimization',
+      'Design-to-Developer Handoff'
+    ],
+    deliverables: [
+      'Complete Figma Design System',
+      'Interactive Prototype',
+      'User Journey Maps',
+      'Production Asset Kit'
+    ]
+  },
+  {
+    slug: 'branding-identity',
+    num: '08',
+    title: 'Branding & Identity',
+    serif: 'Memorable',
+    blurb: 'Crafting distinctive brand identities, logos, and visual systems that make your business unforgettable.',
+    image: 'images/srv-marketing.jpg',
+    headline: 'Your brand is your business promise.',
+    overview: 'We help startups and established brands build distinctive, memorable visual identities — from logo design and typography to comprehensive brand guideline decks.',
+    features: [
+      'Brand Strategy & Positioning',
+      'Logo Design & Visual Identity Systems',
+      'Typography & Color Palette Guidelines',
+      'Marketing Collateral & Packaging Design',
+      'Social Media Kits & Brand Assets',
+      'Comprehensive Brand Style Guides'
+    ],
+    deliverables: [
+      'Vector Logo Master Files',
+      'Brand Style Guide PDF',
+      'Social Media Asset Kit',
+      'Business Stationery Templates'
+    ]
+  }
+];
+
+window.openCoreServiceModal = function(slug) {
+  const service = SITE_CORE_SERVICES.find(s => s.slug === slug);
+  if (!service) return;
+
+  const modal = document.getElementById('core-service-modal');
+  const badge = document.getElementById('modal-service-badge');
+  const title = document.getElementById('modal-service-title');
+  const meta = document.getElementById('modal-service-meta');
+  const body = document.getElementById('modal-service-body');
+
+  if (badge) badge.textContent = `Discipline ${service.num} • ${service.serif}`;
+  if (title) title.textContent = service.title;
+  if (meta) meta.textContent = `${service.headline} • Nexprobyte Studio`;
+
+  if (body) {
+    const featuresHtml = service.features.map(f => `<li style="display:flex; align-items:center; gap:8px; margin-bottom:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0066FF" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> <span>${f}</span></li>`).join('');
+    const deliverablesHtml = service.deliverables.map(d => `<li style="display:flex; align-items:center; gap:8px; margin-bottom:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00d6b2" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> <span>${d}</span></li>`).join('');
+
+    body.innerHTML = `
+      <img src="${service.image}" alt="${service.title}" class="site-modal-cover-img" />
+      <div class="article-block">
+        <h4 class="article-heading">${service.headline}</h4>
+        <p class="article-para">${service.overview}</p>
+      </div>
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:20px; margin-top:20px;">
+        <div style="background:#f8fafc; padding:18px; border-radius:12px; border:1px solid var(--border-subtle);">
+          <h5 style="font-family:var(--font-display); font-size:0.95rem; font-weight:700; margin-bottom:12px; color:var(--text-primary);">Capabilities Included:</h5>
+          <ul style="list-style:none; padding:0; margin:0; font-size:0.88rem;">${featuresHtml}</ul>
+        </div>
+        <div style="background:#f8fafc; padding:18px; border-radius:12px; border:1px solid var(--border-subtle);">
+          <h5 style="font-family:var(--font-display); font-size:0.95rem; font-weight:700; margin-bottom:12px; color:var(--text-primary);">Client Deliverables:</h5>
+          <ul style="list-style:none; padding:0; margin:0; font-size:0.88rem;">${deliverablesHtml}</ul>
+        </div>
+      </div>
+    `;
+  }
+
+  if (modal) modal.style.display = 'flex';
+};
+
+/* ==========================================================================
+   21. BLOG JOURNAL SYSTEM & COMPLETE ARTICLE READER
+   ========================================================================== */
+const SITE_POSTS = [
+  {
+    slug: 'why-every-business-needs-a-website-in-2026',
+    title: 'Why Every Business Still Needs a Website in 2026',
+    category: 'Web',
+    date: 'Aug 18, 2026',
+    read: '5 min',
+    image: 'images/cover-web.jpg',
+    excerpt: 'Social media borrows your audience; a website owns it. Here\'s why your own corner of the internet still matters more than ever.',
+    content: [
+      { h: 'The audience you rent vs the one you own', p: 'Social platforms are powerful — but they can change their algorithm, their pricing or their rules overnight. A website is the one place where you control the experience, the content and the relationship. It\'s the home base every other channel points back to.' },
+      { h: 'Credibility is decided in 5 seconds', p: 'Before a customer buys, they check. A fast, clean and professional website tells them you\'re a serious business. In 2026 that first impression still happens on a company\'s own domain more than anywhere else.' },
+      { h: 'It compounds, everything else doesn\'t', p: 'Every blog post, product page and service explainer you publish becomes an asset that keeps working — appearing in search results, answering questions and closing sales while you sleep. That\'s leverage social posts rarely give you.' },
+      { h: 'Digital marketing starts at your domain', p: 'Whether you run Google Ads, post on social media or publish content, every digital marketing channel should land on a page you own. A fast-loading website built for conversion is the foundation every Coimbatore business needs before scaling marketing spend.' },
+      { h: 'The takeaway', p: 'You don\'t need a website because it\'s trendy. You need one because it\'s the only channel you fully own. Build it well, keep it fast, and let every other channel feed it.' }
+    ],
+    links: [
+      { label: 'Google — How to make a website that converts', href: 'https://support.google.com/google-ads/answer/7477785' },
+      { label: 'WordPress.com — Build a website for your business', href: 'https://wordpress.com/go' }
+    ]
+  },
+  {
+    slug: 'seo-basics-that-actually-move-the-needle',
+    title: 'SEO Basics That Actually Move the Needle',
+    category: 'SEO',
+    date: 'Jul 30, 2026',
+    read: '6 min',
+    image: 'images/cover-seo.jpg',
+    excerpt: 'Skip the gimmicks. These practical, on-page fundamentals consistently improve rankings for small and mid-size businesses.',
+    content: [
+      { h: 'Start with the search behind the click', p: 'People don\'t search for you, they search for a solution. Find the phrases your customers type when they have a problem you solve — and build content around exactly those phrases, not vague keywords.' },
+      { h: 'Speed is a ranking factor and a conversion factor', p: 'Google punishes slow sites and so do users. Compress images, minimise scripts and move to fast hosting. A one-second improvement in load time can lift both rankings and conversions.' },
+      { h: 'Length isn\'t the goal — clarity is', p: 'A page that answers one question completely beats ten pages that answer it halfway. Structure content with clear headings so both Google and readers understand it instantly.' },
+      { h: 'Backlinks still decide who wins', p: 'On-page SEO gets you in the game; backlinks win it. A focused backlink building strategy — earning links from authentic, relevant websites — remains one of the strongest ranking signals Google uses. Quality beats quantity: one link from a trusted industry site is worth more than dozens of low-authority directory links.' },
+      { h: 'Consistency compounds', p: 'SEO is not a one-month project. Publish useful content monthly, keep technical health in check, and give it time. The businesses that win are simply the ones that kept showing up. For startups and SMEs in Coimbatore, a local SEO strategy combined with steady content publishing tends to outperform expensive one-off campaigns.' }
+    ],
+    links: [
+      { label: 'Google Search Central — SEO Starter Guide', href: 'https://developers.google.com/search/docs/fundamentals/seo-starter-guide' },
+      { label: 'Google Best Practices for backlinks', href: 'https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links' },
+      { label: 'Moz — Beginner\'s Guide to Link Building', href: 'https://moz.com/beginners-guide-to-link-building' }
+    ]
+  },
+  {
+    slug: 'mobile-first-design-is-not-optional',
+    title: 'Mobile-First Design Is Not Optional',
+    category: 'Design',
+    date: 'Jul 12, 2026',
+    read: '4 min',
+    image: 'images/cover-design.jpg',
+    excerpt: 'More than 70% of web traffic now comes from phones. Design for the small screen first and the large screen will thank you.',
+    content: [
+      { h: 'Small screen, big decisions', p: 'When you design for mobile first, you\'re forced to make decisions about what\'s truly important. That clarity carries over to the desktop experience — stripping away the noise before it ever gets added back.' },
+      { h: 'Thumb-friendly interactions', p: 'Buttons should sit where thumbs naturally reach, tap targets need to be generously sized, and forms should ask for the least possible input. The friction you remove on mobile is friction you remove everywhere.' },
+      { h: 'Performance is part of the design', p: 'A beautiful layout that loads slowly feels broken on a phone. Optimise images, defer heavy scripts and test on real devices, not just desktop browsers.' },
+      { h: 'The takeaway', p: 'Mobile-first isn\'t a compromise — it\'s a discipline. Get the experience right on the constrained canvas and every other screen becomes easier.' }
+    ],
+    links: [
+      { label: 'web.dev — Responsive web design basics', href: 'https://web.dev/responsive-web-design-basics/' }
+    ]
+  },
+  {
+    slug: 'social-media-strategy-for-smes',
+    title: 'A Realistic Social Media Strategy for SMEs',
+    category: 'Marketing',
+    date: 'Jun 21, 2026',
+    read: '7 min',
+    image: 'images/cover-marketing.jpg',
+    excerpt: 'Posting more isn\'t the strategy. Here\'s a simple, sustainable system for small teams to build a brand people actually follow.',
+    content: [
+      { h: 'Pick two platforms, not six', p: 'Small teams can\'t be everywhere. Choose the one or two platforms where your customers actually spend time, commit to them, and go deep instead of spreading thin. Most SMEs in Coimbatore see the strongest returns from a mix of Instagram and LinkedIn.' },
+      { h: 'Content that serves, not just sells', p: 'Strike a balance: teach something useful, share behind-the-scenes moments, and occasionally ask for the sale. The ratio that works for most SMEs is roughly 4:1 — four value posts for every promotional one.' },
+      { h: 'Batching beats burnout', p: 'Set aside one morning a month to create 8–10 pieces of content. Batch creation removes the daily anxiety and gives you a consistent presence without the daily scramble.' },
+      { h: 'Backlinks and authority belong in the mix', p: 'Social feeds are rented, but your blog is owned. When you publish genuinely useful articles and earn backlinks from other websites, your social profiles start sending real search traffic too. Every social post should point back to a blog page built to rank for what your customers search in Google.' },
+      { h: 'Measure the right things', p: 'Likes are vanity; conversations and booked enquiries are what matter. Watch what content leads to messages and calls, then make more of that.' }
+    ],
+    links: [
+      { label: 'HubSpot — Social Media Marketing Guide', href: 'https://blog.hubspot.com/marketing/social-media-marketing' },
+      { label: 'Meta for Business — Getting Started', href: 'https://www.facebook.com/business/ads' }
+    ]
+  },
+  {
+    slug: 'what-is-a-digital-agency-and-how-to-choose-one',
+    title: 'What Is a Digital Agency (and How to Choose One)',
+    category: 'Business',
+    date: 'May 29, 2026',
+    read: '6 min',
+    image: 'images/cover-business.jpg',
+    excerpt: 'Before you hire an agency, you should know what to look for — and what to avoid. A practical guide for first-time buyers.',
+    content: [
+      { h: 'What an agency actually does', p: 'A digital agency is a team that handles the parts of your business you don\'t have skills or time for — building websites, apps, marketing and design as one coordinated unit rather than disconnected freelancers.' },
+      { h: 'Look for process, not promises', p: 'Avoid agencies that guarantee \'number one on Google\' or \'10x sales overnight\'. The good ones talk about process: research, build, test, measure, improve. That\'s the language of people who deliver.' },
+      { h: 'Ask who you\'ll actually speak to', p: 'Will you interact with the people doing the work, or a salesperson who disappears after the contract is signed? Clear, direct communication is the single best predictor of a good project.' },
+      { h: 'Local context matters for digital marketing agencies', p: 'For businesses in India, an agency that understands local search behaviour is a major advantage. A digital marketing agency in Coimbatore that knows how local businesses rank, what Indian audiences click, and how to combine SEO with performance ads will usually beat a generic national firm on cost and results.' },
+      { h: 'Look at work in your industry', p: 'Relevant case studies matter more than impressive portfolios. Past context in your sector means less ramp-up time and fewer expensive lessons.' }
+    ],
+    links: [
+      { label: 'Google Ads Help — How to choose a digital agency', href: 'https://support.google.com/google-ads/answer/7476683' }
+    ]
+  },
+  {
+    slug: 'web-performance-is-a-business-metric',
+    title: 'Web Performance Is a Business Metric',
+    category: 'Web',
+    date: 'May 05, 2026',
+    read: '5 min',
+    image: 'images/cover-speed.jpg',
+    excerpt: 'Every second of load time is revenue leaking out the door. Why speed should be a board-room topic, not just a developer concern.',
+    content: [
+      { h: 'The seconds have a price tag', p: 'Studies consistently show that conversion rates drop sharply as load time increases — often several percent per second. For a business doing meaningful traffic, that translates into real, countable revenue.' },
+      { h: 'Speed shapes perception', p: 'Users can\'t articulate why, but a slow site makes a brand feel outdated and untrustworthy. Speed is a branding decision wearing technical clothes.' },
+      { h: 'Where to start', p: 'Measure first. Use tools like Google PageSpeed Insights and real-user monitoring to identify the biggest offenders, then fix images, caching and server response times in that order.' },
+      { h: 'The takeaway', p: 'Treat web performance like any other business KPI: set targets, measure them, and expect them to improve. The payoff is straightforward and compounding — and it\'s the same discipline top digital agencies in Coimbatore apply to every client site they ship.' }
+    ],
+    links: [
+      { label: 'web.dev — Core Web Vitals explained by Google', href: 'https://web.dev/learn-core-web-vitals' },
+      { label: 'PageSpeed Insights by Google', href: 'https://pagespeed.web.dev/' }
+    ]
+  }
+];
+
+function initBlogSystem() {
+  const filterPills = document.querySelectorAll('.blog-filter-pill');
+  const blogCards = document.querySelectorAll('.blog-card');
+
+  filterPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      filterPills.forEach(p => p.classList.remove('is-active'));
+      pill.classList.add('is-active');
+
+      const selectedCat = pill.getAttribute('data-cat');
+      blogCards.forEach(card => {
+        const cardCat = card.getAttribute('data-category');
+        if (selectedCat === 'all' || cardCat === selectedCat) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
+window.openBlogReaderModal = function(slug) {
+  const post = SITE_POSTS.find(p => p.slug === slug);
+  if (!post) return;
+
+  const modal = document.getElementById('blog-reader-modal');
+  const cat = document.getElementById('modal-blog-cat');
+  const title = document.getElementById('modal-blog-title');
+  const meta = document.getElementById('modal-blog-meta');
+  const body = document.getElementById('modal-blog-body');
+
+  if (cat) cat.textContent = post.category;
+  if (title) title.textContent = post.title;
+  if (meta) meta.textContent = `${post.read} read • Published ${post.date}`;
+
+  if (body) {
+    const sectionsHtml = post.content.map(c => `
+      <div class="article-block">
+        <h4 class="article-heading">${c.h}</h4>
+        <p class="article-para">${c.p}</p>
+      </div>
+    `).join('');
+
+    let linksHtml = '';
+    if (post.links && post.links.length > 0) {
+      const items = post.links.map(l => `
+        <li class="prose-link-item">
+          <a href="${l.href}" target="_blank" rel="noopener noreferrer">${l.label} &rarr;</a>
+        </li>
+      `).join('');
+      linksHtml = `
+        <div class="prose-links-box">
+          <span class="prose-links-title">Outbound References &amp; Official Documentation:</span>
+          <ul class="prose-links-list">${items}</ul>
+        </div>
+      `;
+    }
+
+    body.innerHTML = `
+      <img src="${post.image}" alt="${post.title}" class="site-modal-cover-img" />
+      <div class="article-block" style="font-size:1.05rem; font-weight:500; color:var(--text-primary); margin-bottom:20px; line-height:1.5;">
+        ${post.excerpt}
+      </div>
+      ${sectionsHtml}
+      ${linksHtml}
+    `;
+  }
+
+  if (modal) modal.style.display = 'flex';
+};
+
+/* ==========================================================================
+   22. CAREERS SYSTEM & APPLICATION MODALS
+   ========================================================================== */
+const SITE_JOBS = [
+  {
+    slug: 'frontend-developer',
+    title: 'Frontend Developer',
+    dept: 'Engineering',
+    location: 'Coimbatore / Remote',
+    type: 'Full-time',
+    salary: '₹3L – ₹6L / year',
+    excerpt: 'Turn beautiful designs into fast, accessible interfaces using React and modern CSS. Work across client websites and internal products.',
+    responsibilities: [
+      'Build responsive UI with React, Next.js and modern CSS',
+      'Translate Figma designs into clean, accessible components',
+      'Optimise Core Web Vitals and page performance',
+      'Collaborate with designers and backend engineers',
+      'Participate in code reviews and testing'
+    ],
+    requirements: [
+      '2+ years building production React applications',
+      'Strong HTML, CSS and JavaScript fundamentals',
+      'Experience with REST APIs and Git workflows',
+      'An eye for detail and performance',
+      'Bonus: motion/animation libraries, TypeScript'
+    ]
+  },
+  {
+    slug: 'fullstack-developer',
+    title: 'Full Stack Developer',
+    dept: 'Engineering',
+    location: 'Coimbatore / Remote',
+    type: 'Full-time',
+    salary: '₹3.5L – ₹7L / year',
+    excerpt: 'Build high-performance web applications, scalable REST APIs, and modern user interfaces using React, Node.js, and modern databases.',
+    responsibilities: [
+      'Architect and build robust web applications end-to-end',
+      'Develop responsive frontends with React, Next.js and modern CSS',
+      'Design and maintain scalable RESTful APIs with Node.js & Express',
+      'Integrate PostgreSQL, MongoDB, and Redis caching systems',
+      'Implement authentication, security best practices, and CI/CD pipelines'
+    ],
+    requirements: [
+      '2+ years experience in full-stack JavaScript / TypeScript development',
+      'Strong proficiency in React, Node.js, Express, and modern ES6+',
+      'Experience with relational (PostgreSQL) or NoSQL (MongoDB) databases',
+      'Proficient in REST API design, state management, and Git workflows',
+      'Bonus: Docker, AWS/cloud deployment, Tailwind or Motion libraries'
+    ]
+  },
+  {
+    slug: 'ui-ux-designer',
+    title: 'UI/UX Designer',
+    dept: 'Design',
+    location: 'Coimbatore',
+    type: 'Full-time',
+    salary: '₹3L – ₹6.5L / year',
+    excerpt: 'Design intuitive, beautiful interfaces for websites and apps — from whiteboard sketches to polished, hand-off-ready systems.',
+    responsibilities: [
+      'Own UX flows, wireframes and prototypes',
+      'Design high-fidelity UI and design systems',
+      'Run user research and usability testing',
+      'Partner with developers through delivery',
+      'Present and defend design decisions'
+    ],
+    requirements: [
+      'Portfolio of shipped web or mobile products',
+      'Strong Figma skills (components, auto-layout)',
+      'Solid typography, colour and layout sense',
+      'Understanding of HTML/CSS constraints',
+      'Motion design experience is a big plus'
+    ]
+  },
+  {
+    slug: 'digital-marketing-specialist',
+    title: 'Digital Marketing Specialist',
+    dept: 'Marketing',
+    location: 'Coimbatore',
+    type: 'Full-time',
+    salary: '₹2.5L – ₹5L / year',
+    excerpt: 'Plan and run performance campaigns across Google and Meta — and turn the numbers into clear recommendations for clients.',
+    responsibilities: [
+      'Plan, launch and optimise Google/Meta campaigns',
+      'Write ad copy and brief designers on creatives',
+      'Track ROI and prepare monthly performance reports',
+      'Manage client budgets transparently',
+      'Run SEO and content initiatives'
+    ],
+    requirements: [
+      '1.5+ years in performance marketing',
+      'Hands-on Google Ads and Meta Ads experience',
+      'Comfortable with GA4 and Looker Studio',
+      'Strong written communication',
+      'Certifications (Google/Bing) are a plus'
+    ]
+  },
+  {
+    slug: 'seo-analyst',
+    title: 'SEO Analyst',
+    dept: 'Marketing',
+    location: 'Remote',
+    type: 'Full-time',
+    salary: '₹2L – ₹4.5L / year',
+    excerpt: 'Own rankings for a portfolio of client websites — technical fixes, content strategy and link building, all measured with data.',
+    responsibilities: [
+      'Conduct technical and content audits',
+      'Build keyword roadmaps and content briefs',
+      'Implement on-page optimisations',
+      'Report on rankings, traffic and conversions',
+      'Stay current with Google algorithm changes'
+    ],
+    requirements: [
+      '1.5+ years hands-on SEO experience',
+      'Comfortable with Search Console, Ahrefs/Semrush',
+      'Working knowledge of HTML and schema markup',
+      'Analytical and detail-oriented mindset',
+      'Local SEO experience is a plus'
+    ]
+  }
+];
+
+window.openJobDetailModal = function(slug) {
+  const job = SITE_JOBS.find(j => j.slug === slug);
+  if (!job) return;
+
+  const modal = document.getElementById('job-detail-modal');
+  const badge = document.getElementById('modal-job-badge');
+  const title = document.getElementById('modal-job-title');
+  const meta = document.getElementById('modal-job-meta');
+  const body = document.getElementById('modal-job-body');
+  const applyTrigger = document.getElementById('modal-job-apply-trigger');
+
+  if (badge) badge.textContent = `${job.dept} • ${job.type}`;
+  if (title) title.textContent = job.title;
+  if (meta) meta.textContent = `📍 ${job.location} • Compensation: ${job.salary}`;
+
+  if (body) {
+    const respHtml = job.responsibilities.map(r => `<li style="display:flex; align-items:flex-start; gap:8px; margin-bottom:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0066FF" stroke-width="2.5" style="margin-top:4px; flex-shrink:0;"><polyline points="20 6 9 17 4 12"></polyline></svg> <span>${r}</span></li>`).join('');
+    const reqHtml = job.requirements.map(rq => `<li style="display:flex; align-items:flex-start; gap:8px; margin-bottom:8px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00d6b2" stroke-width="2.5" style="margin-top:4px; flex-shrink:0;"><polyline points="20 6 9 17 4 12"></polyline></svg> <span>${rq}</span></li>`).join('');
+
+    body.innerHTML = `
+      <p style="font-size:1.05rem; color:var(--text-primary); margin-bottom:20px; line-height:1.6;">${job.excerpt}</p>
+      <div style="margin-bottom:20px;">
+        <h4 class="article-heading">Key Responsibilities:</h4>
+        <ul style="list-style:none; padding:0; margin:0; font-size:0.92rem;">${respHtml}</ul>
+      </div>
+      <div>
+        <h4 class="article-heading">Candidate Requirements:</h4>
+        <ul style="list-style:none; padding:0; margin:0; font-size:0.92rem;">${reqHtml}</ul>
+      </div>
+    `;
+  }
+
+  if (applyTrigger) {
+    applyTrigger.onclick = () => {
+      window.openJobApplyModal(job.title, job.location, job.salary);
+    };
+  }
+
+  if (modal) modal.style.display = 'flex';
+};
+
+window.openJobApplyModal = function(roleTitle, location, salary) {
+  const detailModal = document.getElementById('job-detail-modal');
+  if (detailModal) detailModal.style.display = 'none';
+
+  const modal = document.getElementById('job-apply-modal');
+  const badge = document.getElementById('modal-apply-badge');
+  const title = document.getElementById('modal-apply-title');
+  const hiddenRole = document.getElementById('apply-role-name');
+
+  if (badge) badge.textContent = `${location || 'Coimbatore / Remote'} • ${salary || 'Full-time'}`;
+  if (title) title.textContent = `Apply for ${roleTitle}`;
+  if (hiddenRole) hiddenRole.value = roleTitle;
+
+  if (modal) modal.style.display = 'flex';
+};
+
+function initCareersSystem() {
+  const applyForm = document.getElementById('career-apply-form');
+  const toast = document.getElementById('toast-modal');
+  const toastMsg = document.getElementById('toast-message');
+
+  if (applyForm) {
+    applyForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const role = document.getElementById('apply-role-name')?.value || 'Engineering Role';
+      const name = document.getElementById('apply-fullname')?.value || 'Applicant';
+
+      if (toast && toastMsg) {
+        toastMsg.textContent = `Thank you ${name}! Your application for ${role} has been received. Our studio lead will contact you within 24 hours.`;
+        toast.classList.add('visible');
+        setTimeout(() => toast.classList.remove('visible'), 5000);
+      }
+
+      applyForm.reset();
+      const applyModal = document.getElementById('job-apply-modal');
+      if (applyModal) applyModal.style.display = 'none';
+    });
+  }
+}
+
+/* ==========================================================================
+   23. FLOATING INTERACTIVE NEXI AI CHATBOT
+   ========================================================================== */
+function initNexiChatbot() {
+  const fabBtn = document.getElementById('nexi-fab-btn');
+  const windowEl = document.getElementById('nexi-window');
+  const closeBtn = document.getElementById('nexi-close-btn');
+  const messagesBox = document.getElementById('nexi-messages');
+  const chips = document.querySelectorAll('.nexi-chip');
+  const form = document.getElementById('nexi-form');
+  const input = document.getElementById('nexi-user-input');
+
+  if (!fabBtn || !windowEl) return;
+
+  function toggleChat() {
+    const isVisible = windowEl.style.display === 'flex';
+    windowEl.style.display = isVisible ? 'none' : 'flex';
+    if (!isVisible && input) {
+      setTimeout(() => input.focus(), 100);
+    }
+  }
+
+  fabBtn.addEventListener('click', toggleChat);
+  if (closeBtn) closeBtn.addEventListener('click', () => { windowEl.style.display = 'none'; });
+
+  function appendMessage(text, isUser = false) {
+    if (!messagesBox) return;
+    const row = document.createElement('div');
+    row.className = `nexi-message-row ${isUser ? 'is-user' : 'is-bot'}`;
+
+    const avatar = isUser ? '' : '<div class="nexi-msg-avatar">✦</div>';
+    row.innerHTML = `
+      ${avatar}
+      <div class="nexi-bubble">
+        ${text}
+        <span class="nexi-time">Just now</span>
+      </div>
+    `;
+    messagesBox.appendChild(row);
+    messagesBox.scrollTop = messagesBox.scrollHeight;
+  }
+
+  function handlePrompt(promptText) {
+    appendMessage(promptText, true);
+
+    const norm = promptText.toLowerCase();
+    let reply = "";
+
+    if (norm.includes('product') || norm.includes('go drive')) {
+      reply = `<strong>Nexprobyte Products:</strong> Our flagship SaaS includes <em>GO Drive</em> — high-speed secure cloud storage & enterprise document synchronizer. We also engineer bespoke CRM/ERP platforms tailored to client workflows.`;
+    } else if (norm.includes('hire') || norm.includes('developer') || norm.includes('dev')) {
+      reply = `<strong>Dedicated Developers:</strong> Onboard senior Full-Stack (React/Node), Mobile (Flutter/iOS), or AI engineers within 48 hours. 100% time-zone overlap, 14-day trial, and direct GitHub/Slack integration.`;
+    } else if (norm.includes('service') || norm.includes('engineer')) {
+      reply = `<strong>Engineering Services:</strong> We offer 8 Core Studio Disciplines (Web, Apps, Mobile, SEO, Marketing, UI/UX, Branding) alongside 52 specialized PDF services across automation, CRM, and technical support.`;
+    } else if (norm.includes('studio') || norm.includes('location') || norm.includes('coimbatore') || norm.includes('phone') || norm.includes('contact')) {
+      reply = `<strong>Coimbatore Studio:</strong><br>📍 1st Floor, Nanjiammal Complex, Maniyakarampalayam, Coimbatore - 641006.<br>📞 Phone: <a href="tel:+919500042426" style="color:#0066FF; text-decoration:underline;">+91 95000 42426</a><br>⏰ Mon – Sat: 9:00 AM – 7:00 PM.`;
+    } else {
+      reply = `Thank you for your message! Our solutions architect is available right now. You can call our Coimbatore Studio directly at <a href="tel:+919500042426" style="color:#0066FF; text-decoration:underline;">+91 95000 42426</a> or continue via the WhatsApp button below for instant project estimation.`;
+    }
+
+    setTimeout(() => {
+      appendMessage(reply, false);
+    }, 450);
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const prompt = chip.getAttribute('data-nexi-prompt');
+      if (prompt) handlePrompt(prompt);
+    });
+  });
+
+  if (form && input) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = input.value.trim();
+      if (!val) return;
+      input.value = '';
+      handlePrompt(val);
+    });
+  }
+}
+
+/* ==========================================================================
+   24. CONTACT TOPIC PILLS & PROJECT SELECTION
+   ========================================================================== */
+function initContactTopics() {
+  const pills = document.querySelectorAll('.topic-pill');
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pill.classList.toggle('is-active');
+    });
+  });
+}
+
+/* ==========================================================================
+   25. GENERIC SITE MODALS BACKDROP & DISMISSAL
+   ========================================================================== */
+function initModalBackdrops() {
+  const backdrops = document.querySelectorAll('.site-modal-backdrop');
+  backdrops.forEach(modal => {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+
+    const closeBtns = modal.querySelectorAll('.site-modal-close-btn, #modal-blog-close-btn, #modal-job-close-btn, #modal-service-close-btn');
+    closeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      backdrops.forEach(m => { m.style.display = 'none'; });
+      const nexiWin = document.getElementById('nexi-window');
+      if (nexiWin) nexiWin.style.display = 'none';
+    }
+  });
+}
+

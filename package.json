@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Reverse engineered high-fidelity Next.js web application for Nexprobyte Technologies",
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
+    "start": "node server.js",
     "serve": "node server.js",
     "test": "node verify_build.js && node verify_animations.js"
   },

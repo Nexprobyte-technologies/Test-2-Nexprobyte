@@ -110,8 +110,10 @@
         </li>
 
         <li class="nav-item"><a href="#platform" class="nav-link">Platform</a></li>
-        <li class="nav-item"><a href="#ai-copilot" class="nav-link">AI Copilot</a></li>
-        <li class="nav-item"><a href="#tour" class="nav-link">Tour</a></li>
+        <li class="nav-item"><a href="#capabilities" class="nav-link">Capabilities</a></li>
+        <li class="nav-item"><a href="#about" class="nav-link">Studio</a></li>
+        <li class="nav-item"><a href="#careers" class="nav-link">Careers</a></li>
+        <li class="nav-item"><a href="#blog" class="nav-link">Insights</a></li>
         <li class="nav-item"><a href="#pricing" class="nav-link">Pricing</a></li>
         <li class="nav-item"><a href="#faq" class="nav-link">FAQ</a></li>
       </ul>
@@ -157,10 +159,11 @@
     <ul class="mobile-nav-list">
       <li><a href="#services" class="mobile-nav-link" onclick="closeDrawer()">Services <span>&rarr;</span></a></li>
       <li><a href="#platform" class="mobile-nav-link" onclick="closeDrawer()">Platform <span>&rarr;</span></a></li>
-      <li><a href="#ai-copilot" class="mobile-nav-link" onclick="closeDrawer()">AI Copilot <span>&rarr;</span></a></li>
-      <li><a href="#tour" class="mobile-nav-link" onclick="closeDrawer()">Tour <span>&rarr;</span></a></li>
+      <li><a href="#capabilities" class="mobile-nav-link" onclick="closeDrawer()">Capabilities <span>&rarr;</span></a></li>
+      <li><a href="#about" class="mobile-nav-link" onclick="closeDrawer()">Studio &amp; Principles <span>&rarr;</span></a></li>
+      <li><a href="#careers" class="mobile-nav-link" onclick="closeDrawer()">Careers <span>&rarr;</span></a></li>
+      <li><a href="#blog" class="mobile-nav-link" onclick="closeDrawer()">Journal &amp; Insights <span>&rarr;</span></a></li>
       <li><a href="#pricing" class="mobile-nav-link" onclick="closeDrawer()">Pricing <span>&rarr;</span></a></li>
-      <li><a href="#testimonials" class="mobile-nav-link" onclick="closeDrawer()">Testimonials <span>&rarr;</span></a></li>
       <li><a href="#faq" class="mobile-nav-link" onclick="closeDrawer()">FAQ <span>&rarr;</span></a></li>
       <li><a href="#contact" class="mobile-nav-link" onclick="closeDrawer()">Contact Us <span>&rarr;</span></a></li>
     </ul>
@@ -752,10 +755,22 @@
         <div class="badge-tag">Service Architecture</div>
         <h2 class="section-title">The Complete Nexprobyte Suite</h2>
         <p class="section-subtitle">
-          Everything your business needs to scale without friction. From dedicated developers and virtual assistants to automated AI agents and custom ERPs.
+          Everything your business needs to scale without friction. From 52 specialized PDF services to 8 core production disciplines.
         </p>
       </div>
 
+      <!-- Service Tier Switcher -->
+      <div class="services-nav-switcher reveal-up">
+        <button type="button" class="services-nav-tab active" id="tab-btn-pdf" data-target="panel-pdf-services">
+          <span>52 Specialized PDF Services (5 Pillars)</span>
+        </button>
+        <button type="button" class="services-nav-tab" id="tab-btn-core" data-target="panel-core-disciplines">
+          <span>8 Core Production Disciplines (Studio)</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: 52 PDF SERVICES -->
+      <div id="panel-pdf-services" class="services-tab-panel active">
       <div class="services-grid stagger-group">
         <!-- 1. Virtual Assistant Services (10 items) -->
         <div class="service-card col-4 spotlight-card reveal-up" id="service-va">
@@ -933,6 +948,204 @@
           <div class="service-bottom">
             <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan); font-weight: 600;">8 Core Disciplines • Enterprise Architecture</span>
             <a href="#contact" class="service-link">Build Custom Software &rarr;</a>
+          </div>
+        </div>
+      </div>
+      </div>
+
+      <!-- TAB 2: 8 CORE PRODUCTION DISCIPLINES -->
+      <div id="panel-core-disciplines" class="services-tab-panel" style="display: none;">
+        <div class="core-disciplines-grid stagger-group">
+          <!-- 01: Website Development -->
+          <div class="core-service-card spotlight-card reveal-up">
+            <div>
+              <div class="core-card-header">
+                <span class="core-num-badge">01</span>
+                <span class="core-serif-tag">Performance</span>
+              </div>
+              <h3 class="core-card-title">Website Development</h3>
+              <p class="core-card-blurb">Modern, responsive and SEO-friendly websites that convert visitors into customers.</p>
+              <ul class="core-features-list">
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Responsive, mobile-first builds</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> SEO-friendly architecture</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> CMS powered (WordPress / headless)</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Speed &amp; Core Web Vitals optimisation</li>
+              </ul>
+            </div>
+            <div class="core-card-footer">
+              <button type="button" class="core-detail-btn" onclick="openCoreServiceModal('website-development')">
+                View Full Capabilities &rarr;
+              </button>
+              <a href="#contact" class="service-link">Inquire &rarr;</a>
+            </div>
+          </div>
+
+          <!-- 02: Application Development -->
+          <div class="core-service-card spotlight-card reveal-up">
+            <div>
+              <div class="core-card-header">
+                <span class="core-num-badge">02</span>
+                <span class="core-serif-tag">Scalable</span>
+              </div>
+              <h3 class="core-card-title">Application Development</h3>
+              <p class="core-card-blurb">Scalable and secure web applications built for performance and growth.</p>
+              <ul class="core-features-list">
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> React / Node / Python stacks</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> API design &amp; integrations</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Cloud deployment (AWS / Azure)</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Data pipelines &amp; reporting</li>
+              </ul>
+            </div>
+            <div class="core-card-footer">
+              <button type="button" class="core-detail-btn" onclick="openCoreServiceModal('application-development')">
+                View Full Capabilities &rarr;
+              </button>
+              <a href="#contact" class="service-link">Inquire &rarr;</a>
+            </div>
+          </div>
+
+          <!-- 03: Mobile App Development -->
+          <div class="core-service-card spotlight-card reveal-up">
+            <div>
+              <div class="core-card-header">
+                <span class="core-num-badge">03</span>
+                <span class="core-serif-tag">Native Feel</span>
+              </div>
+              <h3 class="core-card-title">Mobile App Development</h3>
+              <p class="core-card-blurb">Feature-rich mobile apps for Android and iOS platforms.</p>
+              <ul class="core-features-list">
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> React Native &amp; Flutter</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Native iOS &amp; Android</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Push notifications &amp; offline sync</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> App store publishing</li>
+              </ul>
+            </div>
+            <div class="core-card-footer">
+              <button type="button" class="core-detail-btn" onclick="openCoreServiceModal('mobile-app-development')">
+                View Full Capabilities &rarr;
+              </button>
+              <a href="#contact" class="service-link">Inquire &rarr;</a>
+            </div>
+          </div>
+
+          <!-- 04: Digital Marketing -->
+          <div class="core-service-card spotlight-card reveal-up">
+            <div>
+              <div class="core-card-header">
+                <span class="core-num-badge">04</span>
+                <span class="core-serif-tag">Data-Driven</span>
+              </div>
+              <h3 class="core-card-title">Digital Marketing</h3>
+              <p class="core-card-blurb">Data-driven marketing strategies that bring measurable growth.</p>
+              <ul class="core-features-list">
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Performance marketing (Google, Meta)</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Landing page funnels</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Conversion rate optimisation</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Email &amp; automation flows</li>
+              </ul>
+            </div>
+            <div class="core-card-footer">
+              <button type="button" class="core-detail-btn" onclick="openCoreServiceModal('digital-marketing')">
+                View Full Capabilities &rarr;
+              </button>
+              <a href="#contact" class="service-link">Inquire &rarr;</a>
+            </div>
+          </div>
+
+          <!-- 05: SEO Services -->
+          <div class="core-service-card spotlight-card reveal-up">
+            <div>
+              <div class="core-card-header">
+                <span class="core-num-badge">05</span>
+                <span class="core-serif-tag">Visibility</span>
+              </div>
+              <h3 class="core-card-title">SEO Services</h3>
+              <p class="core-card-blurb">Improve ranking, organic traffic and online visibility.</p>
+              <ul class="core-features-list">
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Technical site audits</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Keyword &amp; competitor research</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> On-page &amp; content strategy</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Local SEO (Google Business Profile)</li>
+              </ul>
+            </div>
+            <div class="core-card-footer">
+              <button type="button" class="core-detail-btn" onclick="openCoreServiceModal('seo-services')">
+                View Full Capabilities &rarr;
+              </button>
+              <a href="#contact" class="service-link">Inquire &rarr;</a>
+            </div>
+          </div>
+
+          <!-- 06: Social Media Marketing -->
+          <div class="core-service-card spotlight-card reveal-up">
+            <div>
+              <div class="core-card-header">
+                <span class="core-num-badge">06</span>
+                <span class="core-serif-tag">Brand Voice</span>
+              </div>
+              <h3 class="core-card-title">Social Media Marketing</h3>
+              <p class="core-card-blurb">Engaging content and campaigns that build your brand.</p>
+              <ul class="core-features-list">
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Platform strategy (Ig, Fb, Ln, X)</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Content calendars &amp; design</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Reels &amp; short-form video</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Community management</li>
+              </ul>
+            </div>
+            <div class="core-card-footer">
+              <button type="button" class="core-detail-btn" onclick="openCoreServiceModal('social-media-marketing')">
+                View Full Capabilities &rarr;
+              </button>
+              <a href="#contact" class="service-link">Inquire &rarr;</a>
+            </div>
+          </div>
+
+          <!-- 07: UI/UX Design -->
+          <div class="core-service-card spotlight-card reveal-up">
+            <div>
+              <div class="core-card-header">
+                <span class="core-num-badge">07</span>
+                <span class="core-serif-tag">Human-Centric</span>
+              </div>
+              <h3 class="core-card-title">UI/UX Design</h3>
+              <p class="core-card-blurb">Intuitive, engaging interfaces and seamless experiences designed to convert visitors.</p>
+              <ul class="core-features-list">
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> User Research &amp; Journey Mapping</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Figma Wireframing &amp; Interactive Prototypes</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Design Systems &amp; Component Libraries</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Mobile &amp; Web App Interface Design</li>
+              </ul>
+            </div>
+            <div class="core-card-footer">
+              <button type="button" class="core-detail-btn" onclick="openCoreServiceModal('ui-ux-design')">
+                View Full Capabilities &rarr;
+              </button>
+              <a href="#contact" class="service-link">Inquire &rarr;</a>
+            </div>
+          </div>
+
+          <!-- 08: Branding & Identity -->
+          <div class="core-service-card spotlight-card reveal-up">
+            <div>
+              <div class="core-card-header">
+                <span class="core-num-badge">08</span>
+                <span class="core-serif-tag">Memorable</span>
+              </div>
+              <h3 class="core-card-title">Branding &amp; Identity</h3>
+              <p class="core-card-blurb">Crafting distinctive brand identities, logos, and visual systems that make your business unforgettable.</p>
+              <ul class="core-features-list">
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Brand Strategy &amp; Positioning</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Logo Design &amp; Visual Identity Systems</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Typography &amp; Color Palette Guidelines</li>
+                <li class="core-feature-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Comprehensive Brand Style Guides</li>
+              </ul>
+            </div>
+            <div class="core-card-footer">
+              <button type="button" class="core-detail-btn" onclick="openCoreServiceModal('branding-identity')">
+                View Full Capabilities &rarr;
+              </button>
+              <a href="#contact" class="service-link">Inquire &rarr;</a>
+            </div>
           </div>
         </div>
       </div>
@@ -1259,6 +1472,602 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CAPABILITIES SHOWCASE (6 ADVANCED SYSTEM ENGINES)
+       ========================================================================== -->
+  <section class="capabilities-section" id="capabilities">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="badge-tag">Capabilities &amp; Stacks</div>
+        <h2 class="section-title">Architected For Enterprise Scale</h2>
+        <p class="section-subtitle">
+          From search dominance and high-ROAS marketing to full-stack cloud engineering and autonomous workflow pipelines.
+        </p>
+      </div>
+
+      <!-- Tab Selector -->
+      <div class="capabilities-nav reveal-up" id="cap-nav-bar">
+        <button type="button" class="cap-nav-btn active" data-cap="0">
+          <span class="cap-nav-code">SYS-01</span>
+          <span class="cap-nav-title">SEO &amp; Dominance</span>
+        </button>
+        <button type="button" class="cap-nav-btn" data-cap="1">
+          <span class="cap-nav-code">SYS-02</span>
+          <span class="cap-nav-title">Performance CRO</span>
+        </button>
+        <button type="button" class="cap-nav-btn" data-cap="2">
+          <span class="cap-nav-code">SYS-03</span>
+          <span class="cap-nav-title">Full-Stack &amp; Mobile</span>
+        </button>
+        <button type="button" class="cap-nav-btn" data-cap="3">
+          <span class="cap-nav-code">SYS-04</span>
+          <span class="cap-nav-title">UI/UX Design</span>
+        </button>
+        <button type="button" class="cap-nav-btn" data-cap="4">
+          <span class="cap-nav-code">SYS-05</span>
+          <span class="cap-nav-title">n8n Automation</span>
+        </button>
+        <button type="button" class="cap-nav-btn" data-cap="5">
+          <span class="cap-nav-code">SYS-06</span>
+          <span class="cap-nav-title">AI Copilots &amp; RAG</span>
+        </button>
+      </div>
+
+      <!-- Active Capability Display -->
+      <div class="capability-active-card spotlight-card reveal-up" id="capability-card-display">
+        <div class="cap-grid">
+          <div class="cap-info-col">
+            <div class="cap-header-meta">
+              <span class="cap-code-badge" id="cap-code">SYS-01 // SEARCH-DOMINANCE</span>
+              <span class="cap-status-pill" id="cap-badge">RANKING #1</span>
+            </div>
+            <h3 class="cap-main-title" id="cap-title">SEO &amp; Search Dominance</h3>
+            <div class="cap-sub-heading" id="cap-subtitle">Dominate Google #1 For Commercial High-Intent Queries</div>
+            <p class="cap-desc" id="cap-desc">
+              Technical audits, Core Web Vitals optimization, semantic schema markup, and high-authority link architectures engineered to climb Google rankings sustainably and drive qualified commercial inbound traffic.
+            </p>
+
+            <div class="cap-bullets-list" id="cap-bullets">
+              <div class="cap-bullet-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+                <span>Technical Core Web Vitals Audit (95+ Score)</span>
+              </div>
+              <div class="cap-bullet-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+                <span>High-Intent Keyword Mapping &amp; Content Clusters</span>
+              </div>
+              <div class="cap-bullet-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+                <span>Google Business Profile &amp; Local Map Pack Dominance</span>
+              </div>
+              <div class="cap-bullet-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+                <span>White-Hat Authority Backlink Acquisition</span>
+              </div>
+            </div>
+
+            <!-- Telemetry Chips -->
+            <div class="cap-chips-row" id="cap-chips">
+              <div class="cap-chip"><span class="cap-chip-val">+280%</span><span class="cap-chip-label">ORGANIC LIFT</span></div>
+              <div class="cap-chip"><span class="cap-chip-val">99/100</span><span class="cap-chip-label">CORE VITALS</span></div>
+              <div class="cap-chip"><span class="cap-chip-val">Zero</span><span class="cap-chip-label">PENALTIES</span></div>
+            </div>
+
+            <div class="cap-action-row">
+              <a href="#contact" class="btn-primary-hero">
+                <span id="cap-btn-text">Deploy SEO Architecture</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="cap-visual-col">
+            <div class="cap-img-wrapper">
+              <img src="images/srv-seo.jpg" alt="Capabilities Preview" class="cap-showcase-img" id="cap-img" />
+              <div class="cap-telemetry-badge">
+                <span class="live-radar-dot" style="width: 6px; height: 6px;"><span class="live-radar-ring"></span></span>
+                <span id="cap-telemetry">ORGANIC LIFT: +280%</span>
+              </div>
+              <div class="cap-system-status">
+                <span id="cap-system-status">STAGING // GOOGLE_INDEX_v4</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       ABOUT STUDIO & 4 CORE PRINCIPLES (COIMBATORE HUB)
+       ========================================================================== -->
+  <section class="about-studio-section" id="about">
+    <div class="container">
+      <!-- Section Header -->
+      <div class="section-header reveal-up">
+        <div class="badge-tag">The People Behind The Pixels</div>
+        <h2 class="section-title">
+          Built On Principles, <span class="gradient-text">Engineered in Coimbatore</span>
+        </h2>
+        <p class="section-subtitle">
+          Nexprobyte was founded with a simple belief: small and mid-sized businesses deserve the same digital firepower as enterprises. We bridge that gap with a senior, honest team that ships.
+        </p>
+      </div>
+
+      <!-- Studio Banner Visual Card -->
+      <div class="about-studio-banner spotlight-card reveal-up">
+        <div class="about-studio-grid">
+          <div class="about-studio-image-col">
+            <img
+              src="images/about-team.jpg"
+              alt="Nexprobyte engineering and design team in Coimbatore studio"
+              class="about-studio-img"
+            />
+            <div class="about-img-badge-top">
+              <span class="live-radar-dot" style="width: 7px; height: 7px;">
+                <span class="live-radar-ring"></span>
+              </span>
+              <span>Coimbatore Studio • In-House Team</span>
+            </div>
+            <div class="about-img-badge-bottom">
+              <span>✦ 50+ Digital Products Shipped</span>
+            </div>
+          </div>
+
+          <div class="about-studio-text-col">
+            <span class="badge-tag">Crafted in Coimbatore</span>
+            <h3 class="about-text-title">
+              Built by Engineers Who Take Pride in Code &amp; Architecture.
+            </h3>
+            <p class="about-text-desc">
+              From clean API design and responsive frontends to scalable enterprise databases and cloud automations — we write code that lasts. No outsourced junior layers. Every project is planned, reviewed, and shipped by senior talent right here in Coimbatore.
+            </p>
+
+            <div class="about-studio-pills">
+              <span class="studio-pill">Modern React &amp; TypeScript</span>
+              <span class="studio-pill">Enterprise Databases</span>
+              <span class="studio-pill">Custom ERP Workflows</span>
+              <span class="studio-pill">n8n Automation</span>
+            </div>
+
+            <!-- 4 Core Principles (VAL-01 to VAL-04) -->
+            <div class="about-principles-subgrid">
+              <div class="about-principle-item">
+                <div class="principle-subicon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0066FF" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="principle-subtitle">VAL-01: Honest work</h4>
+                  <p class="principle-subdesc">No magic promises. Clear scopes, real timelines and straight answers — even when the truth isn't easy to hear.</p>
+                </div>
+              </div>
+
+              <div class="about-principle-item">
+                <div class="principle-subicon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#635bff" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="principle-subtitle">VAL-02: Own the outcome</h4>
+                  <p class="principle-subdesc">We treat every project like our own business. If it doesn't grow revenue or save time, it doesn't ship.</p>
+                </div>
+              </div>
+
+              <div class="about-principle-item">
+                <div class="principle-subicon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00d6b2" stroke-width="2">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="principle-subtitle">VAL-03: Built to last</h4>
+                  <p class="principle-subdesc">Clean code, documented decisions and scalable architecture — so the work keeps paying off long after launch.</p>
+                </div>
+              </div>
+
+              <div class="about-principle-item">
+                <div class="principle-subicon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff6b1a" stroke-width="2">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="principle-subtitle">VAL-04: Humans on call</h4>
+                  <p class="principle-subdesc">A dedicated point of contact, weekly updates and a team that picks up the phone. No layers, no noise.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Stats Grid -->
+      <div class="about-stats-row reveal-up">
+        <div class="about-stat-item spotlight-card">
+          <span class="stat-num">120+</span>
+          <span class="stat-label">Projects Delivered</span>
+        </div>
+        <div class="about-stat-item spotlight-card">
+          <span class="stat-num">99%</span>
+          <span class="stat-label">Client Satisfaction</span>
+        </div>
+        <div class="about-stat-item spotlight-card">
+          <span class="stat-num">25+</span>
+          <span class="stat-label">Tech Specialists (Coimbatore)</span>
+        </div>
+        <div class="about-stat-item spotlight-card">
+          <span class="stat-num">6+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CAREERS & STUDIO TALENT OPENINGS (5 OPEN ROLES)
+       ========================================================================== -->
+  <section class="careers-section" id="careers">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="badge-tag">Join Our Engineering Studio</div>
+        <h2 class="section-title">
+          Build The Future of <span class="gradient-text">Software &amp; AI</span>
+        </h2>
+        <p class="section-subtitle">
+          We are hiring ambitious engineers, designers, and growth marketers who take immense pride in craft, clean architecture, and rapid shipping.
+        </p>
+      </div>
+
+      <!-- Perks Bar -->
+      <div class="careers-perks-card spotlight-card reveal-up">
+        <h3 class="perks-heading">Why Engineers &amp; Creators Love Working at Nexprobyte</h3>
+        <div class="perks-grid">
+          <div class="perk-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+            <span>Competitive salary &amp; yearly reviews</span>
+          </div>
+          <div class="perk-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+            <span>Flexible hours &amp; remote-friendly</span>
+          </div>
+          <div class="perk-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+            <span>Learning budget for courses &amp; tools</span>
+          </div>
+          <div class="perk-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+            <span>Real client work from month one</span>
+          </div>
+          <div class="perk-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+            <span>Friday demos &amp; team builds</span>
+          </div>
+          <div class="perk-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2.5"><polyline points="20 6 9 17 4 12" /></svg>
+            <span>Referral &amp; performance bonuses</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 Jobs List -->
+      <div class="careers-jobs-grid stagger-group">
+        <!-- Job 1: Frontend Developer -->
+        <div class="job-card spotlight-card reveal-up">
+          <div class="job-header">
+            <div>
+              <span class="job-dept-pill">Engineering</span>
+              <h3 class="job-title">Frontend Developer</h3>
+              <div class="job-meta-row">
+                <span>📍 Coimbatore / Remote</span>
+                <span>•</span>
+                <span>Full-time</span>
+                <span>•</span>
+                <span class="job-salary-tag">₹3L – ₹6L / year</span>
+              </div>
+            </div>
+          </div>
+          <p class="job-excerpt">
+            Turn beautiful designs into fast, accessible interfaces using React and modern CSS. Work across client websites and internal products.
+          </p>
+          <div class="job-actions-row">
+            <button type="button" class="job-view-btn" onclick="openJobDetailModal('frontend-developer')">
+              View Details &rarr;
+            </button>
+            <button type="button" class="btn-primary-hero job-apply-btn" onclick="openJobApplyModal('Frontend Developer', 'Coimbatore / Remote', '₹3L – ₹6L / year')">
+              Apply Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Job 2: Full Stack Developer -->
+        <div class="job-card spotlight-card reveal-up">
+          <div class="job-header">
+            <div>
+              <span class="job-dept-pill">Engineering</span>
+              <h3 class="job-title">Full Stack Developer</h3>
+              <div class="job-meta-row">
+                <span>📍 Coimbatore / Remote</span>
+                <span>•</span>
+                <span>Full-time</span>
+                <span>•</span>
+                <span class="job-salary-tag">₹3.5L – ₹7L / year</span>
+              </div>
+            </div>
+          </div>
+          <p class="job-excerpt">
+            Build high-performance web applications, scalable REST APIs, and modern user interfaces using React, Node.js, and modern databases.
+          </p>
+          <div class="job-actions-row">
+            <button type="button" class="job-view-btn" onclick="openJobDetailModal('fullstack-developer')">
+              View Details &rarr;
+            </button>
+            <button type="button" class="btn-primary-hero job-apply-btn" onclick="openJobApplyModal('Full Stack Developer', 'Coimbatore / Remote', '₹3.5L – ₹7L / year')">
+              Apply Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Job 3: UI/UX Designer -->
+        <div class="job-card spotlight-card reveal-up">
+          <div class="job-header">
+            <div>
+              <span class="job-dept-pill">Design</span>
+              <h3 class="job-title">UI/UX Designer</h3>
+              <div class="job-meta-row">
+                <span>📍 Coimbatore</span>
+                <span>•</span>
+                <span>Full-time</span>
+                <span>•</span>
+                <span class="job-salary-tag">₹3L – ₹6.5L / year</span>
+              </div>
+            </div>
+          </div>
+          <p class="job-excerpt">
+            Design intuitive, beautiful interfaces for websites and apps — from whiteboard sketches to polished, hand-off-ready systems.
+          </p>
+          <div class="job-actions-row">
+            <button type="button" class="job-view-btn" onclick="openJobDetailModal('ui-ux-designer')">
+              View Details &rarr;
+            </button>
+            <button type="button" class="btn-primary-hero job-apply-btn" onclick="openJobApplyModal('UI/UX Designer', 'Coimbatore', '₹3L – ₹6.5L / year')">
+              Apply Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Job 4: Digital Marketing Specialist -->
+        <div class="job-card spotlight-card reveal-up">
+          <div class="job-header">
+            <div>
+              <span class="job-dept-pill">Marketing</span>
+              <h3 class="job-title">Digital Marketing Specialist</h3>
+              <div class="job-meta-row">
+                <span>📍 Coimbatore</span>
+                <span>•</span>
+                <span>Full-time</span>
+                <span>•</span>
+                <span class="job-salary-tag">₹2.5L – ₹5L / year</span>
+              </div>
+            </div>
+          </div>
+          <p class="job-excerpt">
+            Plan and run performance campaigns across Google and Meta — and turn the numbers into clear recommendations for clients.
+          </p>
+          <div class="job-actions-row">
+            <button type="button" class="job-view-btn" onclick="openJobDetailModal('digital-marketing-specialist')">
+              View Details &rarr;
+            </button>
+            <button type="button" class="btn-primary-hero job-apply-btn" onclick="openJobApplyModal('Digital Marketing Specialist', 'Coimbatore', '₹2.5L – ₹5L / year')">
+              Apply Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Job 5: SEO Analyst -->
+        <div class="job-card spotlight-card reveal-up">
+          <div class="job-header">
+            <div>
+              <span class="job-dept-pill">Marketing</span>
+              <h3 class="job-title">SEO Analyst</h3>
+              <div class="job-meta-row">
+                <span>📍 Remote</span>
+                <span>•</span>
+                <span>Full-time</span>
+                <span>•</span>
+                <span class="job-salary-tag">₹2L – ₹4.5L / year</span>
+              </div>
+            </div>
+          </div>
+          <p class="job-excerpt">
+            Own rankings for a portfolio of client websites — technical fixes, content strategy and link building, all measured with data.
+          </p>
+          <div class="job-actions-row">
+            <button type="button" class="job-view-btn" onclick="openJobDetailModal('seo-analyst')">
+              View Details &rarr;
+            </button>
+            <button type="button" class="btn-primary-hero job-apply-btn" onclick="openJobApplyModal('SEO Analyst', 'Remote', '₹2L – ₹4.5L / year')">
+              Apply Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       BLOG & THOUGHT LEADERSHIP JOURNAL (6 COMPLETE STRATEGY ARTICLES)
+       ========================================================================== -->
+  <section class="blog-section" id="blog">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="badge-tag">Journal • Ideas &amp; Strategy</div>
+        <h2 class="section-title">
+          Notes on Building <span class="gradient-text">High-Growth</span> Digital Products
+        </h2>
+        <p class="section-subtitle">
+          Practical thinking on web, software architecture, technical SEO, and conversion marketing — written by the Nexprobyte engineering team in Coimbatore.
+        </p>
+      </div>
+
+      <!-- Filter Row -->
+      <div class="blog-filter-row reveal-up" id="blog-category-filter">
+        <button type="button" class="blog-filter-pill is-active" data-cat="all">All</button>
+        <button type="button" class="blog-filter-pill" data-cat="web">Web</button>
+        <button type="button" class="blog-filter-pill" data-cat="seo">SEO</button>
+        <button type="button" class="blog-filter-pill" data-cat="design">Design</button>
+        <button type="button" class="blog-filter-pill" data-cat="marketing">Marketing</button>
+        <button type="button" class="blog-filter-pill" data-cat="business">Business</button>
+      </div>
+
+      <!-- 6 Blog Cards Grid -->
+      <div class="blog-grid stagger-group" id="blog-articles-grid">
+        <!-- Post 1 -->
+        <article class="blog-card spotlight-card reveal-up" data-category="web" onclick="openBlogReaderModal('why-every-business-needs-a-website-in-2026')">
+          <div class="blog-card-media">
+            <img src="images/cover-web.jpg" alt="Why Every Business Still Needs a Website in 2026" class="blog-card-img" loading="lazy" />
+            <span class="blog-badge">Web</span>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span>Aug 18, 2026</span>
+              <span class="meta-sep">•</span>
+              <span>5 min read</span>
+            </div>
+            <h3 class="blog-card-title">Why Every Business Still Needs a Website in 2026</h3>
+            <p class="blog-card-excerpt">
+              Social media borrows your audience; a website owns it. Here's why your own corner of the internet still matters more than ever.
+            </p>
+            <div class="blog-read-more">
+              <span>Read Full Article &rarr;</span>
+              <span style="font-size: 0.78rem; opacity: 0.7;">Verified Guide</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Post 2 -->
+        <article class="blog-card spotlight-card reveal-up" data-category="seo" onclick="openBlogReaderModal('seo-basics-that-actually-move-the-needle')">
+          <div class="blog-card-media">
+            <img src="images/cover-seo.jpg" alt="SEO Basics That Actually Move the Needle" class="blog-card-img" loading="lazy" />
+            <span class="blog-badge">SEO</span>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span>Jul 30, 2026</span>
+              <span class="meta-sep">•</span>
+              <span>6 min read</span>
+            </div>
+            <h3 class="blog-card-title">SEO Basics That Actually Move the Needle</h3>
+            <p class="blog-card-excerpt">
+              Skip the gimmicks. These practical, on-page fundamentals consistently improve rankings for small and mid-size businesses.
+            </p>
+            <div class="blog-read-more">
+              <span>Read Full Article &rarr;</span>
+              <span style="font-size: 0.78rem; opacity: 0.7;">Verified Guide</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Post 3 -->
+        <article class="blog-card spotlight-card reveal-up" data-category="design" onclick="openBlogReaderModal('mobile-first-design-is-not-optional')">
+          <div class="blog-card-media">
+            <img src="images/cover-design.jpg" alt="Mobile-First Design Is Not Optional" class="blog-card-img" loading="lazy" />
+            <span class="blog-badge">Design</span>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span>Jul 12, 2026</span>
+              <span class="meta-sep">•</span>
+              <span>4 min read</span>
+            </div>
+            <h3 class="blog-card-title">Mobile-First Design Is Not Optional</h3>
+            <p class="blog-card-excerpt">
+              More than 70% of web traffic now comes from phones. Design for the small screen first and the large screen will thank you.
+            </p>
+            <div class="blog-read-more">
+              <span>Read Full Article &rarr;</span>
+              <span style="font-size: 0.78rem; opacity: 0.7;">Verified Guide</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Post 4 -->
+        <article class="blog-card spotlight-card reveal-up" data-category="marketing" onclick="openBlogReaderModal('social-media-strategy-for-smes')">
+          <div class="blog-card-media">
+            <img src="images/cover-marketing.jpg" alt="A Realistic Social Media Strategy for SMEs" class="blog-card-img" loading="lazy" />
+            <span class="blog-badge">Marketing</span>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span>Jun 21, 2026</span>
+              <span class="meta-sep">•</span>
+              <span>7 min read</span>
+            </div>
+            <h3 class="blog-card-title">A Realistic Social Media Strategy for SMEs</h3>
+            <p class="blog-card-excerpt">
+              Posting more isn't the strategy. Here's a simple, sustainable system for small teams to build a brand people actually follow.
+            </p>
+            <div class="blog-read-more">
+              <span>Read Full Article &rarr;</span>
+              <span style="font-size: 0.78rem; opacity: 0.7;">Verified Guide</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Post 5 -->
+        <article class="blog-card spotlight-card reveal-up" data-category="business" onclick="openBlogReaderModal('what-is-a-digital-agency-and-how-to-choose-one')">
+          <div class="blog-card-media">
+            <img src="images/cover-business.jpg" alt="What Is a Digital Agency (and How to Choose One)" class="blog-card-img" loading="lazy" />
+            <span class="blog-badge">Business</span>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span>May 29, 2026</span>
+              <span class="meta-sep">•</span>
+              <span>6 min read</span>
+            </div>
+            <h3 class="blog-card-title">What Is a Digital Agency (and How to Choose One)</h3>
+            <p class="blog-card-excerpt">
+              Before you hire an agency, you should know what to look for — and what to avoid. A practical guide for first-time buyers.
+            </p>
+            <div class="blog-read-more">
+              <span>Read Full Article &rarr;</span>
+              <span style="font-size: 0.78rem; opacity: 0.7;">Verified Guide</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Post 6 -->
+        <article class="blog-card spotlight-card reveal-up" data-category="web" onclick="openBlogReaderModal('web-performance-is-a-business-metric')">
+          <div class="blog-card-media">
+            <img src="images/cover-speed.jpg" alt="Web Performance Is a Business Metric" class="blog-card-img" loading="lazy" />
+            <span class="blog-badge">Web</span>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span>May 05, 2026</span>
+              <span class="meta-sep">•</span>
+              <span>5 min read</span>
+            </div>
+            <h3 class="blog-card-title">Web Performance Is a Business Metric</h3>
+            <p class="blog-card-excerpt">
+              Every second of load time is revenue leaking out the door. Why speed should be a board-room topic, not just a developer concern.
+            </p>
+            <div class="blog-read-more">
+              <span>Read Full Article &rarr;</span>
+              <span style="font-size: 0.78rem; opacity: 0.7;">Verified Guide</span>
+            </div>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -1651,49 +2460,101 @@
         <div class="contact-info">
           <div>
             <div class="badge-tag" style="background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.2);">
-              Get In Touch
+              Coimbatore Headquarters • Global Delivery
             </div>
             <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700; color: #fff; margin: 18px 0;">
               Talk to a Real Person.
             </h2>
             <p style="font-size: 1.05rem; line-height: 1.6; color: rgba(255,255,255,0.8); max-width: 440px;">
-              Tell us what team members or automations your business needs, and we'll craft a customized ramp-up proposal. No pushy sales, just straightforward answers.
+              Tell us what team members, software platforms, or growth campaigns your business needs, and we'll craft a tailored proposal. No pushy sales, just straightforward answers.
             </p>
 
-            <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 32px;">
-              <div style="display: flex; align-items: center; gap: 10px; font-size: 0.95rem; color: rgba(255,255,255,0.9);">
+            <!-- Verified Address & Studio Cards -->
+            <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 28px;">
+              <a href="https://maps.google.com/?q=10.9994017,76.9686834" target="_blank" rel="noopener noreferrer" class="contact-detail-card">
+                <span class="contact-icon-badge">📍</span>
+                <div>
+                  <div class="contact-card-title">Coimbatore Studio Location</div>
+                  <div class="contact-card-val">
+                    1st Floor, Nanjiammal Complex, Above City Bakery, Maniyakarampalayam, Coimbatore, Tamil Nadu 641006
+                  </div>
+                  <span class="contact-open-hint">Open in Google Maps ↗</span>
+                </div>
+              </a>
+
+              <a href="tel:+919500042426" class="contact-detail-card">
+                <span class="contact-icon-badge">📞</span>
+                <div>
+                  <div class="contact-card-title">Direct Telephone</div>
+                  <div class="contact-card-val">+91 95000 42426</div>
+                </div>
+              </a>
+
+              <a href="mailto:info@nexprobyte.com" class="contact-detail-card">
+                <span class="contact-icon-badge">✉️</span>
+                <div>
+                  <div class="contact-card-title">Official Inquiries</div>
+                  <div class="contact-card-val">info@nexprobyte.com • contact@nexprobyte.com</div>
+                </div>
+              </a>
+
+              <div class="contact-detail-card" style="cursor: default;">
+                <span class="contact-icon-badge">🕒</span>
+                <div>
+                  <div class="contact-card-title">Office Hours</div>
+                  <div class="contact-card-val">Mon – Sat · 9:30 AM – 6:30 PM IST (Sunday by appointment)</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 24px;">
+              <div style="display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: rgba(255,255,255,0.9);">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 Replies in under two hours
               </div>
-              <div style="display: flex; align-items: center; gap: 10px; font-size: 0.95rem; color: rgba(255,255,255,0.9);">
+              <div style="display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: rgba(255,255,255,0.9);">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 Free onboarding &amp; sprint roadmap help
               </div>
-              <div style="display: flex; align-items: center; gap: 10px; font-size: 0.95rem; color: rgba(255,255,255,0.9);">
+              <div style="display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: rgba(255,255,255,0.9);">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 14-day risk-free satisfaction guarantee
               </div>
             </div>
-          </div>
-
-          <div style="margin-top: 40px; font-size: 0.85rem; color: rgba(255,255,255,0.6);">
-            Prefer direct email? <br>
-            <a href="mailto:contact@nexprobyte.com" style="color: #fff; font-weight: 600; text-decoration: underline;">
-              contact@nexprobyte.com
-            </a>
           </div>
         </div>
 
         <!-- Right Form -->
         <form class="contact-form" id="contact-form">
           <div class="form-group">
-            <label class="form-label" for="contact-name">Your Name</label>
-            <input type="text" id="contact-name" class="form-input" placeholder="Alex Morgan" required>
+            <label class="form-label" for="contact-name">Your Full Name</label>
+            <input type="text" id="contact-name" class="form-input" placeholder="e.g. Rajesh Kumar" required>
           </div>
 
           <div class="form-group">
             <label class="form-label" for="contact-email">Work Email</label>
-            <input type="email" id="contact-email" class="form-input" placeholder="alex@company.com" required>
+            <input type="email" id="contact-email" class="form-input" placeholder="you@company.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contact-phone">Phone / WhatsApp</label>
+            <input type="tel" id="contact-phone" class="form-input" placeholder="+91 95000 42426">
+          </div>
+
+          <!-- Topic Selection Buttons -->
+          <div class="form-group">
+            <label class="form-label">What do you need?</label>
+            <div class="topic-grid" id="contact-topic-pills">
+              <button type="button" class="topic-pill is-active" data-topic="New website">New website</button>
+              <button type="button" class="topic-pill" data-topic="App development">App development</button>
+              <button type="button" class="topic-pill" data-topic="Digital marketing">Digital marketing</button>
+              <button type="button" class="topic-pill" data-topic="SEO services">SEO services</button>
+              <button type="button" class="topic-pill" data-topic="Social media">Social media</button>
+              <button type="button" class="topic-pill" data-topic="Dedicated Developers">Dedicated Developers</button>
+              <button type="button" class="topic-pill" data-topic="Virtual Assistants">Virtual Assistants</button>
+              <button type="button" class="topic-pill" data-topic="AI & Automation">AI &amp; Automation</button>
+              <button type="button" class="topic-pill" data-topic="Custom Software">Custom Software</button>
+            </div>
           </div>
 
           <div class="form-group">
@@ -1704,6 +2565,10 @@
               <option value="ai">3. AI &amp; Business Automation VA</option>
               <option value="web">4. Website &amp; E-Commerce Technical Support</option>
               <option value="custom">5. CRM, Software &amp; Business Solutions</option>
+              <option value="core-web">6. Core: Website Development</option>
+              <option value="core-app">7. Core: Application Development</option>
+              <option value="core-mobile">8. Core: Mobile App Development</option>
+              <option value="core-marketing">9. Core: Digital Marketing &amp; SEO</option>
             </select>
           </div>
 
@@ -1718,7 +2583,7 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label" for="contact-message">How can we help?</label>
+            <label class="form-label" for="contact-message">Project Scope &amp; Goals</label>
             <textarea id="contact-message" class="form-textarea" rows="3" placeholder="Tell us about your project requirements or tech stack..." required></textarea>
           </div>
 
@@ -1831,6 +2696,180 @@
       <polyline points="20 6 9 17 4 12"></polyline>
     </svg>
     <span id="toast-message">Message sent successfully! Our team will contact you in 2 hours.</span>
+  </div>
+
+  <!-- Floating Direct Studio Call Button -->
+  <div class="floating-call-container" id="floating-call-root">
+    <a href="tel:+919500042426" class="floating-call-btn" id="floating-call-btn" aria-label="Call Nexprobyte Coimbatore Studio">
+      <div class="call-btn-pulse"></div>
+      <div class="call-btn-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+        </svg>
+      </div>
+      <span class="call-btn-text">Call Studio: +91 95000 42426</span>
+    </a>
+  </div>
+
+  <!-- Floating Interactive Nexi AI Chatbot -->
+  <div class="nexi-fab-container" id="nexi-fab-root">
+    <button class="nexi-fab-btn" id="nexi-fab-btn" aria-label="Open Nexi AI Chatbot">
+      <div class="nexi-fab-pulse"></div>
+      <span class="nexi-avatar-sparkle">✦</span>
+      <span>Ask Nexi AI</span>
+    </button>
+    <div class="nexi-window" id="nexi-window" style="display: none;">
+      <div class="nexi-header">
+        <div class="nexi-header-info">
+          <div class="nexi-avatar">
+            <span>✦</span>
+            <div class="nexi-online-dot"></div>
+          </div>
+          <div>
+            <div class="nexi-title">Nexi Assistant</div>
+            <div class="nexi-subtitle">Nexprobyte AI Concierge &bull; Online</div>
+          </div>
+        </div>
+        <button class="nexi-close-btn" id="nexi-close-btn" aria-label="Close Chat">&times;</button>
+      </div>
+      <div class="nexi-messages" id="nexi-messages">
+        <div class="nexi-message-row is-bot">
+          <div class="nexi-msg-avatar">✦</div>
+          <div class="nexi-bubble">
+            Hello! I am Nexi, your Nexprobyte AI concierge. Are you exploring our flagship products like GO Drive, or looking for bespoke engineering and software services?
+            <span class="nexi-time">Just now</span>
+          </div>
+        </div>
+      </div>
+      <div class="nexi-chips-bar" id="nexi-chips-bar">
+        <button type="button" class="nexi-chip" data-nexi-prompt="Tell me about Nexprobyte Products">Products &amp; GO Drive</button>
+        <button type="button" class="nexi-chip" data-nexi-prompt="Tell me about Engineering Services">Engineering Services</button>
+        <button type="button" class="nexi-chip" data-nexi-prompt="How do I hire dedicated developers?">Hire Devs</button>
+        <button type="button" class="nexi-chip" data-nexi-prompt="Coimbatore Studio location and contact">Studio Location</button>
+      </div>
+      <div class="nexi-wa-cta">
+        <a href="https://wa.me/919500042426?text=Hi%20Nexprobyte%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer" class="nexi-wa-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.52 3.449A11.916 11.916 0 0 0 12.06 0C5.46 0 .097 5.363.097 11.966c0 2.112.551 4.173 1.597 5.99L0 24l6.235-1.636a11.936 11.936 0 0 0 5.825 1.503h.005c6.602 0 11.966-5.364 11.966-11.969 0-3.197-1.246-6.202-3.511-8.449zM12.064 21.874a9.92 9.92 0 0 1-5.06-1.385l-.363-.215-3.762.987 1.004-3.668-.236-.375a9.907 9.907 0 0 1-1.52-5.252c0-5.468 4.45-9.918 9.939-9.918a9.88 9.88 0 0 1 7.03 2.915 9.873 9.873 0 0 1 2.908 7.025c0 5.47-4.45 9.921-9.94 9.921zm5.45-7.447c-.299-.149-1.77-.874-2.045-.973-.274-.1-.473-.149-.672.15-.199.299-.77.973-.944 1.172-.174.199-.349.224-.648.075-.299-.149-1.262-.465-2.404-1.484-.888-.793-1.488-1.773-1.663-2.072-.174-.299-.019-.461.13-.61.135-.134.299-.349.449-.524.15-.174.199-.299.299-.498.1-.199.05-.374-.025-.524-.075-.149-.673-1.62-.922-2.22-.242-.582-.489-.503-.672-.513l-.574-.01c-.199 0-.523.075-.797.374-.274.299-1.047 1.023-1.047 2.494 0 1.47 1.072 2.893 1.222 3.092.149.199 2.109 3.22 5.109 4.516.713.309 1.27.494 1.704.632.717.227 1.369.195 1.884.118.575-.086 1.77-.723 2.02-1.422.249-.698.249-1.296.174-1.421-.075-.125-.274-.199-.573-.349z"/>
+          </svg>
+          Chat on WhatsApp Direct (+91 95000 42426)
+        </a>
+      </div>
+      <form class="nexi-input-bar" id="nexi-form">
+        <input type="text" class="nexi-input" id="nexi-user-input" placeholder="Ask about services, pricing, or stack..." autocomplete="off">
+        <button type="submit" class="nexi-send-btn" aria-label="Send message">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Blog Article Reader Modal -->
+  <div class="site-modal-backdrop" id="blog-reader-modal" style="display: none;">
+    <div class="site-modal-card">
+      <div class="site-modal-header">
+        <div>
+          <span class="badge" id="modal-blog-cat">Engineering</span>
+          <h3 class="site-modal-title" id="modal-blog-title">Article Title</h3>
+          <div class="site-modal-meta" id="modal-blog-meta">Read Time &bull; Date</div>
+        </div>
+        <button class="site-modal-close-btn" id="modal-blog-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="site-modal-body" id="modal-blog-body">
+        <!-- Injected via JavaScript -->
+      </div>
+      <div class="site-modal-footer">
+        <button type="button" class="btn btn-secondary" id="modal-blog-close-btn">Close Article</button>
+        <a href="#contact" class="btn btn-primary" id="modal-blog-contact-btn">Discuss This Topic</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Job Details Modal -->
+  <div class="site-modal-backdrop" id="job-detail-modal" style="display: none;">
+    <div class="site-modal-card">
+      <div class="site-modal-header">
+        <div>
+          <span class="badge" id="modal-job-badge">Engineering &bull; Full-time</span>
+          <h3 class="site-modal-title" id="modal-job-title">Role Title</h3>
+          <div class="site-modal-meta" id="modal-job-meta">Coimbatore / Remote &bull; ₹3L – ₹6L / year</div>
+        </div>
+        <button class="site-modal-close-btn" id="modal-job-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="site-modal-body" id="modal-job-body">
+        <!-- Injected via JavaScript -->
+      </div>
+      <div class="site-modal-footer">
+        <button type="button" class="btn btn-secondary" id="modal-job-close-btn">Close</button>
+        <button type="button" class="btn btn-primary" id="modal-job-apply-trigger">Apply Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Job Application Modal -->
+  <div class="site-modal-backdrop" id="job-apply-modal" style="display: none;">
+    <div class="site-modal-card" style="max-width: 580px;">
+      <div class="site-modal-header">
+        <div>
+          <span class="badge" id="modal-apply-badge">Coimbatore Studio / Remote</span>
+          <h3 class="site-modal-title" id="modal-apply-title">Apply for Position</h3>
+          <div class="site-modal-meta">Nexprobyte Talent Engineering Team</div>
+        </div>
+        <button class="site-modal-close-btn" id="modal-apply-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="site-modal-body">
+        <form id="career-apply-form" style="display: flex; flex-direction: column; gap: 16px;">
+          <input type="hidden" id="apply-role-name" name="role" value="">
+          <div>
+            <label style="display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 6px; color: var(--text-primary);">Full Name *</label>
+            <input type="text" class="contact-input" required placeholder="John Doe" id="apply-fullname">
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div>
+              <label style="display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 6px; color: var(--text-primary);">Email *</label>
+              <input type="email" class="contact-input" required placeholder="john@example.com" id="apply-email">
+            </div>
+            <div>
+              <label style="display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 6px; color: var(--text-primary);">Phone *</label>
+              <input type="tel" class="contact-input" required placeholder="+91 95000 00000" id="apply-phone">
+            </div>
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 6px; color: var(--text-primary);">Portfolio or GitHub URL *</label>
+            <input type="url" class="contact-input" required placeholder="https://github.com/yourhandle" id="apply-portfolio">
+          </div>
+          <div>
+            <label style="display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 6px; color: var(--text-primary);">Years of Experience &amp; Highlights</label>
+            <textarea class="contact-textarea" rows="3" placeholder="Tell us briefly about systems you built, technologies you master, and why Nexprobyte..." id="apply-notes"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 14px;">Submit Application</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Core Discipline Detail Modal -->
+  <div class="site-modal-backdrop" id="core-service-modal" style="display: none;">
+    <div class="site-modal-card">
+      <div class="site-modal-header">
+        <div>
+          <span class="badge" id="modal-service-badge">Discipline 01</span>
+          <h3 class="site-modal-title" id="modal-service-title">Discipline Title</h3>
+          <div class="site-modal-meta" id="modal-service-meta">Performance &bull; Nexprobyte Engineering</div>
+        </div>
+        <button class="site-modal-close-btn" id="modal-service-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="site-modal-body" id="modal-service-body">
+        <!-- Injected via JavaScript -->
+      </div>
+      <div class="site-modal-footer">
+        <button type="button" class="btn btn-secondary" id="modal-service-close-btn">Close</button>
+        <a href="#contact" class="btn btn-primary" id="modal-service-contact-btn">Book This Discipline</a>
+      </div>
+    </div>
   </div>
 
   <script src="app.js"></script>
