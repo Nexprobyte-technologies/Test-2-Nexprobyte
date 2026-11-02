@@ -191,44 +191,54 @@ export default function HeroCords() {
       const isTablet = stageWidth >= 768 && stageWidth < 1024;
       const isDesktop = stageWidth >= 1024;
 
-      cords.forEach((cord) => {
-        const radius = isMobile ? 16 : isTablet ? 22 : 28;
-        let targetX = centerX;
-        let targetY = 110;
+      if (isMobile) {
+        // -------------------------------------------------------------
+        // Mobile View (< 768px): 100% Exact Match to sarofinance.framer.website!
+        // 7 hanging threads staggered in a graceful smiling arc directly
+        // above the hero status badge, evenly spanning across the screen:
+        // Left to Right: Orange -> Mint -> Obsidian -> Purple -> Green -> Lime -> Blue
+        // -------------------------------------------------------------
+        const isSmall = stageWidth < 375;
+        const outerMargin = isSmall ? 22 : 28;
+        const totalSpan = stageWidth - (outerMargin * 2);
+        const pitch = totalSpan / 6;
 
-        if (isDesktop) {
-          switch (cord.slot) {
-            case 'center':
-              targetX = centerX;
-              targetY = 108;
-              break;
-            case 'top-left':
-              targetX = Math.max(radius + 20, centerX - 460);
-              targetY = 220;
-              break;
-            case 'mid-left':
-              targetX = Math.max(radius + 20, centerX - 560);
-              targetY = 345;
-              break;
-            case 'bottom-left':
-              targetX = Math.max(radius + 20, centerX - 470);
-              targetY = 485;
-              break;
-            case 'top-right':
-              targetX = Math.min(stageWidth - radius - 140, centerX + 460);
-              targetY = 220;
-              break;
-            case 'mid-right':
-              targetX = Math.min(stageWidth - radius - 140, centerX + 560);
-              targetY = 345;
-              break;
-            case 'bottom-right':
-              targetX = Math.min(stageWidth - radius - 140, centerX + 470);
-              targetY = 485;
-              break;
+        // Vertical heights staggered to match reference screenshot:
+        // High (Obsidian & Green): ~92px
+        // Mid (Purple, Orange, Blue): ~116px
+        // Low (Mint & Lime): ~150px
+        const yHigh = isSmall ? 82 : 92;
+        const yMid = isSmall ? 104 : 116;
+        const yLow = isSmall ? 134 : 150;
+
+        const mobilePositions = {
+          2: { x: centerX - 3 * pitch, y: yMid },  // 1: Orange (outer left)
+          3: { x: centerX - 2 * pitch, y: yLow },  // 2: Mint (mid left - low)
+          1: { x: centerX - 1 * pitch, y: yHigh }, // 3: Obsidian (inner left - high)
+          0: { x: centerX,             y: yMid },  // 4: Purple (center - mid)
+          4: { x: centerX + 1 * pitch, y: yHigh }, // 5: Green (inner right - high)
+          6: { x: centerX + 2 * pitch, y: yLow },  // 6: Lime (mid right - low)
+          5: { x: centerX + 3 * pitch, y: yMid },  // 7: Blue (outer right - mid)
+        };
+
+        cords.forEach((cord) => {
+          const pos = mobilePositions[cord.id] || { x: centerX, y: yMid };
+          cord.restX = pos.x;
+          cord.restY = pos.y;
+          cord.anchorX = pos.x;
+          cord.anchorY = 0;
+
+          if (cord.px === 0 && cord.py === 0) {
+            cord.px = pos.x;
+            cord.py = pos.y;
           }
-        } else if (isTablet) {
-          const maxOffset = Math.min(stageWidth * 0.44, 380);
+        });
+      } else if (isTablet) {
+        const maxOffset = Math.min(stageWidth * 0.44, 380);
+        const radius = 22;
+        cords.forEach((cord) => {
+          let targetX = centerX;
+          let targetY = 100;
           switch (cord.slot) {
             case 'center':
               targetX = centerX;
@@ -259,55 +269,61 @@ export default function HeroCords() {
               targetY = 460;
               break;
           }
-        } else {
-          // Mobile (< 768px): Neatly placed in outer gutters so headline is 100% visible
-          const marginX = Math.max(radius + 10, stageWidth * 0.08);
+          cord.restX = targetX;
+          cord.restY = targetY;
+          cord.anchorX = targetX;
+          cord.anchorY = 0;
+          if (cord.px === 0 && cord.py === 0) {
+            cord.px = targetX;
+            cord.py = targetY;
+          }
+        });
+      } else {
+        // Desktop (>= 1024px)
+        const radius = 28;
+        cords.forEach((cord) => {
+          let targetX = centerX;
+          let targetY = 110;
           switch (cord.slot) {
             case 'center':
               targetX = centerX;
-              targetY = 88;
+              targetY = 108;
               break;
             case 'top-left':
-              targetX = marginX;
-              targetY = 185;
+              targetX = Math.max(radius + 20, centerX - 460);
+              targetY = 220;
               break;
             case 'mid-left':
-              targetX = marginX + 8;
-              targetY = 295;
+              targetX = Math.max(radius + 20, centerX - 560);
+              targetY = 345;
               break;
             case 'bottom-left':
-              targetX = marginX;
-              targetY = 415;
+              targetX = Math.max(radius + 20, centerX - 470);
+              targetY = 485;
               break;
             case 'top-right':
-              targetX = stageWidth - marginX - 20;
-              targetY = 185;
+              targetX = Math.min(stageWidth - radius - 140, centerX + 460);
+              targetY = 220;
               break;
             case 'mid-right':
-              targetX = stageWidth - marginX - 28;
-              targetY = 295;
+              targetX = Math.min(stageWidth - radius - 140, centerX + 560);
+              targetY = 345;
               break;
             case 'bottom-right':
-              targetX = stageWidth - marginX - 20;
-              targetY = 415;
+              targetX = Math.min(stageWidth - radius - 140, centerX + 470);
+              targetY = 485;
               break;
           }
-        }
-
-        cord.restX = targetX;
-        cord.restY = targetY;
-        cord.anchorX = targetX;
-        cord.anchorY = 0;
-
-        if (cord.px === 0 && cord.py === 0) {
-          cord.px = targetX;
-          cord.py = targetY;
-        }
-
-        if (cord.mountEl) {
-          cord.mountEl.style.left = `${cord.anchorX}px`;
-        }
-      });
+          cord.restX = targetX;
+          cord.restY = targetY;
+          cord.anchorX = targetX;
+          cord.anchorY = 0;
+          if (cord.px === 0 && cord.py === 0) {
+            cord.px = targetX;
+            cord.py = targetY;
+          }
+        });
+      }
     }
 
     // Pointer event bindings for squircle cords

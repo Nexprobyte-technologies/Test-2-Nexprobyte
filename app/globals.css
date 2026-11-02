@@ -1122,19 +1122,7 @@ input, textarea, select {
 
 @media (max-width: 809.98px) {
   .hero-hanging-cord-stage {
-    right: 12px;
-    top: 4px;
-    transform: scale(0.82);
-    transform-origin: top right;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-hanging-cord-stage {
-    right: 4px;
-    top: 6px;
-    transform: scale(0.72);
-    transform-origin: top right;
+    display: none !important;
   }
 }
 
@@ -3279,7 +3267,7 @@ input, textarea, select {
     transform: scale(0.92);
   }
   .hero-section {
-    padding-top: clamp(100px, 14vw, 125px);
+    padding-top: clamp(195px, 28vw, 225px) !important;
     padding-bottom: 40px;
   }
   .hero-title {
@@ -7746,28 +7734,73 @@ input, textarea, select {
 
 
 
-/* 17. Hero Cords Optimization & Mobile Collision Prevention */
-@media (max-width: 640px) {
+/* 17. Hero Hanging Cords Architecture - Framer Saro Exact Mobile Match */
+@media (max-width: 809.98px) {
+  .hero-section {
+    padding-top: clamp(195px, 28vw, 225px) !important;
+    padding-bottom: 40px;
+  }
+  .hero-hanging-cord-stage {
+    display: none !important;
+  }
   .hero-tech-cords-stage {
-    opacity: 0.65;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 195px !important;
+    z-index: 12 !important;
+    pointer-events: none !important;
+    overflow: visible !important;
+    opacity: 1 !important;
+    display: block !important;
   }
   .tech-cord-squircle {
-    width: 36px;
-    height: 36px;
+    width: 40px !important;
+    height: 40px !important;
+    opacity: 1 !important;
+    display: flex !important;
   }
   .squircle-body {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 10px 22px -3px rgba(0, 0, 0, 0.24), 0 3px 6px rgba(0, 0, 0, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.45) !important;
+  }
+  .squircle-connector-ring {
+    top: -4px !important;
+    width: 6px !important;
+    height: 6px !important;
+    border-width: 1.4px !important;
   }
   .squircle-icon svg {
-    width: 16px;
-    height: 16px;
+    width: 18px !important;
+    height: 18px !important;
+  }
+  .squircle-tooltip {
+    display: none !important;
+  }
+  .hero-badge-wrap {
+    margin-bottom: 16px !important;
   }
 }
-@media (max-width: 440px) {
-  .hero-tech-cords-stage {
-    display: none !important;
+
+@media (max-width: 360px) {
+  .hero-section {
+    padding-top: 180px !important;
+  }
+  .tech-cord-squircle {
+    width: 34px !important;
+    height: 34px !important;
+  }
+  .squircle-body {
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 10px !important;
+  }
+  .squircle-icon svg {
+    width: 15px !important;
+    height: 15px !important;
   }
 }
 

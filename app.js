@@ -1669,36 +1669,44 @@ function initTechCords() {
             break;
         }
       } else {
-        // Mobile (< 768px): Neatly placed in outer gutters so headline & text remain 100% legible
-        const marginX = Math.max(radius + 10, stageWidth * 0.08);
+        // Mobile (< 768px): Framer Saro Exact Arc Layout directly above status badge
+        const isSmall = stageWidth < 375;
+        const outerMargin = isSmall ? 22 : 28;
+        const totalSpan = stageWidth - (outerMargin * 2);
+        const pitch = totalSpan / 6;
+
+        const yHigh = isSmall ? 82 : 92;
+        const yMid = isSmall ? 104 : 116;
+        const yLow = isSmall ? 134 : 150;
+
         switch (cord.slot) {
-          case 'center':
+          case 'mid-left': // 1: Orange
+            targetX = centerX - 3 * pitch;
+            targetY = yMid;
+            break;
+          case 'bottom-left': // 2: Mint
+            targetX = centerX - 2 * pitch;
+            targetY = yLow;
+            break;
+          case 'top-left': // 3: Obsidian
+            targetX = centerX - 1 * pitch;
+            targetY = yHigh;
+            break;
+          case 'center': // 4: Purple
             targetX = centerX;
-            targetY = 88; // Above status badge
+            targetY = yMid;
             break;
-          case 'top-left':
-            targetX = marginX;
-            targetY = 185;
+          case 'top-right': // 5: Green
+            targetX = centerX + 1 * pitch;
+            targetY = yHigh;
             break;
-          case 'mid-left':
-            targetX = marginX + 8;
-            targetY = 295;
+          case 'bottom-right': // 6: Lime
+            targetX = centerX + 2 * pitch;
+            targetY = yLow;
             break;
-          case 'bottom-left':
-            targetX = marginX;
-            targetY = 415;
-            break;
-          case 'top-right':
-            targetX = stageWidth - marginX;
-            targetY = 185;
-            break;
-          case 'mid-right':
-            targetX = stageWidth - marginX - 8;
-            targetY = 295;
-            break;
-          case 'bottom-right':
-            targetX = stageWidth - marginX;
-            targetY = 415;
+          case 'mid-right': // 7: Blue
+            targetX = centerX + 3 * pitch;
+            targetY = yMid;
             break;
         }
       }
