@@ -129,10 +129,14 @@ export default function Navbar() {
               onMouseEnter={() => setServicesOpen(true)}
               onMouseLeave={() => setServicesOpen(false)}
             >
-              <a
-                href="#services"
+              <Link
+                href="/services"
                 className={`nav-link ${activeSection === 'services' ? 'active' : ''}`}
-                onClick={() => setServicesOpen(!servicesOpen)}
+                onClick={(e) => {
+                  if (typeof window !== 'undefined' && window.location.pathname === '/') {
+                    setServicesOpen(!servicesOpen);
+                  }
+                }}
               >
                 <span>Services</span>
                 <svg
@@ -149,7 +153,7 @@ export default function Navbar() {
                 >
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
-              </a>
+              </Link>
 
               <AnimatePresence>
                 {servicesOpen && (
@@ -160,7 +164,24 @@ export default function Navbar() {
                     exit={{ opacity: 0, y: 8, scale: 0.96 }}
                     transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    <a href="#service-va" className="dropdown-item" onClick={() => setServicesOpen(false)}>
+                    <div style={{ padding: '8px 16px 10px', borderBottom: '1px solid rgba(0,0,0,0.06)', marginBottom: '8px' }}>
+                      <Link
+                        href="/services"
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          color: 'var(--accent-blue)',
+                          fontWeight: 600,
+                          fontSize: '0.88rem'
+                        }}
+                        onClick={() => setServicesOpen(false)}
+                      >
+                        <span>Explore All 8 Production Disciplines</span>
+                        <span>&rarr;</span>
+                      </Link>
+                    </div>
+                    <Link href="/services#service-va" className="dropdown-item" onClick={() => setServicesOpen(false)}>
                       <div className="dropdown-icon">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
@@ -172,9 +193,9 @@ export default function Navbar() {
                         <div className="dropdown-title">Virtual Assistance (10 Services)</div>
                         <div className="dropdown-desc">Executive, Admin, CRM, Real Estate &amp; E-Commerce VAs</div>
                       </div>
-                    </a>
+                    </Link>
 
-                    <a href="#service-dev" className="dropdown-item" onClick={() => setServicesOpen(false)}>
+                    <Link href="/services#service-dev" className="dropdown-item" onClick={() => setServicesOpen(false)}>
                       <div className="dropdown-icon">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <polyline points="16 18 22 12 16 6"></polyline>
@@ -185,9 +206,9 @@ export default function Navbar() {
                         <div className="dropdown-title">Software Development (12 Disciplines)</div>
                         <div className="dropdown-desc">Dedicated Full-Stack, Frontend, Mobile, QA &amp; DevOps Teams</div>
                       </div>
-                    </a>
+                    </Link>
 
-                    <a href="#service-ai" className="dropdown-item" onClick={() => setServicesOpen(false)}>
+                    <Link href="/services#service-ai" className="dropdown-item" onClick={() => setServicesOpen(false)}>
                       <div className="dropdown-icon">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <rect x="2" y="3" width="20" height="14" rx="2"></rect>
@@ -198,9 +219,9 @@ export default function Navbar() {
                         <div className="dropdown-title">AI &amp; Automation VA (12 Disciplines)</div>
                         <div className="dropdown-desc">n8n, Zapier, Make, Chatbots &amp; Multi-Agent Workflows</div>
                       </div>
-                    </a>
+                    </Link>
 
-                    <a href="#service-support" className="dropdown-item" onClick={() => setServicesOpen(false)}>
+                    <Link href="/services#service-support" className="dropdown-item" onClick={() => setServicesOpen(false)}>
                       <div className="dropdown-icon">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <circle cx="12" cy="12" r="10"></circle>
@@ -211,9 +232,9 @@ export default function Navbar() {
                         <div className="dropdown-title">Web &amp; E-Commerce Support (10 Services)</div>
                         <div className="dropdown-desc">Shopify, WordPress, Speed &amp; 24/7 Security Maintenance</div>
                       </div>
-                    </a>
+                    </Link>
 
-                    <a href="#service-custom" className="dropdown-item" onClick={() => setServicesOpen(false)}>
+                    <Link href="/services#service-custom" className="dropdown-item" onClick={() => setServicesOpen(false)}>
                       <div className="dropdown-icon">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <rect x="3" y="3" width="18" height="18" rx="2"></rect>
@@ -224,7 +245,7 @@ export default function Navbar() {
                         <div className="dropdown-title">CRM &amp; Custom Software (8 Solutions)</div>
                         <div className="dropdown-desc">Custom ERP, Billing, SaaS Platforms &amp; API Integrations</div>
                       </div>
-                    </a>
+                    </Link>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -233,12 +254,12 @@ export default function Navbar() {
             {/* Standard Nav Items */}
             {navLinks.map((link) => (
               <li key={link.id} className="nav-item">
-                <a
+                <Link
                   href={link.href}
                   className={`nav-link ${activeSection === link.id ? 'active' : ''}`}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -248,13 +269,13 @@ export default function Navbar() {
             <a href="tel:+919500042426" className="nav-call-btn" title="Call Coimbatore Office">
               <span>📞 +91 95000 42426</span>
             </a>
-            <a href="#contact" className="nav-cta-btn">
+            <Link href="/contact" className="nav-cta-btn">
               <span>Consult Architect</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
-            </a>
+            </Link>
 
             {/* Mobile Hamburger */}
             <button
