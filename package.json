@@ -1,0 +1,20 @@
+{
+  "name": "nexprobyte-technologies-web",
+  "version": "1.0.0",
+  "description": "Reverse engineered high-fidelity web application for Nexprobyte Technologies",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node verify_build.js && node verify_animations.js"
+  },
+  "keywords": [
+    "nexprobyte",
+    "framer",
+    "reverse-engineered",
+    "fintech",
+    "saas"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

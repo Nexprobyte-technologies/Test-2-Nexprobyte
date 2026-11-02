@@ -1,0 +1,1838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexprobyte Technologies | Dedicated Tech Teams, Virtual Assistance & AI Automation</title>
+  <meta name="description" content="Nexprobyte Technologies: Unified talent and intelligent automation ecosystem. Dedicated remote developers, executive virtual assistants, AI workflow pipelines, and custom software.">
+  
+  <!-- Modern Google Fonts: Inter & Geist Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" href="assets/logo-transparent.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Top Viewport Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ==========================================================================
+       1. FLOATING NAVIGATION DOCK
+       ========================================================================== -->
+  <header class="nav-wrapper">
+    <nav class="nav-dock" id="main-nav">
+      <!-- Logo -->
+      <a href="#hero" class="nav-brand" aria-label="Nexprobyte Technologies">
+        <div class="brand-icon">
+          <img src="assets/logo-transparent.png" alt="Nexprobyte Logo" class="brand-logo-img" width="28" height="18">
+        </div>
+        <span>NEXPROBYTE</span>
+      </a>
+
+      <!-- Desktop Links -->
+      <ul class="nav-links" id="nav-links">
+        <li class="nav-hover-pill" id="nav-hover-pill" aria-hidden="true"></li>
+        <!-- Solutions Dropdown -->
+        <li class="nav-item">
+          <a href="#services" class="nav-link">
+            <span>Services</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </a>
+          <div class="nav-dropdown">
+            <a href="#service-va" class="dropdown-item">
+              <div class="dropdown-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="dropdown-title">Virtual Assistance</div>
+                <div class="dropdown-desc">Executive, Admin, CRM & E-Commerce VAs</div>
+              </div>
+            </a>
+            <a href="#service-dev" class="dropdown-item">
+              <div class="dropdown-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div class="dropdown-title">Software Development</div>
+                <div class="dropdown-desc">Dedicated Full-Stack, Mobile, QA & DevOps</div>
+              </div>
+            </a>
+            <a href="#service-ai" class="dropdown-item">
+              <div class="dropdown-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+              </div>
+              <div>
+                <div class="dropdown-title">AI & Automations</div>
+                <div class="dropdown-desc">n8n, Zapier, Chatbots & Autonomous Agents</div>
+              </div>
+            </a>
+            <a href="#service-support" class="dropdown-item">
+              <div class="dropdown-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M12 8v4l3 3"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="dropdown-title">Web & E-Commerce Support</div>
+                <div class="dropdown-desc">Shopify, WordPress, Speed & 24/7 Security</div>
+              </div>
+            </a>
+            <a href="#service-custom" class="dropdown-item">
+              <div class="dropdown-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <line x1="2" y1="10" x2="22" y2="10"></line>
+                </svg>
+              </div>
+              <div>
+                <div class="dropdown-title">Custom Software & ERP</div>
+                <div class="dropdown-desc">SaaS Applications, Dashboards & CRM Systems</div>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <li class="nav-item"><a href="#platform" class="nav-link">Platform</a></li>
+        <li class="nav-item"><a href="#ai-copilot" class="nav-link">AI Copilot</a></li>
+        <li class="nav-item"><a href="#tour" class="nav-link">Tour</a></li>
+        <li class="nav-item"><a href="#pricing" class="nav-link">Pricing</a></li>
+        <li class="nav-item"><a href="#faq" class="nav-link">FAQ</a></li>
+      </ul>
+
+      <!-- Action Button -->
+      <div class="nav-actions">
+        <a href="#contact" class="btn-primary-sm">
+          <span>Get Started</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="mobile-drawer-brand">
+      <a href="#hero" class="nav-brand" onclick="closeDrawer()" aria-label="Nexprobyte Technologies">
+        <div class="brand-icon">
+          <img src="assets/logo-transparent.png" alt="Nexprobyte Logo" class="brand-logo-img" width="28" height="18">
+        </div>
+        <span>NEXPROBYTE</span>
+      </a>
+      <button class="mobile-drawer-close" onclick="closeDrawer()" aria-label="Close menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <ul class="mobile-nav-list">
+      <li><a href="#services" class="mobile-nav-link" onclick="closeDrawer()">Services <span>&rarr;</span></a></li>
+      <li><a href="#platform" class="mobile-nav-link" onclick="closeDrawer()">Platform <span>&rarr;</span></a></li>
+      <li><a href="#ai-copilot" class="mobile-nav-link" onclick="closeDrawer()">AI Copilot <span>&rarr;</span></a></li>
+      <li><a href="#tour" class="mobile-nav-link" onclick="closeDrawer()">Tour <span>&rarr;</span></a></li>
+      <li><a href="#pricing" class="mobile-nav-link" onclick="closeDrawer()">Pricing <span>&rarr;</span></a></li>
+      <li><a href="#testimonials" class="mobile-nav-link" onclick="closeDrawer()">Testimonials <span>&rarr;</span></a></li>
+      <li><a href="#faq" class="mobile-nav-link" onclick="closeDrawer()">FAQ <span>&rarr;</span></a></li>
+      <li><a href="#contact" class="mobile-nav-link" onclick="closeDrawer()">Contact Us <span>&rarr;</span></a></li>
+    </ul>
+    <div>
+      <a href="#contact" class="btn-primary-hero" style="width: 100%; justify-content: center;" onclick="closeDrawer()">
+        Deploy Dedicated Team
+      </a>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       2. HERO SECTION
+       ========================================================================== -->
+  <section class="hero-section" id="hero">
+    <div class="hero-glow"></div>
+
+    <!-- Interactive Hanging Thread / Pull Cord (Physics-driven) -->
+    <div class="hero-hanging-cord-stage" id="hanging-cord-stage" aria-label="Interactive Cord Switch">
+      <div class="cord-ceiling-mount" aria-hidden="true">
+        <span class="mount-plate"></span>
+        <span class="mount-screw"></span>
+        <span class="mount-ring"></span>
+      </div>
+      <svg class="cord-svg" id="cord-svg" viewBox="0 0 160 280" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="cord-gradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#94a3b8" />
+            <stop offset="50%" stop-color="#64748b" />
+            <stop offset="100%" stop-color="#0066ff" />
+          </linearGradient>
+          <linearGradient id="cord-glow-grad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="rgba(0,102,255,0)" />
+            <stop offset="100%" stop-color="rgba(0,102,255,0.7)" />
+          </linearGradient>
+          <filter id="cord-glow-filter" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+        </defs>
+        <!-- Background tension glow line -->
+        <path id="cord-path-glow" class="cord-path-glow" d="M 80,0 Q 80,85 80,170" fill="none" stroke="url(#cord-glow-grad)" stroke-width="4" opacity="0"></path>
+        <!-- Main dynamic Bezier cord -->
+        <path id="cord-path" class="cord-path" d="M 80,0 Q 80,85 80,170" fill="none" stroke="url(#cord-gradient)" stroke-width="2.2" stroke-linecap="round"></path>
+        <!-- Accent crimp beads along the cord -->
+        <circle id="cord-bead-1" class="cord-bead" cx="80" cy="55" r="2.5" fill="#cbd5e1" stroke="#475569" stroke-width="0.8"></circle>
+        <circle id="cord-bead-2" class="cord-bead" cx="80" cy="115" r="2.5" fill="#cbd5e1" stroke="#475569" stroke-width="0.8"></circle>
+      </svg>
+      <!-- Suspended Interactive Bob / Badge Handle -->
+      <div class="cord-bob-handle" id="cord-bob" role="button" tabindex="0" aria-label="Pull thread to toggle Turbo Acceleration Mode" aria-pressed="false">
+        <div class="bob-connector-ring" aria-hidden="true"></div>
+        <div class="bob-capsule">
+          <div class="bob-led" id="bob-led">
+            <span class="led-core"></span>
+            <span class="led-ping"></span>
+          </div>
+          <div class="bob-content">
+            <span class="bob-tag" id="bob-tag">PULL</span>
+            <span class="bob-state" id="bob-state">48H READY</span>
+          </div>
+          <div class="bob-icon">
+            <svg class="bob-arrow-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+            <svg class="bob-spark-icon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+        </div>
+        <div class="bob-pull-hint" id="bob-pull-hint" aria-hidden="true">
+          <span>Pull cord &darr;</span>
+        </div>
+        <!-- Spark particles emitted on release -->
+        <div class="cord-sparks-container" id="cord-sparks" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <!-- Framer-style Suspended Multi-Cord Technology Squircles (7 Cords Framing Hero Headline) -->
+    <div class="hero-tech-cords-stage" id="tech-cords-stage" aria-label="Nexprobyte Suspended Technology Badges">
+      <!-- Full-bleed dynamic SVG cord canvas -->
+      <svg class="tech-cords-svg" id="tech-cords-svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="tech-cord-line-grad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="rgba(148, 163, 184, 0.35)" />
+            <stop offset="70%" stop-color="rgba(148, 163, 184, 0.85)" />
+            <stop offset="100%" stop-color="rgba(100, 116, 139, 0.95)" />
+          </linearGradient>
+          <filter id="tech-cord-glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="2" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+        </defs>
+        <!-- 7 dynamic Bezier cord paths -->
+        <path id="tech-cord-path-0" class="tech-cord-path" stroke="url(#tech-cord-line-grad)" stroke-width="1.8" stroke-linecap="round" fill="none" />
+        <path id="tech-cord-path-1" class="tech-cord-path" stroke="url(#tech-cord-line-grad)" stroke-width="1.8" stroke-linecap="round" fill="none" />
+        <path id="tech-cord-path-2" class="tech-cord-path" stroke="url(#tech-cord-line-grad)" stroke-width="1.8" stroke-linecap="round" fill="none" />
+        <path id="tech-cord-path-3" class="tech-cord-path" stroke="url(#tech-cord-line-grad)" stroke-width="1.8" stroke-linecap="round" fill="none" />
+        <path id="tech-cord-path-4" class="tech-cord-path" stroke="url(#tech-cord-line-grad)" stroke-width="1.8" stroke-linecap="round" fill="none" />
+        <path id="tech-cord-path-5" class="tech-cord-path" stroke="url(#tech-cord-line-grad)" stroke-width="1.8" stroke-linecap="round" fill="none" />
+        <path id="tech-cord-path-6" class="tech-cord-path" stroke="url(#tech-cord-line-grad)" stroke-width="1.8" stroke-linecap="round" fill="none" />
+      </svg>
+
+      <!-- 7 Ceiling Anchor Mounts -->
+      <div class="tech-cord-mount" id="tech-cord-mount-0" aria-hidden="true"><span class="mount-dot"></span></div>
+      <div class="tech-cord-mount" id="tech-cord-mount-1" aria-hidden="true"><span class="mount-dot"></span></div>
+      <div class="tech-cord-mount" id="tech-cord-mount-2" aria-hidden="true"><span class="mount-dot"></span></div>
+      <div class="tech-cord-mount" id="tech-cord-mount-3" aria-hidden="true"><span class="mount-dot"></span></div>
+      <div class="tech-cord-mount" id="tech-cord-mount-4" aria-hidden="true"><span class="mount-dot"></span></div>
+      <div class="tech-cord-mount" id="tech-cord-mount-5" aria-hidden="true"><span class="mount-dot"></span></div>
+      <div class="tech-cord-mount" id="tech-cord-mount-6" aria-hidden="true"><span class="mount-dot"></span></div>
+
+      <!-- 7 Suspended 3D Glossy Squircles -->
+      <!-- 0: Top-Center (Purple - ERP & Analytics) -->
+      <div class="tech-cord-squircle squircle-purple" id="tech-badge-0" role="button" tabindex="0" aria-label="ERP & Analytics Technology Discipline" data-index="0">
+        <div class="squircle-connector-ring" aria-hidden="true"></div>
+        <div class="squircle-body">
+          <div class="squircle-sheen" aria-hidden="true"></div>
+          <div class="squircle-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="squircle-tooltip" role="tooltip">
+          <span class="tooltip-indicator"></span>
+          <div class="tooltip-text">
+            <strong>ERP, BI &amp; Dashboards</strong>
+            <span>Custom Business Software &rarr;</span>
+          </div>
+        </div>
+        <div class="squircle-sparks" id="tech-sparks-0" aria-hidden="true"></div>
+      </div>
+
+      <!-- 1: Top-Left (Dark Obsidian - Clean Code & Full-Stack) -->
+      <div class="tech-cord-squircle squircle-obsidian" id="tech-badge-1" role="button" tabindex="0" aria-label="Full-Stack Developers Technology Discipline" data-index="1">
+        <div class="squircle-connector-ring" aria-hidden="true"></div>
+        <div class="squircle-body">
+          <div class="squircle-sheen" aria-hidden="true"></div>
+          <div class="squircle-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+              <line x1="14" y1="4" x2="10" y2="20"></line>
+            </svg>
+          </div>
+        </div>
+        <div class="squircle-tooltip" role="tooltip">
+          <span class="tooltip-indicator"></span>
+          <div class="tooltip-text">
+            <strong>Full-Stack Developers</strong>
+            <span>React, Node, Python &amp; Mobile &rarr;</span>
+          </div>
+        </div>
+        <div class="squircle-sparks" id="tech-sparks-1" aria-hidden="true"></div>
+      </div>
+
+      <!-- 2: Mid-Left (Vibrant Orange - AI Automation & Agents) -->
+      <div class="tech-cord-squircle squircle-orange" id="tech-badge-2" role="button" tabindex="0" aria-label="AI Automation Technology Discipline" data-index="2">
+        <div class="squircle-connector-ring" aria-hidden="true"></div>
+        <div class="squircle-body">
+          <div class="squircle-sheen" aria-hidden="true"></div>
+          <div class="squircle-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#ffffff" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+        </div>
+        <div class="squircle-tooltip" role="tooltip">
+          <span class="tooltip-indicator"></span>
+          <div class="tooltip-text">
+            <strong>AI Automation &amp; Agents</strong>
+            <span>n8n, Zapier &amp; AI Copilot &rarr;</span>
+          </div>
+        </div>
+        <div class="squircle-sparks" id="tech-sparks-2" aria-hidden="true"></div>
+      </div>
+
+      <!-- 3: Bottom-Left (Mint Emerald - Executive Virtual Assistants) -->
+      <div class="tech-cord-squircle squircle-mint" id="tech-badge-3" role="button" tabindex="0" aria-label="Virtual Assistance Technology Discipline" data-index="3">
+        <div class="squircle-connector-ring" aria-hidden="true"></div>
+        <div class="squircle-body">
+          <div class="squircle-sheen" aria-hidden="true"></div>
+          <div class="squircle-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="#ffffff" fill-opacity="0.3"></path>
+              <circle cx="12" cy="12" r="2.5" fill="#ffffff"></circle>
+            </svg>
+          </div>
+        </div>
+        <div class="squircle-tooltip" role="tooltip">
+          <span class="tooltip-indicator"></span>
+          <div class="tooltip-text">
+            <strong>Virtual Assistants (Top 1%)</strong>
+            <span>Executive Admin &amp; Operations &rarr;</span>
+          </div>
+        </div>
+        <div class="squircle-sparks" id="tech-sparks-3" aria-hidden="true"></div>
+      </div>
+
+      <!-- 4: Top-Right (Electric Green - Dedicated Dev Teams) -->
+      <div class="tech-cord-squircle squircle-green" id="tech-badge-4" role="button" tabindex="0" aria-label="Dedicated Remote Teams Discipline" data-index="4">
+        <div class="squircle-connector-ring" aria-hidden="true"></div>
+        <div class="squircle-body">
+          <div class="squircle-sheen" aria-hidden="true"></div>
+          <div class="squircle-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="2.5" fill="#ffffff"></circle>
+              <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(30 12 12)"></ellipse>
+              <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(90 12 12)"></ellipse>
+              <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(150 12 12)"></ellipse>
+            </svg>
+          </div>
+        </div>
+        <div class="squircle-tooltip" role="tooltip">
+          <span class="tooltip-indicator"></span>
+          <div class="tooltip-text">
+            <strong>Dedicated Dev Teams</strong>
+            <span>Scale Engineering in 48 Hours &rarr;</span>
+          </div>
+        </div>
+        <div class="squircle-sparks" id="tech-sparks-4" aria-hidden="true"></div>
+      </div>
+
+      <!-- 5: Mid-Right (Cobalt Blue - DevOps & API Integration) -->
+      <div class="tech-cord-squircle squircle-blue" id="tech-badge-5" role="button" tabindex="0" aria-label="DevOps and API Integration Discipline" data-index="5">
+        <div class="squircle-connector-ring" aria-hidden="true"></div>
+        <div class="squircle-body">
+          <div class="squircle-sheen" aria-hidden="true"></div>
+          <div class="squircle-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <rect x="2" y="6" width="20" height="12" rx="6" stroke="#ffffff" stroke-width="2.5"/>
+              <circle cx="16" cy="12" r="3.5" fill="#ffffff"/>
+            </svg>
+          </div>
+        </div>
+        <div class="squircle-tooltip" role="tooltip">
+          <span class="tooltip-indicator"></span>
+          <div class="tooltip-text">
+            <strong>DevOps &amp; Cloud APIs</strong>
+            <span>CI/CD, Cloud &amp; Integrations &rarr;</span>
+          </div>
+        </div>
+        <div class="squircle-sparks" id="tech-sparks-5" aria-hidden="true"></div>
+      </div>
+
+      <!-- 6: Bottom-Right (Lime Green - E-Commerce & Platform Operations) -->
+      <div class="tech-cord-squircle squircle-lime" id="tech-badge-6" role="button" tabindex="0" aria-label="E-Commerce Support Discipline" data-index="6">
+        <div class="squircle-connector-ring" aria-hidden="true"></div>
+        <div class="squircle-body">
+          <div class="squircle-sheen" aria-hidden="true"></div>
+          <div class="squircle-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111827" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="squircle-tooltip" role="tooltip">
+          <span class="tooltip-indicator"></span>
+          <div class="tooltip-text">
+            <strong>E-Commerce Management</strong>
+            <span>Shopify, WooCommerce &amp; Ops &rarr;</span>
+          </div>
+        </div>
+        <div class="squircle-sparks" id="tech-sparks-6" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <div class="container hero-content">
+      <!-- Badge -->
+      <div class="hero-badge-wrap reveal-up">
+        <div class="badge-tag badge-blue" id="hero-status-badge">
+          <span class="badge-dot"></span>
+          <span id="hero-badge-text">Deploy Vetted Teams &amp; AI in 48 Hours</span>
+        </div>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="hero-title reveal-up">
+        Scale Your Business With <br>
+        <span class="gradient-text">Dedicated Teams &amp; AI Automation</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="hero-subtitle reveal-up">
+        The unified talent and technology ecosystem for high-growth enterprises. Dedicated remote developers, executive virtual assistants, autonomous AI workflows, and custom software.
+      </p>
+
+      <!-- Dual Actions -->
+      <div class="hero-actions reveal-up">
+        <a href="#contact" class="btn-primary-hero">
+          <span>Hire Dedicated Talent</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+        <a href="#tour" class="btn-secondary-hero">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="10 8 16 12 10 16 10 8"></polygon>
+          </svg>
+          <span>Explore Ecosystem Tour</span>
+        </a>
+      </div>
+
+      <!-- 5 Quick Hero Service Folders -->
+      <div class="hero-features-grid stagger-group">
+        <a href="#service-va" class="feature-folder-card spotlight-card reveal-up">
+          <div class="folder-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div class="folder-info">
+            <span class="folder-title">Virtual Assistants</span>
+            <span class="folder-caption">Top 1% Vetted Talent</span>
+          </div>
+        </a>
+
+        <a href="#service-dev" class="feature-folder-card spotlight-card reveal-up">
+          <div class="folder-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+              <line x1="14" y1="4" x2="10" y2="20"></line>
+            </svg>
+          </div>
+          <div class="folder-info">
+            <span class="folder-title">Dev Manpower</span>
+            <span class="folder-caption">Full-Stack &amp; Mobile</span>
+          </div>
+        </a>
+
+        <a href="#service-ai" class="feature-folder-card spotlight-card reveal-up">
+          <div class="folder-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <div class="folder-info">
+            <span class="folder-title">AI Automation</span>
+            <span class="folder-caption">n8n, Zapier &amp; Agents</span>
+          </div>
+        </a>
+
+        <a href="#service-support" class="feature-folder-card spotlight-card reveal-up">
+          <div class="folder-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+          </div>
+          <div class="folder-info">
+            <span class="folder-title">Web &amp; E-Commerce</span>
+            <span class="folder-caption">Shopify &amp; WordPress</span>
+          </div>
+        </a>
+
+        <a href="#service-custom" class="feature-folder-card spotlight-card reveal-up">
+          <div class="folder-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+            </svg>
+          </div>
+          <div class="folder-info">
+            <span class="folder-title">Custom Software</span>
+            <span class="folder-caption">CRM, ERP &amp; SaaS</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       3. STATEMENT SECTION (KINETIC TEXT REVEAL)
+       ========================================================================== -->
+  <section class="statement-section" id="statement">
+    <div class="container">
+      <p class="statement-text reveal-up">
+        The first <span class="statement-badge-pill">&#9889; unified ecosystem</span> where ambitious teams can 
+        <span class="highlight">hire elite talent</span>, 
+        <span class="highlight">automate complex workflows</span>, and 
+        <span class="highlight">launch custom software</span> in one calm, managed workspace.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. CLIENT TRUST / BRAND MARQUEE
+       ========================================================================== -->
+  <section class="marquee-section">
+    <div class="marquee-label">Trusted by scaling startups, agencies &amp; enterprises</div>
+    <div class="marquee-track">
+      <div class="marquee-group">
+        <div class="marquee-item"><span>&#9670;</span> VERTEX LABS</div>
+        <div class="marquee-item"><span>&#9632;</span> NOVA SYSTEMS</div>
+        <div class="marquee-item"><span>&#9650;</span> HYPERION HEALTH</div>
+        <div class="marquee-item"><span>&#9733;</span> CLOUDFORGE</div>
+        <div class="marquee-item"><span>&#9679;</span> QUANTUM CAPITAL</div>
+        <div class="marquee-item"><span>&#11044;</span> APEX COMMERCE</div>
+      </div>
+      <div class="marquee-group" aria-hidden="true">
+        <div class="marquee-item"><span>&#9670;</span> VERTEX LABS</div>
+        <div class="marquee-item"><span>&#9632;</span> NOVA SYSTEMS</div>
+        <div class="marquee-item"><span>&#9650;</span> HYPERION HEALTH</div>
+        <div class="marquee-item"><span>&#9733;</span> CLOUDFORGE</div>
+        <div class="marquee-item"><span>&#9679;</span> QUANTUM CAPITAL</div>
+        <div class="marquee-item"><span>&#11044;</span> APEX COMMERCE</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. PLATFORM OVERVIEW (4 INTERACTIVE CARDS GRID)
+       ========================================================================== -->
+  <section class="platform-section" id="platform">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="badge-tag">Platform Overview</div>
+        <h2 class="section-title">Every Capability, One Calm Engine</h2>
+        <p class="section-subtitle">
+          Track delegated tasks, inspect code sprints, trigger intelligent automations, and plan your development runway all in real time.
+        </p>
+      </div>
+
+      <div class="platform-grid stagger-group">
+        <!-- Card 1: Live Operational Feed (7 cols) -->
+        <div class="platform-card col-span-7 spotlight-card reveal-up">
+          <div class="card-top">
+            <span class="card-tag">Live Operations</span>
+            <h3 class="card-heading">Real-Time Operational Stream</h3>
+            <p class="card-desc">Your virtual assistants and automations execute mission-critical tasks round the clock.</p>
+          </div>
+          
+          <div class="stream-list" id="stream-container">
+            <div class="stream-item">
+              <div class="stream-left">
+                <span class="stream-dot"></span>
+                <span class="stream-name">HubSpot CRM Pipeline Enrichment</span>
+                <span class="stream-badge">VA Services</span>
+              </div>
+              <span class="stream-right" data-counter-target="420" data-counter-prefix="+" data-counter-suffix=" Leads Verified">+420 Leads Verified</span>
+            </div>
+            <div class="stream-item">
+              <div class="stream-left">
+                <span class="stream-dot"></span>
+                <span class="stream-name">Executive Calendar &amp; Travel Booking</span>
+                <span class="stream-badge">Admin VA</span>
+              </div>
+              <span class="stream-right metric-blue">Synced (NYC &rarr; LHR)</span>
+            </div>
+            <div class="stream-item">
+              <div class="stream-left">
+                <span class="stream-dot"></span>
+                <span class="stream-name">Shopify Product Uploads &amp; SEO Meta</span>
+                <span class="stream-badge">E-Commerce</span>
+              </div>
+              <span class="stream-right">+1,250 SKUs Active</span>
+            </div>
+            <div class="stream-item">
+              <div class="stream-left">
+                <span class="stream-dot"></span>
+                <span class="stream-name">Zendesk Live Support Resolution</span>
+                <span class="stream-badge">Customer Care</span>
+              </div>
+              <span class="stream-right" data-counter-target="99.4" data-counter-suffix="% CSAT Score" data-counter-decimals="1">99.4% CSAT Score</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Dedicated Dev Pods (5 cols) -->
+        <div class="platform-card col-span-5 spotlight-card reveal-up">
+          <div class="card-top">
+            <span class="card-tag">Tech Manpower</span>
+            <h3 class="card-heading">Dedicated Engineering Pods</h3>
+            <p class="card-desc">Full-time senior developers pre-vetted and aligned to your exact codebase and timezone.</p>
+          </div>
+
+          <div class="dev-pod-preview">
+            <div class="dev-pod-header">
+              <span class="pod-title">Active Sprint Pod #04</span>
+              <span class="pod-uptime">&#9679; <span data-counter-target="99.8" data-counter-suffix="% Commit Velocity" data-counter-decimals="1">99.8% Commit Velocity</span></span>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div class="dev-avatar-group">
+                <div class="dev-avatar" style="background: #0066ff;">JM</div>
+                <div class="dev-avatar" style="background: #12a150;">AL</div>
+                <div class="dev-avatar" style="background: #635bff;">DK</div>
+                <div class="dev-avatar" style="background: #ff6b1a;">SR</div>
+              </div>
+              <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);">4 Senior Engineers</span>
+            </div>
+
+            <div class="pod-stack-tags">
+              <span class="tech-tag">React.js</span>
+              <span class="tech-tag">Node / TypeScript</span>
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">Docker</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">AWS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: AI & Automations Pipeline (6 cols) -->
+        <div class="platform-card col-span-6 spotlight-card reveal-up">
+          <div class="card-top">
+            <span class="card-tag">AI Workflows</span>
+            <h3 class="card-heading">Autonomous Business Pipelines</h3>
+            <p class="card-desc">Zero manual handoffs. Connect Zapier, Make, and n8n with our custom AI agent layers.</p>
+          </div>
+
+          <div class="automation-flow-box">
+            <div class="flow-node">
+              <div class="node-icon">&#9654;</div>
+              <div>
+                <strong>Trigger: Inbound Webhook / WhatsApp</strong>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">Lead captures from web form or WhatsApp API</div>
+              </div>
+            </div>
+            <div class="node-connector"></div>
+            <div class="flow-node">
+              <div class="node-icon" style="background: var(--accent-purple);">&#9881;</div>
+              <div>
+                <strong>AI Filter &amp; Qualification Agent</strong>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">Enrich LinkedIn, verify revenue &gt; $100k, draft reply</div>
+              </div>
+            </div>
+            <div class="node-connector"></div>
+            <div class="flow-node">
+              <div class="node-icon" style="background: var(--accent-green);">&#10003;</div>
+              <div>
+                <strong>Auto-Route to Calendar &amp; CRM</strong>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">Calendar invite dispatched &amp; Slack notified in 1.4s</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Forecast / Velocity Meter (6 cols) -->
+        <div class="platform-card col-span-6 spotlight-card reveal-up">
+          <div class="card-top">
+            <span class="card-tag">Velocity &amp; Sprints</span>
+            <h3 class="card-heading">Development Sprint Velocity</h3>
+            <p class="card-desc">Track deliverable throughput, hours utilized, and budget savings in real-time.</p>
+          </div>
+
+          <div class="forecast-box">
+            <div class="forecast-stats">
+              <div>
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;">Story Points Delivered</div>
+                <div class="forecast-val" data-counter-target="348" data-counter-suffix=" pts">348 pts</div>
+              </div>
+              <div class="forecast-change" data-counter-target="68" data-counter-prefix="+" data-counter-suffix="% vs in-house">+68% vs in-house</div>
+            </div>
+
+            <div class="forecast-bars">
+              <div class="bar-col" style="height: 35%;"></div>
+              <div class="bar-col" style="height: 50%;"></div>
+              <div class="bar-col" style="height: 45%;"></div>
+              <div class="bar-col" style="height: 65%;"></div>
+              <div class="bar-col" style="height: 80%;"></div>
+              <div class="bar-col" style="height: 75%;"></div>
+              <div class="bar-col active" style="height: 98%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. THE 5 CORE PRODUCT & SERVICE SUITES (100% FROM ATTACHED PDF)
+       ========================================================================== -->
+  <section class="services-section" id="services">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="badge-tag">Service Architecture</div>
+        <h2 class="section-title">The Complete Nexprobyte Suite</h2>
+        <p class="section-subtitle">
+          Everything your business needs to scale without friction. From dedicated developers and virtual assistants to automated AI agents and custom ERPs.
+        </p>
+      </div>
+
+      <div class="services-grid stagger-group">
+        <!-- 1. Virtual Assistant Services (10 items) -->
+        <div class="service-card col-4 spotlight-card reveal-up" id="service-va">
+          <div>
+            <div class="service-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h3 class="service-title">1. Virtual Assistant Services</h3>
+            <p class="service-desc">
+              Dedicated, bilingual, and highly-trained executive assistants who take total ownership of your administrative, operational, and customer functions.
+            </p>
+            <ul class="service-sublist">
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Virtual Administrative Assistant</li>
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Data Entry &amp; Data Management</li>
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Email &amp; Calendar Management</li>
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Customer Support &amp; Live Chat Support</li>
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Lead Generation &amp; Business Research</li>
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Appointment Setting &amp; Follow-ups</li>
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> CRM Management</li>
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Social Media Management</li>
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> E-commerce Store Management</li>
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Real Estate Virtual Assistance</li>
+            </ul>
+          </div>
+          <div class="service-bottom">
+            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">10 Core Disciplines</span>
+            <a href="#contact" class="service-link">Deploy Assistant &rarr;</a>
+          </div>
+        </div>
+
+        <!-- 2. Software Development Manpower Support (12 items) -->
+        <div class="service-card card-featured col-8 spotlight-card reveal-up" id="service-dev">
+          <div>
+            <div class="service-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <h3 class="service-title">2. Software Development Manpower Support</h3>
+            <p class="service-desc">
+              On-demand senior engineering talent integrated directly into your GitHub, Jira, and Slack. Zero hiring fees, guaranteed time-zone overlap, and instant sprint ramp-up.
+            </p>
+            <div class="two-col-sublist">
+              <ul class="service-sublist">
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Full-Stack Developers</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Frontend Developers</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Backend Developers</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> WordPress Developers</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Mobile App Developers — Android &amp; iOS</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> React &amp; Flutter Developers</li>
+              </ul>
+              <ul class="service-sublist">
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> UI/UX Designers</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Software Testers &amp; QA Engineers</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> DevOps &amp; Cloud Support Engineers</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Dedicated Remote Development Teams</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Software Maintenance &amp; Bug Fixing</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> White-Label Development Support</li>
+              </ul>
+            </div>
+          </div>
+          <div class="service-bottom">
+            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-blue); font-weight: 600;">12 Core Disciplines • 48h Ramp</span>
+            <a href="#contact" class="service-link">Hire Developers &rarr;</a>
+          </div>
+        </div>
+
+        <!-- 3. AI & Business Automation VA Services (12 items) -->
+        <div class="service-card card-featured col-8 spotlight-card reveal-up" id="service-ai">
+          <div>
+            <div class="service-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <h3 class="service-title">3. AI &amp; Business Automation VA Services</h3>
+            <p class="service-desc">
+              Transform repetitive human work into autonomous, self-healing multi-agent workflows using modern AI and no-code/low-code frameworks.
+            </p>
+            <div class="two-col-sublist">
+              <ul class="service-sublist">
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> AI Virtual Assistant Setup</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> AI Chatbot Development &amp; Integration</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> AI Customer Support Automation</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Email &amp; WhatsApp Automation</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Workflow Automation Using Zapier, Make &amp; n8n</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> CRM &amp; Sales Pipeline Automation</li>
+              </ul>
+              <ul class="service-sublist">
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Lead Collection &amp; Follow-up Automation</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Appointment Booking Automation</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Automated Reporting &amp; Data Processing</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> AI-Powered Business Process Automation</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> API Integration &amp; Third-Party Integrations</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Automated Testing &amp; QA Workflows</li>
+              </ul>
+            </div>
+          </div>
+          <div class="service-bottom">
+            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-purple); font-weight: 600;">12 Core Disciplines • 85% Effort Reduction</span>
+            <a href="#ai-copilot" class="service-link">View Automations &rarr;</a>
+          </div>
+        </div>
+
+        <!-- 4. Website & E-commerce Technical Support (10 items) -->
+        <div class="service-card col-4 spotlight-card reveal-up" id="service-support">
+          <div>
+            <div class="service-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <h3 class="service-title">4. Website &amp; E-commerce Technical Support</h3>
+            <p class="service-desc">
+              Reliable 24/7 web infrastructure and e-commerce store maintenance. Keep your store fast, secure, bug-free, and always updated.
+            </p>
+            <ul class="service-sublist">
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Website Updates &amp; Maintenance</li>
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> WordPress Website Management</li>
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Shopify &amp; WooCommerce Management</li>
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Product Uploads &amp; Catalogue Management</li>
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Website Performance Monitoring</li>
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Website Bug Fixing &amp; Troubleshooting</li>
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Website Backup &amp; Security Maintenance</li>
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Landing Page Development</li>
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Website-to-CRM Integration</li>
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Technical Support for Digital Agencies</li>
+            </ul>
+          </div>
+          <div class="service-bottom">
+            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">10 Core Disciplines</span>
+            <a href="#contact" class="service-link">Get Support &rarr;</a>
+          </div>
+        </div>
+
+        <!-- 5. CRM, Software & Business Solutions (8 items) -->
+        <div class="service-card col-12 card-featured spotlight-card reveal-up" id="service-custom">
+          <div>
+            <div class="service-icon-box">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                <path d="M3 9h18"></path>
+                <path d="M9 21V9"></path>
+              </svg>
+            </div>
+            <h3 class="service-title">5. CRM, Software &amp; Business Solutions</h3>
+            <p class="service-desc">
+              Custom enterprise-grade software engineered to automate your core business logic, billing pipelines, and client data flows.
+            </p>
+            <div class="two-col-sublist">
+              <ul class="service-sublist">
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> CRM Software Development</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Billing &amp; Invoicing Software</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> ERP Software Development</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Custom Business Software</li>
+              </ul>
+              <ul class="service-sublist">
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> SaaS Application Development</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Database Management &amp; Reporting</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Business Dashboard Development</li>
+                <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Third-Party Software Integration</li>
+              </ul>
+            </div>
+          </div>
+          <div class="service-bottom">
+            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan); font-weight: 600;">8 Core Disciplines • Enterprise Architecture</span>
+            <a href="#contact" class="service-link">Build Custom Software &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       7. AI COPILOT & AUTOMATION ENGINE SECTION
+       ========================================================================== -->
+  <section class="ai-section" id="ai-copilot">
+    <div class="container">
+      <div class="ai-split">
+        <div class="ai-copy reveal-up">
+          <div class="badge-tag">AI Copilot &amp; Pipelines</div>
+          <h2 class="section-title">An Intelligent AI Copilot for Your Operations</h2>
+          <p class="section-subtitle">
+            Ask plain English questions, orchestrate multi-agent workflows, and dispatch autonomous customer support agents without code or complex setup.
+          </p>
+
+          <div class="ai-chips">
+            <button class="ai-chip active" data-prompt="leads">Lead Routing &amp; WhatsApp</button>
+            <button class="ai-chip" data-prompt="support">24/7 Support Bot</button>
+            <button class="ai-chip" data-prompt="sprint">Dev Sprint Velocity</button>
+          </div>
+
+          <div style="margin-top: 10px;">
+            <a href="#contact" class="btn-primary-hero" style="font-size: 0.9rem; padding: 12px 24px;">
+              Deploy Custom AI Agent
+            </a>
+          </div>
+        </div>
+
+        <!-- Interactive AI Simulation Box -->
+        <div class="ai-demo-window spotlight-card reveal-scale">
+          <div class="ai-window-header">
+            <div class="window-dots">
+              <span class="window-dot" style="background: #ff5f56;"></span>
+              <span class="window-dot" style="background: #ffbd2e;"></span>
+              <span class="window-dot" style="background: #27c93f;"></span>
+            </div>
+            <div class="window-title">nexprobyte-ai-orchestrator v4.2</div>
+            <div style="font-size: 0.75rem; color: var(--accent-cyan); font-family: var(--font-mono);">&#9679; Connected</div>
+          </div>
+
+          <div class="ai-window-body">
+            <div class="ai-prompt-box">
+              <span class="ai-prompt-text" id="ai-active-prompt">
+                "Qualify all leads from LinkedIn &amp; Web, enrich revenue, and schedule discovery call."
+              </span>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem; color: rgba(255,255,255,0.4);">ENTER &#9166;</span>
+            </div>
+
+            <div class="ai-response-box">
+              <div class="response-header">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+                </svg>
+                <span id="ai-status-text">Workflow Executed • 3 Active Agents Triggered</span>
+              </div>
+
+              <div id="ai-dynamic-body" style="font-size: 0.85rem; line-height: 1.5; color: rgba(255,255,255,0.9);">
+                Found 14 qualified prospects this hour. Filtered 3 enterprise targets (&gt;$5M ARR). Dispatched personalized WhatsApp &amp; calendar invite with dynamic booking link.
+              </div>
+
+              <div class="ai-metrics-row">
+                <div class="ai-metric-item">
+                  <div class="metric-rate" id="ai-metric-1">99.2%</div>
+                  <div class="metric-label">Data Accuracy</div>
+                </div>
+                <div class="ai-metric-item">
+                  <div class="metric-rate" id="ai-metric-2">&lt; 1.8s</div>
+                  <div class="metric-label">Lead Routing Time</div>
+                </div>
+                <div class="ai-metric-item">
+                  <div class="metric-rate" id="ai-metric-3">+42%</div>
+                  <div class="metric-label">Meeting Conversion</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       8. GLOBAL TALENT DEPLOYMENT TICKER
+       ========================================================================== -->
+  <section class="reveal-fade" style="background: var(--bg-secondary); padding: 40px 0; border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span class="badge-dot" style="background: var(--accent-blue);"></span>
+        <span style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; text-transform: uppercase;">Global Deployments Today</span>
+      </div>
+      
+      <div style="display: flex; gap: 24px; overflow-x: auto; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary);">
+        <span>&#9679; San Francisco: <strong style="color: var(--text-primary);">Senior React Dev</strong> (Deployed in 36h)</span>
+        <span>&#9679; London: <strong style="color: var(--text-primary);">Executive VA</strong> (Live synced)</span>
+        <span>&#9679; Berlin: <strong style="color: var(--text-primary);">Flutter Pod</strong> (Sprint Active)</span>
+        <span>&#9679; Dubai: <strong style="color: var(--text-primary);">n8n Automation Lead</strong> (Live)</span>
+        <span>&#9679; Sydney: <strong style="color: var(--text-primary);">QA Automation</strong> (Nightly Run)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       9. INTERACTIVE PRODUCT & SERVICE TOUR (5 TABS ARCHITECTURE)
+       ========================================================================== -->
+  <section class="tour-section" id="tour">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="badge-tag">Interactive Tour</div>
+        <h2 class="section-title">Explore the Nexprobyte Ecosystem</h2>
+        <p class="section-subtitle">
+          Click through our core operational departments and experience how we integrate seamlessly with your company.
+        </p>
+      </div>
+
+      <!-- Tab Buttons -->
+      <div class="tour-tabs reveal-up">
+        <button class="tour-tab active" data-tour="va">1. Virtual Assistance</button>
+        <button class="tour-tab" data-tour="dev">2. Dev Manpower</button>
+        <button class="tour-tab" data-tour="ai">3. AI &amp; Automation</button>
+        <button class="tour-tab" data-tour="web">4. E-Commerce Support</button>
+        <button class="tour-tab" data-tour="custom">5. Custom Software</button>
+      </div>
+
+      <!-- Tab Content Panel -->
+      <div class="tour-content-panel reveal-scale">
+        <div class="tour-panel-inner" id="tour-display">
+          <div>
+            <div class="badge-tag" style="margin-bottom: 12px;" id="tour-badge">Elite Assistants</div>
+            <h3 class="section-title" style="font-size: 2rem; margin-bottom: 16px;" id="tour-heading">
+              Executive VAs Managing Your Core Workflows
+            </h3>
+            <p class="section-subtitle" style="font-size: 1rem; margin-bottom: 24px;" id="tour-paragraph">
+              From administrative calendar coordination to e-commerce store catalog maintenance and CRM hygiene, our assistants work as a dedicated extension of your company.
+            </p>
+            <ul class="service-sublist" id="tour-list">
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Zero training curve with standard SOP manuals</li>
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Direct Slack, Teams, and Email integration</li>
+              <li class="service-subitem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Weekly executive timesheet and task delivery digests</li>
+            </ul>
+            <div style="margin-top: 24px;">
+              <a href="#contact" class="btn-primary-sm">Deploy Assistants Now &rarr;</a>
+            </div>
+          </div>
+
+          <!-- Dynamic Visual Mockup -->
+          <div style="background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius-xl); padding: 32px; box-shadow: var(--shadow-md);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+              <span style="font-weight: 700; font-size: 0.95rem;" id="mockup-header">VA Ops Board • Synced Live</span>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-green); background: var(--accent-green-light); padding: 3px 8px; border-radius: 99px;">
+                Active Today
+              </span>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 12px;" id="mockup-items">
+              <div class="mockup-item-enter" style="animation-delay: 0s; background: #fff; padding: 14px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
+                <div>
+                  <strong style="font-size: 0.85rem;">Inbox Zero Maintenance</strong>
+                  <div style="font-size: 0.75rem; color: var(--text-muted);">Filtered 140 emails, drafted 28 replies</div>
+                </div>
+                <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-green); font-weight: 600;">Done</span>
+              </div>
+              <div class="mockup-item-enter" style="animation-delay: 0.08s; background: #fff; padding: 14px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
+                <div>
+                  <strong style="font-size: 0.85rem;">Client Appointment Setting</strong>
+                  <div style="font-size: 0.75rem; color: var(--text-muted);">8 Zoom meetings booked across EST &amp; GMT</div>
+                </div>
+                <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-blue); font-weight: 600;">In Progress</span>
+              </div>
+              <div class="mockup-item-enter" style="animation-delay: 0.16s; background: #fff; padding: 14px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); transition: transform 0.2s ease;">
+                <div>
+                  <strong style="font-size: 0.85rem;">Real Estate CRM Data Entry</strong>
+                  <div style="font-size: 0.75rem; color: var(--text-muted);">65 MLS listings parsed and tagged</div>
+                </div>
+                <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-green); font-weight: 600;">Done</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       10. COST SAVINGS & ROI CALCULATOR (REPLACING CURRENCY FX CALCULATOR)
+       ========================================================================== -->
+  <section style="padding: 100px 0; background: #fff;" id="roi-calculator">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="badge-tag">ROI &amp; Savings Calculator</div>
+        <h2 class="section-title">Calculate Your Annual Cost Savings</h2>
+        <p class="section-subtitle">
+          See the direct monetary difference between hiring local in-house talent vs deploying dedicated Nexprobyte remote pods.
+        </p>
+      </div>
+
+      <div class="spotlight-card reveal-scale" style="max-width: 860px; margin: 0 auto; background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius-2xl); padding: 48px; box-shadow: var(--shadow-lg);">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+          <!-- Left Controls -->
+          <div>
+            <label style="font-weight: 600; font-size: 0.95rem; display: block; margin-bottom: 8px;">
+              Select Team Role:
+            </label>
+            <select id="calc-role" class="form-select" style="width: 100%; color: var(--text-primary); background: #fff; margin-bottom: 24px;">
+              <option value="dev">Senior Full-Stack Developer</option>
+              <option value="mobile">React &amp; Flutter Mobile Developer</option>
+              <option value="va">Executive Virtual Assistant</option>
+              <option value="ai">AI &amp; Automation Specialist</option>
+              <option value="web">Website &amp; E-Commerce Specialist</option>
+              <option value="custom">CRM &amp; Custom Software Architect</option>
+            </select>
+
+            <label style="font-weight: 600; font-size: 0.95rem; display: block; margin-bottom: 8px;">
+              Number of Dedicated Specialists: <span id="calc-count-label" style="color: var(--accent-blue); font-weight: 700;">2</span>
+            </label>
+            <input type="range" id="calc-range" min="1" max="10" value="2" style="width: 100%; margin-bottom: 24px; accent-color: var(--accent-blue);">
+
+            <div style="font-size: 0.85rem; color: var(--text-secondary);">
+              &#10003; Full time-zone overlap included<br>
+              &#10003; Zero payroll taxes, health insurance or recruiter fees<br>
+              &#10003; 14-day risk-free satisfaction guarantee
+            </div>
+          </div>
+
+          <!-- Right Results Box -->
+          <div style="background: #141414; color: #fff; border-radius: var(--radius-xl); padding: 32px; display: flex; flex-direction: column; justify-content: space-between; gap: 20px;">
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: rgba(255,255,255,0.6); text-transform: uppercase;">
+                Estimated Annual Savings
+              </div>
+              <div style="font-family: var(--font-display); font-size: 3rem; font-weight: 700; color: var(--accent-cyan); margin: 8px 0;" id="calc-savings">
+                $180,000
+              </div>
+              <div style="font-size: 0.85rem; color: rgba(255,255,255,0.8);">
+                In-House Cost: <span id="calc-inhouse" style="text-decoration: line-through; opacity: 0.6;">$240,000/yr</span><br>
+                Nexprobyte Cost: <strong style="color: #fff;" id="calc-nex">$60,000/yr</strong>
+              </div>
+            </div>
+
+            <a href="#contact" class="btn-submit" style="margin-top: 0; background: var(--accent-blue); color: #fff;">
+              Claim This Team &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       11. DEDICATED TALENT CARD CONFIGURATOR (3D CARD DEMO)
+       ========================================================================== -->
+  <section class="customizer-section" id="talent-visualizer">
+    <div class="container">
+      <div class="customizer-grid">
+        <!-- 3D Card Display -->
+        <div class="card-3d-stage reveal-scale" id="card-3d-stage">
+          <div class="virtual-badge-card card-theme-obsidian" id="talent-card">
+            <div class="card-glare"></div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;">
+                NEXPROBYTE VERIFIED
+              </span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+            </div>
+
+            <div>
+              <div style="font-size: 0.8rem; opacity: 0.7; margin-bottom: 4px;">Assigned Specialist</div>
+              <div style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 700;" id="card-role-title">
+                Senior Full-Stack Engineer
+              </div>
+              <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-cyan); margin-top: 4px;" id="card-skills">
+                React • Node.js • TypeScript • Cloud
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 12px;">
+              <div>
+                <span style="font-size: 0.7rem; opacity: 0.6; display: block;">DEPLOYMENT STATUS</span>
+                <span style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 600;">READY IN 48 HOURS</span>
+              </div>
+              <span style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700;">TOP 1%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Customizer Controls -->
+        <div class="reveal-up">
+          <div class="badge-tag">Talent Customization</div>
+          <h2 class="section-title">Engineered to Match Your Stack</h2>
+          <p class="section-subtitle">
+            Configure your dedicated specialist profile. Pick your required tech discipline, adjust seniority levels, and preview your deployment pass.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 24px;">
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; display: block;">
+                Card Color Theme
+              </label>
+              <div class="palette-picker">
+                <button class="palette-btn active" style="background: #141414;" data-theme="obsidian" title="Obsidian"></button>
+                <button class="palette-btn" style="background: #09408f;" data-theme="blue" title="Cobalt"></button>
+                <button class="palette-btn" style="background: #0f4028;" data-theme="emerald" title="Emerald"></button>
+                <button class="palette-btn" style="background: #442482;" data-theme="purple" title="Nebula"></button>
+              </div>
+            </div>
+
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 6px; display: block;">
+                Select Role Profile
+              </label>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button class="ai-chip active role-select-btn" data-role="fullstack">Full-Stack Dev</button>
+                <button class="ai-chip role-select-btn" data-role="mobile">Mobile Flutter</button>
+                <button class="ai-chip role-select-btn" data-role="va">Executive VA</button>
+                <button class="ai-chip role-select-btn" data-role="ai">AI Specialist</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       12. WORKING PRICING TOGGLE & PLANS
+       ========================================================================== -->
+  <section class="pricing-section" id="pricing">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <div class="badge-tag">Flexible Engagements</div>
+        <h2 class="section-title">Transparent, High-ROI Plans</h2>
+        <p class="section-subtitle">
+          Scale your workforce up or down with 7 days notice. No lock-ins, no hidden overhead, and total IP ownership.
+        </p>
+      </div>
+
+      <!-- Working Monthly / Annual Toggle -->
+      <div class="pricing-toggle-wrap reveal-up">
+        <span class="toggle-label active" id="label-monthly">Monthly Billing</span>
+        <div class="toggle-switch" id="pricing-toggle" role="switch" aria-checked="false">
+          <div class="toggle-thumb"></div>
+        </div>
+        <span class="toggle-label" id="label-yearly">Annual Billing</span>
+        <span class="discount-tag">Save 20%</span>
+      </div>
+
+      <!-- 3 Tier Cards -->
+      <div class="pricing-cards-grid stagger-group">
+        <!-- Starter VA / Specialist -->
+        <div class="pricing-card spotlight-card reveal-up">
+          <div>
+            <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">Dedicated VA</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 6px;">
+              Perfect for founders and busy executives needing administrative or operational relief.
+            </p>
+            <div class="price-val">
+              <span class="price-amount" data-monthly="$1,299" data-yearly="$1,039">$1,299</span>
+              <span class="period">/month</span>
+            </div>
+            <ul class="pricing-features-list">
+              <li class="pricing-feature-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 160 Hours Dedicated per Month</li>
+              <li class="pricing-feature-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Dedicated Account Manager</li>
+              <li class="pricing-feature-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Email, Calendar &amp; CRM Handling</li>
+              <li class="pricing-feature-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 100% Time-Zone Overlap</li>
+              <li class="pricing-feature-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Strict NDA &amp; Data Security</li>
+            </ul>
+          </div>
+          <a href="#contact" class="btn-secondary-hero" style="width: 100%; justify-content: center;">
+            Deploy Virtual Assistant
+          </a>
+        </div>
+
+        <!-- Growth Engineering Pod (Popular) -->
+        <div class="pricing-card featured spotlight-card reveal-up">
+          <div class="popular-badge">Most Popular</div>
+          <div>
+            <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">Dedicated Developer</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 6px;">
+              Senior full-stack, mobile, or AI engineer embedded directly into your tech sprints.
+            </p>
+            <div class="price-val">
+              <span class="price-amount" data-monthly="$2,999" data-yearly="$2,399">$2,999</span>
+              <span class="period">/month</span>
+            </div>
+            <ul class="pricing-features-list">
+              <li class="pricing-feature-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Senior Engineer (React, Node, Flutter, AI)</li>
+              <li class="pricing-feature-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 40 Hours / Week Full-Time Capacity</li>
+              <li class="pricing-feature-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Daily Standups, GitHub PRs &amp; CI/CD</li>
+              <li class="pricing-feature-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Automated Code Review &amp; QA Included</li>
+              <li class="pricing-feature-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 14-Day Risk-Free Trial Period</li>
+            </ul>
+          </div>
+          <a href="#contact" class="btn-primary-hero" style="width: 100%; justify-content: center;">
+            Deploy Senior Developer
+          </a>
+        </div>
+
+        <!-- Enterprise Solutions -->
+        <div class="pricing-card spotlight-card reveal-up">
+          <div>
+            <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--text-primary);">Custom Team &amp; ERP</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 6px;">
+              Complete engineering squads, white-label agency staffing, or custom enterprise software builds.
+            </p>
+            <div class="price-val">
+              <span class="price-amount" data-monthly="$5,499" data-yearly="$4,399">$5,499</span>
+              <span class="period">/month</span>
+            </div>
+            <ul class="pricing-features-list">
+              <li class="pricing-feature-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Multi-Disciplinary Pod (Lead, Dev, QA, UI)</li>
+              <li class="pricing-feature-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Custom CRM / ERP Software Architecture</li>
+              <li class="pricing-feature-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Enterprise SLA &amp; 24/7 Security Coverage</li>
+              <li class="pricing-feature-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> White-Label Agency Reselling Rights</li>
+              <li class="pricing-feature-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Custom n8n/Zapier Automation Clusters</li>
+            </ul>
+          </div>
+          <a href="#contact" class="btn-secondary-hero" style="width: 100%; justify-content: center;">
+            Contact Enterprise Sales
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       13. TESTIMONIALS MARQUEE (10 VERIFIED REVIEWS)
+       ========================================================================== -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="container" style="margin-bottom: 40px;">
+      <div class="section-header reveal-up" style="margin-bottom: 0;">
+        <div class="badge-tag">Verified Client Proof</div>
+        <h2 class="section-title">Loved by High-Growth Companies</h2>
+        <p class="section-subtitle">
+          4.9 out of 5 stars from over 150+ funded startups, agencies, and e-commerce enterprises.
+        </p>
+      </div>
+    </div>
+
+    <div class="testimonials-track reveal-fade">
+      <div class="testimonials-group">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card">
+          <p class="testimonial-quote">
+            "Nexprobyte onboarded a senior React and Flutter developer for our mobile app in under 48 hours. They hit the ground running on day one with clean pull requests."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">MC</div>
+            <div>
+              <div class="author-name">Marcus Chen</div>
+              <div class="author-role">CTO, Hyperion Logistics</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card">
+          <p class="testimonial-quote">
+            "Our executive VA from Nexprobyte completely transformed our daily operations. Calendar, customer tickets, and invoice reconciliation happen like clockwork."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: #12a150;">SL</div>
+            <div>
+              <div class="author-name">Sarah Lindqvist</div>
+              <div class="author-role">Founder, Apex Commerce</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card">
+          <p class="testimonial-quote">
+            "The n8n and WhatsApp automations built by Nexprobyte eliminated 15 hours of manual data entry every single week. Best ROI of any software investment."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: #635bff;">DK</div>
+            <div>
+              <div class="author-name">David Kalu</div>
+              <div class="author-role">Head of Ops, Orbit Global</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 4 -->
+        <div class="testimonial-card">
+          <p class="testimonial-quote">
+            "They built our entire custom CRM and billing portal from scratch in 6 weeks. Rock-solid code, excellent communication, and zero bugs."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: #ff6b1a;">ER</div>
+            <div>
+              <div class="author-name">Elena Rossi</div>
+              <div class="author-role">COO, Brightwave Media</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 5 -->
+        <div class="testimonial-card">
+          <p class="testimonial-quote">
+            "As a digital marketing agency, Nexprobyte's white-label development manpower has allowed us to take on 5x more client website builds without hiring locally."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: #00d6b2;">TH</div>
+            <div>
+              <div class="author-name">Tyler Hayes</div>
+              <div class="author-role">Managing Director, NovaScale</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonials-group" aria-hidden="true">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card">
+          <p class="testimonial-quote">
+            "Nexprobyte onboarded a senior React and Flutter developer for our mobile app in under 48 hours. They hit the ground running on day one with clean pull requests."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">MC</div>
+            <div>
+              <div class="author-name">Marcus Chen</div>
+              <div class="author-role">CTO, Hyperion Logistics</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card">
+          <p class="testimonial-quote">
+            "Our executive VA from Nexprobyte completely transformed our daily operations. Calendar, customer tickets, and invoice reconciliation happen like clockwork."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: #12a150;">SL</div>
+            <div>
+              <div class="author-name">Sarah Lindqvist</div>
+              <div class="author-role">Founder, Apex Commerce</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card">
+          <p class="testimonial-quote">
+            "The n8n and WhatsApp automations built by Nexprobyte eliminated 15 hours of manual data entry every single week. Best ROI of any software investment."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: #635bff;">DK</div>
+            <div>
+              <div class="author-name">David Kalu</div>
+              <div class="author-role">Head of Ops, Orbit Global</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 4 -->
+        <div class="testimonial-card">
+          <p class="testimonial-quote">
+            "They built our entire custom CRM and billing portal from scratch in 6 weeks. Rock-solid code, excellent communication, and zero bugs."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: #ff6b1a;">ER</div>
+            <div>
+              <div class="author-name">Elena Rossi</div>
+              <div class="author-role">COO, Brightwave Media</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 5 -->
+        <div class="testimonial-card">
+          <p class="testimonial-quote">
+            "As a digital marketing agency, Nexprobyte's white-label development manpower has allowed us to take on 5x more client website builds without hiring locally."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: #00d6b2;">TH</div>
+            <div>
+              <div class="author-name">Tyler Hayes</div>
+              <div class="author-role">Managing Director, NovaScale</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       14. FAQ ACCORDION SECTION
+       ========================================================================== -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="faq-split">
+        <!-- Support Card -->
+        <div class="faq-card-support spotlight-card reveal-up">
+          <div class="badge-tag">Got Questions?</div>
+          <h3 style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--text-primary);">
+            Talk to Our Solutions Architect
+          </h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
+            Have a custom requirement, specialized stack, or large manpower requirement? We reply in under two hours with a tailored proposal.
+          </p>
+          <a href="#contact" class="btn-primary-hero" style="font-size: 0.9rem; padding: 12px 24px; justify-content: center;">
+            Schedule Discovery Call
+          </a>
+        </div>
+
+        <!-- Accordion List -->
+        <div class="faq-accordion-list stagger-group" id="faq-accordion">
+          <!-- FAQ 1 -->
+          <div class="faq-accordion-item active reveal-up">
+            <button type="button" class="faq-accordion-trigger" aria-expanded="true">
+              <span>How quickly can we onboard a developer or VA?</span>
+              <svg class="faq-icon-rot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-accordion-body">
+              <div class="faq-accordion-body-inner">
+                Most virtual assistants and dedicated developers are vetted and ready to join your team within 24 to 48 hours. We maintain an active bench of pre-interviewed, top 1% talent ready for immediate deployment.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-accordion-item reveal-up">
+            <button type="button" class="faq-accordion-trigger" aria-expanded="false">
+              <span>How do you vet your developers and assistants?</span>
+              <svg class="faq-icon-rot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-accordion-body">
+              <div class="faq-accordion-body-inner">
+                Every candidate undergoes a strict 5-stage vetting protocol: English proficiency screening, live technical coding challenges / live administrative problem solving, reference verification, and a culture-fit assessment. Only top 1% applicants are accepted.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-accordion-item reveal-up">
+            <button type="button" class="faq-accordion-trigger" aria-expanded="false">
+              <span>What time zones do your teams support?</span>
+              <svg class="faq-icon-rot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-accordion-body">
+              <div class="faq-accordion-body-inner">
+                We provide full time-zone overlap with US (EST, CST, PST), UK (GMT/BST), European (CET), and Australian (AEST) business hours. Your dedicated talent attends your daily standups and communicates live throughout your work day.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-accordion-item reveal-up">
+            <button type="button" class="faq-accordion-trigger" aria-expanded="false">
+              <span>Who owns the intellectual property and code?</span>
+              <svg class="faq-icon-rot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-accordion-body">
+              <div class="faq-accordion-body-inner">
+                You do — 100%. All code, documentation, credentials, workflows, and intellectual property produced by our developers or virtual assistants belong entirely to your company under strict confidentiality and international NDA agreements.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-accordion-item reveal-up">
+            <button type="button" class="faq-accordion-trigger" aria-expanded="false">
+              <span>Can we swap or scale team members easily?</span>
+              <svg class="faq-icon-rot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-accordion-body">
+              <div class="faq-accordion-body-inner">
+                Yes. If a team member is ever not the exact right fit, or if your project requirements change, we provide a replacement within 48 hours at zero additional cost. You can also ramp team sizes up or down with 7 days notice.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="faq-accordion-item reveal-up">
+            <button type="button" class="faq-accordion-trigger" aria-expanded="false">
+              <span>What automation tools and stacks do you support?</span>
+              <svg class="faq-icon-rot" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="faq-accordion-body">
+              <div class="faq-accordion-body-inner">
+                We work across Zapier, Make.com, n8n, OpenAI, Claude, LangChain, WhatsApp Business API, HubSpot, Salesforce, Airtable, Shopify, and custom Python/Node automation scripts.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       15. CONTACT & DISCOVERY CALL SECTION
+       ========================================================================== -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="contact-box spotlight-card reveal-scale">
+        <!-- Left Info -->
+        <div class="contact-info">
+          <div>
+            <div class="badge-tag" style="background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.2);">
+              Get In Touch
+            </div>
+            <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700; color: #fff; margin: 18px 0;">
+              Talk to a Real Person.
+            </h2>
+            <p style="font-size: 1.05rem; line-height: 1.6; color: rgba(255,255,255,0.8); max-width: 440px;">
+              Tell us what team members or automations your business needs, and we'll craft a customized ramp-up proposal. No pushy sales, just straightforward answers.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 32px;">
+              <div style="display: flex; align-items: center; gap: 10px; font-size: 0.95rem; color: rgba(255,255,255,0.9);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Replies in under two hours
+              </div>
+              <div style="display: flex; align-items: center; gap: 10px; font-size: 0.95rem; color: rgba(255,255,255,0.9);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Free onboarding &amp; sprint roadmap help
+              </div>
+              <div style="display: flex; align-items: center; gap: 10px; font-size: 0.95rem; color: rgba(255,255,255,0.9);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                14-day risk-free satisfaction guarantee
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 40px; font-size: 0.85rem; color: rgba(255,255,255,0.6);">
+            Prefer direct email? <br>
+            <a href="mailto:contact@nexprobyte.com" style="color: #fff; font-weight: 600; text-decoration: underline;">
+              contact@nexprobyte.com
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Form -->
+        <form class="contact-form" id="contact-form">
+          <div class="form-group">
+            <label class="form-label" for="contact-name">Your Name</label>
+            <input type="text" id="contact-name" class="form-input" placeholder="Alex Morgan" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contact-email">Work Email</label>
+            <input type="email" id="contact-email" class="form-input" placeholder="alex@company.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contact-service">Service Interested In</label>
+            <select id="contact-service" class="form-select">
+              <option value="va">1. Virtual Assistant Services</option>
+              <option value="dev">2. Software Development Manpower</option>
+              <option value="ai">3. AI &amp; Business Automation VA</option>
+              <option value="web">4. Website &amp; E-Commerce Technical Support</option>
+              <option value="custom">5. CRM, Software &amp; Business Solutions</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contact-team-size">Target Team Size</label>
+            <select id="contact-team-size" class="form-select">
+              <option value="1">1 Dedicated Specialist</option>
+              <option value="2-3">2 - 3 Specialists (Pod)</option>
+              <option value="4-10">4 - 10 Dedicated Engineers</option>
+              <option value="enterprise">Full Enterprise Team (10+)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="contact-message">How can we help?</label>
+            <textarea id="contact-message" class="form-textarea" rows="3" placeholder="Tell us about your project requirements or tech stack..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-submit" id="contact-submit-btn">
+            <span>Send Message</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       16. PRE-FOOTER CTA BANNER
+       ========================================================================== -->
+  <section class="pre-footer-cta">
+    <div class="container">
+      <div class="cta-banner reveal-scale">
+        <div class="badge-tag" style="background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.2);">
+          Deploy Today
+        </div>
+        <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700;">
+          Run Your Business From One Calm Ecosystem.
+        </h2>
+        <p style="font-size: 1.1rem; opacity: 0.8; max-width: 620px;">
+          Join 150+ teams using Nexprobyte Technologies to hire dedicated developers, deploy executive VAs, and automate workflows.
+        </p>
+        <div style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 10px;">
+          <a href="#contact" class="btn-primary-hero" style="background: #fff; color: #141414;">
+            Deploy Dedicated Team
+          </a>
+          <a href="#pricing" class="btn-secondary-hero" style="background: transparent; color: #fff; border-color: rgba(255,255,255,0.3);">
+            View Pricing Plans
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       17. SITE FOOTER
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top reveal-up">
+        <div>
+          <a href="#hero" class="nav-brand footer-brand" aria-label="Nexprobyte Technologies">
+            <div class="brand-icon footer-brand-icon">
+              <img src="assets/logo-transparent.png" alt="Nexprobyte Logo" class="brand-logo-img" width="28" height="18">
+            </div>
+            <span>NEXPROBYTE TECHNOLOGIES</span>
+          </a>
+          <p class="footer-brand-desc">
+            Virtual Assistance • Remote Development Teams • AI Automation • Business Software Solutions. The unified partner for high-velocity modern teams.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Services</h4>
+          <ul class="footer-links">
+            <li><a href="#service-va" class="footer-link">Virtual Assistant Services</a></li>
+            <li><a href="#service-dev" class="footer-link">Software Dev Manpower</a></li>
+            <li><a href="#service-ai" class="footer-link">AI &amp; Automation VA</a></li>
+            <li><a href="#service-support" class="footer-link">E-Commerce Technical Support</a></li>
+            <li><a href="#service-custom" class="footer-link">CRM &amp; Software Solutions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Company</h4>
+          <ul class="footer-links">
+            <li><a href="#platform" class="footer-link">Platform Overview</a></li>
+            <li><a href="#tour" class="footer-link">Ecosystem Tour</a></li>
+            <li><a href="#pricing" class="footer-link">Pricing &amp; ROI</a></li>
+            <li><a href="#testimonials" class="footer-link">Client Case Studies</a></li>
+            <li><a href="#faq" class="footer-link">Frequently Asked Questions</a></li>
+            <li><a href="#contact" class="footer-link">Contact Sales</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Newsletter</h4>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+            Tech team insights, automation blueprints, and hiring playbooks. One email a month.
+          </p>
+          <form class="newsletter-form" id="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="you@company.com" required>
+            <button type="submit" class="newsletter-btn">Subscribe</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Nexprobyte Technologies. All rights reserved.</div>
+        <div style="display: flex; gap: 20px;">
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <a href="#" class="footer-link">Terms of Service</a>
+          <a href="#" class="footer-link">Security Protocols</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Modal -->
+  <div class="toast-modal" id="toast-modal">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-green)" stroke-width="2.5">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="toast-message">Message sent successfully! Our team will contact you in 2 hours.</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
