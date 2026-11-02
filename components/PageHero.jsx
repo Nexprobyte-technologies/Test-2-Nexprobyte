@@ -43,3 +43,4 @@ export default function PageHero({ num, label, title, sub, media, children }) {
     </section>
   );
 }
+

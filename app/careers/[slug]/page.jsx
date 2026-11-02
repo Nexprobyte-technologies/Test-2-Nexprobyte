@@ -154,3 +154,4 @@ export default async function JobDetailPage({ params }) {
     </main>
   );
 }
+
