@@ -333,5 +333,41 @@ disciplineLabels.forEach(label => {
   }
 });
 
+// 10. Check Next.js App Router Component Integrity
+console.log('\n--- Checking Next.js App Router Component Integrity ---');
+const reactServicesPath = path.join(__dirname, 'components', 'AllServices.jsx');
+if (fs.existsSync(reactServicesPath)) {
+  const reactCode = fs.readFileSync(reactServicesPath, 'utf-8');
+  const normReactCode = normalize(reactCode);
+  let reactMissingCount = 0;
+  all52Services.forEach(s => {
+    if (!normReactCode.includes(normalize(s))) {
+      console.error(`  ✗ React AllServices.jsx missing: "${s}"`);
+      reactMissingCount++;
+    }
+  });
+  if (reactMissingCount === 0) {
+    console.log('  ✓ Next.js components/AllServices.jsx contains all 52 PDF services');
+  } else {
+    console.error(`  ✗ React component has ${reactMissingCount} missing services!`);
+    process.exit(1);
+  }
+}
+
+const reactCordsPath = path.join(__dirname, 'components', 'HeroCords.jsx');
+if (fs.existsSync(reactCordsPath)) {
+  const cordsCode = fs.readFileSync(reactCordsPath, 'utf-8');
+  const normCordsCode = normalize(cordsCode);
+  disciplineLabels.forEach(label => {
+    if (normCordsCode.includes(normalize(label))) {
+      console.log(`  ✓ Next.js components/HeroCords.jsx discipline "${label}" verified`);
+    } else {
+      console.error(`  ✗ Next.js components/HeroCords.jsx missing discipline "${label}"`);
+      process.exit(1);
+    }
+  });
+}
+
 console.log('\n=== ALL DEEP VERIFICATIONS PASSED WITH 100% FIDELITY ===');
+
 
