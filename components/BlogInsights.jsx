@@ -87,6 +87,12 @@ export default function BlogInsights() {
           ))}
         </div>
 
+        <div style={{ textAlign: 'center', marginTop: '36px' }}>
+          <Link href="/blog" className="btn-primary-hero">
+            View All Technical Articles &amp; Insights &rarr;
+          </Link>
+        </div>
+
         {/* Modal Article Reader */}
         {selectedPost && (
           <div className="modal-backdrop" onClick={() => setSelectedPost(null)}>
@@ -153,9 +159,9 @@ export default function BlogInsights() {
                 >
                   Open Full Page View &nearr;
                 </Link>
-                <a href="#contact" className="btn-primary-hero" onClick={() => setSelectedPost(null)}>
+                <Link href="/contact" className="btn-primary-hero" onClick={() => setSelectedPost(null)}>
                   Discuss This Strategy With Our Team &rarr;
-                </a>
+                </Link>
               </div>
             </div>
           </div>

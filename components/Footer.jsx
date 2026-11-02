@@ -85,13 +85,13 @@ export default function Footer() {
               <h4 className="footer-heading">Services Suite</h4>
               <ul className="footer-links">
                 <li><Link href="/services" className="footer-link">All 8 Core Disciplines</Link></li>
-                <li><a href="/#service-va" className="footer-link">Virtual Assistant Services</a></li>
-                <li><a href="/#service-dev" className="footer-link">Software Dev Manpower</a></li>
-                <li><a href="/#service-ai" className="footer-link">AI &amp; Automation VA</a></li>
-                <li><a href="/#service-support" className="footer-link">E-Commerce Technical Support</a></li>
-                <li><a href="/#service-custom" className="footer-link">CRM &amp; Software Solutions</a></li>
-                <li><a href="/#capabilities" className="footer-link">SEO &amp; Growth Marketing</a></li>
-                <li><a href="/#capabilities" className="footer-link">UI/UX Design Systems</a></li>
+                <li><Link href="/services#service-va" className="footer-link">Virtual Assistant Services</Link></li>
+                <li><Link href="/services#service-dev" className="footer-link">Software Dev Manpower</Link></li>
+                <li><Link href="/services#service-ai" className="footer-link">AI &amp; Automation VA</Link></li>
+                <li><Link href="/services#service-support" className="footer-link">E-Commerce Technical Support</Link></li>
+                <li><Link href="/services#service-custom" className="footer-link">CRM &amp; Software Solutions</Link></li>
+                <li><Link href="/services/website-development" className="footer-link">Website Development</Link></li>
+                <li><Link href="/services/application-development" className="footer-link">Application Architecture</Link></li>
               </ul>
             </div>
 

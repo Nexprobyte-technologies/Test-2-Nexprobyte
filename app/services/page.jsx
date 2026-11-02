@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import PageHero from '@/components/PageHero';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import AllServices from '@/components/AllServices';
 import { SERVICES } from '@/data/siteContent';
 
 export const metadata = {
@@ -78,25 +79,28 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* 52 PDF Specialized Capabilities Linkage Section */}
-      <section className="section wrap" style={{ background: 'rgba(255, 255, 255, 0.02)' }}>
+      {/* Complete Turnkey Capabilities & 52 PDF Service Catalog */}
+      <AllServices />
+
+      {/* Custom Scope Callout */}
+      <section className="section wrap" style={{ background: 'rgba(255, 255, 255, 0.02)', padding: '60px 0' }}>
         <div className="container">
           <div className="specialized-callout-card spotlight-card">
             <div className="callout-content">
               <span className="badge-tag">Full-Scale Enterprise Infrastructure</span>
               <h2 className="callout-title">
-                Need Dedicated Specialized Engineering or Virtual Teams?
+                Ready to Deploy Dedicated Engineering or Automation?
               </h2>
               <p className="callout-desc">
-                In addition to our 8 core studio disciplines, Nexprobyte operates 52 turnkey capabilities across Virtual Assistance, Full-Stack Software Engineering, AI Process Automation, Agency Technical Support, and Custom Enterprise Architecture.
+                Whether you need dedicated full-stack developers, mobile app engineers, technical SEO architecture, or executive virtual assistants — we assemble and onboard vetted talent in 48 hours.
               </p>
               <div className="callout-buttons">
-                <Link href="/#services" className="btn-primary-hero">
-                  Explore All 52 Capabilities &rarr;
+                <Link href="/contact" className="btn-primary-hero">
+                  Request Custom Scope Proposal &rarr;
                 </Link>
-                <Link href="/contact" className="btn-outline-hero">
-                  Request Custom Scope Proposal
-                </Link>
+                <a href="tel:+919500042426" className="btn-outline-hero">
+                  📞 Call +91 95000 42426
+                </a>
               </div>
             </div>
           </div>

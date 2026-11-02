@@ -24,7 +24,7 @@
   <header class="nav-wrapper">
     <nav class="nav-dock" id="main-nav">
       <!-- Logo -->
-      <a href="#hero" class="nav-brand" aria-label="Nexprobyte Technologies">
+      <a href="index.html" class="nav-brand" aria-label="Nexprobyte Technologies">
         <div class="brand-icon">
           <img src="assets/logo-transparent.png" alt="Nexprobyte Logo" class="brand-logo-img" width="28" height="18">
         </div>
@@ -36,14 +36,56 @@
         <li class="nav-hover-pill" id="nav-hover-pill" aria-hidden="true"></li>
         <!-- Solutions Dropdown -->
         <li class="nav-item">
-          <a href="#services" class="nav-link">
+          <a href="services.html" class="nav-link">
             <span>Services</span>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="6 9 12 15 18 9"></polyline>
             </svg>
           </a>
           <div class="nav-dropdown">
-            <a href="#service-va" class="dropdown-item">
+            <div style="padding: 8px 14px 10px; border-bottom: 1px solid rgba(0,0,0,0.06); margin-bottom: 6px;">
+              <a href="services.html" style="color: var(--accent-blue); font-weight: 600; font-size: 0.88rem; display: flex; justify-content: space-between; align-items: center;">
+                <span>Explore All 8 Production Disciplines</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
+            <a href="services/website-development.html" class="dropdown-item">
+              <div class="dropdown-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div class="dropdown-title">Website Development</div>
+                <div class="dropdown-desc">Next.js, High Performance &amp; Conversion</div>
+              </div>
+            </a>
+            <a href="services/mobile-app-development.html" class="dropdown-item">
+              <div class="dropdown-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                  <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                </svg>
+              </div>
+              <div>
+                <div class="dropdown-title">Mobile App Development</div>
+                <div class="dropdown-desc">Flutter, React Native, iOS &amp; Android</div>
+              </div>
+            </a>
+            <a href="services/application-development.html" class="dropdown-item">
+              <div class="dropdown-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div class="dropdown-title">Application Development</div>
+                <div class="dropdown-desc">Custom SaaS, Microservices &amp; Python/Node</div>
+              </div>
+            </a>
+            <a href="services.html#service-va" class="dropdown-item">
               <div class="dropdown-icon">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
@@ -109,19 +151,20 @@
           </div>
         </li>
 
-        <li class="nav-item"><a href="#platform" class="nav-link">Platform</a></li>
-        <li class="nav-item"><a href="#capabilities" class="nav-link">Capabilities</a></li>
-        <li class="nav-item"><a href="#about" class="nav-link">Studio</a></li>
-        <li class="nav-item"><a href="#careers" class="nav-link">Careers</a></li>
-        <li class="nav-item"><a href="#blog" class="nav-link">Insights</a></li>
-        <li class="nav-item"><a href="#pricing" class="nav-link">Pricing</a></li>
-        <li class="nav-item"><a href="#faq" class="nav-link">FAQ</a></li>
+        <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="blog.html" class="nav-link">Insights</a></li>
+        <li class="nav-item"><a href="careers.html" class="nav-link">Careers</a></li>
+        <li class="nav-item"><a href="interview-data.html" class="nav-link">Onboarding</a></li>
+        <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
 
       <!-- Action Button -->
       <div class="nav-actions">
-        <a href="#contact" class="btn-primary-sm">
-          <span>Get Started</span>
+        <a href="tel:+919500042426" class="nav-call-btn" title="Call Coimbatore Office">
+          <span>📞 +91 95000 42426</span>
+        </a>
+        <a href="contact.html" class="btn-primary-sm">
+          <span>Consult Studio</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
@@ -143,7 +186,7 @@
   <!-- Mobile Drawer -->
   <div class="mobile-drawer" id="mobile-drawer">
     <div class="mobile-drawer-brand">
-      <a href="#hero" class="nav-brand" onclick="closeDrawer()" aria-label="Nexprobyte Technologies">
+      <a href="index.html" class="nav-brand" onclick="closeDrawer()" aria-label="Nexprobyte Technologies">
         <div class="brand-icon">
           <img src="assets/logo-transparent.png" alt="Nexprobyte Logo" class="brand-logo-img" width="28" height="18">
         </div>
@@ -157,19 +200,16 @@
       </button>
     </div>
     <ul class="mobile-nav-list">
-      <li><a href="#services" class="mobile-nav-link" onclick="closeDrawer()">Services <span>&rarr;</span></a></li>
-      <li><a href="#platform" class="mobile-nav-link" onclick="closeDrawer()">Platform <span>&rarr;</span></a></li>
-      <li><a href="#capabilities" class="mobile-nav-link" onclick="closeDrawer()">Capabilities <span>&rarr;</span></a></li>
-      <li><a href="#about" class="mobile-nav-link" onclick="closeDrawer()">Studio &amp; Principles <span>&rarr;</span></a></li>
-      <li><a href="#careers" class="mobile-nav-link" onclick="closeDrawer()">Careers <span>&rarr;</span></a></li>
-      <li><a href="#blog" class="mobile-nav-link" onclick="closeDrawer()">Journal &amp; Insights <span>&rarr;</span></a></li>
-      <li><a href="#pricing" class="mobile-nav-link" onclick="closeDrawer()">Pricing <span>&rarr;</span></a></li>
-      <li><a href="#faq" class="mobile-nav-link" onclick="closeDrawer()">FAQ <span>&rarr;</span></a></li>
-      <li><a href="#contact" class="mobile-nav-link" onclick="closeDrawer()">Contact Us <span>&rarr;</span></a></li>
+      <li><a href="services.html" class="mobile-nav-link" onclick="closeDrawer()">Services Suite (8 Disciplines &amp; 52 PDF) <span>&rarr;</span></a></li>
+      <li><a href="about.html" class="mobile-nav-link" onclick="closeDrawer()">About Coimbatore Studio <span>&rarr;</span></a></li>
+      <li><a href="blog.html" class="mobile-nav-link" onclick="closeDrawer()">Blog &amp; Technical Insights <span>&rarr;</span></a></li>
+      <li><a href="careers.html" class="mobile-nav-link" onclick="closeDrawer()">Careers (5 Openings) <span>&rarr;</span></a></li>
+      <li><a href="interview-data.html" class="mobile-nav-link" onclick="closeDrawer()">Candidate Interview Intake <span>&rarr;</span></a></li>
+      <li><a href="contact.html" class="mobile-nav-link" onclick="closeDrawer()">Contact Us <span>&rarr;</span></a></li>
     </ul>
     <div>
-      <a href="#contact" class="btn-primary-hero" style="width: 100%; justify-content: center;" onclick="closeDrawer()">
-        Deploy Dedicated Team
+      <a href="contact.html" class="btn-primary-hero" style="width: 100%; justify-content: center;" onclick="closeDrawer()">
+        Start Project Consultation &rarr;
       </a>
     </div>
   </div>
@@ -457,25 +497,25 @@
 
       <!-- Dual Actions -->
       <div class="hero-actions reveal-up">
-        <a href="#contact" class="btn-primary-hero">
+        <a href="contact.html" class="btn-primary-hero">
           <span>Hire Dedicated Talent</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
           </svg>
         </a>
-        <a href="#tour" class="btn-secondary-hero">
+        <a href="services.html" class="btn-secondary-hero">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="10"></circle>
             <polygon points="10 8 16 12 10 16 10 8"></polygon>
           </svg>
-          <span>Explore Ecosystem Tour</span>
+          <span>Explore All Services &rarr;</span>
         </a>
       </div>
 
       <!-- 5 Quick Hero Service Folders -->
       <div class="hero-features-grid stagger-group">
-        <a href="#service-va" class="feature-folder-card spotlight-card reveal-up">
+        <a href="services.html#service-va" class="feature-folder-card spotlight-card reveal-up">
           <div class="folder-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
@@ -490,7 +530,7 @@
           </div>
         </a>
 
-        <a href="#service-dev" class="feature-folder-card spotlight-card reveal-up">
+        <a href="services.html#service-dev" class="feature-folder-card spotlight-card reveal-up">
           <div class="folder-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="16 18 22 12 16 6"></polyline>
@@ -504,7 +544,7 @@
           </div>
         </a>
 
-        <a href="#service-ai" class="feature-folder-card spotlight-card reveal-up">
+        <a href="services.html#service-ai" class="feature-folder-card spotlight-card reveal-up">
           <div class="folder-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
@@ -516,7 +556,7 @@
           </div>
         </a>
 
-        <a href="#service-support" class="feature-folder-card spotlight-card reveal-up">
+        <a href="services.html#service-support" class="feature-folder-card spotlight-card reveal-up">
           <div class="folder-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
@@ -530,7 +570,7 @@
           </div>
         </a>
 
-        <a href="#service-custom" class="feature-folder-card spotlight-card reveal-up">
+        <a href="services.html#service-custom" class="feature-folder-card spotlight-card reveal-up">
           <div class="folder-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
@@ -2656,25 +2696,27 @@
         </div>
 
         <div>
-          <h4 class="footer-heading">Services</h4>
+          <h4 class="footer-heading">Services Suite</h4>
           <ul class="footer-links">
-            <li><a href="#service-va" class="footer-link">Virtual Assistant Services</a></li>
-            <li><a href="#service-dev" class="footer-link">Software Dev Manpower</a></li>
-            <li><a href="#service-ai" class="footer-link">AI &amp; Automation VA</a></li>
-            <li><a href="#service-support" class="footer-link">E-Commerce Technical Support</a></li>
-            <li><a href="#service-custom" class="footer-link">CRM &amp; Software Solutions</a></li>
+            <li><a href="services.html" class="footer-link">All 8 Core Production Disciplines</a></li>
+            <li><a href="services.html#service-va" class="footer-link">Virtual Assistant Services</a></li>
+            <li><a href="services.html#service-dev" class="footer-link">Software Dev Manpower</a></li>
+            <li><a href="services.html#service-ai" class="footer-link">AI &amp; Automation VA</a></li>
+            <li><a href="services.html#service-support" class="footer-link">E-Commerce Technical Support</a></li>
+            <li><a href="services.html#service-custom" class="footer-link">CRM &amp; Software Solutions</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="footer-heading">Company</h4>
+          <h4 class="footer-heading">Company &amp; Pages</h4>
           <ul class="footer-links">
-            <li><a href="#platform" class="footer-link">Platform Overview</a></li>
-            <li><a href="#tour" class="footer-link">Ecosystem Tour</a></li>
+            <li><a href="about.html" class="footer-link">About Coimbatore Studio</a></li>
+            <li><a href="blog.html" class="footer-link">Blog &amp; Technical Insights</a></li>
+            <li><a href="careers.html" class="footer-link">Tech Careers (5 Openings)</a></li>
+            <li><a href="interview-data.html" class="footer-link">Candidate Interview Intake</a></li>
             <li><a href="#pricing" class="footer-link">Pricing &amp; ROI</a></li>
-            <li><a href="#testimonials" class="footer-link">Client Case Studies</a></li>
             <li><a href="#faq" class="footer-link">Frequently Asked Questions</a></li>
-            <li><a href="#contact" class="footer-link">Contact Sales</a></li>
+            <li><a href="contact.html" class="footer-link">Contact Studio</a></li>
           </ul>
         </div>
 

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 const JOBS = [
   {
@@ -218,6 +219,12 @@ export default function CareersSection() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div style={{ textAlign: 'center', marginTop: '36px' }}>
+          <Link href="/careers" className="btn-primary-hero">
+            Explore All 5 Careers &amp; Apply Online &rarr;
+          </Link>
         </div>
 
         {/* Job Detail Modal */}

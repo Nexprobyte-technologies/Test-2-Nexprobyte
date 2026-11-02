@@ -19,6 +19,8 @@ coverage
 .next
 /out/
 out
+/_next/
+_next
 /build
 build
 /dist

@@ -74,15 +74,11 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: 'Services', href: '/services', id: 'services' },
-    { label: 'Capabilities', href: '/#capabilities', id: 'capabilities' },
-    { label: 'Industries', href: '/#industries', id: 'industries' },
-    { label: 'Work', href: '/#work', id: 'work' },
-    { label: 'Pricing', href: '/#pricing', id: 'pricing' },
     { label: 'About', href: '/about', id: 'about' },
     { label: 'Insights', href: '/blog', id: 'blog' },
     { label: 'Careers', href: '/careers', id: 'careers' },
-    { label: 'FAQ', href: '/#faq', id: 'faq' },
+    { label: 'Onboarding', href: '/interview-data', id: 'interview-data' },
+    { label: 'Contact', href: '/contact', id: 'contact' },
   ];
 
   return (
@@ -313,12 +309,12 @@ export default function Navbar() {
               transition={{ type: 'spring', damping: 28, stiffness: 300 }}
             >
               <div className="mobile-drawer-header">
-                <a href="#hero" className="mobile-drawer-brand" onClick={() => setDrawerOpen(false)}>
+                <Link href="/" className="mobile-drawer-brand" onClick={() => setDrawerOpen(false)}>
                   <div className="brand-icon">
                     <img src="/assets/logo-transparent.png" alt="Nexprobyte Logo" className="brand-logo-img" width={28} height={18} />
                   </div>
                   <span>NEXPROBYTE</span>
-                </a>
+                </Link>
                 <button
                   type="button"
                   className="mobile-drawer-close"
@@ -332,16 +328,12 @@ export default function Navbar() {
 
               <div className="mobile-drawer-body">
                 <ul className="mobile-nav-list">
-                  <li><Link href="/services" onClick={() => setDrawerOpen(false)}>Services Suite (8 Disciplines &amp; 52 PDF)</Link></li>
-                  <li><Link href="/#capabilities" onClick={() => setDrawerOpen(false)}>Capabilities &amp; Stacks</Link></li>
-                  <li><Link href="/#industries" onClick={() => setDrawerOpen(false)}>Industries We Empower</Link></li>
-                  <li><Link href="/#work" onClick={() => setDrawerOpen(false)}>Signature Case Studies</Link></li>
-                  <li><Link href="/#pricing" onClick={() => setDrawerOpen(false)}>Pricing &amp; Packages</Link></li>
+                  <li><Link href="/" onClick={() => setDrawerOpen(false)}>Home</Link></li>
+                  <li><Link href="/services" onClick={() => setDrawerOpen(false)}>Services Suite (8 Disciplines &amp; 52 Turnkey)</Link></li>
                   <li><Link href="/about" onClick={() => setDrawerOpen(false)}>About Coimbatore Studio</Link></li>
-                  <li><Link href="/blog" onClick={() => setDrawerOpen(false)}>Insights &amp; Guides</Link></li>
-                  <li><Link href="/careers" onClick={() => setDrawerOpen(false)}>Careers (5 Openings)</Link></li>
+                  <li><Link href="/blog" onClick={() => setDrawerOpen(false)}>Insights &amp; Technical Journal</Link></li>
+                  <li><Link href="/careers" onClick={() => setDrawerOpen(false)}>Careers (5 Active Positions)</Link></li>
                   <li><Link href="/interview-data" onClick={() => setDrawerOpen(false)}>Candidate Onboarding</Link></li>
-                  <li><Link href="/#faq" onClick={() => setDrawerOpen(false)}>FAQ</Link></li>
                   <li><Link href="/contact" onClick={() => setDrawerOpen(false)}>Contact Us</Link></li>
                 </ul>
 

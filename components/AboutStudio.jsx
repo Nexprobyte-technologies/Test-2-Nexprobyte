@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 
 const PRINCIPLES = [
   {
@@ -125,6 +126,12 @@ export default function AboutStudio() {
             <span className="stat-num">24/7</span>
             <span className="stat-label">Support on Retainer</span>
           </div>
+        </div>
+
+        <div style={{ textAlign: 'center', marginTop: '36px' }}>
+          <Link href="/about" className="btn-primary-hero">
+            Explore Full Coimbatore Studio Story &amp; Leadership &rarr;
+          </Link>
         </div>
       </div>
     </section>

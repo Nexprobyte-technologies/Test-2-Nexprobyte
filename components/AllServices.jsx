@@ -465,13 +465,19 @@ export default function AllServices() {
                 >
                   Dedicated Service Page &nearr;
                 </Link>
-                <a href="#contact" className="btn-primary-hero" onClick={() => setSelectedCore(null)}>
+                <Link href="/contact" className="btn-primary-hero" onClick={() => setSelectedCore(null)}>
                   Deploy {selectedCore.title} Team &rarr;
-                </a>
+                </Link>
               </div>
             </div>
           </div>
         )}
+
+        <div style={{ textAlign: 'center', marginTop: '40px' }}>
+          <Link href="/services" className="btn-primary-hero" style={{ padding: '14px 32px', fontSize: '1rem' }}>
+            Explore All 8 Production Disciplines &amp; 52 Turnkey Capabilities &rarr;
+          </Link>
+        </div>
       </div>
     </section>
   );
