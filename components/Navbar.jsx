@@ -13,12 +13,29 @@ export default function Navbar() {
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
+    let lastScrollY = typeof window !== 'undefined' ? window.scrollY : 0;
+
     const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setIsScrolled(scrollY > 25);
+      const currentScrollY = window.scrollY;
+
+      // Always normal near top of page
+      if (currentScrollY <= 25) {
+        setIsScrolled(false);
+      } else {
+        const delta = currentScrollY - lastScrollY;
+        if (delta > 6 && currentScrollY > 70) {
+          // Scrolling down -> minimize header
+          setIsScrolled(true);
+        } else if (delta < -6) {
+          // Scrolling UP -> restore header to normal!
+          setIsScrolled(false);
+        }
+      }
+
+      lastScrollY = currentScrollY;
 
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? Math.min(Math.max(scrollY / docHeight, 0), 1) : 0;
+      const progress = docHeight > 0 ? Math.min(Math.max(currentScrollY / docHeight, 0), 1) : 0;
       setScrollProgress(progress);
     };
 

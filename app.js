@@ -117,16 +117,26 @@ function initScrollNav() {
   }
 
   const navWrapper = document.querySelector('.nav-wrapper');
+  let lastScrollY = typeof window !== 'undefined' ? window.scrollY : 0;
 
   function onScroll() {
-    // Saro-style dock minimize on scroll
-    if (window.scrollY > 25) {
-      navDock.classList.add('scrolled');
-      if (navWrapper) navWrapper.classList.add('scrolled');
-    } else {
+    const currentScrollY = window.scrollY;
+
+    // Saro-style dock minimize on scroll down, expand to normal on scroll up
+    if (currentScrollY <= 25) {
       navDock.classList.remove('scrolled');
       if (navWrapper) navWrapper.classList.remove('scrolled');
+    } else {
+      const delta = currentScrollY - lastScrollY;
+      if (delta > 6 && currentScrollY > 70) {
+        navDock.classList.add('scrolled');
+        if (navWrapper) navWrapper.classList.add('scrolled');
+      } else if (delta < -6) {
+        navDock.classList.remove('scrolled');
+        if (navWrapper) navWrapper.classList.remove('scrolled');
+      }
     }
+    lastScrollY = currentScrollY;
 
     // ScrollSpy active link detection
     let currentSectionId = '';
