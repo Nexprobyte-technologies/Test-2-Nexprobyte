@@ -21,7 +21,7 @@ export default function HeroCords() {
         name: 'ERP, BI & Dashboards',
         sub: 'Custom Business Software →',
         theme: 'squircle-purple',
-        sparkColors: ['#818cf8', '#6366f1', '#a5b4fc', '#ffffff'],
+        sparkColors: ['#a855f7', '#8b5cf6', '#c084fc', '#ffffff'],
         swayPhase: 0,
         swayAmp: 6,
         freq: 720,
@@ -31,8 +31,8 @@ export default function HeroCords() {
         slot: 'top-left',
         name: 'Full-Stack Developers',
         sub: 'React, Node, Python & Mobile →',
-        theme: 'squircle-obsidian',
-        sparkColors: ['#61dafb', '#00d8ff', '#ffffff', '#38bdf8'],
+        theme: 'squircle-cyan squircle-obsidian',
+        sparkColors: ['#38bdf8', '#0ea5e9', '#7dd3fc', '#ffffff'],
         swayPhase: 1.2,
         swayAmp: 7.5,
         freq: 820,
@@ -43,7 +43,7 @@ export default function HeroCords() {
         name: 'AI Automation & Agents',
         sub: 'n8n, Zapier & AI Copilot →',
         theme: 'squircle-orange',
-        sparkColors: ['#ff7b1a', '#ea580c', '#fdba74', '#ffffff'],
+        sparkColors: ['#ff7849', '#ff5722', '#fdba74', '#ffffff'],
         swayPhase: 2.4,
         swayAmp: 9,
         freq: 920,
@@ -54,7 +54,7 @@ export default function HeroCords() {
         name: 'Virtual Assistants (Top 1%)',
         sub: 'Executive Admin & Operations →',
         theme: 'squircle-mint',
-        sparkColors: ['#10b981', '#34d399', '#6ee7b7', '#ffffff'],
+        sparkColors: ['#34d399', '#10b981', '#6ee7b7', '#ffffff'],
         swayPhase: 3.6,
         swayAmp: 8,
         freq: 780,
@@ -64,8 +64,8 @@ export default function HeroCords() {
         slot: 'top-right',
         name: 'Dedicated Dev Teams',
         sub: 'Scale Engineering On-Demand →',
-        theme: 'squircle-green',
-        sparkColors: ['#22c55e', '#4ade80', '#86efac', '#ffffff'],
+        theme: 'squircle-rose squircle-green',
+        sparkColors: ['#fb7185', '#f43f5e', '#fda4af', '#ffffff'],
         swayPhase: 4.5,
         swayAmp: 7.5,
         freq: 860,
@@ -76,7 +76,7 @@ export default function HeroCords() {
         name: 'DevOps & Cloud APIs',
         sub: 'CI/CD, Cloud & Integrations →',
         theme: 'squircle-blue',
-        sparkColors: ['#3b82f6', '#60a5fa', '#93c5fd', '#ffffff'],
+        sparkColors: ['#60a5fa', '#3b82f6', '#93c5fd', '#ffffff'],
         swayPhase: 5.4,
         swayAmp: 9,
         freq: 980,
@@ -86,8 +86,8 @@ export default function HeroCords() {
         slot: 'bottom-right',
         name: 'E-Commerce Management',
         sub: 'Shopify, WooCommerce & Ops →',
-        theme: 'squircle-lime',
-        sparkColors: ['#a3e635', '#bef264', '#d9f99d', '#ffffff'],
+        theme: 'squircle-amber squircle-lime',
+        sparkColors: ['#fbbf24', '#f59e0b', '#fde68a', '#ffffff'],
         swayPhase: 0.8,
         swayAmp: 8,
         freq: 740,
@@ -930,14 +930,22 @@ export default function HeroCords() {
 
         {/* 7 Suspended 3D Glossy Squircles with Nexprobyte Core Technology Stack Icons */}
         
-        {/* 0: Center (Purple - Next.js & React Enterprise ERP & Dashboards) */}
+        {/* 0: Center (Electric Violet - AI Neural Core & ERP Architecture) */}
         <div className="tech-cord-squircle squircle-purple" id="tech-badge-0" role="button" tabIndex={0} aria-label="ERP & Analytics Technology Discipline" data-index="0">
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2.5C6.75 2.5 2.5 6.75 2.5 12s4.25 9.5 9.5 9.5 9.5-4.25 9.5-9.5H12V2.5z" fill="#ffffff"/>
-                <path d="M14.5 2.5V9.5H21.5C21.5 5.63 18.37 2.5 14.5 2.5Z" fill="#ffffff" fillOpacity="0.8"/>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="4" y="4" width="16" height="16" rx="3.5" fill="#ffffff" fillOpacity="0.22" />
+                <rect x="8.5" y="8.5" width="7" height="7" rx="1.5" stroke="#ffffff" strokeWidth="2" fill="#ffffff" fillOpacity="0.35" />
+                <line x1="9" y1="1" x2="9" y2="4" />
+                <line x1="15" y1="1" x2="15" y2="4" />
+                <line x1="9" y1="20" x2="9" y2="23" />
+                <line x1="15" y1="20" x2="15" y2="23" />
+                <line x1="20" y1="9" x2="23" y2="9" />
+                <line x1="20" y1="15" x2="23" y2="15" />
+                <line x1="1" y1="9" x2="4" y2="9" />
+                <line x1="1" y1="15" x2="4" y2="15" />
               </svg>
             </div>
           </div>
@@ -951,16 +959,16 @@ export default function HeroCords() {
           <div className="squircle-sparks" id="tech-sparks-0" aria-hidden="true"></div>
         </div>
 
-        {/* 1: Top-Left (Dark Obsidian - React Atom & Full-Stack Developers) */}
-        <div className="tech-cord-squircle squircle-obsidian" id="tech-badge-1" role="button" tabIndex={0} aria-label="Full-Stack Developers Technology Discipline" data-index="1">
+        {/* 1: Top-Left (Electric Cyan - High-Tech React Quantum Atom & Full-Stack Developers) */}
+        <div className="tech-cord-squircle squircle-cyan squircle-obsidian" id="tech-badge-1" role="button" tabIndex={0} aria-label="Full-Stack Developers Technology Discipline" data-index="1">
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2">
-                <circle cx="12" cy="7.5" r="4" strokeLinecap="round"/>
-                <circle cx="7.5" cy="15.5" r="4" strokeLinecap="round"/>
-                <circle cx="16.5" cy="15.5" r="4" strokeLinecap="round"/>
-                <circle cx="12" cy="12" r="1.5" fill="#ffffff" stroke="none"/>
+              <svg width="25" height="25" viewBox="0 0 24 24" fill="none">
+                <ellipse cx="12" cy="12" rx="10.5" ry="4" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" transform="rotate(0 12 12)"/>
+                <ellipse cx="12" cy="12" rx="10.5" ry="4" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" transform="rotate(60 12 12)"/>
+                <ellipse cx="12" cy="12" rx="10.5" ry="4" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" transform="rotate(120 12 12)"/>
+                <circle cx="12" cy="12" r="2.2" fill="#ffffff"/>
               </svg>
             </div>
           </div>
@@ -974,14 +982,15 @@ export default function HeroCords() {
           <div className="squircle-sparks" id="tech-sparks-1" aria-hidden="true"></div>
         </div>
 
-        {/* 2: Mid-Left (Vibrant Orange - AI Automation & Agents) */}
+        {/* 2: Mid-Left (Vibrant Sunset Orange - Autonomous AI Agents & Multi-Ray Spark) */}
         <div className="tech-cord-squircle squircle-orange" id="tech-badge-2" role="button" tabIndex={0} aria-label="AI Automation Technology Discipline" data-index="2">
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="18 14 12 8 6 14" />
-                <polyline points="18 19 12 13 6 19" />
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2l2.6 6.4L21 11l-6.4 2.6L12 20l-2.6-6.4L3 11l6.4-2.6L12 2z" fill="#ffffff" fillOpacity="0.25" />
+                <path d="M19 2v4M21 4h-4" />
+                <path d="M4 17v4M6 19H2" />
               </svg>
             </div>
           </div>
@@ -995,14 +1004,14 @@ export default function HeroCords() {
           <div className="squircle-sparks" id="tech-sparks-2" aria-hidden="true"></div>
         </div>
 
-        {/* 3: Bottom-Left (Mint Emerald - Executive Virtual Assistance) */}
+        {/* 3: Bottom-Left (Luminous Emerald Mint - Verified Executive Talent Shield) */}
         <div className="tech-cord-squircle squircle-mint" id="tech-badge-3" role="button" tabIndex={0} aria-label="Virtual Assistance Technology Discipline" data-index="3">
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="3.6" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <line x1="5" y1="12" x2="19" y2="12"></line>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="#ffffff" fillOpacity="0.22" />
+                <path d="m9 12 2 2 4-4" stroke="#ffffff" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
           </div>
@@ -1016,14 +1025,15 @@ export default function HeroCords() {
           <div className="squircle-sparks" id="tech-sparks-3" aria-hidden="true"></div>
         </div>
 
-        {/* 4: Top-Right (Electric Green - Dedicated Dev Teams) */}
-        <div className="tech-cord-squircle squircle-green" id="tech-badge-4" role="button" tabIndex={0} aria-label="Dedicated Remote Teams Discipline" data-index="4">
+        {/* 4: Top-Right (Electric Rose Magenta - 3D Isometric Cloud Stack & Dedicated Dev Teams) */}
+        <div className="tech-cord-squircle squircle-rose squircle-green" id="tech-badge-4" role="button" tabIndex={0} aria-label="Dedicated Remote Teams Discipline" data-index="4">
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="7" y1="17" x2="17" y2="7"></line>
-                <polyline points="7 7 17 7 17 17"></polyline>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2" fill="#ffffff" fillOpacity="0.25" />
+                <polyline points="2 17 12 22 22 17" />
+                <polyline points="2 12 12 17 22 12" />
               </svg>
             </div>
           </div>
@@ -1037,14 +1047,14 @@ export default function HeroCords() {
           <div className="squircle-sparks" id="tech-sparks-4" aria-hidden="true"></div>
         </div>
 
-        {/* 5: Mid-Right (Cobalt Blue - DevOps & Cloud APIs Toggle) */}
+        {/* 5: Mid-Right (Cobalt Royal Blue - Lightning Cloud APIs & High-Speed DevOps) */}
         <div className="tech-cord-squircle squircle-blue" id="tech-badge-5" role="button" tabIndex={0} aria-label="DevOps and API Integration Discipline" data-index="5">
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <rect x="2.5" y="6.5" width="19" height="11" rx="5.5" stroke="#ffffff" strokeWidth="2.4"/>
-                <circle cx="8" cy="12" r="3.2" fill="#ffffff"/>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" fill="#ffffff" fillOpacity="0.22" />
+                <polygon points="13 10 9 16 14 16 11 22 19 14 14 14 16 10" fill="#ffffff" strokeWidth="1.2" />
               </svg>
             </div>
           </div>
@@ -1058,14 +1068,16 @@ export default function HeroCords() {
           <div className="squircle-sparks" id="tech-sparks-5" aria-hidden="true"></div>
         </div>
 
-        {/* 6: Bottom-Right (Lime Green - E-Commerce & Growth) */}
-        <div className="tech-cord-squircle squircle-lime" id="tech-badge-6" role="button" tabIndex={0} aria-label="E-Commerce Support Discipline" data-index="6">
+        {/* 6: Bottom-Right (Radiant Solar Amber Gold - High-Conversion E-Commerce Growth Cart) */}
+        <div className="tech-cord-squircle squircle-amber squircle-lime" id="tech-badge-6" role="button" tabIndex={0} aria-label="E-Commerce Support Discipline" data-index="6">
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
-                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="9" cy="20" r="1.5" fill="#ffffff" />
+                <circle cx="18" cy="20" r="1.5" fill="#ffffff" />
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" fill="#ffffff" fillOpacity="0.2" />
+                <path d="m13 8 3-3m0 0h-2.5m2.5 0v2.5" strokeWidth="2.2" strokeLinecap="round" />
               </svg>
             </div>
           </div>

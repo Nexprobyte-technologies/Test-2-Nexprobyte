@@ -1498,65 +1498,124 @@ input, textarea, select {
 
 /* 7 SQUIRCLE THEMES (Framing the Headline) */
 
-/* 0. Royal Violet / Indigo (ERP & Analytics) */
+/* 7 SQUIRCLE THEMES (Framing the Headline — High-Vibrancy Modern 3D Gloss) */
+
+/* 0. Electric Cyber Violet / Indigo (ERP & Analytics) */
 .squircle-purple {
-  --badge-glow: rgba(99, 102, 241, 0.45);
+  --badge-glow: rgba(139, 92, 246, 0.65);
 }
 .squircle-purple .squircle-body {
-  background: linear-gradient(135deg, #818cf8 0%, #6366f1 52%, #4338ca 100%);
+  background: linear-gradient(145deg, #a855f7 0%, #8b5cf6 48%, #6366f1 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  box-shadow:
+    0 16px 34px -4px rgba(99, 102, 241, 0.42),
+    0 4px 12px rgba(0, 0, 0, 0.12),
+    0 0 28px rgba(168, 85, 247, 0.45),
+    inset 0 2px 2px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -2px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
-/* 1. Dark Obsidian / Deep Onyx (Clean Code & Full-Stack) */
+/* 1. Vivid Electric Cyan / Sky Blue (Clean Code & Full-Stack Developers) */
+.squircle-cyan,
 .squircle-obsidian {
-  --badge-glow: rgba(15, 23, 42, 0.6);
+  --badge-glow: rgba(14, 165, 233, 0.65);
 }
+.squircle-cyan .squircle-body,
 .squircle-obsidian .squircle-body {
-  background: linear-gradient(135deg, #27272a 0%, #18181b 55%, #09090b 100%);
-  border-color: rgba(255, 255, 255, 0.18);
+  background: linear-gradient(145deg, #38bdf8 0%, #0ea5e9 48%, #0284c7 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  box-shadow:
+    0 16px 34px -4px rgba(2, 132, 199, 0.42),
+    0 4px 12px rgba(0, 0, 0, 0.12),
+    0 0 28px rgba(56, 189, 248, 0.45),
+    inset 0 2px 2px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -2px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
-/* 2. Vibrant Sunset Orange (AI Automation & Workflows) */
+/* 2. Radiant Sunset Coral Orange (AI Automation & Autonomous Agents) */
 .squircle-orange {
-  --badge-glow: rgba(234, 88, 12, 0.45);
+  --badge-glow: rgba(249, 115, 22, 0.65);
 }
 .squircle-orange .squircle-body {
-  background: linear-gradient(135deg, #ff7b1a 0%, #ea580c 55%, #c2410c 100%);
+  background: linear-gradient(145deg, #ff7849 0%, #ff5722 48%, #ea580c 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  box-shadow:
+    0 16px 34px -4px rgba(234, 88, 12, 0.42),
+    0 4px 12px rgba(0, 0, 0, 0.12),
+    0 0 28px rgba(255, 120, 73, 0.45),
+    inset 0 2px 2px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -2px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
-/* 3. Mint Emerald Green (Executive Virtual Assistance) */
+/* 3. Luminous Emerald Mint (Executive Virtual Assistance & Top 1% Talent) */
 .squircle-mint {
-  --badge-glow: rgba(16, 185, 129, 0.45);
+  --badge-glow: rgba(16, 185, 129, 0.65);
 }
 .squircle-mint .squircle-body {
-  background: linear-gradient(135deg, #10b981 0%, #059669 55%, #047857 100%);
+  background: linear-gradient(145deg, #34d399 0%, #10b981 48%, #059669 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  box-shadow:
+    0 16px 34px -4px rgba(5, 150, 105, 0.42),
+    0 4px 12px rgba(0, 0, 0, 0.12),
+    0 0 28px rgba(52, 211, 153, 0.45),
+    inset 0 2px 2px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -2px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
-/* 4. Electric Growth Green (Dedicated Dev Teams) */
+/* 4. Vivid Electric Rose / Magenta (Dedicated Dev Teams & Pods) */
+.squircle-rose,
 .squircle-green {
-  --badge-glow: rgba(34, 197, 94, 0.45);
+  --badge-glow: rgba(244, 63, 94, 0.65);
 }
+.squircle-rose .squircle-body,
 .squircle-green .squircle-body {
-  background: linear-gradient(135deg, #22c55e 0%, #16a34a 55%, #15803d 100%);
+  background: linear-gradient(145deg, #fb7185 0%, #f43f5e 48%, #e11d48 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  box-shadow:
+    0 16px 34px -4px rgba(225, 29, 72, 0.42),
+    0 4px 12px rgba(0, 0, 0, 0.12),
+    0 0 28px rgba(251, 113, 133, 0.45),
+    inset 0 2px 2px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -2px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
-/* 5. Cobalt Royal Blue (DevOps & Cloud API Integrations) */
+/* 5. Cobalt Royal Blue (DevOps, Cloud Architecture & APIs) */
 .squircle-blue {
-  --badge-glow: rgba(37, 99, 235, 0.45);
+  --badge-glow: rgba(59, 130, 246, 0.65);
 }
 .squircle-blue .squircle-body {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 55%, #1d4ed8 100%);
+  background: linear-gradient(145deg, #60a5fa 0%, #3b82f6 48%, #1d4ed8 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  box-shadow:
+    0 16px 34px -4px rgba(29, 78, 216, 0.42),
+    0 4px 12px rgba(0, 0, 0, 0.12),
+    0 0 28px rgba(96, 165, 250, 0.45),
+    inset 0 2px 2px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -2px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
-/* 6. Neon Lime Green (E-Commerce & Digital Ops) */
+/* 6. Radiant Solar Amber Gold (E-Commerce Management & Growth Platforms) */
+.squircle-amber,
 .squircle-lime {
-  --badge-glow: rgba(132, 204, 22, 0.45);
+  --badge-glow: rgba(245, 158, 11, 0.65);
 }
+.squircle-amber .squircle-body,
 .squircle-lime .squircle-body {
-  background: linear-gradient(135deg, #a3e635 0%, #84cc16 55%, #65a30d 100%);
+  background: linear-gradient(145deg, #fbbf24 0%, #f59e0b 48%, #d97706 100%);
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  box-shadow:
+    0 16px 34px -4px rgba(217, 119, 6, 0.42),
+    0 4px 12px rgba(0, 0, 0, 0.12),
+    0 0 28px rgba(251, 191, 36, 0.45),
+    inset 0 2px 2px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -2px 4px 0 rgba(0, 0, 0, 0.25);
 }
+
+.squircle-amber .squircle-icon svg,
+.squircle-amber .squircle-icon svg path,
 .squircle-lime .squircle-icon svg,
 .squircle-lime .squircle-icon svg path {
-  stroke: #111827;
+  stroke: #ffffff;
 }
 
 /* Hover Tooltip Pills */
