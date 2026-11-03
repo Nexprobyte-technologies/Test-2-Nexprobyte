@@ -18,8 +18,13 @@ const BUSINESS_LINKS = [
   { label: 'Application Development', to: '/services/application-development' },
   { label: 'UI/UX Design', to: '/services/ui-ux-design' },
   { label: 'Branding & Identity', to: '/services/branding-identity' },
-  { label: 'Digital Marketing & SEO', to: '/services/digital-marketing' },
-  { label: 'Social Media Marketing', to: '/services/social-media-marketing' }
+  { label: 'Digital Marketing & Ads', to: '/services/digital-marketing' },
+  { label: 'SEO Services', to: '/services/seo-services' },
+  { label: 'Social Media Marketing', to: '/services/social-media-marketing' },
+  { label: 'Dedicated Remote Developers', to: '/services/dedicated-developers' },
+  { label: 'AI & Workflow Automation', to: '/services/ai-automation' },
+  { label: 'Custom ERP & Software', to: '/services/custom-software' },
+  { label: 'Virtual Assistance', to: '/services/virtual-assistance' }
 ];
 
 const SOCIALS = [

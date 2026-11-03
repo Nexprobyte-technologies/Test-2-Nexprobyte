@@ -21,7 +21,7 @@ export default function ServicesPage() {
         num="02"
         label="Production Disciplines"
         title={['Nexprobyte', 'Digital Services']}
-        sub="Eight integrated disciplines. One accountable team. Strategy, design, development and marketing that work together instead of in silos."
+        sub="Twelve integrated disciplines. One accountable team. Strategy, design, development and marketing that work together instead of in silos."
       />
 
       {/* Services Grid */}

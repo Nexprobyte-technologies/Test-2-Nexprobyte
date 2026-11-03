@@ -85,3 +85,7 @@ next-env.d.ts
 *.bak
 find_cache.js
 setup_modules.js
+live__*.html
+old_site_chunks/
+scripts/
+test_nexprobyte_bundle.js

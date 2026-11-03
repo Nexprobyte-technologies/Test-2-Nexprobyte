@@ -148,6 +148,78 @@ const CORE_DISCIPLINES = [
     ],
     deliverables: ['Vector Logo Master Files', 'Brand Style Guide PDF', 'Social Media Asset Kit', 'Business Stationery Templates'],
   },
+  {
+    slug: 'dedicated-developers',
+    num: '09',
+    title: 'Dedicated Remote Developers',
+    serif: 'Engineered Talent',
+    blurb: 'Pre-vetted senior software engineers, full-stack developers, and cloud architects working as an agile extension of your team.',
+    headline: 'Scale your engineering velocity with dedicated remote talent.',
+    overview: 'Skip the painful 6-month recruiting cycles. We provide senior full-stack developers, cloud architects, and QA engineers dedicated 100% to your codebase with zero management overhead.',
+    features: [
+      'Pre-vetted senior engineers (React, Node, Python, Cloud)',
+      'Direct communication via Slack, Teams & Daily Standups',
+      'Zero payroll, benefits, or hardware management overhead',
+      '100% overlapping time zones for seamless daily collaboration',
+      'Flexible scale-up or ramp-down with 30-day notice',
+      'Strict IP protection and bilateral NDA execution',
+    ],
+    deliverables: ['Dedicated full-time engineer(s)', 'Daily Git commits & sprint reports', 'Direct Slack/Teams channel integration', 'Monthly code quality & velocity reviews'],
+  },
+  {
+    slug: 'ai-automation',
+    num: '10',
+    title: 'AI & Workflow Automation',
+    serif: 'Autonomous Velocity',
+    blurb: 'End-to-end AI agents, automated workflow pipelines, n8n integrations, and LLM-powered enterprise tooling.',
+    headline: 'Automate repetitive operations with custom AI agents and pipelines.',
+    overview: 'We design, build, and deploy custom autonomous AI agents, automated ETL pipelines, and intelligent customer support bots that save hundreds of human hours every month.',
+    features: [
+      'Custom AI Agents & Autonomous Bots (OpenAI, Anthropic, Gemini)',
+      'Workflow Automation & Webhook Orchestration (n8n, Make, Zapier)',
+      'Enterprise Document & PDF Extraction with RAG pipelines',
+      'Intelligent Multi-Channel Customer Support Chatbots',
+      'Automated Data Scraping, Cleaning, & Cloud Syncing',
+      'Enterprise Security, Local LLMs, and API Privacy Guardrails',
+    ],
+    deliverables: ['Full workflow automation architecture', 'Custom AI bot / pipeline deployment', 'System webhook & API documentation', 'Admin monitoring dashboard & alert triggers'],
+  },
+  {
+    slug: 'custom-software',
+    num: '11',
+    title: 'Custom ERP & Software Development',
+    serif: 'Enterprise Architecture',
+    blurb: 'Tailor-made ERP systems, inventory management, clinic management, and operational software engineered for specific industry workflows.',
+    headline: 'Software engineered precisely around your business workflows.',
+    overview: 'Off-the-shelf software forces you to change how your business operates. We build high-throughput, tailor-made ERPs, hospital systems, and factory management software designed specifically around your operational processes.',
+    features: [
+      'Tailored Enterprise ERP Architecture & Multi-Tenant Databases',
+      'Real-Time Inventory, Warehouse, & Supply-Chain Tracking',
+      'Hospital & Clinic EMR, Billing, & Appointment Automation',
+      'Textile, Manufacturing, & Factory Production Line Dashboards',
+      'Role-Based Access Control (RBAC) & Audit Log Compliance',
+      'High-Throughput REST & GraphQL APIs with 99.98% Uptime',
+    ],
+    deliverables: ['Custom ERP / Management Web Application', 'Role-based admin & employee dashboards', 'Secure database architecture & automated backups', 'Comprehensive on-site/remote staff training & 1-year SLA'],
+  },
+  {
+    slug: 'virtual-assistance',
+    num: '12',
+    title: 'Virtual Administrative & Tech Assistance',
+    serif: 'Executive Support',
+    blurb: 'Dedicated executive virtual assistants, customer support agents, and technical coordinators freeing your leadership to focus on scale.',
+    headline: 'Reclaim your executive time with dedicated virtual assistance.',
+    overview: 'Delegate administrative bottlenecks, inbox triage, calendar coordination, customer support, and CRM data maintenance to high-caliber, fluent virtual assistants trained in modern digital toolchains.',
+    features: [
+      'Executive calendar management & priority email scheduling',
+      '24/7 Multi-channel customer service and live chat triage',
+      'CRM data hygiene, lead qualification, and pipeline maintenance',
+      'Research briefs, competitive market analysis, and slide decks',
+      'E-commerce catalog management, product listings, and order status',
+      'Daily task digest, weekly progress reports, and transparent tracking',
+    ],
+    deliverables: ['Dedicated executive assistant assigned to your team', 'Daily summary log of completed operational tasks', 'Direct WhatsApp/Slack communication channel', 'Continuous quality monitoring & backup redundancy'],
+  },
 ];
 
 export default function AllServices() {
@@ -161,7 +233,7 @@ export default function AllServices() {
           <div className="badge-tag">Service Architecture</div>
           <h2 className="section-title">The Complete Nexprobyte Suite</h2>
           <p className="section-subtitle">
-            Everything your business needs to scale without friction. From 52 specialized PDF services to 8 core production disciplines.
+            Everything your business needs to scale without friction. From 52 specialized PDF services to 12 core production disciplines.
           </p>
         </div>
 
@@ -179,7 +251,7 @@ export default function AllServices() {
             className={`services-nav-tab ${activeTab === 'core' ? 'active' : ''}`}
             onClick={() => setActiveTab('core')}
           >
-            <span>8 Core Production Disciplines (Studio)</span>
+            <span>12 Core Production Disciplines (Studio)</span>
           </button>
         </div>
 
@@ -475,7 +547,7 @@ export default function AllServices() {
 
         <div style={{ textAlign: 'center', marginTop: '40px' }}>
           <Link href="/services" className="btn-primary-hero" style={{ padding: '14px 32px', fontSize: '1rem' }}>
-            Explore All 8 Production Disciplines &amp; 52 Turnkey Capabilities &rarr;
+            Explore All 12 Production Disciplines &amp; 52 Turnkey Capabilities &rarr;
           </Link>
         </div>
       </div>
