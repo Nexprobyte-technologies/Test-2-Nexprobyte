@@ -910,13 +910,13 @@ export default function HeroCords() {
               <stop offset="100%" stopColor="#475569" />
             </linearGradient>
           </defs>
-          <path id="tech-cord-path-0" className="tech-cord-path tech-cord-0" stroke="url(#tech-cord-grad-0)" strokeWidth="2" strokeLinecap="round" fill="none" />
-          <path id="tech-cord-path-1" className="tech-cord-path tech-cord-1" stroke="url(#tech-cord-grad-1)" strokeWidth="2" strokeLinecap="round" fill="none" />
-          <path id="tech-cord-path-2" className="tech-cord-path tech-cord-2" stroke="url(#tech-cord-grad-2)" strokeWidth="2" strokeLinecap="round" fill="none" />
-          <path id="tech-cord-path-3" className="tech-cord-path tech-cord-3" stroke="url(#tech-cord-grad-3)" strokeWidth="2" strokeLinecap="round" fill="none" />
-          <path id="tech-cord-path-4" className="tech-cord-path tech-cord-4" stroke="url(#tech-cord-grad-4)" strokeWidth="2" strokeLinecap="round" fill="none" />
-          <path id="tech-cord-path-5" className="tech-cord-path tech-cord-5" stroke="url(#tech-cord-grad-5)" strokeWidth="2" strokeLinecap="round" fill="none" />
-          <path id="tech-cord-path-6" className="tech-cord-path tech-cord-6" stroke="url(#tech-cord-grad-6)" strokeWidth="2" strokeLinecap="round" fill="none" />
+          <path id="tech-cord-path-0" className="tech-cord-path tech-cord-0" stroke="#475569" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+          <path id="tech-cord-path-1" className="tech-cord-path tech-cord-1" stroke="#475569" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+          <path id="tech-cord-path-2" className="tech-cord-path tech-cord-2" stroke="#475569" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+          <path id="tech-cord-path-3" className="tech-cord-path tech-cord-3" stroke="#475569" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+          <path id="tech-cord-path-4" className="tech-cord-path tech-cord-4" stroke="#475569" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+          <path id="tech-cord-path-5" className="tech-cord-path tech-cord-5" stroke="#475569" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+          <path id="tech-cord-path-6" className="tech-cord-path tech-cord-6" stroke="#475569" strokeWidth="2.2" strokeLinecap="round" fill="none" />
         </svg>
 
         {/* 7 Ceiling Mount Fixtures - Hidden visually so cords hang directly from ceiling with no box */}

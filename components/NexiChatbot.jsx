@@ -122,7 +122,13 @@ export default function NexiChatbot() {
             onClick={() => setIsOpen(true)}
             aria-label="Open Nexi AI Assistant"
           >
-            <span className="nexi-avatar-sparkle">✦</span>
+            <img
+              src="/assets/logo-transparent.png"
+              alt="Nexi AI"
+              className="nexi-fab-logo"
+              width={26}
+              height={18}
+            />
             <div className="nexi-fab-pulse" />
           </button>
         )}
@@ -133,7 +139,12 @@ export default function NexiChatbot() {
             <div className="nexi-header">
               <div className="nexi-header-info">
                 <div className="nexi-avatar">
-                  <span>✦</span>
+                  <img
+                    src="/assets/logo-transparent.png"
+                    alt="Nexi"
+                    width={22}
+                    height={15}
+                  />
                   <span className="nexi-online-dot" />
                 </div>
                 <div>
@@ -154,7 +165,16 @@ export default function NexiChatbot() {
             <div className="nexi-messages">
               {messages.map((m) => (
                 <div key={m.id} className={`nexi-message-row ${m.sender === 'user' ? 'is-user' : 'is-bot'}`}>
-                  {m.sender === 'nexi' && <div className="nexi-msg-avatar">✦</div>}
+                  {m.sender === 'nexi' && (
+                    <div className="nexi-msg-avatar">
+                      <img
+                        src="/assets/logo-transparent.png"
+                        alt="Nexi"
+                        width={18}
+                        height={12}
+                      />
+                    </div>
+                  )}
                   <div className="nexi-bubble">
                     <p>{m.text}</p>
                     <span className="nexi-time">{m.time}</span>

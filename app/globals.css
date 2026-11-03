@@ -653,6 +653,136 @@ input, textarea, select {
   line-height: 1.3;
 }
 
+/* ==========================================================================
+   TWO-COLUMN SPLIT DROPDOWNS (WHAT WE DO & RESOURCES — SARO FRAMER THEME)
+   ========================================================================== */
+.nav-dropdown.nav-dropdown-split {
+  visibility: visible !important;
+  pointer-events: auto !important;
+  min-width: 640px;
+  max-width: 90vw;
+  padding: 22px 24px;
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #edf2f7;
+  box-shadow: 0 20px 48px -10px rgba(15, 23, 42, 0.14), 0 4px 14px rgba(0, 0, 0, 0.04);
+  z-index: 1000;
+}
+
+.nav-dropdown-split.nav-dropdown-resources {
+  min-width: 660px;
+}
+
+.dropdown-split-container {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.dropdown-split-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-split-col:first-child {
+  padding-right: 18px;
+  border-right: 1px solid #f1f5f9;
+}
+
+.dropdown-col-heading {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #475569;
+  margin-bottom: 12px;
+  padding-left: 8px;
+}
+
+.dropdown-items-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.dropdown-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background 0.16s ease, transform 0.16s ease;
+  color: #0f172a;
+}
+
+.dropdown-item-row:hover {
+  background: #f8fafc;
+  transform: translateX(2px);
+}
+
+.dropdown-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dropdown-item-icon-box {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: #eff6ff;
+  border: 1px solid rgba(0, 102, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #0066ff;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.dropdown-item-row:hover .dropdown-item-icon-box {
+  background: #dbeafe;
+  transform: scale(1.05);
+}
+
+.dropdown-item-title {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #0f172a;
+  line-height: 1.25;
+  transition: color 0.16s ease;
+}
+
+.dropdown-item-row:hover .dropdown-item-title {
+  color: #0066ff;
+}
+
+.dropdown-item-desc {
+  display: block;
+  font-size: 0.76rem;
+  font-weight: 400;
+  color: #64748b;
+  line-height: 1.3;
+  margin-top: 2px;
+}
+
+.dropdown-item-arrow {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  transition: transform 0.16s ease, color 0.16s ease;
+  padding-left: 8px;
+  flex-shrink: 0;
+}
+
+.dropdown-item-row:hover .dropdown-item-arrow {
+  color: #0066ff;
+  transform: translateX(3px);
+}
+
 /* Nav Actions */
 .nav-actions {
   display: flex;
@@ -1218,21 +1348,30 @@ input, textarea, select {
 }
 
 .tech-cord-path {
-  fill: none;
-  stroke: #64748b;
-  stroke-width: 2px;
-  stroke-linecap: round;
-  transition: stroke 0.25s ease, filter 0.25s ease;
+  fill: none !important;
+  stroke: #475569 !important;
+  stroke-width: 2.2px !important;
+  stroke-linecap: round !important;
+  opacity: 0.95 !important;
+  transition: stroke 0.25s ease, stroke-width 0.25s ease, filter 0.25s ease;
   will-change: d;
 }
 
-#tech-cord-path-0 { stroke: url(#tech-cord-grad-0); }
-#tech-cord-path-1 { stroke: url(#tech-cord-grad-1); }
-#tech-cord-path-2 { stroke: url(#tech-cord-grad-2); }
-#tech-cord-path-3 { stroke: url(#tech-cord-grad-3); }
-#tech-cord-path-4 { stroke: url(#tech-cord-grad-4); }
-#tech-cord-path-5 { stroke: url(#tech-cord-grad-5); }
-#tech-cord-path-6 { stroke: url(#tech-cord-grad-6); }
+#tech-cord-path-0,
+#tech-cord-path-1,
+#tech-cord-path-2,
+#tech-cord-path-3,
+#tech-cord-path-4,
+#tech-cord-path-5,
+#tech-cord-path-6 {
+  stroke: #475569 !important;
+  stroke-width: 2.2px !important;
+  opacity: 0.95 !important;
+}
+
+.hero-hanging-cord-stage {
+  display: none !important;
+}
 
 .tech-cord-mount {
   display: none !important;
@@ -2819,6 +2958,11 @@ input, textarea, select {
   box-shadow: var(--shadow-xl);
 }
 
+.pricing-card,
+.pricing-card.spotlight-card {
+  overflow: visible !important;
+}
+
 .pricing-card.featured {
   border: 2px solid #141414;
   box-shadow: var(--shadow-lg);
@@ -2831,17 +2975,20 @@ input, textarea, select {
 
 .popular-badge {
   position: absolute;
-  top: -12px;
+  top: -14px;
   right: 28px;
-  background: #141414;
+  background: #0f172a;
   color: #fff;
-  padding: 4px 12px;
-  border-radius: var(--radius-full);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  padding: 5px 14px;
+  border-radius: 9999px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
   font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+  z-index: 10;
+  white-space: nowrap;
 }
 
 .price-val {
@@ -6836,24 +6983,37 @@ input, textarea, select {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 52px;
+  height: 52px;
   padding: 0;
-  background: linear-gradient(135deg, #12385F 0%, #087DC1 100%);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: #ffffff;
+  color: #0066ff;
+  border: 1.5px solid rgba(0, 102, 255, 0.2);
   border-radius: 50%;
-  box-shadow: 0 12px 32px rgba(8, 125, 193, 0.4), 0 0 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 28px rgba(0, 102, 255, 0.22), 0 2px 8px rgba(0, 0, 0, 0.08);
   cursor: pointer;
   font-family: inherit;
-  font-size: 1.2rem;
-  font-weight: 600;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
 }
 .nexi-fab-btn:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 16px 40px rgba(8, 125, 193, 0.55);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 16px 36px rgba(0, 102, 255, 0.32);
+}
+.nexi-fab-logo {
+  width: 28px;
+  height: auto;
+  max-height: 22px;
+  object-fit: contain;
+  display: block;
+}
+.nexi-avatar img,
+.nexi-msg-avatar img {
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
 }
 .nexi-avatar-sparkle {
   color: #67e8f9;
@@ -7711,7 +7871,8 @@ input, textarea, select {
 }
 
 @media (max-width: 991.98px) {
-  .nav-links {
+  .nav-links,
+  .nav-contact-bar {
     display: none !important;
   }
   .nav-call-btn,
@@ -7726,6 +7887,32 @@ input, textarea, select {
     max-width: 480px;
     justify-content: space-between;
   }
+}
+
+.saro-mobile-drawer .mobile-drawer-contact-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  margin-bottom: 20px;
+}
+
+.saro-mobile-drawer .mobile-drawer-contact-strip a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.saro-mobile-drawer .mobile-drawer-contact-strip a:hover {
+  color: #60a5fa;
 }
 
 /* 6. Drawer Overlay & Mobile Drawer */
