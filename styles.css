@@ -4512,50 +4512,6 @@ input, textarea, select {
   position: relative;
 }
 
-.nexi-fab-btn:hover {
-  transform: none;
-  background: #0052cc;
-  box-shadow: 0 14px 36px rgba(0, 102, 255, 0.45);
-}
-
-.nexi-avatar-sparkle {
-  color: #00d6b2;
-  font-size: 1.15rem;
-  line-height: 1;
-}
-
-.nexi-fab-pulse {
-  display: none !important;
-  animation: none !important;
-}
-
-@keyframes nexi-pulse {
-  0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.8; }
-  100% { transform: translate(-50%, -50%) scale(1.8); opacity: 0; }
-}
-
-.nexi-window {
-  width: 380px;
-  height: 540px;
-  background: #ffffff;
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-2xl);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  animation: modal-enter 0.3s var(--ease-framer);
-}
-
-.nexi-header {
-  padding: 16px 20px;
-  background: #141414;
-  color: #ffffff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .nexi-header-info {
   display: flex;
   align-items: center;

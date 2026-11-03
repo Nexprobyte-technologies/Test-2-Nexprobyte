@@ -7045,19 +7045,20 @@ input, textarea, select {
   width: 52px;
   height: 52px;
   padding: 0;
-  background: #ffffff;
-  color: #0066ff;
-  border: 1.5px solid rgba(0, 102, 255, 0.2);
+  background: #0066ff;
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
   border-radius: 50%;
-  box-shadow: 0 10px 28px rgba(0, 102, 255, 0.22), 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 28px rgba(0, 102, 255, 0.35), 0 2px 8px rgba(0, 0, 0, 0.12);
   cursor: pointer;
   font-family: inherit;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
   position: relative;
 }
 .nexi-fab-btn:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 16px 36px rgba(0, 102, 255, 0.32);
+  background: #0052cc;
+  box-shadow: 0 14px 32px rgba(0, 102, 255, 0.45);
+  transform: none;
 }
 .nexi-fab-logo {
   width: 28px;
@@ -7079,12 +7080,8 @@ input, textarea, select {
   font-size: 1.1rem;
 }
 .nexi-fab-pulse {
-  position: absolute;
-  inset: 0;
-  border-radius: 999px;
-  border: 2px solid #087DC1;
-  animation: badge-pulse-ring 2.4s cubic-bezier(0.24, 0, 0.38, 1) infinite;
-  pointer-events: none;
+  display: none !important;
+  animation: none !important;
 }
 .nexi-window {
   width: 380px;
@@ -7307,16 +7304,12 @@ input, textarea, select {
   position: relative;
 }
 .floating-call-btn:hover {
-  transform: translateY(-2px);
+  transform: none;
   background: rgba(8, 125, 193, 0.95);
 }
 .call-btn-pulse {
-  position: absolute;
-  inset: 0;
-  border-radius: 999px;
-  border: 2px solid #087DC1;
-  animation: badge-pulse-ring 2.8s cubic-bezier(0.24, 0, 0.38, 1) infinite;
-  pointer-events: none;
+  display: none !important;
+  animation: none !important;
 }
 .call-btn-icon {
   display: flex;

@@ -60,6 +60,8 @@ export default async function BlogDetailPage({ params }) {
               src={post.image || '/images/cover-web.jpg'}
               alt={post.title}
               className="post-cover-image"
+              decoding="async"
+              fetchPriority="high"
             />
             <span className="post-cover-badge">{post.category}</span>
           </div>
@@ -77,6 +79,10 @@ export default async function BlogDetailPage({ params }) {
                   src="/images/testimonial.jpg"
                   alt="Nexprobyte Team"
                   className="author-avatar"
+                  loading="lazy"
+                  decoding="async"
+                  width={48}
+                  height={48}
                 />
                 <div className="author-details">
                   <h4 className="author-name">Nexprobyte Engineering</h4>
@@ -166,7 +172,7 @@ export default async function BlogDetailPage({ params }) {
             {relatedPosts.map((rp) => (
               <article key={rp.slug} className="related-post-card spotlight-card reveal-up">
                 <div className="rp-media">
-                  <img src={rp.image || '/images/cover-web.jpg'} alt={rp.title} className="rp-img" />
+                  <img src={rp.image || '/images/cover-web.jpg'} alt={rp.title} className="rp-img" loading="lazy" decoding="async" />
                   <span className="rp-badge">{rp.category}</span>
                 </div>
                 <div className="rp-body">

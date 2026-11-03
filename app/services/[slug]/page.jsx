@@ -40,6 +40,8 @@ export default async function ServiceDetailPage({ params }) {
           src={service.image || '/images/srv-web.jpg'}
           alt={service.title}
           className="service-hero-img"
+          decoding="async"
+          fetchPriority="high"
         />
         <div className="service-hero-badge service-badge-top">
           <span>Discipline {service.num}</span>

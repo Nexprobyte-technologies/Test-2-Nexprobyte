@@ -129,7 +129,6 @@ export default function NexiChatbot() {
               width={26}
               height={18}
             />
-            <div className="nexi-fab-pulse" />
           </button>
         )}
 

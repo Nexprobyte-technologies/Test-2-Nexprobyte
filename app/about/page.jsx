@@ -79,6 +79,8 @@ export default function AboutPage() {
                     src="/images/about-workspace.jpg"
                     alt="Nexprobyte Engineering Workspace Coimbatore"
                     className="about-media-img"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="about-media-caption">
                     <span>Engineering Studio • Coimbatore, TN</span>
@@ -89,6 +91,8 @@ export default function AboutPage() {
                     src="/images/about-team.jpg"
                     alt="Nexprobyte Collaborative Team"
                     className="about-media-img"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="about-media-caption">
                     <span>In-House Cross-Functional Specialists</span>

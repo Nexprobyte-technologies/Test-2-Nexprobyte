@@ -47,6 +47,10 @@ export default function Footer() {
                 src="/images/nxtpro-logo.png"
                 alt="Nexprobyte Logo"
                 style={{ height: '48px', width: 'auto', objectFit: 'contain' }}
+                loading="lazy"
+                decoding="async"
+                width={160}
+                height={48}
               />
             </div>
             <p className="f-desc">
@@ -130,6 +134,10 @@ export default function Footer() {
               src="/assets/cropped-cbe-blue-logo-5.png"
               alt="Coimbatore Emblem"
               className="footer-center-emblem"
+              loading="lazy"
+              decoding="async"
+              width={85}
+              height={26}
             />
           </a>
         </div>

@@ -216,6 +216,8 @@ export default function CapabilitiesShowcase() {
                   src={CAPABILITIES[activeIdx].img}
                   alt={CAPABILITIES[activeIdx].title}
                   className="cap-showcase-img"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="cap-telemetry-badge">
                   <span className="live-radar-dot" style={{ width: 6, height: 6 }}>

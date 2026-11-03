@@ -4,7 +4,7 @@
   "description": "Reverse engineered high-fidelity Next.js web application for Nexprobyte Technologies",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/clean_build.js && next build",
     "start": "node server.js",
     "serve": "node server.js",
     "test": "node verify_build.js && node verify_animations.js"

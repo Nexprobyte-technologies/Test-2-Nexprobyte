@@ -65,6 +65,8 @@ export default function AboutStudio() {
                 src="/images/about-team.jpg"
                 alt="Nexprobyte engineering and design team in Coimbatore studio"
                 className="about-studio-img"
+                loading="lazy"
+                decoding="async"
               />
               <div className="about-img-badge-top">
                 <span className="live-radar-dot" style={{ width: 7, height: 7 }}>
