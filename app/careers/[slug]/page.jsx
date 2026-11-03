@@ -56,7 +56,7 @@ export default async function JobDetailPage({ params }) {
       <section className="section wrap" style={{ paddingTop: '40px' }}>
         <div className="container">
           <div className="job-detail-layout">
-            <div className="job-detail-main">
+            <div className="job-detail-main reveal-up">
               {/* Top Meta Bar */}
               <div className="job-meta-bar spotlight-card">
                 <div className="job-meta-pill-group">
@@ -117,7 +117,7 @@ export default async function JobDetailPage({ params }) {
             </div>
 
             {/* Sidebar */}
-            <aside className="job-detail-sidebar">
+            <aside className="job-detail-sidebar reveal-up">
               <div className="sidebar-studio-card spotlight-card">
                 <span className="sidebar-tag">STUDIO LOCATION</span>
                 <h4 className="sidebar-heading">Coimbatore Hub</h4>

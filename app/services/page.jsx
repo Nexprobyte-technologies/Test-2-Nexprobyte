@@ -27,9 +27,9 @@ export default function ServicesPage() {
       {/* Services Grid */}
       <section className="section wrap" style={{ paddingTop: '40px' }}>
         <div className="container">
-          <div className="services-catalog-grid">
+          <div className="services-catalog-grid stagger-group">
             {SERVICES.map((s) => (
-              <div key={s.slug} className="service-catalog-card spotlight-card">
+              <div key={s.slug} className="service-catalog-card spotlight-card reveal-up">
                 <div className="catalog-card-header">
                   <div className="catalog-meta">
                     <span className="catalog-num">{s.num}</span>
@@ -83,9 +83,9 @@ export default function ServicesPage() {
       <AllServices />
 
       {/* Custom Scope Callout */}
-      <section className="section wrap" style={{ background: 'rgba(255, 255, 255, 0.02)', padding: '60px 0' }}>
+      <section className="section wrap" style={{ background: 'var(--bg-secondary)', padding: '60px 0' }}>
         <div className="container">
-          <div className="specialized-callout-card spotlight-card">
+          <div className="specialized-callout-card spotlight-card reveal-up">
             <div className="callout-content">
               <span className="badge-tag">Full-Scale Enterprise Infrastructure</span>
               <h2 className="callout-title">

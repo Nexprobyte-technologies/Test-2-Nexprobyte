@@ -46,9 +46,9 @@ export default function BlogIndexPage() {
           </div>
 
           {/* Posts List */}
-          <div className="post-list-wrap">
+          <div className="post-list-wrap stagger-group">
             {filteredPosts.map((post) => (
-              <article key={post.slug} className="post-card-full spotlight-card">
+              <article key={post.slug} className="post-card-full spotlight-card reveal-up">
                 <div className="post-card-media-box">
                   <img
                     src={post.image || '/images/cover-web.jpg'}

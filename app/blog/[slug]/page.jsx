@@ -71,7 +71,7 @@ export default async function BlogDetailPage({ params }) {
         <div className="container">
           <div className="prose-layout-grid">
             {/* Author / Metadata Sidebar */}
-            <aside className="prose-sidebar">
+            <aside className="prose-sidebar reveal-up">
               <div className="author-card spotlight-card">
                 <img
                   src="/images/testimonial.jpg"
@@ -102,7 +102,7 @@ export default async function BlogDetailPage({ params }) {
             </aside>
 
             {/* Article Prose Body */}
-            <div className="prose-article-body">
+            <div className="prose-article-body reveal-up">
               {post.content.map((item, idx) => (
                 <div key={idx} className="prose-block">
                   {item.h && <h2 className="prose-heading">{item.h}</h2>}
@@ -152,9 +152,9 @@ export default async function BlogDetailPage({ params }) {
       </section>
 
       {/* Keep Reading Section */}
-      <section className="section wrap" style={{ background: 'rgba(255, 255, 255, 0.02)' }}>
+      <section className="section wrap" style={{ background: 'var(--bg-secondary)' }}>
         <div className="container">
-          <div className="section-head">
+          <div className="section-head reveal-up">
             <div className="eyebrow">
               <span className="eyebrow-dot" />
               <span>RECOMMENDED READING</span>
@@ -162,9 +162,9 @@ export default async function BlogDetailPage({ params }) {
             <h2 className="section-title">Keep Reading More Insights</h2>
           </div>
 
-          <div className="related-posts-grid">
+          <div className="related-posts-grid stagger-group">
             {relatedPosts.map((rp) => (
-              <article key={rp.slug} className="related-post-card spotlight-card">
+              <article key={rp.slug} className="related-post-card spotlight-card reveal-up">
                 <div className="rp-media">
                   <img src={rp.image || '/images/cover-web.jpg'} alt={rp.title} className="rp-img" />
                   <span className="rp-badge">{rp.category}</span>

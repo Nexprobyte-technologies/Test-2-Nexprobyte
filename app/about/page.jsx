@@ -26,9 +26,9 @@ export default function AboutPage() {
       {/* Stats Band */}
       <section className="section wrap" style={{ paddingTop: '40px' }}>
         <div className="container">
-          <div className="about-stats-grid">
+          <div className="about-stats-grid stagger-group">
             {STUDIO_STATS.map((s, idx) => (
-              <div key={idx} className="about-stat-card spotlight-card">
+              <div key={idx} className="about-stat-card spotlight-card reveal-up">
                 <div className="stat-number gradient-text">{s.value}</div>
                 <div className="stat-label">{s.label}</div>
                 <div className="stat-desc">{s.desc}</div>
@@ -42,7 +42,7 @@ export default function AboutPage() {
       <section className="section wrap">
         <div className="container">
           <div className="about-story-grid">
-            <div className="about-story-left">
+            <div className="about-story-left reveal-up">
               <div className="eyebrow">
                 <span className="eyebrow-dot" />
                 <span>FOUNDING MISSION</span>
@@ -72,7 +72,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="about-story-right">
+            <div className="about-story-right reveal-up">
               <div className="about-media-stack">
                 <div className="about-media-card">
                   <img
@@ -101,9 +101,9 @@ export default function AboutPage() {
       </section>
 
       {/* Core Studio Principles */}
-      <section className="section wrap" style={{ background: 'rgba(255, 255, 255, 0.02)' }}>
+      <section className="section wrap" style={{ background: 'var(--bg-secondary)' }}>
         <div className="container">
-          <div className="section-head">
+          <div className="section-head reveal-up">
             <div className="eyebrow">
               <span className="eyebrow-dot" />
               <span>CORE VALUES</span>
@@ -114,9 +114,9 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="values-grid">
+          <div className="values-grid stagger-group">
             {STUDIO_VALUES.map((v) => (
-              <div key={v.id} className="value-card spotlight-card">
+              <div key={v.id} className="value-card spotlight-card reveal-up">
                 <div className="value-card-top">
                   <span className="value-num">{v.num}</span>
                   <span className="value-tag">Nexprobyte Standard</span>
@@ -132,7 +132,7 @@ export default function AboutPage() {
       {/* Studio Location & Contact Banner */}
       <section className="section wrap">
         <div className="container">
-          <div className="about-cta-banner spotlight-card">
+          <div className="about-cta-banner spotlight-card reveal-up">
             <div className="cta-banner-content">
               <span className="badge-tag">Visit Our Coimbatore Studio</span>
               <h2 className="cta-banner-title">

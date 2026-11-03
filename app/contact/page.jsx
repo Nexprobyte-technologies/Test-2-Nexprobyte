@@ -77,7 +77,7 @@ export default function ContactPage() {
         <div className="container">
           <div className="contact-page-grid">
             {/* Contact Form Card */}
-            <div className="contact-form-column">
+            <div className="contact-form-column reveal-up">
               {isSubmitted ? (
                 <div className="contact-form-success spotlight-card">
                   <div className="success-icon-badge">✓</div>
@@ -219,7 +219,7 @@ export default function ContactPage() {
             </div>
 
             {/* Sidebar Contact Info */}
-            <aside className="contact-sidebar-column">
+            <aside className="contact-sidebar-column reveal-up">
               <div className="contact-info-card spotlight-card">
                 <span className="info-card-badge">HEADQUARTERS</span>
                 <h3 className="info-card-title">Coimbatore Studio</h3>

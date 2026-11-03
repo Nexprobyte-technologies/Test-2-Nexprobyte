@@ -106,7 +106,7 @@ export default function InterviewDataPage() {
       <section className="section wrap" style={{ paddingTop: '30px' }}>
         <div className="container" style={{ maxWidth: '800px' }}>
           {isSubmitted ? (
-            <div className="application-success-card spotlight-card">
+            <div className="application-success-card spotlight-card reveal-up">
               <div className="success-icon-badge">✓</div>
               <h3 className="success-heading">Candidate Dossier Recorded</h3>
               <p className="success-message">
@@ -137,7 +137,7 @@ export default function InterviewDataPage() {
               </button>
             </div>
           ) : (
-            <form className="application-form spotlight-card" onSubmit={handleSubmit}>
+            <form className="application-form spotlight-card reveal-up" onSubmit={handleSubmit}>
               <div className="form-header">
                 <span className="badge-tag">OFFICIAL INTAKE</span>
                 <h2 className="form-title">Candidate Details Form</h2>

@@ -77,7 +77,7 @@ export default async function ServiceDetailPage({ params }) {
       <section className="section wrap" style={{ paddingTop: '50px' }}>
         <div className="container">
           <div className="service-scope-grid">
-            <div className="service-scope-left">
+            <div className="service-scope-left reveal-up">
               <div className="eyebrow">
                 <span className="eyebrow-dot" />
                 <span>EXCELLENCE IN EXECUTION</span>
@@ -87,9 +87,9 @@ export default async function ServiceDetailPage({ params }) {
 
               <div className="scope-features-block">
                 <h3 className="scope-subtitle">Core Technical &amp; Operational Features</h3>
-                <div className="scope-features-grid">
+                <div className="scope-features-grid stagger-group">
                   {service.features.map((feat, idx) => (
-                    <div key={idx} className="scope-feature-item">
+                    <div key={idx} className="scope-feature-item reveal-up">
                       <div className="feature-icon-box">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" strokeWidth="2.5">
                           <polyline points="20 6 9 17 4 12" />
@@ -103,9 +103,9 @@ export default async function ServiceDetailPage({ params }) {
 
               <div className="scope-deliverables-block">
                 <h3 className="scope-subtitle">Turnkey Project Deliverables</h3>
-                <div className="scope-deliverables-grid">
+                <div className="scope-deliverables-grid stagger-group">
                   {service.deliverables.map((del, idx) => (
-                    <div key={idx} className="scope-deliverable-card spotlight-card">
+                    <div key={idx} className="scope-deliverable-card spotlight-card reveal-up">
                       <span className="del-num">DEL-0{idx + 1}</span>
                       <h4 className="del-name">{del}</h4>
                       <p className="del-guarantee">Production Ready • Full Source &amp; IP Ownership</p>
@@ -116,7 +116,7 @@ export default async function ServiceDetailPage({ params }) {
             </div>
 
             {/* Sidebar Inquiry Card */}
-            <div className="service-scope-sidebar">
+            <div className="service-scope-sidebar reveal-up">
               <div className="service-inquiry-card spotlight-card">
                 <span className="inquiry-tag">DIRECT STUDIO ACCESS</span>
                 <h3 className="inquiry-title">Ready to launch {service.title}?</h3>
@@ -152,9 +152,9 @@ export default async function ServiceDetailPage({ params }) {
       </section>
 
       {/* Cross-linking other services */}
-      <section className="section wrap" style={{ background: 'rgba(255, 255, 255, 0.02)' }}>
+      <section className="section wrap" style={{ background: 'var(--bg-secondary)' }}>
         <div className="container">
-          <div className="section-head">
+          <div className="section-head reveal-up">
             <div className="eyebrow">
               <span className="eyebrow-dot" />
               <span>COMPLEMENTARY CAPABILITIES</span>
@@ -162,9 +162,9 @@ export default async function ServiceDetailPage({ params }) {
             <h2 className="section-title">Explore Other Disciplines</h2>
           </div>
 
-          <div className="other-services-grid">
+          <div className="other-services-grid stagger-group">
             {otherServices.map((os) => (
-              <div key={os.slug} className="other-service-card spotlight-card">
+              <div key={os.slug} className="other-service-card spotlight-card reveal-up">
                 <div className="os-meta">
                   <span>{os.num}</span>
                   <span>{os.serif}</span>

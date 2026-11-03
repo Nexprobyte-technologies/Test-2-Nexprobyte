@@ -100,7 +100,7 @@ export default function JobApplicationForm({ defaultJob = '' }) {
 
   if (isSubmitted) {
     return (
-      <div className="application-success-card spotlight-card">
+      <div className="application-success-card spotlight-card reveal-up">
         <div className="success-icon-badge">✓</div>
         <h3 className="success-heading">Application Received!</h3>
         <p className="success-message">
@@ -136,7 +136,7 @@ export default function JobApplicationForm({ defaultJob = '' }) {
   }
 
   return (
-    <form className="application-form spotlight-card" onSubmit={handleSubmit}>
+    <form className="application-form spotlight-card reveal-up" onSubmit={handleSubmit}>
       <div className="form-header">
         <span className="badge-tag">DIRECT APPLICATION</span>
         <h2 className="form-title">Join Nexprobyte Engineering</h2>

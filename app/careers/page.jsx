@@ -35,7 +35,7 @@ export default function CareersPage() {
       {/* Perks Grid */}
       <section className="section wrap" style={{ paddingTop: '40px' }}>
         <div className="container">
-          <div className="careers-perks-box spotlight-card">
+          <div className="careers-perks-box spotlight-card reveal-up">
             <div className="perks-header">
               <span className="badge-tag">LIFE AT NEXPROBYTE</span>
               <h2 className="perks-title">Why Builders Choose Our Studio</h2>
@@ -44,9 +44,9 @@ export default function CareersPage() {
               </p>
             </div>
 
-            <div className="perks-items-grid">
+            <div className="perks-items-grid stagger-group">
               {perks.map((p, idx) => (
-                <div key={idx} className="perk-item-box">
+                <div key={idx} className="perk-item-box reveal-up">
                   <div className="perk-check">✓</div>
                   <span className="perk-label">{p}</span>
                 </div>
@@ -59,7 +59,7 @@ export default function CareersPage() {
       {/* Openings Section */}
       <section className="section wrap">
         <div className="container">
-          <div className="section-head">
+          <div className="section-head reveal-up">
             <div className="eyebrow">
               <span className="eyebrow-dot" />
               <span>CURRENT OPENINGS</span>
@@ -70,9 +70,9 @@ export default function CareersPage() {
             </p>
           </div>
 
-          <div className="careers-jobs-list">
+          <div className="careers-jobs-list stagger-group">
             {JOBS.map((job) => (
-              <div key={job.slug} className="career-job-card spotlight-card">
+              <div key={job.slug} className="career-job-card spotlight-card reveal-up">
                 <div className="job-card-top-row">
                   <div>
                     <span className="job-dept-pill">{job.dept}</span>
@@ -107,7 +107,7 @@ export default function CareersPage() {
           </div>
 
           {/* Spontaneous Application Box */}
-          <div className="spontaneous-card spotlight-card" style={{ marginTop: '40px' }}>
+          <div className="spontaneous-card spotlight-card reveal-up" style={{ marginTop: '40px' }}>
             <div>
               <h3 className="spontaneous-title">Don't see your exact role?</h3>
               <p className="spontaneous-desc">
