@@ -326,12 +326,14 @@ export default function HeroCords() {
       }
     }
 
+    const eventCleanups = [];
+
     // Pointer event bindings for squircle cords
     cords.forEach((cord) => {
       const badge = cord.badgeEl;
       if (!badge) return;
 
-      badge.addEventListener('pointerdown', (e) => {
+      const onPointerDown = (e) => {
         e.preventDefault();
         cord.isDragging = true;
         cord.pointerId = e.pointerId;
@@ -344,14 +346,14 @@ export default function HeroCords() {
         cord.grabOffsetX = e.clientX - (rect.left + rect.width * 0.5);
         cord.grabOffsetY = e.clientY - (rect.top + rect.height * 0.5);
         playSquirclePing(cord.freq);
-      });
+      };
 
-      badge.addEventListener('pointermove', (e) => {
+      const onPointerMove = (e) => {
         if (!cord.isDragging) return;
         const stageRect = stage.getBoundingClientRect();
         cord.px = e.clientX - stageRect.left - cord.grabOffsetX;
         cord.py = Math.max(60, e.clientY - stageRect.top - cord.grabOffsetY);
-      });
+      };
 
       const onPointerEnd = (e) => {
         if (cord.isDragging && cord.pointerId === e.pointerId) {
@@ -369,8 +371,17 @@ export default function HeroCords() {
         }
       };
 
+      badge.addEventListener('pointerdown', onPointerDown);
+      badge.addEventListener('pointermove', onPointerMove);
       badge.addEventListener('pointerup', onPointerEnd);
       badge.addEventListener('pointercancel', onPointerEnd);
+
+      eventCleanups.push(() => {
+        badge.removeEventListener('pointerdown', onPointerDown);
+        badge.removeEventListener('pointermove', onPointerMove);
+        badge.removeEventListener('pointerup', onPointerEnd);
+        badge.removeEventListener('pointercancel', onPointerEnd);
+      });
     });
 
     // -------------------------------------------------------------
@@ -530,7 +541,7 @@ export default function HeroCords() {
     }
 
     if (pullBob) {
-      pullBob.addEventListener('pointerdown', (e) => {
+      const onPullPointerDown = (e) => {
         if (e.button && e.button !== 0) return;
         isPullDragging = true;
         pullPointerId = e.pointerId;
@@ -545,7 +556,7 @@ export default function HeroCords() {
         pullStartTime = performance.now();
         pullHasMovedFar = false;
         updatePullPointerCoords(e);
-      });
+      };
 
       const onPullPointerEnd = () => {
         if (!isPullDragging) return;
@@ -587,10 +598,7 @@ export default function HeroCords() {
         if (pullStage) pullStage.classList.remove('is-primed');
       };
 
-      pullBob.addEventListener('pointerup', onPullPointerEnd);
-      pullBob.addEventListener('pointercancel', onPullPointerEnd);
-
-      pullBob.addEventListener('keydown', (e) => {
+      const onPullKeyDown = (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           pullPy = pullRestLength + PULL_THRESHOLD + 14;
@@ -603,6 +611,18 @@ export default function HeroCords() {
             if (pullStage) pullStage.classList.remove('is-primed');
           }, 120);
         }
+      };
+
+      pullBob.addEventListener('pointerdown', onPullPointerDown);
+      pullBob.addEventListener('pointerup', onPullPointerEnd);
+      pullBob.addEventListener('pointercancel', onPullPointerEnd);
+      pullBob.addEventListener('keydown', onPullKeyDown);
+
+      eventCleanups.push(() => {
+        pullBob.removeEventListener('pointerdown', onPullPointerDown);
+        pullBob.removeEventListener('pointerup', onPullPointerEnd);
+        pullBob.removeEventListener('pointercancel', onPullPointerEnd);
+        pullBob.removeEventListener('keydown', onPullKeyDown);
       });
     }
 
@@ -778,10 +798,17 @@ export default function HeroCords() {
     animFrameRef.current = requestAnimationFrame(renderLoop);
 
     return () => {
+      eventCleanups.forEach((fn) => {
+        try { fn(); } catch (_) {}
+      });
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', updateLayout);
       if (heroObserver) heroObserver.disconnect();
       if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+      if (sharedAudioCtx) {
+        try { sharedAudioCtx.close(); } catch (_) {}
+        sharedAudioCtx = null;
+      }
     };
   }, []);
 

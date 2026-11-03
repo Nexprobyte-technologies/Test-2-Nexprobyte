@@ -11,6 +11,7 @@ export default function TalentCardCustomizer() {
   const [isHovered, setIsHovered] = useState(false);
 
   const cardRef = useRef(null);
+  const rafRef = useRef(null);
 
   const roleProfiles = {
     fullstack: {
@@ -34,25 +35,36 @@ export default function TalentCardCustomizer() {
   const currRole = roleProfiles[activeRole] || roleProfiles.fullstack;
 
   const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
+    if (!cardRef.current || rafRef.current) return;
+    const clientX = e.clientX;
+    const clientY = e.clientY;
 
-    const rotY = ((x - centerX) / centerX) * 14;
-    const rotX = -((y - centerY) / centerY) * 14;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = null;
+      if (!cardRef.current) return;
+      const rect = cardRef.current.getBoundingClientRect();
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
 
-    setRotateX(rotX);
-    setRotateY(rotY);
-    setGlareStyle({
-      opacity: 1,
-      background: `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.32) 0%, transparent 65%)`,
+      const rotY = ((x - centerX) / centerX) * 14;
+      const rotX = -((y - centerY) / centerY) * 14;
+
+      setRotateX(rotX);
+      setRotateY(rotY);
+      setGlareStyle({
+        opacity: 1,
+        background: `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.32) 0%, transparent 65%)`,
+      });
     });
   };
 
   const handleMouseLeave = () => {
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
     setIsHovered(false);
     setRotateX(0);
     setRotateY(0);
