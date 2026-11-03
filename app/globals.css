@@ -1219,13 +1219,20 @@ input, textarea, select {
 
 .tech-cord-path {
   fill: none;
-  stroke: #94a3b8;
-  stroke: url(#tech-cord-line-grad);
-  stroke-width: 1.8px;
+  stroke: #64748b;
+  stroke-width: 2px;
   stroke-linecap: round;
   transition: stroke 0.25s ease, filter 0.25s ease;
   will-change: d;
 }
+
+#tech-cord-path-0 { stroke: url(#tech-cord-grad-0); }
+#tech-cord-path-1 { stroke: url(#tech-cord-grad-1); }
+#tech-cord-path-2 { stroke: url(#tech-cord-grad-2); }
+#tech-cord-path-3 { stroke: url(#tech-cord-grad-3); }
+#tech-cord-path-4 { stroke: url(#tech-cord-grad-4); }
+#tech-cord-path-5 { stroke: url(#tech-cord-grad-5); }
+#tech-cord-path-6 { stroke: url(#tech-cord-grad-6); }
 
 .tech-cord-mount {
   display: none !important;
@@ -1272,20 +1279,16 @@ input, textarea, select {
   outline-offset: 3px;
 }
 
-/* Chrome connector ring connecting cord to squircle */
-.squircle-connector-ring {
-  position: absolute;
-  top: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 8px;
-  height: 8px;
-  border: 1.6px solid #cbd5e1;
-  border-radius: 50%;
-  background: #475569;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
-  z-index: 2;
-  pointer-events: none;
+/* Connector ring and bead dots removed per user requirement */
+.squircle-connector-ring,
+.bob-connector-ring,
+.cord-bead {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  pointer-events: none !important;
 }
 
 /* 3D Squircle Body */

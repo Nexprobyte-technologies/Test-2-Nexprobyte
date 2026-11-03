@@ -816,8 +816,6 @@ export default function HeroCords() {
           </defs>
           <path id="cord-path-glow" className="cord-path-glow" d="M 80,0 Q 80,85 80,170" fill="none" stroke="url(#cord-glow-grad)" strokeWidth="4" opacity="0" />
           <path id="cord-path" className="cord-path" d="M 80,0 Q 80,85 80,170" fill="none" stroke="url(#cord-gradient)" strokeWidth="2.2" strokeLinecap="round" />
-          <circle id="cord-bead-1" className="cord-bead" cx="80" cy="55" r="2.5" fill="#cbd5e1" stroke="#475569" strokeWidth="0.8" />
-          <circle id="cord-bead-2" className="cord-bead" cx="80" cy="115" r="2.5" fill="#cbd5e1" stroke="#475569" strokeWidth="0.8" />
         </svg>
         <div
           className="cord-bob-handle"
@@ -827,7 +825,6 @@ export default function HeroCords() {
           aria-label="Pull thread to toggle Turbo Acceleration Mode"
           aria-pressed={turboMode}
         >
-          <div className="bob-connector-ring" aria-hidden="true"></div>
           <div className="bob-capsule">
             <div className="bob-led" id="bob-led">
               <span className="led-core"></span>
@@ -863,23 +860,63 @@ export default function HeroCords() {
       >
         <svg className="tech-cords-svg" id="tech-cords-svg" aria-hidden="true">
           <defs>
-            <linearGradient id="tech-cord-line-grad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="rgba(148, 163, 184, 0.45)" />
-              <stop offset="70%" stopColor="rgba(148, 163, 184, 0.85)" />
-              <stop offset="100%" stopColor="rgba(100, 116, 139, 0.95)" />
+            {/* Vibrant Thread Gradients matching each squircle's authentic theme colors */}
+            {/* 0: Center (Purple) */}
+            <linearGradient id="tech-cord-grad-0" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#64748b" />
+              <stop offset="55%" stopColor="#818cf8" />
+              <stop offset="100%" stopColor="#6366f1" />
             </linearGradient>
-            <filter id="tech-cord-glow" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="2" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
+            {/* 1: Top-Left (Dark Obsidian) */}
+            <linearGradient id="tech-cord-grad-1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#64748b" />
+              <stop offset="55%" stopColor="#3f3f46" />
+              <stop offset="100%" stopColor="#18181b" />
+            </linearGradient>
+            {/* 2: Mid-Left (Vibrant Sunset Orange) */}
+            <linearGradient id="tech-cord-grad-2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#64748b" />
+              <stop offset="55%" stopColor="#ff7b1a" />
+              <stop offset="100%" stopColor="#ea580c" />
+            </linearGradient>
+            {/* 3: Bottom-Left (Mint Emerald) */}
+            <linearGradient id="tech-cord-grad-3" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#64748b" />
+              <stop offset="55%" stopColor="#34d399" />
+              <stop offset="100%" stopColor="#10b981" />
+            </linearGradient>
+            {/* 4: Top-Right (Electric Growth Green) */}
+            <linearGradient id="tech-cord-grad-4" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#64748b" />
+              <stop offset="55%" stopColor="#4ade80" />
+              <stop offset="100%" stopColor="#22c55e" />
+            </linearGradient>
+            {/* 5: Mid-Right (Cobalt Royal Blue) */}
+            <linearGradient id="tech-cord-grad-5" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#64748b" />
+              <stop offset="55%" stopColor="#60a5fa" />
+              <stop offset="100%" stopColor="#2563eb" />
+            </linearGradient>
+            {/* 6: Bottom-Right (Neon Lime) */}
+            <linearGradient id="tech-cord-grad-6" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#64748b" />
+              <stop offset="55%" stopColor="#a3e635" />
+              <stop offset="100%" stopColor="#84cc16" />
+            </linearGradient>
+            {/* Base Saro fallback */}
+            <linearGradient id="tech-cord-line-grad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#94a3b8" />
+              <stop offset="50%" stopColor="#64748b" />
+              <stop offset="100%" stopColor="#475569" />
+            </linearGradient>
           </defs>
-          <path id="tech-cord-path-0" className="tech-cord-path" stroke="url(#tech-cord-line-grad)" strokeWidth="1.8" strokeLinecap="round" fill="none" />
-          <path id="tech-cord-path-1" className="tech-cord-path" stroke="url(#tech-cord-line-grad)" strokeWidth="1.8" strokeLinecap="round" fill="none" />
-          <path id="tech-cord-path-2" className="tech-cord-path" stroke="url(#tech-cord-line-grad)" strokeWidth="1.8" strokeLinecap="round" fill="none" />
-          <path id="tech-cord-path-3" className="tech-cord-path" stroke="url(#tech-cord-line-grad)" strokeWidth="1.8" strokeLinecap="round" fill="none" />
-          <path id="tech-cord-path-4" className="tech-cord-path" stroke="url(#tech-cord-line-grad)" strokeWidth="1.8" strokeLinecap="round" fill="none" />
-          <path id="tech-cord-path-5" className="tech-cord-path" stroke="url(#tech-cord-line-grad)" strokeWidth="1.8" strokeLinecap="round" fill="none" />
-          <path id="tech-cord-path-6" className="tech-cord-path" stroke="url(#tech-cord-line-grad)" strokeWidth="1.8" strokeLinecap="round" fill="none" />
+          <path id="tech-cord-path-0" className="tech-cord-path tech-cord-0" stroke="url(#tech-cord-grad-0)" strokeWidth="2" strokeLinecap="round" fill="none" />
+          <path id="tech-cord-path-1" className="tech-cord-path tech-cord-1" stroke="url(#tech-cord-grad-1)" strokeWidth="2" strokeLinecap="round" fill="none" />
+          <path id="tech-cord-path-2" className="tech-cord-path tech-cord-2" stroke="url(#tech-cord-grad-2)" strokeWidth="2" strokeLinecap="round" fill="none" />
+          <path id="tech-cord-path-3" className="tech-cord-path tech-cord-3" stroke="url(#tech-cord-grad-3)" strokeWidth="2" strokeLinecap="round" fill="none" />
+          <path id="tech-cord-path-4" className="tech-cord-path tech-cord-4" stroke="url(#tech-cord-grad-4)" strokeWidth="2" strokeLinecap="round" fill="none" />
+          <path id="tech-cord-path-5" className="tech-cord-path tech-cord-5" stroke="url(#tech-cord-grad-5)" strokeWidth="2" strokeLinecap="round" fill="none" />
+          <path id="tech-cord-path-6" className="tech-cord-path tech-cord-6" stroke="url(#tech-cord-grad-6)" strokeWidth="2" strokeLinecap="round" fill="none" />
         </svg>
 
         {/* 7 Ceiling Mount Fixtures - Hidden visually so cords hang directly from ceiling with no box */}
@@ -895,7 +932,6 @@ export default function HeroCords() {
         
         {/* 0: Center (Purple - Next.js & React Enterprise ERP & Dashboards) */}
         <div className="tech-cord-squircle squircle-purple" id="tech-badge-0" role="button" tabIndex={0} aria-label="ERP & Analytics Technology Discipline" data-index="0">
-          <div className="squircle-connector-ring" aria-hidden="true"></div>
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
@@ -917,7 +953,6 @@ export default function HeroCords() {
 
         {/* 1: Top-Left (Dark Obsidian - React Atom & Full-Stack Developers) */}
         <div className="tech-cord-squircle squircle-obsidian" id="tech-badge-1" role="button" tabIndex={0} aria-label="Full-Stack Developers Technology Discipline" data-index="1">
-          <div className="squircle-connector-ring" aria-hidden="true"></div>
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
@@ -941,7 +976,6 @@ export default function HeroCords() {
 
         {/* 2: Mid-Left (Vibrant Orange - AI Automation & Agents) */}
         <div className="tech-cord-squircle squircle-orange" id="tech-badge-2" role="button" tabIndex={0} aria-label="AI Automation Technology Discipline" data-index="2">
-          <div className="squircle-connector-ring" aria-hidden="true"></div>
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
@@ -963,7 +997,6 @@ export default function HeroCords() {
 
         {/* 3: Bottom-Left (Mint Emerald - Executive Virtual Assistance) */}
         <div className="tech-cord-squircle squircle-mint" id="tech-badge-3" role="button" tabIndex={0} aria-label="Virtual Assistance Technology Discipline" data-index="3">
-          <div className="squircle-connector-ring" aria-hidden="true"></div>
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
@@ -985,7 +1018,6 @@ export default function HeroCords() {
 
         {/* 4: Top-Right (Electric Green - Dedicated Dev Teams) */}
         <div className="tech-cord-squircle squircle-green" id="tech-badge-4" role="button" tabIndex={0} aria-label="Dedicated Remote Teams Discipline" data-index="4">
-          <div className="squircle-connector-ring" aria-hidden="true"></div>
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
@@ -1007,7 +1039,6 @@ export default function HeroCords() {
 
         {/* 5: Mid-Right (Cobalt Blue - DevOps & Cloud APIs Toggle) */}
         <div className="tech-cord-squircle squircle-blue" id="tech-badge-5" role="button" tabIndex={0} aria-label="DevOps and API Integration Discipline" data-index="5">
-          <div className="squircle-connector-ring" aria-hidden="true"></div>
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
@@ -1029,7 +1060,6 @@ export default function HeroCords() {
 
         {/* 6: Bottom-Right (Lime Green - E-Commerce & Growth) */}
         <div className="tech-cord-squircle squircle-lime" id="tech-badge-6" role="button" tabIndex={0} aria-label="E-Commerce Support Discipline" data-index="6">
-          <div className="squircle-connector-ring" aria-hidden="true"></div>
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
