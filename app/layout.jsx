@@ -109,7 +109,7 @@ export default function RootLayout({ children }) {
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Archivo:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
         <link rel="icon" type="image/png" href="/assets/logo-transparent.png" />

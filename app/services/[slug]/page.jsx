@@ -108,7 +108,7 @@ export default async function ServiceDetailPage({ params }) {
                 <div className="scope-deliverables-grid stagger-group">
                   {service.deliverables.map((del, idx) => (
                     <div key={idx} className="scope-deliverable-card spotlight-card reveal-up">
-                      <span className="del-num">DEL-0{idx + 1}</span>
+                      <span className="del-num">{`DEL-0${idx + 1}`}</span>
                       <h4 className="del-name">{del}</h4>
                       <p className="del-guarantee">Production Ready • Full Source &amp; IP Ownership</p>
                     </div>

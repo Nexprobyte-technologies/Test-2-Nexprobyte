@@ -131,7 +131,7 @@ export default function Footer() {
             aria-label="Coimbatore Wikipedia"
           >
             <img
-              src="/assets/cropped-cbe-blue-logo-5.png"
+              src="/assets/cbe-emblem.png"
               alt="Coimbatore Emblem"
               className="footer-center-emblem"
               loading="lazy"

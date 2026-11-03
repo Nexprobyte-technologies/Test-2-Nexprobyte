@@ -695,8 +695,14 @@ export default function HeroCords() {
         if (!cord.badgeEl || !cord.pathEl) return;
 
         if (!cord.isDragging) {
-          const targetX = cord.restX;
-          const targetY = cord.restY;
+          // Slow organic harmonic ambient sway for continuous natural movement (shake aagite irukanum)
+          const swaySpeed = 1.15;
+          const swayX = Math.sin(tSec * swaySpeed + cord.swayPhase) * (cord.swayAmp * 0.85) +
+                        Math.cos(tSec * 0.65 + cord.swayPhase * 1.4) * 2.2;
+          const swayY = Math.abs(Math.sin(tSec * swaySpeed + cord.swayPhase)) * 1.8;
+
+          const targetX = cord.restX + swayX;
+          const targetY = cord.restY + swayY;
 
           const fx = (targetX - cord.px) * SPRING_K;
           const fy = (targetY - cord.py) * SPRING_K;
@@ -704,15 +710,8 @@ export default function HeroCords() {
           cord.vx = (cord.vx + fx) * DAMPING;
           cord.vy = (cord.vy + fy) * DAMPING;
 
-          if (Math.abs(cord.vx) < 0.005 && Math.abs(cord.vy) < 0.005 && Math.abs(targetX - cord.px) < 0.05 && Math.abs(targetY - cord.py) < 0.05) {
-            cord.px = targetX;
-            cord.py = targetY;
-            cord.vx = 0;
-            cord.vy = 0;
-          } else {
-            cord.px += cord.vx;
-            cord.py += cord.vy;
-          }
+          cord.px += cord.vx;
+          cord.py += cord.vy;
         }
 
         const tiltAngle = Math.max(-18, Math.min(18, (cord.px - cord.anchorX) * 0.12));

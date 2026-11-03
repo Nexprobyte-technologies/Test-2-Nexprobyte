@@ -4,10 +4,10 @@
   "description": "Reverse engineered high-fidelity Next.js web application for Nexprobyte Technologies",
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/clean_build.js && next build",
+    "build": "next build",
     "start": "node server.js",
     "serve": "node server.js",
-    "test": "node verify_build.js && node verify_animations.js"
+    "test": "node verify_build.js && node verify_animations.js && node scripts/qa_verification_suite.js"
   },
   "dependencies": {
     "framer-motion": "^12.43.0",

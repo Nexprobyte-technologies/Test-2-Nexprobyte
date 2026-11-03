@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -10,25 +10,26 @@ export default function Navbar() {
   const [hoveredNav, setHoveredNav] = useState(null);
   const [whatWeDoOpen, setWhatWeDoOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const progressBarRef = useRef(null);
 
   useEffect(() => {
     let lastScrollY = typeof window !== 'undefined' ? window.scrollY : 0;
+    let ticking = false;
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
       // Always normal near top of page
       if (currentScrollY <= 25) {
-        setIsScrolled(false);
+        setIsScrolled((prev) => (prev ? false : prev));
       } else {
         const delta = currentScrollY - lastScrollY;
         if (delta > 6 && currentScrollY > 70) {
           // Scrolling down -> minimize header
-          setIsScrolled(true);
+          setIsScrolled((prev) => (!prev ? true : prev));
         } else if (delta < -6) {
           // Scrolling UP -> restore header to normal!
-          setIsScrolled(false);
+          setIsScrolled((prev) => (prev ? false : prev));
         }
       }
 
@@ -36,12 +37,24 @@ export default function Navbar() {
 
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = docHeight > 0 ? Math.min(Math.max(currentScrollY / docHeight, 0), 1) : 0;
-      setScrollProgress(progress);
+      if (progressBarRef.current) {
+        progressBarRef.current.style.transform = `scaleX(${progress})`;
+      }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   // Prevent background scroll when mobile drawer is open
@@ -238,7 +251,8 @@ export default function Navbar() {
         className="scroll-progress-bar"
         id="scroll-progress"
         aria-hidden="true"
-        style={{ transform: `scaleX(${scrollProgress})` }}
+        ref={progressBarRef}
+        style={{ transform: 'scaleX(0)' }}
       />
 
       {/* Floating Navigation Dock */}

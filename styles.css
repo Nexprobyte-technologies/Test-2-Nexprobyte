@@ -4494,6 +4494,30 @@ input, textarea, select {
   z-index: 9990;
 }
 
+@keyframes nexi-fab-jump {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 10px 28px rgba(0, 102, 255, 0.35), 0 2px 8px rgba(0, 0, 0, 0.12);
+  }
+  14% {
+    transform: translateY(2px) scale(1.04, 0.95);
+  }
+  24% {
+    transform: translateY(-16px) scale(0.96, 1.08);
+    box-shadow: 0 24px 44px rgba(0, 102, 255, 0.52), 0 6px 14px rgba(0, 0, 0, 0.18);
+  }
+  34% {
+    transform: translateY(1.5px) scale(1.03, 0.97);
+  }
+  42% {
+    transform: translateY(-5px) scale(0.99, 1.02);
+  }
+  50% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 10px 28px rgba(0, 102, 255, 0.35), 0 2px 8px rgba(0, 0, 0, 0.12);
+  }
+}
+
 .nexi-fab-btn {
   display: flex;
   align-items: center;
@@ -4508,8 +4532,10 @@ input, textarea, select {
   font-family: var(--font-sans);
   font-size: 0.92rem;
   font-weight: 600;
-  transition: background var(--transition-medium), box-shadow var(--transition-medium);
+  transition: background var(--transition-medium), box-shadow var(--transition-medium), transform var(--transition-medium);
   position: relative;
+  animation: nexi-fab-jump 3.2s cubic-bezier(0.28, 0.84, 0.42, 1) infinite;
+  will-change: transform, box-shadow;
 }
 
 .nexi-header-info {
@@ -4728,6 +4754,30 @@ input, textarea, select {
   z-index: 9980;
 }
 
+@keyframes call-fab-jump {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+  }
+  14% {
+    transform: translateY(2px) scale(1.04, 0.95);
+  }
+  24% {
+    transform: translateY(-16px) scale(0.96, 1.08);
+    box-shadow: 0 24px 44px rgba(8, 125, 193, 0.55), 0 6px 14px rgba(0, 0, 0, 0.22);
+  }
+  34% {
+    transform: translateY(1.5px) scale(1.03, 0.97);
+  }
+  42% {
+    transform: translateY(-5px) scale(0.99, 1.02);
+  }
+  50% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+  }
+}
+
 .floating-call-btn {
   display: flex;
   align-items: center;
@@ -4745,9 +4795,13 @@ input, textarea, select {
   text-decoration: none;
   transition: transform var(--transition-medium), box-shadow var(--transition-medium);
   position: relative;
+  animation: call-fab-jump 3.2s cubic-bezier(0.28, 0.84, 0.42, 1) 1.6s infinite;
+  will-change: transform, box-shadow;
 }
 
 .floating-call-btn:hover {
+  animation-play-state: paused;
+  transform: translateY(-4px) scale(1.08);
   transform: none;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
   border-color: rgba(0, 102, 255, 0.3);

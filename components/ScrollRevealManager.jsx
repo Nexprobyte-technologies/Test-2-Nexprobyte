@@ -93,12 +93,17 @@ export default function ScrollRevealManager() {
 
     scheduledTimers = [t1, t2, t3];
 
-    // Scroll and resize listeners as secondary triggers
-    const handleScrollOrResize = () => {
-      scanAndReveal();
+    // Resize listener throttled with RAF (No scroll listener needed: IntersectionObserver handles scroll off-thread with zero layout thrashing)
+    let resizeRaf = null;
+    const handleResize = () => {
+      if (!resizeRaf) {
+        resizeRaf = requestAnimationFrame(() => {
+          resizeRaf = null;
+          scanAndReveal();
+        });
+      }
     };
-    window.addEventListener('scroll', handleScrollOrResize, { passive: true });
-    window.addEventListener('resize', handleScrollOrResize, { passive: true });
+    window.addEventListener('resize', handleResize, { passive: true });
 
     // -------------------------------------------------------------
     // 2. SPOTLIGHT CARD CURSOR GLOW TRACKER (Unified for All Pages)
@@ -130,8 +135,8 @@ export default function ScrollRevealManager() {
       if (safetyTimer) clearTimeout(safetyTimer);
       if (observer) observer.disconnect();
       if (mutationObserver) mutationObserver.disconnect();
-      window.removeEventListener('scroll', handleScrollOrResize);
-      window.removeEventListener('resize', handleScrollOrResize);
+      if (resizeRaf) cancelAnimationFrame(resizeRaf);
+      window.removeEventListener('resize', handleResize);
       cards.forEach((card) => {
         card.removeEventListener('mousemove', handleMouseMove);
       });
