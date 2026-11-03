@@ -318,11 +318,11 @@ input, textarea, select {
 }
 
 /* ==========================================================================
-   1. FLOATING NAVIGATION DOCK
+   1. FLOATING NAVIGATION DOCK (SARO-STYLE SCROLL MINIMIZATION)
    ========================================================================== */
 .nav-wrapper {
   position: fixed;
-  top: 16px;
+  top: 18px;
   left: 0;
   right: 0;
   z-index: 1000;
@@ -330,6 +330,11 @@ input, textarea, select {
   justify-content: center;
   padding: 0 16px;
   pointer-events: none;
+  transition: top 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-wrapper.scrolled {
+  top: 10px;
 }
 
 .nav-dock {
@@ -337,16 +342,16 @@ input, textarea, select {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 8px 6px 14px;
+  padding: 7px 10px 7px 16px;
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: var(--radius-full);
   box-shadow: var(--shadow-dock);
-  transition: transform var(--transition-medium), background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   animation: nav-dock-enter 0.8s var(--ease-framer) both;
-  will-change: transform, box-shadow;
+  will-change: transform, box-shadow, padding;
 }
 
 @keyframes nav-dock-enter {
@@ -364,13 +369,15 @@ input, textarea, select {
   border-color: rgba(0, 0, 0, 0.14);
 }
 
+/* Saro-style Minimized Floating Dock on Scroll */
 .nav-dock.scrolled {
+  padding: 4px 6px 4px 12px;
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(24px) saturate(200%);
   -webkit-backdrop-filter: blur(24px) saturate(200%);
   border-color: rgba(0, 0, 0, 0.12);
-  box-shadow: 0 16px 40px -15px rgba(20, 20, 20, 0.2), 0 2px 6px rgba(0, 0, 0, 0.05);
-  transform: translateY(0) scale(0.985);
+  box-shadow: 0 14px 34px -10px rgba(20, 20, 20, 0.18), 0 2px 6px rgba(0, 0, 0, 0.05);
+  gap: 4px;
 }
 
 .nav-brand {
@@ -382,6 +389,34 @@ input, textarea, select {
   letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-right: 8px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-dock.scrolled .nav-brand {
+  margin-right: 4px;
+  gap: 6px;
+}
+
+.nav-dock.scrolled .brand-title {
+  font-size: 0.86rem;
+}
+
+.nav-dock.scrolled .brand-live-pill {
+  opacity: 0;
+  max-height: 0;
+  margin: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  overflow: hidden;
+}
+
+.nav-dock.scrolled .nav-links {
+  gap: 0;
+}
+
+.nav-dock.scrolled .nav-link {
+  padding: 6px 11px;
+  font-size: 0.82rem;
 }
 
 .brand-icon {
@@ -396,7 +431,14 @@ input, textarea, select {
   padding: 3px;
   overflow: hidden;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-dock.scrolled .brand-icon {
+  width: 25px;
+  height: 25px;
+  border-radius: 6px;
+  padding: 2px;
 }
 
 .brand-icon .brand-logo-img {
@@ -3309,6 +3351,10 @@ input, textarea, select {
   .nav-wrapper {
     top: 14px;
     padding: 0 16px;
+    transition: top 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .nav-wrapper.scrolled {
+    top: 8px;
   }
   .nav-dock {
     width: 100%;
@@ -3316,6 +3362,31 @@ input, textarea, select {
     justify-content: space-between;
     padding: 6px 12px 6px 14px;
     height: 54px;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .nav-dock.scrolled {
+    max-width: 380px;
+    height: 42px;
+    padding: 3px 8px 3px 12px;
+    box-shadow: 0 10px 28px -6px rgba(20, 20, 20, 0.22), 0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+  .nav-dock.scrolled .brand-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .nav-dock.scrolled .brand-title {
+    font-size: 0.84rem;
+  }
+  .nav-dock.scrolled .brand-live-pill {
+    display: none !important;
+  }
+  .nav-dock.scrolled .nav-hamburger {
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+  }
+  .nav-dock.scrolled .ham-line {
+    width: 15px;
   }
   .nav-links, .nav-actions .btn-primary-sm {
     display: none;
@@ -4965,12 +5036,61 @@ input, textarea, select {
   z-index: -1;
   pointer-events: none;
 }
+.nav-call-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 220px;
+  opacity: 1;
+  white-space: nowrap;
+}
+.nav-call-btn:hover {
+  color: var(--accent-blue);
+  border-color: var(--accent-blue);
+  background: var(--accent-blue-light);
+}
+
+/* Saro-style dock minimize: smoothly collapse call button on scroll */
+.nav-dock.scrolled .nav-call-btn {
+  max-width: 0;
+  padding: 0;
+  margin: 0;
+  border-color: transparent;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transform: scale(0.85);
+}
+
 .nav-cta-btn {
   position: relative;
   overflow: hidden;
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-dock.scrolled .nav-cta-btn {
+  height: 33px;
+  padding: 0 13px;
+  font-size: 0.78rem;
+  gap: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+.nav-dock.scrolled .nav-cta-btn .cta-arrow {
+  width: 12px;
+  height: 12px;
 }
 .cta-shimmer-sweep {
   position: absolute;

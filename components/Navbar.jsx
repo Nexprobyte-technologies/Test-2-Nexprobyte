@@ -115,7 +115,7 @@ export default function Navbar() {
 
       {/* Floating Navigation Dock with Framer Motion Entrance Animation */}
       <motion.header
-        className="nav-wrapper"
+        className={`nav-wrapper ${isScrolled ? 'scrolled' : ''}`}
         initial={{ y: -45, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -124,10 +124,10 @@ export default function Navbar() {
           className={`nav-dock ${isScrolled ? 'scrolled' : ''}`}
           id="main-nav"
           animate={{
-            scale: isScrolled ? 0.985 : 1,
-            y: isScrolled ? 2 : 0,
+            scale: isScrolled ? 0.97 : 1,
+            y: isScrolled ? -1 : 0,
           }}
-          transition={{ duration: 0.25, ease: 'easeOut' }}
+          transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
         >
           {/* Logo with Live Status Indicator */}
           <Link href="/" className="nav-brand" aria-label="Nexprobyte Technologies">

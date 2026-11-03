@@ -116,16 +116,16 @@ function initScrollNav() {
     });
   }
 
+  const navWrapper = document.querySelector('.nav-wrapper');
+
   function onScroll() {
-    // Fixed dock scroll behavior: subtle scaling/elevation/blur shift on scroll
-    if (window.scrollY > 30) {
+    // Saro-style dock minimize on scroll
+    if (window.scrollY > 25) {
       navDock.classList.add('scrolled');
-      navDock.style.background = 'rgba(255, 255, 255, 0.94)';
-      navDock.style.boxShadow = '0 16px 40px -15px rgba(20, 20, 20, 0.2), 0 2px 6px rgba(0, 0, 0, 0.05)';
+      if (navWrapper) navWrapper.classList.add('scrolled');
     } else {
       navDock.classList.remove('scrolled');
-      navDock.style.background = 'rgba(255, 255, 255, 0.85)';
-      navDock.style.boxShadow = 'var(--shadow-dock)';
+      if (navWrapper) navWrapper.classList.remove('scrolled');
     }
 
     // ScrollSpy active link detection
