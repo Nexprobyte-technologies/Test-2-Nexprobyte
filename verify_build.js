@@ -199,8 +199,8 @@ requiredCssRules.forEach(rule => {
 
 // 8. Verify Official Logo Integration
 console.log('\n--- Checking Official Company Logo Integration ---');
-const logoPngPath = path.join(__dirname, 'assets', 'logo.png');
-const logoTransPath = path.join(__dirname, 'assets', 'logo-transparent.png');
+const logoPngPath = path.join(__dirname, 'public', 'assets', 'logo.png');
+const logoTransPath = path.join(__dirname, 'public', 'assets', 'logo-transparent.png');
 
 if (fs.existsSync(logoPngPath) && fs.statSync(logoPngPath).size > 0) {
   console.log(`  ✓ assets/logo.png verified (${fs.statSync(logoPngPath).size} bytes)`);
