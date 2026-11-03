@@ -63,7 +63,7 @@ export default function HeroCords() {
         id: 4,
         slot: 'top-right',
         name: 'Dedicated Dev Teams',
-        sub: 'Scale Engineering in 48 Hours →',
+        sub: 'Scale Engineering On-Demand →',
         theme: 'squircle-green',
         sparkColors: ['#22c55e', '#4ade80', '#86efac', '#ffffff'],
         swayPhase: 4.5,
@@ -477,7 +477,7 @@ export default function HeroCords() {
     function toggleTurbo() {
       setTurboMode((prev) => {
         const next = !prev;
-        if (pullBobState) pullBobState.textContent = next ? 'TURBO ACTIVE' : '48H READY';
+        if (pullBobState) pullBobState.textContent = next ? 'TURBO ACTIVE' : 'READY';
         if (pullBobTag) pullBobTag.textContent = next ? 'TURBO' : 'PULL';
         return next;
       });
@@ -606,12 +606,10 @@ export default function HeroCords() {
       });
     }
 
-    // Window level cursor listeners
+    // Window level cursor listeners (Mouse parallax disabled per user request so cursor shake does not move threads)
     const handleMouseMove = (e) => {
-      const normX = (e.clientX / window.innerWidth) * 2 - 1;
-      const normY = (e.clientY / window.innerHeight) * 2 - 1;
-      targetParallaxX = normX * 14;
-      targetParallaxY = normY * 10;
+      targetParallaxX = 0;
+      targetParallaxY = 0;
 
       if (isPullDragging) {
         updatePullPointerCoords(e);
@@ -623,8 +621,8 @@ export default function HeroCords() {
         const pointerY = (e.clientY - rect.top) / scaleY;
         const dist = Math.hypot(pointerX - pullPx, pointerY - pullPy);
         if (dist < 100) {
-          pullMagneticX = (pointerX - pullPx) * 0.12;
-          pullMagneticY = Math.min(14, Math.max(0, (pointerY - pullPy) * 0.12));
+          pullMagneticX = (pointerX - pullPx) * 0.08;
+          pullMagneticY = Math.min(10, Math.max(0, (pointerY - pullPy) * 0.08));
         } else {
           pullMagneticX = 0;
           pullMagneticY = 0;
@@ -636,6 +634,22 @@ export default function HeroCords() {
     window.addEventListener('resize', updateLayout);
     updateLayout();
 
+    // IntersectionObserver to pause physics loop when hero is off-screen (Massive Performance Boost)
+    let isHeroVisible = true;
+    let heroObserver = null;
+    if (typeof IntersectionObserver !== 'undefined') {
+      heroObserver = new IntersectionObserver(
+        ([entry]) => {
+          isHeroVisible = entry.isIntersecting;
+          if (isHeroVisible && !animFrameRef.current) {
+            animFrameRef.current = requestAnimationFrame(renderLoop);
+          }
+        },
+        { threshold: 0.05 }
+      );
+      heroObserver.observe(stage);
+    }
+
     // -------------------------------------------------------------
     // PART C: UNIFIED HIGH-PERFORMANCE PHYSICS ANIMATION LOOP
     // -------------------------------------------------------------
@@ -643,8 +657,13 @@ export default function HeroCords() {
     const DAMPING = 0.86;
 
     function renderLoop(time) {
-      currentParallaxX += (targetParallaxX - currentParallaxX) * 0.08;
-      currentParallaxY += (targetParallaxY - currentParallaxY) * 0.08;
+      if (!isHeroVisible) {
+        animFrameRef.current = null;
+        return;
+      }
+
+      currentParallaxX = 0;
+      currentParallaxY = 0;
 
       const tSec = time * 0.0015;
       const isMobile = stageWidth < 768;
@@ -656,11 +675,8 @@ export default function HeroCords() {
         if (!cord.badgeEl || !cord.pathEl) return;
 
         if (!cord.isDragging) {
-          const swayX = Math.sin(tSec + cord.swayPhase) * cord.swayAmp;
-          const swayY = Math.cos(tSec * 1.5 + cord.swayPhase) * (cord.swayAmp * 0.25);
-
-          const targetX = cord.restX + swayX + currentParallaxX;
-          const targetY = cord.restY + swayY + currentParallaxY;
+          const targetX = cord.restX;
+          const targetY = cord.restY;
 
           const fx = (targetX - cord.px) * SPRING_K;
           const fy = (targetY - cord.py) * SPRING_K;
@@ -668,8 +684,15 @@ export default function HeroCords() {
           cord.vx = (cord.vx + fx) * DAMPING;
           cord.vy = (cord.vy + fy) * DAMPING;
 
-          cord.px += cord.vx;
-          cord.py += cord.vy;
+          if (Math.abs(cord.vx) < 0.005 && Math.abs(cord.vy) < 0.005 && Math.abs(targetX - cord.px) < 0.05 && Math.abs(targetY - cord.py) < 0.05) {
+            cord.px = targetX;
+            cord.py = targetY;
+            cord.vx = 0;
+            cord.vy = 0;
+          } else {
+            cord.px += cord.vx;
+            cord.py += cord.vy;
+          }
         }
 
         const tiltAngle = Math.max(-18, Math.min(18, (cord.px - cord.anchorX) * 0.12));
@@ -757,6 +780,7 @@ export default function HeroCords() {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', updateLayout);
+      if (heroObserver) heroObserver.disconnect();
       if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
     };
   }, []);
@@ -811,7 +835,7 @@ export default function HeroCords() {
             </div>
             <div className="bob-content">
               <span className="bob-tag" id="bob-tag">PULL</span>
-              <span className="bob-state" id="bob-state">{turboMode ? 'TURBO ACTIVE' : '48H READY'}</span>
+              <span className="bob-state" id="bob-state">{turboMode ? 'TURBO ACTIVE' : 'READY'}</span>
             </div>
             <div className="bob-icon">
               <svg className="bob-arrow-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -875,12 +899,9 @@ export default function HeroCords() {
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 38 57" fill="none">
-                <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5Z" fill="#ffffff" fillOpacity="0.95"/>
-                <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#ffffff" fillOpacity="0.85"/>
-                <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z" fill="#ffffff" fillOpacity="0.9"/>
-                <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z" fill="#ffffff"/>
-                <path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z" fill="#ffffff" fillOpacity="0.9"/>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2.5C6.75 2.5 2.5 6.75 2.5 12s4.25 9.5 9.5 9.5 9.5-4.25 9.5-9.5H12V2.5z" fill="#ffffff"/>
+                <path d="M14.5 2.5V9.5H21.5C21.5 5.63 18.37 2.5 14.5 2.5Z" fill="#ffffff" fillOpacity="0.8"/>
               </svg>
             </div>
           </div>
@@ -900,11 +921,11 @@ export default function HeroCords() {
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <ellipse cx="12" cy="12" rx="10" ry="3.8" stroke="#61dafb" strokeWidth="1.8" transform="rotate(0 12 12)" />
-                <ellipse cx="12" cy="12" rx="10" ry="3.8" stroke="#61dafb" strokeWidth="1.8" transform="rotate(60 12 12)" />
-                <ellipse cx="12" cy="12" rx="10" ry="3.8" stroke="#61dafb" strokeWidth="1.8" transform="rotate(120 12 12)" />
-                <circle cx="12" cy="12" r="2.2" fill="#61dafb" />
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2">
+                <circle cx="12" cy="7.5" r="4" strokeLinecap="round"/>
+                <circle cx="7.5" cy="15.5" r="4" strokeLinecap="round"/>
+                <circle cx="16.5" cy="15.5" r="4" strokeLinecap="round"/>
+                <circle cx="12" cy="12" r="1.5" fill="#ffffff" stroke="none"/>
               </svg>
             </div>
           </div>
@@ -924,10 +945,9 @@ export default function HeroCords() {
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2L14.4 8.6L21 11L14.4 13.4L12 20L9.6 13.4L3 11L9.6 8.6L12 2Z" fill="#ffffff" />
-                <circle cx="19" cy="5" r="2" fill="#ffedd5" />
-                <circle cx="5" cy="19" r="1.5" fill="#ffedd5" />
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="18 14 12 8 6 14" />
+                <polyline points="18 19 12 13 6 19" />
               </svg>
             </div>
           </div>
@@ -941,16 +961,15 @@ export default function HeroCords() {
           <div className="squircle-sparks" id="tech-sparks-2" aria-hidden="true"></div>
         </div>
 
-        {/* 3: Bottom-Left (Mint Emerald - Flutter & Mobile Apps) */}
+        {/* 3: Bottom-Left (Mint Emerald - Executive Virtual Assistance) */}
         <div className="tech-cord-squircle squircle-mint" id="tech-badge-3" role="button" tabIndex={0} aria-label="Virtual Assistance Technology Discipline" data-index="3">
           <div className="squircle-connector-ring" aria-hidden="true"></div>
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M14.31 2L4.03 12.28l3.18 3.18L19.5 2h-5.19z" fill="#ffffff" />
-                <path d="M14.31 12.28L9.54 17.05l3.18 3.18 1.59-1.59 4.77-4.77h-4.77z" fill="#ffffff" fillOpacity="0.8" />
-                <path d="M9.54 17.05L14.31 21.82h5.19l-6.76-6.76-3.2 1.99z" fill="#ffffff" />
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="3.6" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
               </svg>
             </div>
           </div>
@@ -964,15 +983,15 @@ export default function HeroCords() {
           <div className="squircle-sparks" id="tech-sparks-3" aria-hidden="true"></div>
         </div>
 
-        {/* 4: Top-Right (Electric Green - Python & Core Engineering) */}
+        {/* 4: Top-Right (Electric Green - Dedicated Dev Teams) */}
         <div className="tech-cord-squircle squircle-green" id="tech-badge-4" role="button" tabIndex={0} aria-label="Dedicated Remote Teams Discipline" data-index="4">
           <div className="squircle-connector-ring" aria-hidden="true"></div>
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="#ffffff">
-                <path d="M11.91 2c-4.22 0-3.95 1.83-3.95 1.83l.01 1.9h4.03v.57H6.38s-2.58.29-2.58 3.96c0 3.66 2.26 3.82 2.26 3.82h1.34v-1.89s-.07-2.26 2.22-2.26h3.83s2.14.03 2.14-2.14V4.14S16.13 2 11.91 2zm-1.22 1.22a.77.77 0 1 1 0 1.54.77.77 0 0 1 0-1.54z" />
-                <path d="M12.09 22c4.22 0 3.95-1.83 3.95-1.83l-.01-1.9h-4.03v-.57h5.61s2.58-.29 2.58-3.96c0-3.66-2.26-3.82-2.26-3.82h-1.34v1.89s.07 2.26-2.22 2.26H10.54s-2.14-.03-2.14 2.14v3.66S7.87 22 12.09 22zm1.22-1.22a.77.77 0 1 1 0-1.54.77.77 0 0 1 0 1.54z" fillOpacity="0.85" />
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
               </svg>
             </div>
           </div>
@@ -980,7 +999,7 @@ export default function HeroCords() {
             <span className="tooltip-indicator"></span>
             <div className="tooltip-text">
               <strong>Dedicated Dev Teams</strong>
-              <span>Scale Engineering in 48 Hours &rarr;</span>
+              <span>Scale Engineering On-Demand &rarr;</span>
             </div>
           </div>
           <div className="squircle-sparks" id="tech-sparks-4" aria-hidden="true"></div>
@@ -993,8 +1012,8 @@ export default function HeroCords() {
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <rect x="2" y="6" width="20" height="12" rx="6" stroke="#ffffff" strokeWidth="2.5"/>
-                <circle cx="16" cy="12" r="3.5" fill="#ffffff"/>
+                <rect x="2.5" y="6.5" width="19" height="11" rx="5.5" stroke="#ffffff" strokeWidth="2.4"/>
+                <circle cx="8" cy="12" r="3.2" fill="#ffffff"/>
               </svg>
             </div>
           </div>
@@ -1008,16 +1027,15 @@ export default function HeroCords() {
           <div className="squircle-sparks" id="tech-sparks-5" aria-hidden="true"></div>
         </div>
 
-        {/* 6: Bottom-Right (Lime Green - Shopify & E-Commerce Management) */}
+        {/* 6: Bottom-Right (Lime Green - E-Commerce & Growth) */}
         <div className="tech-cord-squircle squircle-lime" id="tech-badge-6" role="button" tabIndex={0} aria-label="E-Commerce Support Discipline" data-index="6">
           <div className="squircle-connector-ring" aria-hidden="true"></div>
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#111827" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
               </svg>
             </div>
           </div>
@@ -1025,7 +1043,7 @@ export default function HeroCords() {
             <span className="tooltip-indicator"></span>
             <div className="tooltip-text">
               <strong>E-Commerce Management</strong>
-              <span>Shopify, WooCommerce &amp; Ops &rarr;</span>
+              <span>Shopify, Growth &amp; Ops &rarr;</span>
             </div>
           </div>
           <div className="squircle-sparks" id="tech-sparks-6" aria-hidden="true"></div>

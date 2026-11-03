@@ -57,13 +57,16 @@ export default function ScrollRevealManager() {
       '.spotlight-card, .platform-card, .service-card, .pricing-card, .feature-folder-card'
     );
 
+    let rafId = null;
     const handleMouseMove = (e) => {
+      if (rafId) return;
       const card = e.currentTarget;
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      card.style.setProperty('--mouse-x', `${x}px`);
-      card.style.setProperty('--mouse-y', `${y}px`);
+      rafId = requestAnimationFrame(() => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+        rafId = null;
+      });
     };
 
     cards.forEach((card) => {

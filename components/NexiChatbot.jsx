@@ -124,7 +124,6 @@ export default function NexiChatbot() {
           >
             <span className="nexi-avatar-sparkle">✦</span>
             <div className="nexi-fab-pulse" />
-            <span className="nexi-fab-label">Chat with Nexi</span>
           </button>
         )}
 

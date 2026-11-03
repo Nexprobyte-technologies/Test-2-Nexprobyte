@@ -17,7 +17,7 @@ export default function Hero() {
         <div className="hero-badge-wrap reveal-up">
           <div className="badge-tag badge-blue" id="hero-status-badge">
             <span className="badge-dot"></span>
-            <span id="hero-badge-text">Deploy Vetted Teams &amp; AI in 48 Hours</span>
+            <span id="hero-badge-text">Deploy Vetted Teams &amp; AI Automation</span>
           </div>
         </div>
 
