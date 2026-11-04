@@ -4,6 +4,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
+function NavRollText({ text, className = '' }) {
+  return (
+    <span className={`nav-roll ${className}`.trim()}>
+      <span className="nav-roll-label">{text}</span>
+      <span className="nav-roll-label nav-roll-hover" aria-hidden="true">
+        {text}
+      </span>
+    </span>
+  );
+}
+
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -256,12 +267,7 @@ export default function Navbar() {
       />
 
       {/* Floating Navigation Dock */}
-      <motion.header
-        className={`nav-wrapper ${isScrolled ? 'scrolled' : ''}`}
-        initial={{ y: -45, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      >
+      <header className={`nav-wrapper ${isScrolled ? 'scrolled' : ''}`}>
         <nav
           className={`nav-dock ${isScrolled ? 'scrolled' : ''}`}
           id="main-nav"
@@ -290,7 +296,7 @@ export default function Navbar() {
                   className="nav-link"
                   onMouseEnter={() => setHoveredNav('home')}
                 >
-                  <span>Home</span>
+                  <NavRollText text="Home" />
                   {hoveredNav === 'home' && (
                     <motion.span
                       layoutId="navbar-hover-indicator"
@@ -308,7 +314,7 @@ export default function Navbar() {
                   className="nav-link"
                   onMouseEnter={() => setHoveredNav('about')}
                 >
-                  <span>About</span>
+                  <NavRollText text="About" />
                   {hoveredNav === 'about' && (
                     <motion.span
                       layoutId="navbar-hover-indicator"
@@ -338,7 +344,7 @@ export default function Navbar() {
                     }
                   }}
                 >
-                  <span>What We Do</span>
+                  <NavRollText text="What We Do" />
                   <svg
                     width="11"
                     height="11"
@@ -348,7 +354,7 @@ export default function Navbar() {
                     strokeWidth="2.4"
                     style={{
                       transform: whatWeDoOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                      transition: 'transform 0.2s ease',
+                      transition: 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1)',
                       marginLeft: 3
                     }}
                   >
@@ -439,7 +445,7 @@ export default function Navbar() {
                     }
                   }}
                 >
-                  <span>Resources</span>
+                  <NavRollText text="Resources" />
                   <svg
                     width="11"
                     height="11"
@@ -449,7 +455,7 @@ export default function Navbar() {
                     strokeWidth="2.4"
                     style={{
                       transform: resourcesOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                      transition: 'transform 0.2s ease',
+                      transition: 'transform 0.28s cubic-bezier(0.16, 1, 0.3, 1)',
                       marginLeft: 3
                     }}
                   >
@@ -534,7 +540,7 @@ export default function Navbar() {
                   className="nav-link"
                   onMouseEnter={() => setHoveredNav('contact')}
                 >
-                  <span>Contact</span>
+                  <NavRollText text="Contact" />
                   {hoveredNav === 'contact' && (
                     <motion.span
                       layoutId="navbar-hover-indicator"
@@ -553,7 +559,7 @@ export default function Navbar() {
             {/* Always visible Primary CTA: Get a Quote */}
             <Link href="/contact" className="nav-cta-btn">
               <span className="cta-shimmer-sweep" />
-              <span>Get a Quote</span>
+              <NavRollText text="Get a Quote" className="nav-roll-cta" />
               <svg className="cta-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                 <line x1="5" y1="12" x2="19" y2="12" />
                 <polyline points="12 5 19 12 12 19" />
@@ -574,7 +580,7 @@ export default function Navbar() {
             </button>
           </div>
         </nav>
-      </motion.header>
+      </header>
 
       {/* Luxurious Frosted Mobile Navigation Drawer */}
       <AnimatePresence>
@@ -619,37 +625,37 @@ export default function Navbar() {
               <ul className="drawer-links-list">
                 <li>
                   <Link href="/" className="drawer-link-item" onClick={() => setDrawerOpen(false)}>
-                    <span>Home</span>
+                    <NavRollText text="Home" />
                     <span className="drawer-link-num">01</span>
                   </Link>
                 </li>
                 <li>
                   <Link href="/about" className="drawer-link-item" onClick={() => setDrawerOpen(false)}>
-                    <span>About Studio</span>
+                    <NavRollText text="About Studio" />
                     <span className="drawer-link-num">02</span>
                   </Link>
                 </li>
                 <li>
                   <Link href="/services" className="drawer-link-item" onClick={() => setDrawerOpen(false)}>
-                    <span>What We Do (Services)</span>
+                    <NavRollText text="What We Do (Services)" />
                     <span className="drawer-link-num">03</span>
                   </Link>
                 </li>
                 <li>
                   <Link href="/blog" className="drawer-link-item" onClick={() => setDrawerOpen(false)}>
-                    <span>Resources &amp; Journal</span>
+                    <NavRollText text="Resources & Journal" />
                     <span className="drawer-link-num">04</span>
                   </Link>
                 </li>
                 <li>
                   <Link href="/careers" className="drawer-link-item" onClick={() => setDrawerOpen(false)}>
-                    <span>Careers</span>
+                    <NavRollText text="Careers" />
                     <span className="drawer-link-num">05</span>
                   </Link>
                 </li>
                 <li>
                   <Link href="/contact" className="drawer-link-item" onClick={() => setDrawerOpen(false)}>
-                    <span>Contact</span>
+                    <NavRollText text="Contact" />
                     <span className="drawer-link-num">06</span>
                   </Link>
                 </li>

@@ -294,7 +294,7 @@ export default function AllServices() {
                   Core Technical Features
                 </h4>
                 <ul className="modal-list">
-                  {selectedCore.features.map((f, idx) => (
+                  {selectedCore?.features?.map((f, idx) => (
                     <li key={idx}>✦ {f}</li>
                   ))}
                 </ul>
@@ -303,7 +303,7 @@ export default function AllServices() {
                   Project Deliverables
                 </h4>
                 <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                  {selectedCore.deliverables.map((del, dIdx) => (
+                  {selectedCore?.deliverables?.map((del, dIdx) => (
                     <span key={dIdx} className="modal-deliverable-chip">
                       ✓ {del}
                     </span>

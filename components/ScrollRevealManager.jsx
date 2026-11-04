@@ -116,10 +116,17 @@ export default function ScrollRevealManager() {
     const handleMouseMove = (e) => {
       if (rafId) return;
       const card = e.currentTarget;
+      if (!card) return;
+      const clientX = e.clientX;
+      const clientY = e.clientY;
       rafId = requestAnimationFrame(() => {
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+        try {
+          if (card && card.style && typeof card.getBoundingClientRect === 'function') {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty('--mouse-x', `${clientX - rect.left}px`);
+            card.style.setProperty('--mouse-y', `${clientY - rect.top}px`);
+          }
+        } catch (_) {}
         rafId = null;
       });
     };
@@ -135,6 +142,7 @@ export default function ScrollRevealManager() {
       if (safetyTimer) clearTimeout(safetyTimer);
       if (observer) observer.disconnect();
       if (mutationObserver) mutationObserver.disconnect();
+      if (rafId) cancelAnimationFrame(rafId);
       if (resizeRaf) cancelAnimationFrame(resizeRaf);
       window.removeEventListener('resize', handleResize);
       cards.forEach((card) => {

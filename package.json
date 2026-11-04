@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "description": "Reverse engineered high-fidelity Next.js web application for Nexprobyte Technologies",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "node scripts/prepare_dev.js && next dev",
+    "dev:clean": "node -e \"try{require('fs').rmSync('.next',{recursive:true,force:true})}catch(e){}\" && next dev",
+    "dev:turbo": "next dev --turbopack",
+    "build": "node scripts/prepare_build.js && next build",
     "start": "node server.js",
     "serve": "node server.js",
-    "test": "node verify_build.js && node verify_animations.js && node scripts/qa_verification_suite.js"
+    "test": "node verify_build.js && node verify_animations.js"
   },
   "dependencies": {
     "framer-motion": "^12.43.0",

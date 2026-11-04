@@ -138,7 +138,7 @@ export default function CareersSection() {
                   Key Responsibilities
                 </h4>
                 <ul className="modal-list">
-                  {selectedJob.responsibilities.map((r, rIdx) => (
+                  {selectedJob?.responsibilities?.map((r, rIdx) => (
                     <li key={rIdx}>✦ {r}</li>
                   ))}
                 </ul>
@@ -147,7 +147,7 @@ export default function CareersSection() {
                   Requirements &amp; Experience
                 </h4>
                 <ul className="modal-list">
-                  {selectedJob.requirements.map((req, reqIdx) => (
+                  {selectedJob?.requirements?.map((req, reqIdx) => (
                     <li key={reqIdx}>✦ {req}</li>
                   ))}
                 </ul>

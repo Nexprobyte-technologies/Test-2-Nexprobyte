@@ -121,7 +121,7 @@ export default function BlogInsights() {
                 />
 
                 <div className="modal-article-content">
-                  {selectedPost.content.map((item, cIdx) => (
+                  {selectedPost?.content?.map((item, cIdx) => (
                     <div key={cIdx} className="article-block">
                       {item.h && <h4 className="article-heading">{item.h}</h4>}
                       {item.p && <p className="article-para">{item.p}</p>}

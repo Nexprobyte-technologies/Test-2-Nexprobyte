@@ -677,6 +677,7 @@ export default function HeroCords() {
     const DAMPING = 0.86;
 
     function renderLoop(time) {
+      try {
       if (!isHeroVisible) {
         animFrameRef.current = null;
         return;
@@ -791,6 +792,9 @@ export default function HeroCords() {
         pullBob.style.transform = `translate3d(${offsetX}px, ${offsetY}px, 0) rotate(${angleDeg}deg)`;
       }
 
+      } catch (loopErr) {
+        console.warn('HeroCords physics frame skipped safely:', loopErr);
+      }
       animFrameRef.current = requestAnimationFrame(renderLoop);
     }
 
@@ -842,6 +846,8 @@ export default function HeroCords() {
           </defs>
           <path id="cord-path-glow" className="cord-path-glow" d="M 80,0 Q 80,85 80,170" fill="none" stroke="url(#cord-glow-grad)" strokeWidth="4" opacity="0" />
           <path id="cord-path" className="cord-path" d="M 80,0 Q 80,85 80,170" fill="none" stroke="url(#cord-gradient)" strokeWidth="2.2" strokeLinecap="round" />
+          <circle id="cord-bead-1" className="cord-bead" cx="80" cy="56" r="2.8" fill="#e2e8f0" stroke="#475569" strokeWidth="0.9" />
+          <circle id="cord-bead-2" className="cord-bead" cx="80" cy="113" r="2.8" fill="#e2e8f0" stroke="#475569" strokeWidth="0.9" />
         </svg>
         <div
           className="cord-bob-handle"
