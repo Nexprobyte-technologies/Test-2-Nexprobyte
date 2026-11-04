@@ -12,8 +12,16 @@ export default function HeroCords() {
     if (!stage) return;
 
     // -------------------------------------------------------------
-    // PART A: SUSPENDED 7-CORD SQUIRCLE ARCHITECTURE
+    // EXACT SARO FINANCE 16-SEGMENT VERLET ROPE PHYSICS ENGINE
     // -------------------------------------------------------------
+    const U = 16;         // 16 Verlet segments (17 vertices)
+    const GRAVITY = 2600; // Saro gravity acceleration
+    const STIFFNESS = 360;// Spring stiffness (kc)
+    const DAMPING = 9;    // Spring damping (Ac)
+    const DRAG = 0.7;     // Air drag / velocity decay (jc)
+    const OFFSET_L = 36;  // Saro length offset (Mc)
+    const clamp = (val, min, max) => Math.max(min, Math.min(max, val));
+
     const SQUIRCLE_CONFIGS = [
       {
         id: 0,
@@ -22,9 +30,9 @@ export default function HeroCords() {
         sub: 'Custom Business Software →',
         theme: 'squircle-purple',
         sparkColors: ['#a855f7', '#8b5cf6', '#c084fc', '#ffffff'],
-        swayPhase: 0,
-        swayAmp: 6,
+        targetHash: '#service-custom',
         freq: 720,
+        phase: 0.0,
       },
       {
         id: 1,
@@ -33,9 +41,9 @@ export default function HeroCords() {
         sub: 'React, Node, Python & Mobile →',
         theme: 'squircle-cyan squircle-obsidian',
         sparkColors: ['#38bdf8', '#0ea5e9', '#7dd3fc', '#ffffff'],
-        swayPhase: 1.2,
-        swayAmp: 7.5,
+        targetHash: '#service-dev',
         freq: 820,
+        phase: 1.25,
       },
       {
         id: 2,
@@ -44,9 +52,9 @@ export default function HeroCords() {
         sub: 'n8n, Zapier & AI Copilot →',
         theme: 'squircle-orange',
         sparkColors: ['#ff7849', '#ff5722', '#fdba74', '#ffffff'],
-        swayPhase: 2.4,
-        swayAmp: 9,
+        targetHash: '#service-ai',
         freq: 920,
+        phase: 2.5,
       },
       {
         id: 3,
@@ -55,9 +63,9 @@ export default function HeroCords() {
         sub: 'Executive Admin & Operations →',
         theme: 'squircle-mint',
         sparkColors: ['#34d399', '#10b981', '#6ee7b7', '#ffffff'],
-        swayPhase: 3.6,
-        swayAmp: 8,
+        targetHash: '#service-va',
         freq: 780,
+        phase: 3.75,
       },
       {
         id: 4,
@@ -65,10 +73,10 @@ export default function HeroCords() {
         name: 'Dedicated Dev Teams',
         sub: 'Scale Engineering On-Demand →',
         theme: 'squircle-rose squircle-green',
-        sparkColors: ['#fb7185', '#f43f5e', '#fda4af', '#ffffff'],
-        swayPhase: 4.5,
-        swayAmp: 7.5,
+        sparkColors: ['#22c55e', '#4ade80', '#bbf7d0', '#ffffff'],
+        targetHash: '#service-dev',
         freq: 860,
+        phase: 4.8,
       },
       {
         id: 5,
@@ -77,9 +85,9 @@ export default function HeroCords() {
         sub: 'CI/CD, Cloud & Integrations →',
         theme: 'squircle-blue',
         sparkColors: ['#60a5fa', '#3b82f6', '#93c5fd', '#ffffff'],
-        swayPhase: 5.4,
-        swayAmp: 9,
+        targetHash: '#service-support',
         freq: 980,
+        phase: 5.65,
       },
       {
         id: 6,
@@ -87,47 +95,69 @@ export default function HeroCords() {
         name: 'E-Commerce Management',
         sub: 'Shopify, WooCommerce & Ops →',
         theme: 'squircle-amber squircle-lime',
-        sparkColors: ['#fbbf24', '#f59e0b', '#fde68a', '#ffffff'],
-        swayPhase: 0.8,
-        swayAmp: 8,
+        sparkColors: ['#a3e635', '#84cc16', '#d9f99d', '#ffffff'],
+        targetHash: '#service-support',
         freq: 740,
+        phase: 0.65,
       },
     ];
+
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const cords = SQUIRCLE_CONFIGS.map((cfg) => {
       const badgeEl = document.getElementById(`tech-badge-${cfg.id}`);
       const pathEl = document.getElementById(`tech-cord-path-${cfg.id}`);
       const mountEl = document.getElementById(`tech-cord-mount-${cfg.id}`);
+      const beadEl = document.getElementById(`tech-cord-bead-${cfg.id}`);
       const sparksEl = document.getElementById(`tech-sparks-${cfg.id}`);
+
+      const pts = new Float32Array(34);
+      const prev = new Float32Array(34);
 
       return {
         ...cfg,
         badgeEl,
         pathEl,
         mountEl,
+        beadEl,
         sparksEl,
-        anchorX: 0,
-        anchorY: 0,
+        ax: 0,
+        ay: 0,
+        bx: 0,
+        by: 0,
         restX: 0,
         restY: 0,
-        px: 0,
-        py: 0,
         vx: 0,
         vy: 0,
+        rot: 0,
+        av: 0,
+        L: 100,
+        L0: 100,
+        w: 56,
+        pts,
+        prev,
+        started: prefersReducedMotion,
+        startAt: 0,
         isDragging: false,
         pointerId: null,
-        grabOffsetX: 0,
-        grabOffsetY: 0,
+        drag: {
+          on: false,
+          tx: 0,
+          ty: 0,
+          gx: 0,
+          gy: 0,
+          pvx: 0,
+          pvy: 0,
+          lx: 0,
+          ly: 0,
+          lt: 0,
+        },
       };
     });
 
-    let stageWidth = stage.clientWidth || window.innerWidth;
-    let targetParallaxX = 0;
-    let targetParallaxY = 0;
-    let currentParallaxX = 0;
-    let currentParallaxY = 0;
-
-    // Shared AudioContext for low latency click sounds
     let sharedAudioCtx = null;
     function getAudioContext() {
       try {
@@ -154,7 +184,7 @@ export default function HeroCords() {
         osc.type = 'triangle';
         osc.frequency.setValueAtTime(freq, now);
         osc.frequency.exponentialRampToValueAtTime(260, now + 0.04);
-        gain.gain.setValueAtTime(0.04, now);
+        gain.gain.setValueAtTime(0.035, now);
         gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
         osc.connect(gain);
         gain.connect(ctx.destination);
@@ -165,11 +195,11 @@ export default function HeroCords() {
 
     function emitCordSparks(cord) {
       if (!cord.sparksEl) return;
-      const count = 12;
+      const count = 10;
       const colors = cord.sparkColors;
       for (let i = 0; i < count; i++) {
         const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.5;
-        const dist = 24 + Math.random() * 36;
+        const dist = 20 + Math.random() * 30;
         const dx = Math.cos(angle) * dist;
         const dy = Math.sin(angle) * dist;
 
@@ -185,60 +215,43 @@ export default function HeroCords() {
     }
 
     function updateLayout() {
-      stageWidth = stage.clientWidth || window.innerWidth;
+      const stageWidth = stage.clientWidth || window.innerWidth;
       const centerX = stageWidth * 0.5;
       const isMobile = stageWidth < 768;
       const isTablet = stageWidth >= 768 && stageWidth < 1024;
-      const isDesktop = stageWidth >= 1024;
+      const now = performance.now();
 
-      if (isMobile) {
-        // -------------------------------------------------------------
-        // Mobile View (< 768px): 100% Exact Match to sarofinance.framer.website!
-        // 7 hanging threads staggered in a graceful smiling arc directly
-        // above the hero status badge, evenly spanning across the screen:
-        // Left to Right: Orange -> Mint -> Obsidian -> Purple -> Green -> Lime -> Blue
-        // -------------------------------------------------------------
-        const isSmall = stageWidth < 375;
-        const outerMargin = isSmall ? 22 : 28;
-        const totalSpan = stageWidth - (outerMargin * 2);
-        const pitch = totalSpan / 6;
+      cords.forEach((cord) => {
+        let targetX = centerX;
+        let targetY = 110;
+        const radius = cord.badgeEl ? (cord.badgeEl.offsetWidth ? cord.badgeEl.offsetWidth * 0.5 : 28) : 28;
+        cord.w = radius * 2;
 
-        // Vertical heights staggered to match reference screenshot:
-        // High (Obsidian & Green): ~92px
-        // Mid (Purple, Orange, Blue): ~116px
-        // Low (Mint & Lime): ~150px
-        const yHigh = isSmall ? 82 : 92;
-        const yMid = isSmall ? 104 : 116;
-        const yLow = isSmall ? 134 : 150;
+        if (isMobile) {
+          const isSmall = stageWidth < 375;
+          const outerMargin = isSmall ? 22 : 28;
+          const totalSpan = stageWidth - outerMargin * 2;
+          const pitch = totalSpan / 6;
 
-        const mobilePositions = {
-          2: { x: centerX - 3 * pitch, y: yMid },  // 1: Orange (outer left)
-          3: { x: centerX - 2 * pitch, y: yLow },  // 2: Mint (mid left - low)
-          1: { x: centerX - 1 * pitch, y: yHigh }, // 3: Obsidian (inner left - high)
-          0: { x: centerX,             y: yMid },  // 4: Purple (center - mid)
-          4: { x: centerX + 1 * pitch, y: yHigh }, // 5: Green (inner right - high)
-          6: { x: centerX + 2 * pitch, y: yLow },  // 6: Lime (mid right - low)
-          5: { x: centerX + 3 * pitch, y: yMid },  // 7: Blue (outer right - mid)
-        };
+          const yHigh = isSmall ? 82 : 92;
+          const yMid = isSmall ? 104 : 116;
+          const yLow = isSmall ? 134 : 150;
 
-        cords.forEach((cord) => {
+          const mobilePositions = {
+            2: { x: centerX - 3 * pitch, y: yMid },
+            3: { x: centerX - 2 * pitch, y: yLow },
+            1: { x: centerX - 1 * pitch, y: yHigh },
+            0: { x: centerX,             y: yMid },
+            4: { x: centerX + 1 * pitch, y: yHigh },
+            6: { x: centerX + 2 * pitch, y: yLow },
+            5: { x: centerX + 3 * pitch, y: yMid },
+          };
+
           const pos = mobilePositions[cord.id] || { x: centerX, y: yMid };
-          cord.restX = pos.x;
-          cord.restY = pos.y;
-          cord.anchorX = pos.x;
-          cord.anchorY = 0;
-
-          if (cord.px === 0 && cord.py === 0) {
-            cord.px = pos.x;
-            cord.py = pos.y;
-          }
-        });
-      } else if (isTablet) {
-        const maxOffset = Math.min(stageWidth * 0.44, 380);
-        const radius = 22;
-        cords.forEach((cord) => {
-          let targetX = centerX;
-          let targetY = 100;
+          targetX = pos.x;
+          targetY = pos.y;
+        } else if (isTablet) {
+          const maxOffset = Math.min(stageWidth * 0.44, 380);
           switch (cord.slot) {
             case 'center':
               targetX = centerX;
@@ -257,33 +270,19 @@ export default function HeroCords() {
               targetY = 460;
               break;
             case 'top-right':
-              targetX = Math.min(stageWidth - radius - 80, centerX + maxOffset * 0.82);
+              targetX = Math.min(stageWidth - radius - 16, centerX + maxOffset * 0.82);
               targetY = 205;
               break;
             case 'mid-right':
-              targetX = Math.min(stageWidth - radius - 80, centerX + maxOffset);
+              targetX = Math.min(stageWidth - radius - 16, centerX + maxOffset);
               targetY = 325;
               break;
             case 'bottom-right':
-              targetX = Math.min(stageWidth - radius - 80, centerX + maxOffset * 0.84);
+              targetX = Math.min(stageWidth - radius - 16, centerX + maxOffset * 0.84);
               targetY = 460;
               break;
           }
-          cord.restX = targetX;
-          cord.restY = targetY;
-          cord.anchorX = targetX;
-          cord.anchorY = 0;
-          if (cord.px === 0 && cord.py === 0) {
-            cord.px = targetX;
-            cord.py = targetY;
-          }
-        });
-      } else {
-        // Desktop (>= 1024px)
-        const radius = 28;
-        cords.forEach((cord) => {
-          let targetX = centerX;
-          let targetY = 110;
+        } else {
           switch (cord.slot) {
             case 'center':
               targetX = centerX;
@@ -302,39 +301,73 @@ export default function HeroCords() {
               targetY = 485;
               break;
             case 'top-right':
-              targetX = Math.min(stageWidth - radius - 140, centerX + 460);
+              targetX = Math.min(stageWidth - radius - 20, centerX + 460);
               targetY = 220;
               break;
             case 'mid-right':
-              targetX = Math.min(stageWidth - radius - 140, centerX + 560);
+              targetX = Math.min(stageWidth - radius - 20, centerX + 560);
               targetY = 345;
               break;
             case 'bottom-right':
-              targetX = Math.min(stageWidth - radius - 140, centerX + 470);
+              targetX = Math.min(stageWidth - radius - 20, centerX + 470);
               targetY = 485;
               break;
           }
-          cord.restX = targetX;
-          cord.restY = targetY;
-          cord.anchorX = targetX;
-          cord.anchorY = 0;
-          if (cord.px === 0 && cord.py === 0) {
-            cord.px = targetX;
-            cord.py = targetY;
+        }
+
+        cord.restX = targetX;
+        cord.restY = targetY;
+        cord.ax = targetX;
+        cord.ay = 0;
+
+        const len = targetY + OFFSET_L;
+        cord.L = len;
+        cord.L0 = Math.max(20, len - GRAVITY / STIFFNESS);
+
+        if (cord.bx === 0 && cord.by === 0) {
+          const normDist = Math.abs(targetX - centerX) / Math.max(1, stageWidth * 0.5);
+          cord.startAt = prefersReducedMotion ? now : now + (0.2 + normDist * 0.9) * 1000;
+
+          if (prefersReducedMotion) {
+            cord.bx = targetX;
+            cord.by = targetY;
+            cord.started = true;
+            for (let i = 0; i <= U; i++) {
+              cord.pts[i * 2] = cord.ax;
+              cord.pts[i * 2 + 1] = cord.ay + (cord.by - cord.ay) * (i / U);
+              cord.prev[i * 2] = cord.pts[i * 2];
+              cord.prev[i * 2 + 1] = cord.pts[i * 2 + 1];
+            }
+          } else {
+            cord.bx = cord.ax + (Math.random() - 0.5) * 30;
+            cord.by = cord.ay - 20;
+            cord.started = false;
+            for (let i = 0; i <= U; i++) {
+              cord.pts[i * 2] = cord.ax + (cord.bx - cord.ax) * (i / U);
+              cord.pts[i * 2 + 1] = cord.ay + (cord.by - cord.ay) * (i / U);
+              cord.prev[i * 2] = cord.pts[i * 2];
+              cord.prev[i * 2 + 1] = cord.pts[i * 2 + 1];
+            }
           }
-        });
-      }
+        }
+      });
     }
 
-    const eventCleanups = [];
+    updateLayout();
+    window.addEventListener('resize', updateLayout, { passive: true });
 
-    // Pointer event bindings for squircle cords
+    const cleanups = [];
     cords.forEach((cord) => {
       const badge = cord.badgeEl;
       if (!badge) return;
 
       const onPointerDown = (e) => {
+        if (e.button && e.button !== 0) return;
         e.preventDefault();
+        const stageRect = stage.getBoundingClientRect();
+        const pointerX = e.clientX - stageRect.left;
+        const pointerY = e.clientY - stageRect.top;
+
         cord.isDragging = true;
         cord.pointerId = e.pointerId;
         try {
@@ -342,21 +375,40 @@ export default function HeroCords() {
         } catch (_) {}
         badge.classList.add('is-dragging');
 
-        const rect = badge.getBoundingClientRect();
-        cord.grabOffsetX = e.clientX - (rect.left + rect.width * 0.5);
-        cord.grabOffsetY = e.clientY - (rect.top + rect.height * 0.5);
+        cord.drag.on = true;
+        cord.drag.gx = pointerX - cord.bx;
+        cord.drag.gy = pointerY - cord.by;
+        cord.drag.tx = cord.bx;
+        cord.drag.ty = cord.by;
+        cord.drag.pvx = 0;
+        cord.drag.pvy = 0;
+        cord.drag.lx = pointerX;
+        cord.drag.ly = pointerY;
+        cord.drag.lt = performance.now();
+
         playSquirclePing(cord.freq);
       };
 
       const onPointerMove = (e) => {
-        if (!cord.isDragging) return;
+        if (!cord.drag.on) return;
         const stageRect = stage.getBoundingClientRect();
-        cord.px = e.clientX - stageRect.left - cord.grabOffsetX;
-        cord.py = Math.max(60, e.clientY - stageRect.top - cord.grabOffsetY);
+        const pointerX = e.clientX - stageRect.left;
+        const pointerY = e.clientY - stageRect.top;
+        const now = performance.now();
+        const dt = Math.max(8, now - cord.drag.lt) / 1000;
+
+        cord.drag.pvx = cord.drag.pvx * 0.4 + ((pointerX - cord.drag.lx) / dt) * 0.6;
+        cord.drag.pvy = cord.drag.pvy * 0.4 + ((pointerY - cord.drag.ly) / dt) * 0.6;
+        cord.drag.lx = pointerX;
+        cord.drag.ly = pointerY;
+        cord.drag.lt = now;
+        cord.drag.tx = pointerX - cord.drag.gx;
+        cord.drag.ty = pointerY - cord.drag.gy;
       };
 
       const onPointerEnd = (e) => {
-        if (cord.isDragging && cord.pointerId === e.pointerId) {
+        if (cord.drag.on && (cord.pointerId === null || cord.pointerId === e.pointerId)) {
+          cord.drag.on = false;
           cord.isDragging = false;
           cord.pointerId = null;
           badge.classList.remove('is-dragging');
@@ -364,499 +416,220 @@ export default function HeroCords() {
             badge.releasePointerCapture(e.pointerId);
           } catch (_) {}
 
-          cord.vx = (cord.restX - cord.px) * 0.22;
-          cord.vy = (cord.restY - cord.py) * 0.22;
+          cord.vx = clamp(cord.drag.pvx * 0.6, -1500, 1500);
+          cord.vy = clamp(cord.drag.pvy * 0.6, -900, 1500);
+
           emitCordSparks(cord);
-          playSquirclePing(cord.freq + 120);
+          playSquirclePing(cord.freq + 140);
         }
       };
 
       badge.addEventListener('pointerdown', onPointerDown);
-      badge.addEventListener('pointermove', onPointerMove);
-      badge.addEventListener('pointerup', onPointerEnd);
-      badge.addEventListener('pointercancel', onPointerEnd);
+      window.addEventListener('pointermove', onPointerMove, { passive: true });
+      window.addEventListener('pointerup', onPointerEnd, { passive: true });
+      window.addEventListener('pointercancel', onPointerEnd, { passive: true });
 
-      eventCleanups.push(() => {
+      cleanups.push(() => {
         badge.removeEventListener('pointerdown', onPointerDown);
-        badge.removeEventListener('pointermove', onPointerMove);
-        badge.removeEventListener('pointerup', onPointerEnd);
-        badge.removeEventListener('pointercancel', onPointerEnd);
+        window.removeEventListener('pointermove', onPointerMove);
+        window.removeEventListener('pointerup', onPointerEnd);
+        window.removeEventListener('pointercancel', onPointerEnd);
       });
     });
 
-    // -------------------------------------------------------------
-    // PART B: INTERACTIVE HANGING PULL-THREAD (TURBO SWITCH)
-    // -------------------------------------------------------------
-    const pullStage = document.getElementById('hanging-cord-stage');
-    const pullCordPath = document.getElementById('cord-path');
-    const pullCordPathGlow = document.getElementById('cord-path-glow');
-    const pullBead1 = document.getElementById('cord-bead-1');
-    const pullBead2 = document.getElementById('cord-bead-2');
-    const pullBob = document.getElementById('cord-bob');
-    const pullBobTag = document.getElementById('bob-tag');
-    const pullBobState = document.getElementById('bob-state');
-    const pullSparksContainer = document.getElementById('cord-sparks');
+    let lastTime = performance.now();
 
-    const pullAnchorX = 80;
-    const pullAnchorY = 0;
-    const pullRestLength = 170;
-    const PULL_THRESHOLD = 50;
-    const MAX_STRETCH = 85;
+    function renderVerletFrame(time) {
+      const dt = Math.min(0.033, Math.max(0.001, (time - lastTime) / 1000));
+      lastTime = time;
+      const timeSec = time / 1000;
 
-    let pullPx = pullAnchorX;
-    let pullPy = pullRestLength;
-    let pullVx = 0;
-    let pullVy = 0;
-    let isPullDragging = false;
-    let isPrimed = false;
-    let pullPointerId = null;
-    let pullMagneticX = 0;
-    let pullMagneticY = 0;
-
-    let pullStartPointerX = 0;
-    let pullStartPointerY = 0;
-    let pullStartTime = 0;
-    let pullHasMovedFar = false;
-
-    function bezierPoint(p0, p1, p2, p3, t) {
-      const mt = 1 - t;
-      const mt2 = mt * mt;
-      const mt3 = mt2 * mt;
-      const t2 = t * t;
-      const t3 = t2 * t;
-      return {
-        x: mt3 * p0.x + 3 * mt2 * t * p1.x + 3 * mt * t2 * p2.x + t3 * p3.x,
-        y: mt3 * p0.y + 3 * mt2 * t * p1.y + 3 * mt * t2 * p2.y + t3 * p3.y,
-      };
-    }
-
-    function playPullClick() {
-      try {
-        const ctx = getAudioContext();
-        if (!ctx) return;
-        const now = ctx.currentTime;
-
-        const osc1 = ctx.createOscillator();
-        const gain1 = ctx.createGain();
-        osc1.type = 'triangle';
-        osc1.frequency.setValueAtTime(1180, now);
-        osc1.frequency.exponentialRampToValueAtTime(320, now + 0.025);
-        gain1.gain.setValueAtTime(0.08, now);
-        gain1.gain.exponentialRampToValueAtTime(0.0001, now + 0.025);
-        osc1.connect(gain1);
-        gain1.connect(ctx.destination);
-        osc1.start(now);
-        osc1.stop(now + 0.025);
-
-        const osc2 = ctx.createOscillator();
-        const gain2 = ctx.createGain();
-        osc2.type = 'sine';
-        osc2.frequency.setValueAtTime(440, now + 0.02);
-        osc2.frequency.exponentialRampToValueAtTime(130, now + 0.06);
-        gain2.gain.setValueAtTime(0.06, now + 0.02);
-        gain2.gain.exponentialRampToValueAtTime(0.0001, now + 0.06);
-        osc2.connect(gain2);
-        gain2.connect(ctx.destination);
-        osc2.start(now + 0.02);
-        osc2.stop(now + 0.06);
-      } catch (_) {}
-    }
-
-    function emitPullSparks() {
-      if (!pullSparksContainer) return;
-      const count = 12;
-      const colors = ['#0066ff', '#ff6b1a', '#00d6b2', '#ffd166', '#ffffff'];
-
-      for (let i = 0; i < count; i++) {
-        const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.4;
-        const distance = 28 + Math.random() * 42;
-        const dx = Math.cos(angle) * distance;
-        const dy = Math.sin(angle) * distance;
-
-        const spark = document.createElement('span');
-        spark.className = 'cord-spark-particle';
-        spark.style.setProperty('--dx', `${dx.toFixed(1)}px`);
-        spark.style.setProperty('--dy', `${dy.toFixed(1)}px`);
-        spark.style.backgroundColor = colors[i % colors.length];
-        spark.style.boxShadow = `0 0 6px ${colors[i % colors.length]}`;
-
-        pullSparksContainer.appendChild(spark);
-        setTimeout(() => spark.remove(), 600);
-      }
-    }
-
-    function toggleTurbo() {
-      setTurboMode((prev) => {
-        const next = !prev;
-        if (pullBobState) pullBobState.textContent = next ? 'TURBO ACTIVE' : 'READY';
-        if (pullBobTag) pullBobTag.textContent = next ? 'TURBO' : 'PULL';
-        return next;
-      });
-      playPullClick();
-      emitPullSparks();
-    }
-
-    function updatePullPointerCoords(e) {
-      if (!pullStage) return;
-      const rect = pullStage.getBoundingClientRect();
-      const scaleX = rect.width > 0 ? rect.width / 160 : 1;
-      const scaleY = rect.height > 0 ? rect.height / 340 : 1;
-      const rawX = (e.clientX - rect.left) / scaleX;
-      const rawY = (e.clientY - rect.top) / scaleY;
-
-      const moveDist = Math.hypot(e.clientX - pullStartPointerX, e.clientY - pullStartPointerY);
-      if (moveDist > 8) {
-        pullHasMovedFar = true;
-      }
-
-      const dx = rawX - pullAnchorX;
-      const dy = Math.max(20, rawY - pullAnchorY);
-      const dist = Math.hypot(dx, dy);
-
-      let effectiveDist = dist;
-      if (dist > pullRestLength) {
-        const excess = dist - pullRestLength;
-        const resistedExcess = MAX_STRETCH * Math.tanh(excess / MAX_STRETCH);
-        effectiveDist = pullRestLength + resistedExcess;
-      }
-
-      const angle = Math.max(-Math.PI / 2.6, Math.min(Math.PI / 2.6, Math.atan2(dx, dy)));
-      pullPx = pullAnchorX + Math.sin(angle) * effectiveDist;
-      pullPy = pullAnchorY + Math.cos(angle) * effectiveDist;
-
-      const pullDelta = pullPy - pullRestLength;
-      if (pullDelta >= PULL_THRESHOLD) {
-        if (!isPrimed) {
-          isPrimed = true;
-          if (pullStage) pullStage.classList.add('is-primed');
-          if (pullBobTag) pullBobTag.textContent = 'RELEASE ⚡';
-        }
-      } else {
-        if (isPrimed) {
-          isPrimed = false;
-          if (pullStage) pullStage.classList.remove('is-primed');
-          if (pullBobTag) pullBobTag.textContent = 'PULL';
-        }
-      }
-    }
-
-    if (pullBob) {
-      const onPullPointerDown = (e) => {
-        if (e.button && e.button !== 0) return;
-        isPullDragging = true;
-        pullPointerId = e.pointerId;
-        try {
-          pullBob.setPointerCapture(e.pointerId);
-        } catch (_) {}
-        pullBob.classList.add('is-dragging');
-        pullMagneticX = 0;
-        pullMagneticY = 0;
-        pullStartPointerX = e.clientX;
-        pullStartPointerY = e.clientY;
-        pullStartTime = performance.now();
-        pullHasMovedFar = false;
-        updatePullPointerCoords(e);
-      };
-
-      const onPullPointerEnd = () => {
-        if (!isPullDragging) return;
-        isPullDragging = false;
-        pullBob.classList.remove('is-dragging');
-        try {
-          if (pullPointerId !== null) pullBob.releasePointerCapture(pullPointerId);
-        } catch (_) {}
-        pullPointerId = null;
-
-        const pullDelta = pullPy - pullRestLength;
-        const duration = performance.now() - pullStartTime;
-        const isQuickTap = !pullHasMovedFar && duration < 350;
-
-        if (isQuickTap) {
-          pullPy = pullRestLength + PULL_THRESHOLD + 12;
-          isPrimed = true;
-          if (pullStage) pullStage.classList.add('is-primed');
-          setTimeout(() => {
-            toggleTurbo();
-            pullVy = -20;
-            pullVx = (Math.random() - 0.5) * 8;
-            isPrimed = false;
-            if (pullStage) pullStage.classList.remove('is-primed');
-          }, 120);
-          return;
-        }
-
-        if (isPrimed || pullDelta >= PULL_THRESHOLD) {
-          toggleTurbo();
-          pullVy = -Math.min(24, pullDelta * 0.32);
-          pullVx = (pullAnchorX - pullPx) * 0.3;
-        } else {
-          pullVy = -(pullDelta * 0.22);
-          pullVx = (pullAnchorX - pullPx) * 0.25;
-        }
-
-        isPrimed = false;
-        if (pullStage) pullStage.classList.remove('is-primed');
-      };
-
-      const onPullKeyDown = (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          pullPy = pullRestLength + PULL_THRESHOLD + 14;
-          isPrimed = true;
-          if (pullStage) pullStage.classList.add('is-primed');
-          setTimeout(() => {
-            toggleTurbo();
-            pullVy = -22;
-            isPrimed = false;
-            if (pullStage) pullStage.classList.remove('is-primed');
-          }, 120);
-        }
-      };
-
-      pullBob.addEventListener('pointerdown', onPullPointerDown);
-      pullBob.addEventListener('pointerup', onPullPointerEnd);
-      pullBob.addEventListener('pointercancel', onPullPointerEnd);
-      pullBob.addEventListener('keydown', onPullKeyDown);
-
-      eventCleanups.push(() => {
-        pullBob.removeEventListener('pointerdown', onPullPointerDown);
-        pullBob.removeEventListener('pointerup', onPullPointerEnd);
-        pullBob.removeEventListener('pointercancel', onPullPointerEnd);
-        pullBob.removeEventListener('keydown', onPullKeyDown);
-      });
-    }
-
-    // Window level cursor listeners (Mouse parallax disabled per user request so cursor shake does not move threads)
-    const handleMouseMove = (e) => {
-      targetParallaxX = 0;
-      targetParallaxY = 0;
-
-      if (isPullDragging) {
-        updatePullPointerCoords(e);
-      } else if (pullStage) {
-        const rect = pullStage.getBoundingClientRect();
-        const scaleX = rect.width > 0 ? rect.width / 160 : 1;
-        const scaleY = rect.height > 0 ? rect.height / 340 : 1;
-        const pointerX = (e.clientX - rect.left) / scaleX;
-        const pointerY = (e.clientY - rect.top) / scaleY;
-        const dist = Math.hypot(pointerX - pullPx, pointerY - pullPy);
-        if (dist < 100) {
-          pullMagneticX = (pointerX - pullPx) * 0.08;
-          pullMagneticY = Math.min(10, Math.max(0, (pointerY - pullPy) * 0.08));
-        } else {
-          pullMagneticX = 0;
-          pullMagneticY = 0;
-        }
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    window.addEventListener('resize', updateLayout);
-    updateLayout();
-
-    // IntersectionObserver to pause physics loop when hero is off-screen (Massive Performance Boost)
-    let isHeroVisible = true;
-    let heroObserver = null;
-    if (typeof IntersectionObserver !== 'undefined') {
-      heroObserver = new IntersectionObserver(
-        ([entry]) => {
-          isHeroVisible = entry.isIntersecting;
-          if (isHeroVisible && !animFrameRef.current) {
-            animFrameRef.current = requestAnimationFrame(renderLoop);
-          }
-        },
-        { threshold: 0.05 }
-      );
-      heroObserver.observe(stage);
-    }
-
-    // -------------------------------------------------------------
-    // PART C: UNIFIED HIGH-PERFORMANCE PHYSICS ANIMATION LOOP
-    // -------------------------------------------------------------
-    const SPRING_K = 0.075;
-    const DAMPING = 0.86;
-
-    function renderLoop(time) {
-      try {
-      if (!isHeroVisible) {
-        animFrameRef.current = null;
-        return;
-      }
-
-      currentParallaxX = 0;
-      currentParallaxY = 0;
-
-      const tSec = time * 0.0015;
-      const isMobile = stageWidth < 768;
-      const isTablet = stageWidth >= 768 && stageWidth < 1024;
-      const squircleHalf = isMobile ? 16 : isTablet ? 21 : 28;
-
-      // 1. Update 7 suspended squircle cords
       cords.forEach((cord) => {
-        if (!cord.badgeEl || !cord.pathEl) return;
-
-        if (!cord.isDragging) {
-          // Slow organic harmonic ambient sway for continuous natural movement (shake aagite irukanum)
-          const swaySpeed = 1.15;
-          const swayX = Math.sin(tSec * swaySpeed + cord.swayPhase) * (cord.swayAmp * 0.85) +
-                        Math.cos(tSec * 0.65 + cord.swayPhase * 1.4) * 2.2;
-          const swayY = Math.abs(Math.sin(tSec * swaySpeed + cord.swayPhase)) * 1.8;
-
-          const targetX = cord.restX + swayX;
-          const targetY = cord.restY + swayY;
-
-          const fx = (targetX - cord.px) * SPRING_K;
-          const fy = (targetY - cord.py) * SPRING_K;
-
-          cord.vx = (cord.vx + fx) * DAMPING;
-          cord.vy = (cord.vy + fy) * DAMPING;
-
-          cord.px += cord.vx;
-          cord.py += cord.vy;
+        if (!cord.started) {
+          if (time < cord.startAt) {
+            updateCordVisuals(cord);
+            return;
+          }
+          cord.started = true;
         }
 
-        const tiltAngle = Math.max(-18, Math.min(18, (cord.px - cord.anchorX) * 0.12));
-        cord.badgeEl.style.transform = `translate3d(${cord.px - squircleHalf}px, ${cord.py - squircleHalf}px, 0) rotate(${tiltAngle}deg)`;
+        if (cord.drag.on) {
+          let tx = cord.drag.tx;
+          let ty = cord.drag.ty;
+          const dx = tx - cord.ax;
+          const dy = ty - cord.ay;
+          const dist = Math.hypot(dx, dy) || 1;
+          const maxDist = cord.L0 * 1.06 + 28;
 
-        const ax = cord.anchorX;
-        const ay = 0;
-        const bx = cord.px;
-        const by = cord.py - (squircleHalf - 2);
+          if (dist > maxDist) {
+            const elast = maxDist + (dist - maxDist) * 0.12;
+            tx = cord.ax + (dx / dist) * elast;
+            ty = cord.ay + (dy / dist) * elast;
+          }
 
-        const ctrlX = (ax + bx) * 0.5 + (cord.px - cord.anchorX) * 0.08;
-        const ctrlY = (ay + by) * 0.5 + 12;
+          const cx = cord.bx + (tx - cord.bx) * 0.45;
+          const cy = cord.by + (ty - cord.by) * 0.45;
+          cord.vx = (cx - cord.bx) / dt;
+          cord.vy = (cy - cord.by) / dt;
+          cord.bx = cx;
+          cord.by = cy;
+        } else {
+          const subDt = dt / 4;
+          for (let s = 0; s < 4; s++) {
+            let wind = prefersReducedMotion ? 0 : Math.sin(timeSec * 0.8 + cord.phase) * 26;
+            let grav = GRAVITY;
+            const dx = cord.bx - cord.ax;
+            const dy = cord.by - cord.ay;
+            const dist = Math.hypot(dx, dy) || 1;
+            const nx = dx / dist;
+            const ny = dy / dist;
 
-        cord.pathEl.setAttribute('d', `M ${ax.toFixed(1)},0 Q ${ctrlX.toFixed(1)},${ctrlY.toFixed(1)} ${bx.toFixed(1)},${by.toFixed(1)}`);
+            if (dist > cord.L0) {
+              const extension = dist - cord.L0;
+              const radVelocity = cord.vx * nx + cord.vy * ny;
+              wind -= STIFFNESS * extension * nx + DAMPING * radVelocity * nx;
+              grav -= STIFFNESS * extension * ny + DAMPING * radVelocity * ny;
+            }
+
+            cord.vx = (cord.vx + wind * subDt) * (1 - DRAG * subDt);
+            cord.vy = (cord.vy + grav * subDt) * (1 - DRAG * subDt);
+            cord.bx += cord.vx * subDt;
+            cord.by += cord.vy * subDt;
+
+            const cdx = cord.bx - cord.ax;
+            const cdy = cord.by - cord.ay;
+            const cdist = Math.hypot(cdx, cdy) || 1;
+            const maxLen = cord.L0 * 1.2 + 40;
+            if (cdist > maxLen) {
+              cord.bx = cord.ax + (cdx / cdist) * maxLen;
+              cord.by = cord.ay + (cdy / cdist) * maxLen;
+              const dot = (cord.vx * cdx + cord.vy * cdy) / cdist;
+              if (dot > 0) {
+                cord.vx -= 1.4 * dot * (cdx / cdist);
+                cord.vy -= 1.4 * dot * (cdy / cdist);
+              }
+            }
+          }
+        }
+
+        const pts = cord.pts;
+        const prev = cord.prev;
+        pts[0] = cord.ax;
+        pts[1] = cord.ay;
+        pts[U * 2] = cord.bx;
+        pts[U * 2 + 1] = cord.by;
+
+        for (let i = 1; i < U; i++) {
+          const n = i * 2;
+          const vx = (pts[n] - prev[n]) * 0.96;
+          const vy = (pts[n + 1] - prev[n + 1]) * 0.96;
+          prev[n] = pts[n];
+          prev[n + 1] = pts[n + 1];
+          pts[n] += vx;
+          pts[n + 1] += vy + GRAVITY * 0.6 * dt * dt;
+        }
+
+        const chordDist = Math.hypot(cord.bx - cord.ax, cord.by - cord.ay);
+        const segLen = (chordDist >= cord.L0 ? chordDist * 0.992 : cord.L0) / U;
+
+        const relax = (i) => {
+          const p1x = i * 2;
+          const p1y = p1x + 1;
+          const p2x = p1x + 2;
+          const p2y = p1x + 3;
+          const rx = pts[p2x] - pts[p1x];
+          const ry = pts[p2y] - pts[p1y];
+          const d = Math.hypot(rx, ry) || 1;
+          const diff = (d - segLen) / d;
+          const w1 = i === 0 ? 0 : i + 1 === U ? 1 : 0.5;
+          const w2 = i + 1 === U ? 0 : i === 0 ? 1 : 0.5;
+          pts[p1x] += rx * diff * w1;
+          pts[p1y] += ry * diff * w1;
+          pts[p2x] -= rx * diff * w2;
+          pts[p2y] -= ry * diff * w2;
+        };
+
+        for (let pass = 0; pass < 12; pass++) {
+          for (let i = 0; i < U; i++) relax(i);
+          for (let i = U - 1; i >= 0; i--) relax(i);
+        }
+
+        if (chordDist >= cord.L0) {
+          const t = Math.min(1, (chordDist - cord.L0) / 8) * 0.3;
+          for (let i = 1; i < U; i++) {
+            const r = i / U;
+            pts[i * 2] += (cord.ax + (cord.bx - cord.ax) * r - pts[i * 2]) * t;
+            pts[i * 2 + 1] += (cord.ay + (cord.by - cord.ay) * r - pts[i * 2 + 1]) * t;
+          }
+        }
+
+        const uNodeX = pts[(U - 2) * 2];
+        const uNodeY = pts[(U - 2) * 2 + 1];
+        const f = -Math.atan2(cord.bx - uNodeX, Math.max(4, cord.by - uNodeY));
+        const p = -Math.atan2(cord.bx - cord.ax, Math.max(4, cord.by - cord.ay));
+        let targetRot = ((f * 0.45 + p * 0.55) * 180) / Math.PI;
+        targetRot += clamp(-cord.vx * 0.004, -10, 10);
+        targetRot = clamp(targetRot, -55, 55);
+        cord.av += ((targetRot - cord.rot) * 110 - cord.av * 13) * dt;
+        cord.rot = clamp(cord.rot + cord.av * dt, -70, 70);
+
+        updateCordVisuals(cord);
       });
 
-      // 2. Update interactive hanging pull-cord
-      if (pullCordPath && pullBob) {
-        if (!isPullDragging) {
-          const ambientSway = Math.sin(tSec * 1.1) * 3.6 + Math.cos(tSec * 2.2) * 1.2;
-          const curTargetX = pullAnchorX + ambientSway + pullMagneticX;
-          const curTargetY = pullRestLength + pullMagneticY;
-
-          const dxFromTarget = curTargetX - pullPx;
-          const dyFromTarget = curTargetY - pullPy;
-
-          const angle = Math.atan2(pullPx - pullAnchorX, pullPy - pullAnchorY);
-          const pendulumRestoreX = -Math.sin(angle) * 0.85;
-
-          const ax = dxFromTarget * 0.045 + pendulumRestoreX;
-          const ay = dyFromTarget * 0.07;
-
-          pullVx = (pullVx + ax) * 0.965;
-          pullVy = (pullVy + ay) * 0.91;
-
-          pullPx += pullVx;
-          pullPy += pullVy;
-        }
-
-        const dx = pullPx - pullAnchorX;
-        const dy = pullPy - pullAnchorY;
-        const len = Math.hypot(dx, dy);
-        const sag = Math.max(0, 16 * (1 - Math.min(1, len / pullRestLength)));
-        const lagX = -pullVx * 0.08;
-
-        const cp1 = {
-          x: pullAnchorX + dx * 0.33 + lagX,
-          y: pullAnchorY + dy * 0.33 + sag,
-        };
-        const cp2 = {
-          x: pullAnchorX + dx * 0.66 + lagX * 0.7,
-          y: pullAnchorY + dy * 0.66 + sag * 0.4,
-        };
-
-        const pathData = `M ${pullAnchorX},${pullAnchorY} C ${cp1.x.toFixed(1)},${cp1.y.toFixed(1)} ${cp2.x.toFixed(1)},${cp2.y.toFixed(1)} ${pullPx.toFixed(1)},${pullPy.toFixed(1)}`;
-        pullCordPath.setAttribute('d', pathData);
-        if (pullCordPathGlow) {
-          pullCordPathGlow.setAttribute('d', pathData);
-        }
-
-        if (pullBead1) {
-          const b1 = bezierPoint({ x: pullAnchorX, y: pullAnchorY }, cp1, cp2, { x: pullPx, y: pullPy }, 0.33);
-          pullBead1.setAttribute('cx', b1.x.toFixed(1));
-          pullBead1.setAttribute('cy', b1.y.toFixed(1));
-        }
-        if (pullBead2) {
-          const b2 = bezierPoint({ x: pullAnchorX, y: pullAnchorY }, cp1, cp2, { x: pullPx, y: pullPy }, 0.66);
-          pullBead2.setAttribute('cx', b2.x.toFixed(1));
-          pullBead2.setAttribute('cy', b2.y.toFixed(1));
-        }
-
-        const angleRad = Math.atan2(dx, dy);
-        const angleDeg = (angleRad * (180 / Math.PI) * 0.65).toFixed(1);
-        const offsetX = (pullPx - pullAnchorX).toFixed(1);
-        const offsetY = (pullPy - pullRestLength).toFixed(1);
-
-        pullBob.style.transform = `translate3d(${offsetX}px, ${offsetY}px, 0) rotate(${angleDeg}deg)`;
-      }
-
-      } catch (loopErr) {
-        console.warn('HeroCords physics frame skipped safely:', loopErr);
-      }
-      animFrameRef.current = requestAnimationFrame(renderLoop);
+      animFrameRef.current = requestAnimationFrame(renderVerletFrame);
     }
 
-    animFrameRef.current = requestAnimationFrame(renderLoop);
+    function updateCordVisuals(cord) {
+      const pts = cord.pts;
+      let d = `M ${pts[0].toFixed(1)} ${pts[1].toFixed(1)}`;
+      for (let i = 1; i < U; i++) {
+        const mx = (pts[i * 2] + pts[i * 2 + 2]) / 2;
+        const my = (pts[i * 2 + 1] + pts[i * 2 + 3]) / 2;
+        d += ` Q ${pts[i * 2].toFixed(1)} ${pts[i * 2 + 1].toFixed(1)} ${mx.toFixed(1)} ${my.toFixed(1)}`;
+      }
+      d += ` L ${cord.bx.toFixed(1)} ${cord.by.toFixed(1)}`;
+
+      if (cord.pathEl) {
+        cord.pathEl.setAttribute('d', d);
+      }
+
+      if (cord.beadEl) {
+        cord.beadEl.setAttribute('cx', cord.bx.toFixed(1));
+        cord.beadEl.setAttribute('cy', cord.by.toFixed(1));
+      }
+
+      if (cord.badgeEl) {
+        const radius = cord.w * 0.5;
+        const x = (cord.bx - radius).toFixed(1);
+        const y = cord.by.toFixed(1);
+        cord.badgeEl.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${cord.rot.toFixed(2)}deg)`;
+      }
+    }
+
+    animFrameRef.current = requestAnimationFrame(renderVerletFrame);
 
     return () => {
-      eventCleanups.forEach((fn) => {
-        try { fn(); } catch (_) {}
-      });
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('resize', updateLayout);
-      if (heroObserver) heroObserver.disconnect();
       if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
-      if (sharedAudioCtx) {
-        try { sharedAudioCtx.close(); } catch (_) {}
-        sharedAudioCtx = null;
-      }
+      window.removeEventListener('resize', updateLayout);
+      cleanups.forEach((c) => c());
     };
   }, []);
 
   return (
     <>
-      {/* 1. Hanging pull thread for 48H / Turbo toggle (Always visible, responsive across all viewports) */}
       <div
-        className={`hero-hanging-cord-stage ${turboMode ? 'turbo-active' : ''}`}
+        className="hero-hanging-cord-stage"
         id="hanging-cord-stage"
-        aria-label="Interactive Cord Switch"
+        aria-hidden="true"
+        style={{ display: 'none' }}
       >
-        <div className="cord-ceiling-mount" aria-hidden="true">
-          <span className="mount-plate"></span>
-          <span className="mount-screw"></span>
-          <span className="mount-ring"></span>
-        </div>
-        <svg className="cord-svg" id="cord-svg" viewBox="0 0 160 280" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="cord-gradient" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#94a3b8" />
-              <stop offset="50%" stopColor="#64748b" />
-              <stop offset="100%" stopColor="#0066ff" />
-            </linearGradient>
-            <linearGradient id="cord-glow-grad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="rgba(0,102,255,0)" />
-              <stop offset="100%" stopColor="rgba(0,102,255,0.7)" />
-            </linearGradient>
-            <filter id="cord-glow-filter" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="3" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-          </defs>
-          <path id="cord-path-glow" className="cord-path-glow" d="M 80,0 Q 80,85 80,170" fill="none" stroke="url(#cord-glow-grad)" strokeWidth="4" opacity="0" />
-          <path id="cord-path" className="cord-path" d="M 80,0 Q 80,85 80,170" fill="none" stroke="url(#cord-gradient)" strokeWidth="2.2" strokeLinecap="round" />
-          <circle id="cord-bead-1" className="cord-bead" cx="80" cy="56" r="2.8" fill="#e2e8f0" stroke="#475569" strokeWidth="0.9" />
-          <circle id="cord-bead-2" className="cord-bead" cx="80" cy="113" r="2.8" fill="#e2e8f0" stroke="#475569" strokeWidth="0.9" />
+        <svg id="cord-svg" className="cord-svg" width="160" height="400">
+          <path id="cord-path-glow" className="cord-path-glow" d="" />
+          <path id="cord-path" className="cord-path" d="" />
+          <circle id="cord-bead-1" className="cord-bead" cx="80" cy="55" r="3.2" />
+          <circle id="cord-bead-2" className="cord-bead" cx="80" cy="113" r="2.8" />
         </svg>
-        <div
-          className="cord-bob-handle"
-          id="cord-bob"
-          role="button"
-          tabIndex={0}
-          aria-label="Pull thread to toggle Turbo Acceleration Mode"
-          aria-pressed={turboMode}
-        >
+        <div className="cord-bob-handle" id="cord-bob">
           <div className="bob-capsule">
             <div className="bob-led" id="bob-led">
               <span className="led-core"></span>
@@ -866,24 +639,11 @@ export default function HeroCords() {
               <span className="bob-tag" id="bob-tag">PULL</span>
               <span className="bob-state" id="bob-state">{turboMode ? 'TURBO ACTIVE' : 'READY'}</span>
             </div>
-            <div className="bob-icon">
-              <svg className="bob-arrow-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <polyline points="19 12 12 19 5 12"></polyline>
-              </svg>
-              <svg className="bob-spark-icon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-              </svg>
-            </div>
           </div>
-          <div className="bob-pull-hint" id="bob-pull-hint" aria-hidden="true">
-            <span>Pull cord &darr;</span>
-          </div>
-          <div className="cord-sparks-container" id="cord-sparks" aria-hidden="true"></div>
+          <div className="cord-sparks-container" id="cord-sparks"></div>
         </div>
       </div>
 
-      {/* 2. Framer-style Suspended 7-Cord Technology Squircles Framing Hero Headline */}
       <div
         ref={stageRef}
         className="hero-tech-cords-stage"
@@ -892,66 +652,79 @@ export default function HeroCords() {
       >
         <svg className="tech-cords-svg" id="tech-cords-svg" aria-hidden="true">
           <defs>
-            {/* Vibrant Thread Gradients matching each squircle's authentic theme colors */}
-            {/* 0: Center (Purple) */}
             <linearGradient id="tech-cord-grad-0" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#64748b" />
-              <stop offset="55%" stopColor="#818cf8" />
-              <stop offset="100%" stopColor="#6366f1" />
+              <stop offset="0%" stopColor="#a3a3a3" stopOpacity="0" />
+              <stop offset="30%" stopColor="#a3a3a3" stopOpacity="0.45" />
+              <stop offset="85%" stopColor="#c084fc" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="#a855f7" stopOpacity="1" />
             </linearGradient>
-            {/* 1: Top-Left (Dark Obsidian) */}
+
             <linearGradient id="tech-cord-grad-1" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#64748b" />
-              <stop offset="55%" stopColor="#3f3f46" />
-              <stop offset="100%" stopColor="#18181b" />
+              <stop offset="0%" stopColor="#a3a3a3" stopOpacity="0" />
+              <stop offset="30%" stopColor="#a3a3a3" stopOpacity="0.45" />
+              <stop offset="85%" stopColor="#7dd3fc" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="#38bdf8" stopOpacity="1" />
             </linearGradient>
-            {/* 2: Mid-Left (Vibrant Sunset Orange) */}
+
             <linearGradient id="tech-cord-grad-2" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#64748b" />
-              <stop offset="55%" stopColor="#ff7b1a" />
-              <stop offset="100%" stopColor="#ea580c" />
+              <stop offset="0%" stopColor="#a3a3a3" stopOpacity="0" />
+              <stop offset="30%" stopColor="#a3a3a3" stopOpacity="0.45" />
+              <stop offset="85%" stopColor="#fdba74" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="#ff7849" stopOpacity="1" />
             </linearGradient>
-            {/* 3: Bottom-Left (Mint Emerald) */}
+
             <linearGradient id="tech-cord-grad-3" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#64748b" />
-              <stop offset="55%" stopColor="#34d399" />
-              <stop offset="100%" stopColor="#10b981" />
+              <stop offset="0%" stopColor="#a3a3a3" stopOpacity="0" />
+              <stop offset="30%" stopColor="#a3a3a3" stopOpacity="0.45" />
+              <stop offset="85%" stopColor="#6ee7b7" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="#34d399" stopOpacity="1" />
             </linearGradient>
-            {/* 4: Top-Right (Electric Growth Green) */}
+
             <linearGradient id="tech-cord-grad-4" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#64748b" />
-              <stop offset="55%" stopColor="#4ade80" />
-              <stop offset="100%" stopColor="#22c55e" />
+              <stop offset="0%" stopColor="#a3a3a3" stopOpacity="0" />
+              <stop offset="30%" stopColor="#a3a3a3" stopOpacity="0.45" />
+              <stop offset="85%" stopColor="#bbf7d0" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="#22c55e" stopOpacity="1" />
             </linearGradient>
-            {/* 5: Mid-Right (Cobalt Royal Blue) */}
+
             <linearGradient id="tech-cord-grad-5" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#64748b" />
-              <stop offset="55%" stopColor="#60a5fa" />
-              <stop offset="100%" stopColor="#2563eb" />
+              <stop offset="0%" stopColor="#a3a3a3" stopOpacity="0" />
+              <stop offset="30%" stopColor="#a3a3a3" stopOpacity="0.45" />
+              <stop offset="85%" stopColor="#93c5fd" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="#60a5fa" stopOpacity="1" />
             </linearGradient>
-            {/* 6: Bottom-Right (Neon Lime) */}
+
             <linearGradient id="tech-cord-grad-6" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#64748b" />
-              <stop offset="55%" stopColor="#a3e635" />
-              <stop offset="100%" stopColor="#84cc16" />
+              <stop offset="0%" stopColor="#a3a3a3" stopOpacity="0" />
+              <stop offset="30%" stopColor="#a3a3a3" stopOpacity="0.45" />
+              <stop offset="85%" stopColor="#d9f99d" stopOpacity="0.9" />
+              <stop offset="100%" stopColor="#a3e635" stopOpacity="1" />
             </linearGradient>
-            {/* Base Saro fallback */}
+
             <linearGradient id="tech-cord-line-grad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#94a3b8" />
-              <stop offset="50%" stopColor="#64748b" />
-              <stop offset="100%" stopColor="#475569" />
+              <stop offset="0%" stopColor="#a3a3a3" stopOpacity="0" />
+              <stop offset="30%" stopColor="#a3a3a3" stopOpacity="0.45" />
+              <stop offset="100%" stopColor="#a3a3a3" stopOpacity="0.95" />
             </linearGradient>
           </defs>
-          <path id="tech-cord-path-0" className="tech-cord-path tech-cord-0" stroke="#475569" strokeWidth="2.2" strokeLinecap="round" fill="none" />
-          <path id="tech-cord-path-1" className="tech-cord-path tech-cord-1" stroke="#475569" strokeWidth="2.2" strokeLinecap="round" fill="none" />
-          <path id="tech-cord-path-2" className="tech-cord-path tech-cord-2" stroke="#475569" strokeWidth="2.2" strokeLinecap="round" fill="none" />
-          <path id="tech-cord-path-3" className="tech-cord-path tech-cord-3" stroke="#475569" strokeWidth="2.2" strokeLinecap="round" fill="none" />
-          <path id="tech-cord-path-4" className="tech-cord-path tech-cord-4" stroke="#475569" strokeWidth="2.2" strokeLinecap="round" fill="none" />
-          <path id="tech-cord-path-5" className="tech-cord-path tech-cord-5" stroke="#475569" strokeWidth="2.2" strokeLinecap="round" fill="none" />
-          <path id="tech-cord-path-6" className="tech-cord-path tech-cord-6" stroke="#475569" strokeWidth="2.2" strokeLinecap="round" fill="none" />
+
+          <path id="tech-cord-path-0" className="tech-cord-path tech-cord-0" stroke="url(#tech-cord-grad-0)" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+          <path id="tech-cord-path-1" className="tech-cord-path tech-cord-1" stroke="url(#tech-cord-grad-1)" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+          <path id="tech-cord-path-2" className="tech-cord-path tech-cord-2" stroke="url(#tech-cord-grad-2)" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+          <path id="tech-cord-path-3" className="tech-cord-path tech-cord-3" stroke="url(#tech-cord-grad-3)" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+          <path id="tech-cord-path-4" className="tech-cord-path tech-cord-4" stroke="url(#tech-cord-grad-4)" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+          <path id="tech-cord-path-5" className="tech-cord-path tech-cord-5" stroke="url(#tech-cord-grad-5)" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+          <path id="tech-cord-path-6" className="tech-cord-path tech-cord-6" stroke="url(#tech-cord-grad-6)" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+
+          <circle id="tech-cord-bead-0" className="tech-cord-bead" r="2.6" fill="#8a8a8a" />
+          <circle id="tech-cord-bead-1" className="tech-cord-bead" r="2.6" fill="#8a8a8a" />
+          <circle id="tech-cord-bead-2" className="tech-cord-bead" r="2.6" fill="#8a8a8a" />
+          <circle id="tech-cord-bead-3" className="tech-cord-bead" r="2.6" fill="#8a8a8a" />
+          <circle id="tech-cord-bead-4" className="tech-cord-bead" r="2.6" fill="#8a8a8a" />
+          <circle id="tech-cord-bead-5" className="tech-cord-bead" r="2.6" fill="#8a8a8a" />
+          <circle id="tech-cord-bead-6" className="tech-cord-bead" r="2.6" fill="#8a8a8a" />
         </svg>
 
-        {/* 7 Ceiling Mount Fixtures - Hidden visually so cords hang directly from ceiling with no box */}
         <div className="tech-cord-mount" id="tech-cord-mount-0" aria-hidden="true" style={{ display: 'none' }}><span className="mount-dot"></span></div>
         <div className="tech-cord-mount" id="tech-cord-mount-1" aria-hidden="true" style={{ display: 'none' }}><span className="mount-dot"></span></div>
         <div className="tech-cord-mount" id="tech-cord-mount-2" aria-hidden="true" style={{ display: 'none' }}><span className="mount-dot"></span></div>
@@ -960,10 +733,19 @@ export default function HeroCords() {
         <div className="tech-cord-mount" id="tech-cord-mount-5" aria-hidden="true" style={{ display: 'none' }}><span className="mount-dot"></span></div>
         <div className="tech-cord-mount" id="tech-cord-mount-6" aria-hidden="true" style={{ display: 'none' }}><span className="mount-dot"></span></div>
 
-        {/* 7 Suspended 3D Glossy Squircles with Nexprobyte Core Technology Stack Icons */}
-        
-        {/* 0: Center (Electric Violet - AI Neural Core & ERP Architecture) */}
-        <div className="tech-cord-squircle squircle-purple" id="tech-badge-0" role="button" tabIndex={0} aria-label="ERP & Analytics Technology Discipline" data-index="0">
+        {/* 0: Center (Violet - ERP, BI & Dashboards) */}
+        <div
+          className="tech-cord-squircle squircle-purple"
+          id="tech-badge-0"
+          role="button"
+          tabIndex={0}
+          aria-label="ERP & Analytics Technology Discipline"
+          data-index="0"
+          onClick={() => {
+            const el = document.querySelector('#service-custom');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+        >
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
@@ -991,8 +773,19 @@ export default function HeroCords() {
           <div className="squircle-sparks" id="tech-sparks-0" aria-hidden="true"></div>
         </div>
 
-        {/* 1: Top-Left (Electric Cyan - High-Tech React Quantum Atom & Full-Stack Developers) */}
-        <div className="tech-cord-squircle squircle-cyan squircle-obsidian" id="tech-badge-1" role="button" tabIndex={0} aria-label="Full-Stack Developers Technology Discipline" data-index="1">
+        {/* 1: Top-Left (Cyan / Obsidian - Full-Stack Developers) */}
+        <div
+          className="tech-cord-squircle squircle-cyan squircle-obsidian"
+          id="tech-badge-1"
+          role="button"
+          tabIndex={0}
+          aria-label="Full-Stack Developers Technology Discipline"
+          data-index="1"
+          onClick={() => {
+            const el = document.querySelector('#service-dev');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+        >
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
@@ -1014,8 +807,19 @@ export default function HeroCords() {
           <div className="squircle-sparks" id="tech-sparks-1" aria-hidden="true"></div>
         </div>
 
-        {/* 2: Mid-Left (Vibrant Sunset Orange - Autonomous AI Agents & Multi-Ray Spark) */}
-        <div className="tech-cord-squircle squircle-orange" id="tech-badge-2" role="button" tabIndex={0} aria-label="AI Automation Technology Discipline" data-index="2">
+        {/* 2: Mid-Left (Sunset Orange - AI Automation & Agents) */}
+        <div
+          className="tech-cord-squircle squircle-orange"
+          id="tech-badge-2"
+          role="button"
+          tabIndex={0}
+          aria-label="AI Automation Technology Discipline"
+          data-index="2"
+          onClick={() => {
+            const el = document.querySelector('#service-ai');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+        >
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
@@ -1036,8 +840,19 @@ export default function HeroCords() {
           <div className="squircle-sparks" id="tech-sparks-2" aria-hidden="true"></div>
         </div>
 
-        {/* 3: Bottom-Left (Luminous Emerald Mint - Verified Executive Talent Shield) */}
-        <div className="tech-cord-squircle squircle-mint" id="tech-badge-3" role="button" tabIndex={0} aria-label="Virtual Assistance Technology Discipline" data-index="3">
+        {/* 3: Bottom-Left (Emerald Mint - Virtual Assistants) */}
+        <div
+          className="tech-cord-squircle squircle-mint"
+          id="tech-badge-3"
+          role="button"
+          tabIndex={0}
+          aria-label="Virtual Assistance Technology Discipline"
+          data-index="3"
+          onClick={() => {
+            const el = document.querySelector('#service-va');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+        >
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
@@ -1057,8 +872,19 @@ export default function HeroCords() {
           <div className="squircle-sparks" id="tech-sparks-3" aria-hidden="true"></div>
         </div>
 
-        {/* 4: Top-Right (Electric Rose Magenta - 3D Isometric Cloud Stack & Dedicated Dev Teams) */}
-        <div className="tech-cord-squircle squircle-rose squircle-green" id="tech-badge-4" role="button" tabIndex={0} aria-label="Dedicated Remote Teams Discipline" data-index="4">
+        {/* 4: Top-Right (Electric Green / Rose - Dedicated Dev Teams) */}
+        <div
+          className="tech-cord-squircle squircle-rose squircle-green"
+          id="tech-badge-4"
+          role="button"
+          tabIndex={0}
+          aria-label="Dedicated Remote Teams Discipline"
+          data-index="4"
+          onClick={() => {
+            const el = document.querySelector('#service-dev');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+        >
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
@@ -1079,8 +905,19 @@ export default function HeroCords() {
           <div className="squircle-sparks" id="tech-sparks-4" aria-hidden="true"></div>
         </div>
 
-        {/* 5: Mid-Right (Cobalt Royal Blue - Lightning Cloud APIs & High-Speed DevOps) */}
-        <div className="tech-cord-squircle squircle-blue" id="tech-badge-5" role="button" tabIndex={0} aria-label="DevOps and API Integration Discipline" data-index="5">
+        {/* 5: Mid-Right (Royal Blue - DevOps & Cloud APIs) */}
+        <div
+          className="tech-cord-squircle squircle-blue"
+          id="tech-badge-5"
+          role="button"
+          tabIndex={0}
+          aria-label="DevOps and API Integration Discipline"
+          data-index="5"
+          onClick={() => {
+            const el = document.querySelector('#service-support');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+        >
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
@@ -1100,8 +937,19 @@ export default function HeroCords() {
           <div className="squircle-sparks" id="tech-sparks-5" aria-hidden="true"></div>
         </div>
 
-        {/* 6: Bottom-Right (Radiant Solar Amber Gold - High-Conversion E-Commerce Growth Cart) */}
-        <div className="tech-cord-squircle squircle-amber squircle-lime" id="tech-badge-6" role="button" tabIndex={0} aria-label="E-Commerce Support Discipline" data-index="6">
+        {/* 6: Bottom-Right (Neon Lime - E-Commerce Management) */}
+        <div
+          className="tech-cord-squircle squircle-amber squircle-lime"
+          id="tech-badge-6"
+          role="button"
+          tabIndex={0}
+          aria-label="E-Commerce Support Discipline"
+          data-index="6"
+          onClick={() => {
+            const el = document.querySelector('#service-support');
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }}
+        >
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">

@@ -1197,13 +1197,26 @@ input, textarea, select {
 }
 
 .tech-cord-path {
-  fill: none;
-  stroke: #94a3b8;
-  stroke: url(#tech-cord-line-grad);
-  stroke-width: 1.8px;
-  stroke-linecap: round;
-  transition: stroke 0.25s ease, filter 0.25s ease;
+  fill: none !important;
+  stroke-width: 1.5px !important;
+  stroke-linecap: round !important;
+  opacity: 0.95 !important;
   will-change: d;
+}
+
+#tech-cord-path-0 { stroke: url(#tech-cord-grad-0) !important; stroke-width: 1.5px !important; }
+#tech-cord-path-1 { stroke: url(#tech-cord-grad-1) !important; stroke-width: 1.5px !important; }
+#tech-cord-path-2 { stroke: url(#tech-cord-grad-2) !important; stroke-width: 1.5px !important; }
+#tech-cord-path-3 { stroke: url(#tech-cord-grad-3) !important; stroke-width: 1.5px !important; }
+#tech-cord-path-4 { stroke: url(#tech-cord-grad-4) !important; stroke-width: 1.5px !important; }
+#tech-cord-path-5 { stroke: url(#tech-cord-grad-5) !important; stroke-width: 1.5px !important; }
+#tech-cord-path-6 { stroke: url(#tech-cord-grad-6) !important; stroke-width: 1.5px !important; }
+
+.tech-cord-bead {
+  fill: #8a8a8a !important;
+  opacity: 0.95 !important;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.45));
+  pointer-events: none;
 }
 
 .tech-cord-mount {
@@ -1239,6 +1252,7 @@ input, textarea, select {
   z-index: 10;
   will-change: transform;
   outline: none;
+  transform-origin: 50% 0%;
 }
 
 .tech-cord-squircle:active,

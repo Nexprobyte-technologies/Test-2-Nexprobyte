@@ -147,7 +147,7 @@ export default function AllServices() {
               </div>
               <div className="service-bottom">
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--accent-purple)', fontWeight: 600 }}>12 Core Disciplines • 85% Effort Reduction</span>
-                <a href="#ai-copilot" className="service-link">View Automations &rarr;</a>
+                <a href="#contact" className="service-link">Deploy AI Automations &rarr;</a>
               </div>
             </div>
 
