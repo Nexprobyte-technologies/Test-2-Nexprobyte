@@ -1789,7 +1789,7 @@ function initTechCords() {
       updateDragPosition(cord, e);
     });
 
-    // Keyboard navigation (Enter / Space)
+    // Keyboard navigation (Enter / Space) - subtle playful tug
     badge.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -1798,10 +1798,6 @@ function initTechCords() {
         emitCordSparks(cord);
         setTimeout(() => {
           cord.vy = -34;
-          if (cord.targetHash) {
-            const target = document.querySelector(cord.targetHash);
-            if (target) target.scrollIntoView({ behavior: 'smooth' });
-          }
         }, 120);
       }
     });
@@ -1851,17 +1847,13 @@ function initTechCords() {
     const isQuickTap = !cord.hasMoved && duration < 320;
 
     if (isQuickTap) {
-      // Direct click / tap toggle: execute simulated spring pull & recoil
+      // Direct click / tap toggle: execute simulated spring pull & recoil (no section redirect)
       cord.vy = 26;
       playSquirclePing(1050);
       emitCordSparks(cord);
       setTimeout(() => {
         cord.vy = -32;
         cord.vx = (Math.random() - 0.5) * 6;
-        if (cord.targetHash) {
-          const target = document.querySelector(cord.targetHash);
-          if (target) target.scrollIntoView({ behavior: 'smooth' });
-        }
       }, 120);
       return;
     }

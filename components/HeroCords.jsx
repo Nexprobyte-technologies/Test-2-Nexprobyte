@@ -30,7 +30,6 @@ export default function HeroCords() {
         sub: 'Custom Business Software →',
         theme: 'squircle-purple',
         sparkColors: ['#a855f7', '#8b5cf6', '#c084fc', '#ffffff'],
-        targetHash: '#service-custom',
         freq: 720,
         phase: 0.0,
       },
@@ -41,7 +40,6 @@ export default function HeroCords() {
         sub: 'React, Node, Python & Mobile →',
         theme: 'squircle-cyan squircle-obsidian',
         sparkColors: ['#38bdf8', '#0ea5e9', '#7dd3fc', '#ffffff'],
-        targetHash: '#service-dev',
         freq: 820,
         phase: 1.25,
       },
@@ -52,7 +50,6 @@ export default function HeroCords() {
         sub: 'n8n, Zapier & AI Copilot →',
         theme: 'squircle-orange',
         sparkColors: ['#ff7849', '#ff5722', '#fdba74', '#ffffff'],
-        targetHash: '#service-ai',
         freq: 920,
         phase: 2.5,
       },
@@ -63,7 +60,6 @@ export default function HeroCords() {
         sub: 'Executive Admin & Operations →',
         theme: 'squircle-mint',
         sparkColors: ['#34d399', '#10b981', '#6ee7b7', '#ffffff'],
-        targetHash: '#service-va',
         freq: 780,
         phase: 3.75,
       },
@@ -74,7 +70,6 @@ export default function HeroCords() {
         sub: 'Scale Engineering On-Demand →',
         theme: 'squircle-rose squircle-green',
         sparkColors: ['#22c55e', '#4ade80', '#bbf7d0', '#ffffff'],
-        targetHash: '#service-dev',
         freq: 860,
         phase: 4.8,
       },
@@ -85,7 +80,6 @@ export default function HeroCords() {
         sub: 'CI/CD, Cloud & Integrations →',
         theme: 'squircle-blue',
         sparkColors: ['#60a5fa', '#3b82f6', '#93c5fd', '#ffffff'],
-        targetHash: '#service-support',
         freq: 980,
         phase: 5.65,
       },
@@ -96,7 +90,6 @@ export default function HeroCords() {
         sub: 'Shopify, WooCommerce & Ops →',
         theme: 'squircle-amber squircle-lime',
         sparkColors: ['#a3e635', '#84cc16', '#d9f99d', '#ffffff'],
-        targetHash: '#service-support',
         freq: 740,
         phase: 0.65,
       },
@@ -424,13 +417,25 @@ export default function HeroCords() {
         }
       };
 
+      // Gentle tug on keyboard Enter / Space without navigating away
+      const onKeyDown = (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          cord.vy = 26;
+          playSquirclePing(cord.freq + 100);
+          emitCordSparks(cord);
+        }
+      };
+
       badge.addEventListener('pointerdown', onPointerDown);
+      badge.addEventListener('keydown', onKeyDown);
       window.addEventListener('pointermove', onPointerMove, { passive: true });
       window.addEventListener('pointerup', onPointerEnd, { passive: true });
       window.addEventListener('pointercancel', onPointerEnd, { passive: true });
 
       cleanups.push(() => {
         badge.removeEventListener('pointerdown', onPointerDown);
+        badge.removeEventListener('keydown', onKeyDown);
         window.removeEventListener('pointermove', onPointerMove);
         window.removeEventListener('pointerup', onPointerEnd);
         window.removeEventListener('pointercancel', onPointerEnd);
@@ -733,7 +738,9 @@ export default function HeroCords() {
         <div className="tech-cord-mount" id="tech-cord-mount-5" aria-hidden="true" style={{ display: 'none' }}><span className="mount-dot"></span></div>
         <div className="tech-cord-mount" id="tech-cord-mount-6" aria-hidden="true" style={{ display: 'none' }}><span className="mount-dot"></span></div>
 
-        {/* 0: Center (Violet - ERP, BI & Dashboards) */}
+        {/* 7 Saro Finance Style Suspended 3D Squircles with Authentic Icons (No Section Redirection) */}
+
+        {/* 0: Center (Violet - Saro Orbit) */}
         <div
           className="tech-cord-squircle squircle-purple"
           id="tech-badge-0"
@@ -741,25 +748,13 @@ export default function HeroCords() {
           tabIndex={0}
           aria-label="ERP & Analytics Technology Discipline"
           data-index="0"
-          onClick={() => {
-            const el = document.querySelector('#service-custom');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
         >
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="4" y="4" width="16" height="16" rx="3.5" fill="#ffffff" fillOpacity="0.22" />
-                <rect x="8.5" y="8.5" width="7" height="7" rx="1.5" stroke="#ffffff" strokeWidth="2" fill="#ffffff" fillOpacity="0.35" />
-                <line x1="9" y1="1" x2="9" y2="4" />
-                <line x1="15" y1="1" x2="15" y2="4" />
-                <line x1="9" y1="20" x2="9" y2="23" />
-                <line x1="15" y1="20" x2="15" y2="23" />
-                <line x1="20" y1="9" x2="23" y2="9" />
-                <line x1="20" y1="15" x2="23" y2="15" />
-                <line x1="1" y1="9" x2="4" y2="9" />
-                <line x1="1" y1="15" x2="4" y2="15" />
+              <svg width="28" height="28" viewBox="0 0 100 100" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+                <path d="M46 12a38 38 0 1 0 42 42H46Z" />
+                <path d="M56 4a40 40 0 0 1 40 40H56Z" opacity="0.55" />
               </svg>
             </div>
           </div>
@@ -767,13 +762,13 @@ export default function HeroCords() {
             <span className="tooltip-indicator"></span>
             <div className="tooltip-text">
               <strong>ERP, BI &amp; Dashboards</strong>
-              <span>Custom Business Software &rarr;</span>
+              <span>Custom Business Software</span>
             </div>
           </div>
           <div className="squircle-sparks" id="tech-sparks-0" aria-hidden="true"></div>
         </div>
 
-        {/* 1: Top-Left (Cyan / Obsidian - Full-Stack Developers) */}
+        {/* 1: Top-Left (Cyan / Obsidian - Saro Knot) */}
         <div
           className="tech-cord-squircle squircle-cyan squircle-obsidian"
           id="tech-badge-1"
@@ -781,19 +776,16 @@ export default function HeroCords() {
           tabIndex={0}
           aria-label="Full-Stack Developers Technology Discipline"
           data-index="1"
-          onClick={() => {
-            const el = document.querySelector('#service-dev');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
         >
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="25" height="25" viewBox="0 0 24 24" fill="none">
-                <ellipse cx="12" cy="12" rx="10.5" ry="4" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" transform="rotate(0 12 12)"/>
-                <ellipse cx="12" cy="12" rx="10.5" ry="4" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" transform="rotate(60 12 12)"/>
-                <ellipse cx="12" cy="12" rx="10.5" ry="4" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" transform="rotate(120 12 12)"/>
-                <circle cx="12" cy="12" r="2.2" fill="#ffffff"/>
+              <svg width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g stroke="#ffffff" strokeWidth="9">
+                  <circle cx="50" cy="33" r="21" />
+                  <circle cx="34" cy="62" r="21" />
+                  <circle cx="66" cy="62" r="21" />
+                </g>
               </svg>
             </div>
           </div>
@@ -801,13 +793,13 @@ export default function HeroCords() {
             <span className="tooltip-indicator"></span>
             <div className="tooltip-text">
               <strong>Full-Stack Developers</strong>
-              <span>React, Node, Python &amp; Mobile &rarr;</span>
+              <span>React, Node, Python &amp; Mobile</span>
             </div>
           </div>
           <div className="squircle-sparks" id="tech-sparks-1" aria-hidden="true"></div>
         </div>
 
-        {/* 2: Mid-Left (Sunset Orange - AI Automation & Agents) */}
+        {/* 2: Mid-Left (Sunset Orange - Saro Peaks) */}
         <div
           className="tech-cord-squircle squircle-orange"
           id="tech-badge-2"
@@ -815,18 +807,13 @@ export default function HeroCords() {
           tabIndex={0}
           aria-label="AI Automation Technology Discipline"
           data-index="2"
-          onClick={() => {
-            const el = document.querySelector('#service-ai');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
         >
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 2l2.6 6.4L21 11l-6.4 2.6L12 20l-2.6-6.4L3 11l6.4-2.6L12 2z" fill="#ffffff" fillOpacity="0.25" />
-                <path d="M19 2v4M21 4h-4" />
-                <path d="M4 17v4M6 19H2" />
+              <svg width="28" height="28" viewBox="0 0 100 100" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+                <path d="m50 8 40 40-14 14-26-26-26 26-14-14Z" />
+                <path d="m50 44 40 40-14 14-26-26-26 26-14-14Z" opacity="0.6" />
               </svg>
             </div>
           </div>
@@ -834,13 +821,13 @@ export default function HeroCords() {
             <span className="tooltip-indicator"></span>
             <div className="tooltip-text">
               <strong>AI Automation &amp; Agents</strong>
-              <span>n8n, Zapier &amp; AI Copilot &rarr;</span>
+              <span>n8n, Zapier &amp; AI Copilot</span>
             </div>
           </div>
           <div className="squircle-sparks" id="tech-sparks-2" aria-hidden="true"></div>
         </div>
 
-        {/* 3: Bottom-Left (Emerald Mint - Virtual Assistants) */}
+        {/* 3: Bottom-Left (Emerald Mint - Saro Bloom) */}
         <div
           className="tech-cord-squircle squircle-mint"
           id="tech-badge-3"
@@ -848,17 +835,16 @@ export default function HeroCords() {
           tabIndex={0}
           aria-label="Virtual Assistance Technology Discipline"
           data-index="3"
-          onClick={() => {
-            const el = document.querySelector('#service-va');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
         >
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="#ffffff" fillOpacity="0.22" />
-                <path d="m9 12 2 2 4-4" stroke="#ffffff" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+              <svg width="28" height="28" viewBox="0 0 100 100" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 6c12 12 12 32 0 44-12-12-12-32 0-44" />
+                <path d="M94 50c-12 12-32 12-44 0 12-12 32-12 44 0" />
+                <path d="M50 94c-12-12-12-32 0-44 12 12 12 32 0 44" />
+                <path d="M6 50c12-12 32-12 44 0-12 12-32 12-44 0" />
+                <circle cx="50" cy="50" r="6" />
               </svg>
             </div>
           </div>
@@ -866,13 +852,13 @@ export default function HeroCords() {
             <span className="tooltip-indicator"></span>
             <div className="tooltip-text">
               <strong>Virtual Assistants (Top 1%)</strong>
-              <span>Executive Admin &amp; Operations &rarr;</span>
+              <span>Executive Admin &amp; Operations</span>
             </div>
           </div>
           <div className="squircle-sparks" id="tech-sparks-3" aria-hidden="true"></div>
         </div>
 
-        {/* 4: Top-Right (Electric Green / Rose - Dedicated Dev Teams) */}
+        {/* 4: Top-Right (Electric Green / Rose - Saro Lift) */}
         <div
           className="tech-cord-squircle squircle-rose squircle-green"
           id="tech-badge-4"
@@ -880,18 +866,12 @@ export default function HeroCords() {
           tabIndex={0}
           aria-label="Dedicated Remote Teams Discipline"
           data-index="4"
-          onClick={() => {
-            const el = document.querySelector('#service-dev');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
         >
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="12 2 2 7 12 12 22 7 12 2" fill="#ffffff" fillOpacity="0.25" />
-                <polyline points="2 17 12 22 22 17" />
-                <polyline points="2 12 12 17 22 12" />
+              <svg width="28" height="28" viewBox="0 0 100 100" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30 10h60v60L68 48 30 86 14 70l38-38Z" />
               </svg>
             </div>
           </div>
@@ -899,13 +879,13 @@ export default function HeroCords() {
             <span className="tooltip-indicator"></span>
             <div className="tooltip-text">
               <strong>Dedicated Dev Teams</strong>
-              <span>Scale Engineering On-Demand &rarr;</span>
+              <span>Scale Engineering On-Demand</span>
             </div>
           </div>
           <div className="squircle-sparks" id="tech-sparks-4" aria-hidden="true"></div>
         </div>
 
-        {/* 5: Mid-Right (Royal Blue - DevOps & Cloud APIs) */}
+        {/* 5: Mid-Right (Royal Blue - Saro Pair) */}
         <div
           className="tech-cord-squircle squircle-blue"
           id="tech-badge-5"
@@ -913,17 +893,13 @@ export default function HeroCords() {
           tabIndex={0}
           aria-label="DevOps and API Integration Discipline"
           data-index="5"
-          onClick={() => {
-            const el = document.querySelector('#service-support');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
         >
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" fill="#ffffff" fillOpacity="0.22" />
-                <polygon points="13 10 9 16 14 16 11 22 19 14 14 14 16 10" fill="#ffffff" strokeWidth="1.2" />
+              <svg width="28" height="28" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="36" cy="50" r="28" fill="#ffffff" />
+                <circle cx="64" cy="50" r="24" fill="none" stroke="#ffffff" strokeWidth="8" />
               </svg>
             </div>
           </div>
@@ -931,13 +907,13 @@ export default function HeroCords() {
             <span className="tooltip-indicator"></span>
             <div className="tooltip-text">
               <strong>DevOps &amp; Cloud APIs</strong>
-              <span>CI/CD, Cloud &amp; Integrations &rarr;</span>
+              <span>CI/CD, Cloud &amp; Integrations</span>
             </div>
           </div>
           <div className="squircle-sparks" id="tech-sparks-5" aria-hidden="true"></div>
         </div>
 
-        {/* 6: Bottom-Right (Neon Lime - E-Commerce Management) */}
+        {/* 6: Bottom-Right (Neon Lime - Saro Leaf) */}
         <div
           className="tech-cord-squircle squircle-amber squircle-lime"
           id="tech-badge-6"
@@ -945,19 +921,13 @@ export default function HeroCords() {
           tabIndex={0}
           aria-label="E-Commerce Support Discipline"
           data-index="6"
-          onClick={() => {
-            const el = document.querySelector('#service-support');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
         >
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="9" cy="20" r="1.5" fill="#ffffff" />
-                <circle cx="18" cy="20" r="1.5" fill="#ffffff" />
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" fill="#ffffff" fillOpacity="0.2" />
-                <path d="m13 8 3-3m0 0h-2.5m2.5 0v2.5" strokeWidth="2.2" strokeLinecap="round" />
+              <svg width="28" height="28" viewBox="0 0 100 100" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+                <path d="M90 8C40 8 14 34 14 64c0 9 3 17 8 23 44 1 68-29 68-79" />
+                <path stroke="#ffffff" strokeLinecap="round" strokeWidth="7" d="m10 92 12-12" />
               </svg>
             </div>
           </div>
@@ -965,7 +935,7 @@ export default function HeroCords() {
             <span className="tooltip-indicator"></span>
             <div className="tooltip-text">
               <strong>E-Commerce Management</strong>
-              <span>Shopify, Growth &amp; Ops &rarr;</span>
+              <span>Shopify, Growth &amp; Ops</span>
             </div>
           </div>
           <div className="squircle-sparks" id="tech-sparks-6" aria-hidden="true"></div>
