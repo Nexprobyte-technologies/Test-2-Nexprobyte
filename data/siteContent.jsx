@@ -800,3 +800,111 @@ export const COMPANY_INFO = {
     trustpilot: "https://www.trustpilot.com/review/nexprobyte.com"
   }
 };
+
+export const PRODUCTS = [
+  {
+    slug: 'go-drive',
+    num: '01',
+    name: 'GO Drive',
+    tagline: 'Enterprise Cloud Storage & Document Sync Engine',
+    category: 'Cloud Storage & Workspace',
+    badge: 'Flagship Platform',
+    accent: '#0066ff',
+    icon: 'cloud',
+    description: 'Ultra-secure, high-throughput cloud storage built for enterprise file synchronization, role-based document access, and high-speed multi-region asset distribution.',
+    stats: [
+      { label: 'File Transfer Speed', value: 'Up to 10 Gbps' },
+      { label: 'Data Encryption', value: 'AES-256 GCM' },
+      { label: 'Uptime SLA', value: '99.99%' },
+      { label: 'Active Sync Pods', value: '14 Regions' }
+    ],
+    features: [
+      'Zero-knowledge client-side file encryption',
+      'Instant team link sharing with auto-expiring tokens',
+      'Granular folder permissions & audit trail logging',
+      'Cross-platform desktop & mobile synchronization',
+      'Automated background backup for CAD, Video & Code assets'
+    ],
+    techStack: ['Node.js', 'Go', 'AWS S3 / Wasabi', 'React Native', 'WebSockets'],
+    demoUrl: '/services#products',
+    appStoreUrl: 'https://play.google.com'
+  },
+  {
+    slug: 'nexi-ai-copilot',
+    num: '02',
+    name: 'Nexi AI Enterprise Copilot',
+    tagline: 'Autonomous Workflow & Customer Intelligence Agent',
+    category: 'AI & Autonomous Systems',
+    badge: 'Next-Gen AI',
+    accent: '#8b5cf6',
+    icon: 'sparkles',
+    description: 'Domain-trained autonomous AI copilot that handles multi-tier customer inquiries, qualifies inbound sales leads, and triggers complex backend automations in sub-14ms.',
+    stats: [
+      { label: 'Inference Latency', value: '< 14ms' },
+      { label: 'Lead Conversion Boost', value: '+61%' },
+      { label: 'Support Deflection', value: '78%' },
+      { label: 'LLM Multi-Model', value: 'Claude 3.7 / GPT-4o' }
+    ],
+    features: [
+      'Multi-channel ingestion (WhatsApp, Web Chat, Email, Slack)',
+      'Real-time vector search across internal company knowledge bases',
+      'Automatic CRM contact sync & lead score qualification',
+      'Human-in-the-loop escalation with complete context preservation',
+      'Custom webhook triggers into n8n, Zapier and Make pipelines'
+    ],
+    techStack: ['Python', 'FastAPI', 'LangChain', 'pgvector', 'Tailwind CSS'],
+    demoUrl: '/services#service-ai'
+  },
+  {
+    slug: 'nexprobyte-erp',
+    num: '03',
+    name: 'Nexprobyte Cloud ERP & Invoicing',
+    tagline: 'Modular Business Operations & GST Billing Architecture',
+    category: 'Business Systems',
+    badge: 'Industrial Scale',
+    accent: '#10b981',
+    icon: 'database',
+    description: 'End-to-end enterprise resource planning system tailored for manufacturing, textile, wholesale and professional services with instant GST compliance and live inventory.',
+    stats: [
+      { label: 'Invoicing Speed', value: 'Instant GST Ready' },
+      { label: 'Stock Reconciliation', value: 'Real-Time' },
+      { label: 'Multi-Branch Support', value: 'Unlimited' },
+      { label: 'Audit Trail', value: 'Immutable' }
+    ],
+    features: [
+      'One-click e-way bill generation & GST invoice dispatch',
+      'Live warehouse stock tracking with barcode scanning integration',
+      'Customer accounts ledger & automated WhatsApp payment reminders',
+      'Role-based granular permissions for staff, accountants & managers',
+      'Exportable financial analytics with custom revenue forecast models'
+    ],
+    techStack: ['Next.js', 'PostgreSQL', 'Prisma', 'Tailwind CSS', 'Docker'],
+    demoUrl: '/services/custom-software'
+  },
+  {
+    slug: 'nexapp-mobile-suite',
+    num: '04',
+    name: 'NexApp Enterprise Mobile Framework',
+    tagline: 'High-Performance Cross-Platform Mobile Foundation',
+    category: 'Mobile Framework',
+    badge: 'iOS & Android',
+    accent: '#ff6b1a',
+    icon: 'smartphone',
+    description: 'Pre-architected, production-ready enterprise mobile application boilerplate enabling rapid release of iOS and Android apps with built-in push notification & offline sync.',
+    stats: [
+      { label: 'Frame Rate', value: '60 - 120 FPS' },
+      { label: 'Code Sharing', value: '95% Single Codebase' },
+      { label: 'Store Deploy Time', value: '14 Days' },
+      { label: 'Crash-Free Rate', value: '99.94%' }
+    ],
+    features: [
+      'Flutter & React Native cross-platform engine with native bridge',
+      'Biometric authentication (FaceID, Fingerprint) & hardware keychain',
+      'Offline-first SQLite local caching with automatic delta sync',
+      'Integrated payment gateways (Stripe, Razorpay, In-App Purchases)',
+      'Crashlytics telemetry and automated CI/CD App Store releases'
+    ],
+    techStack: ['Flutter', 'React Native', 'Firebase', 'GraphQL', 'Swift / Kotlin'],
+    demoUrl: '/services/mobile-app-development'
+  }
+];

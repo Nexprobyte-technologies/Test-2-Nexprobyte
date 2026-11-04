@@ -217,7 +217,7 @@ if (fs.existsSync(logoTransPath) && fs.statSync(logoTransPath).size > 0) {
 }
 
 // Nav dock logo
-if (html.includes('class="brand-icon"') && html.includes('assets/logo-transparent.png')) {
+if (html.includes('class="brand-icon"') && (html.includes('images/nxtpro-logo.png') || html.includes('assets/logo-transparent.png'))) {
   console.log('  ✓ Navigation Dock: Official logo integrated');
 } else {
   console.error('  ✗ Navigation Dock: Official logo missing');

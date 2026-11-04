@@ -123,7 +123,7 @@ export default function NexiChatbot() {
             aria-label="Open Nexi AI Assistant"
           >
             <img
-              src="/assets/logo-transparent.png"
+              src="/images/nxtpro-logo.png"
               alt="Nexi AI"
               className="nexi-fab-logo"
               width={26}
@@ -139,7 +139,7 @@ export default function NexiChatbot() {
               <div className="nexi-header-info">
                 <div className="nexi-avatar">
                   <img
-                    src="/assets/logo-transparent.png"
+                    src="/images/nxtpro-logo.png"
                     alt="Nexi"
                     width={22}
                     height={15}
@@ -167,7 +167,7 @@ export default function NexiChatbot() {
                   {m.sender === 'nexi' && (
                     <div className="nexi-msg-avatar">
                       <img
-                        src="/assets/logo-transparent.png"
+                        src="/images/nxtpro-logo.png"
                         alt="Nexi"
                         width={18}
                         height={12}

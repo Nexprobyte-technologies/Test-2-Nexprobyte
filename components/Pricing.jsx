@@ -187,12 +187,13 @@ export default function Pricing() {
         )}
 
         {/* Cards Grid */}
-        <div className="pricing-cards-grid stagger-group">
+        <div className="pricing-cards-grid stagger-group" style={{ overflow: 'visible', paddingTop: '16px' }}>
           {billingMode === 'project' &&
             projectPackages.map((p, idx) => (
               <div
                 key={idx}
                 className={`pricing-card spotlight-card reveal-up ${p.isFeatured ? 'featured' : ''}`}
+                style={{ overflow: 'visible' }}
               >
                 {p.popularTag && <div className="popular-badge">{p.popularTag}</div>}
                 <div>
@@ -233,6 +234,7 @@ export default function Pricing() {
               <div
                 key={idx}
                 className={`pricing-card spotlight-card reveal-up ${p.isFeatured ? 'featured' : ''}`}
+                style={{ overflow: 'visible' }}
               >
                 {p.popularTag && <div className="popular-badge">{p.popularTag}</div>}
                 <div>

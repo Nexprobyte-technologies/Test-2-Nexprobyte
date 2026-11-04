@@ -17,9 +17,9 @@ export const metadata = {
   publisher: 'Nexprobyte Technologies',
   robots: 'index, follow, max-image-preview:large',
   icons: {
-    icon: '/assets/logo-transparent.png',
-    shortcut: '/assets/logo-transparent.png',
-    apple: '/assets/logo-transparent.png',
+    icon: '/images/nxtpro-logo.png',
+    shortcut: '/images/nxtpro-logo.png',
+    apple: '/images/nxtpro-logo.png',
   },
   openGraph: {
     type: 'website',
@@ -112,7 +112,7 @@ export default function RootLayout({ children }) {
           href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
-        <link rel="icon" type="image/png" href="/assets/logo-transparent.png" />
+        <link rel="icon" type="image/png" href="/images/nxtpro-logo.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
