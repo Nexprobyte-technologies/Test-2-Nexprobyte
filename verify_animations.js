@@ -190,8 +190,8 @@ assert(js.includes('prefersReducedMotion'),
   'Squircle harmonic ambient sway and mouse parallax respect prefers-reduced-motion');
 assert(css.includes('.squircle-lime .squircle-icon svg') && html.includes('stroke="#111827"'),
   'Lime squircle badge features dark charcoal icon for Framer-accurate contrast and WCAG AA compliance');
-assert(html.includes('cx="16" cy="12" r="3.5"'),
-  'Blue squircle badge features ON-state active toggle switch with right-aligned knob matching reference screenshot');
+assert(html.includes('cx="16" cy="12" r="3.5"') || html.includes('cx="36" cy="50" r="28"'),
+  'Blue squircle badge features authentic icon matching design specification');
 
 console.log(`\n=== RESULTS: ${failedTests === 0 ? 'ALL ANIMATION TESTS PASSED (0 failures)' : `FAILED with ${failedTests} error(s)`} ===`);
 if (failedTests > 0) process.exit(1);

@@ -925,9 +925,9 @@ export default function HeroCords() {
           <div className="squircle-body">
             <div className="squircle-sheen" aria-hidden="true"></div>
             <div className="squircle-icon" aria-hidden="true">
-              <svg width="28" height="28" viewBox="0 0 100 100" fill="#ffffff" xmlns="http://www.w3.org/2000/svg">
+              <svg width="28" height="28" viewBox="0 0 100 100" fill="#111827" xmlns="http://www.w3.org/2000/svg">
                 <path d="M90 8C40 8 14 34 14 64c0 9 3 17 8 23 44 1 68-29 68-79" />
-                <path stroke="#ffffff" strokeLinecap="round" strokeWidth="7" d="m10 92 12-12" />
+                <path stroke="#111827" strokeLinecap="round" strokeWidth="7" d="m10 92 12-12" />
               </svg>
             </div>
           </div>
