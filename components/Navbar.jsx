@@ -453,24 +453,6 @@ export default function Navbar() {
                 </Link>
               </li>
 
-              {/* Careers */}
-              <li className="nav-item">
-                <Link
-                  href="/careers"
-                  className="nav-link"
-                  onMouseEnter={() => setHoveredNav('careers')}
-                >
-                  <NavRollText text="Careers" />
-                  {hoveredNav === 'careers' && (
-                    <motion.span
-                      layoutId="navbar-hover-indicator"
-                      className="nav-hover-pill"
-                      transition={{ type: 'spring', stiffness: 450, damping: 32 }}
-                    />
-                  )}
-                </Link>
-              </li>
-
               {/* Contact */}
               <li className="nav-item">
                 <Link
@@ -586,21 +568,15 @@ export default function Navbar() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/careers" className="drawer-link-item" onClick={() => setDrawerOpen(false)}>
-                    <NavRollText text="Careers" />
-                    <span className="drawer-link-num">05</span>
-                  </Link>
-                </li>
-                <li>
                   <Link href="/blog" className="drawer-link-item" onClick={() => setDrawerOpen(false)}>
                     <NavRollText text="Blog & Insights" />
-                    <span className="drawer-link-num">06</span>
+                    <span className="drawer-link-num">05</span>
                   </Link>
                 </li>
                 <li>
                   <Link href="/contact" className="drawer-link-item" onClick={() => setDrawerOpen(false)}>
                     <NavRollText text="Contact" />
-                    <span className="drawer-link-num">07</span>
+                    <span className="drawer-link-num">06</span>
                   </Link>
                 </li>
               </ul>

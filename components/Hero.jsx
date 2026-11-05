@@ -32,23 +32,7 @@ export default function Hero() {
           The unified talent and technology ecosystem for high-growth enterprises. Dedicated remote developers, executive virtual assistants, autonomous AI workflows, and custom software.
         </p>
 
-        {/* Dual Actions */}
-        <div className="hero-actions reveal-up">
-          <Link href="/contact" className="btn-primary-hero">
-            <span>Hire Dedicated Talent</span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-          </Link>
-          <Link href="/services" className="btn-secondary-hero">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polygon points="10 8 16 12 10 16 10 8"></polygon>
-            </svg>
-            <span>Explore All Services &rarr;</span>
-          </Link>
-        </div>
+        {/* Dual Actions removed per design update */}
 
         {/* Live Architectural Performance Indicators */}
         <div className="hero-metrics-pill-bar reveal-up" style={{ display: 'inline-flex', alignItems: 'center', gap: '12px', background: 'rgba(0, 102, 255, 0.05)', border: '1px solid rgba(0, 102, 255, 0.15)', borderRadius: '999px', padding: '6px 18px', fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.06em', color: 'var(--text-secondary)', margin: '20px 0 28px', flexWrap: 'wrap', justifyContent: 'center' }}>

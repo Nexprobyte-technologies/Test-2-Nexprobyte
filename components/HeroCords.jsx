@@ -658,58 +658,58 @@ export default function HeroCords() {
         <svg className="tech-cords-svg" id="tech-cords-svg" aria-hidden="true">
           <defs>
             <linearGradient id="tech-cord-grad-0" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#a3a3a3" stopOpacity="0" />
-              <stop offset="30%" stopColor="#a3a3a3" stopOpacity="0.45" />
-              <stop offset="85%" stopColor="#c084fc" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="#a855f7" stopOpacity="1" />
+              <stop offset="0%" stopColor="#334155" stopOpacity="0" />
+              <stop offset="30%" stopColor="#475569" stopOpacity="0.5" />
+              <stop offset="85%" stopColor="#1e293b" stopOpacity="0.85" />
+              <stop offset="100%" stopColor="#0f172a" stopOpacity="1" />
             </linearGradient>
 
             <linearGradient id="tech-cord-grad-1" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#a3a3a3" stopOpacity="0" />
-              <stop offset="30%" stopColor="#a3a3a3" stopOpacity="0.45" />
-              <stop offset="85%" stopColor="#7dd3fc" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="#38bdf8" stopOpacity="1" />
+              <stop offset="0%" stopColor="#334155" stopOpacity="0" />
+              <stop offset="30%" stopColor="#475569" stopOpacity="0.5" />
+              <stop offset="85%" stopColor="#1e293b" stopOpacity="0.85" />
+              <stop offset="100%" stopColor="#0f172a" stopOpacity="1" />
             </linearGradient>
 
             <linearGradient id="tech-cord-grad-2" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#a3a3a3" stopOpacity="0" />
-              <stop offset="30%" stopColor="#a3a3a3" stopOpacity="0.45" />
-              <stop offset="85%" stopColor="#fdba74" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="#ff7849" stopOpacity="1" />
+              <stop offset="0%" stopColor="#334155" stopOpacity="0" />
+              <stop offset="30%" stopColor="#475569" stopOpacity="0.5" />
+              <stop offset="85%" stopColor="#1e293b" stopOpacity="0.85" />
+              <stop offset="100%" stopColor="#0f172a" stopOpacity="1" />
             </linearGradient>
 
             <linearGradient id="tech-cord-grad-3" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#a3a3a3" stopOpacity="0" />
-              <stop offset="30%" stopColor="#a3a3a3" stopOpacity="0.45" />
-              <stop offset="85%" stopColor="#6ee7b7" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="#34d399" stopOpacity="1" />
+              <stop offset="0%" stopColor="#334155" stopOpacity="0" />
+              <stop offset="30%" stopColor="#475569" stopOpacity="0.5" />
+              <stop offset="85%" stopColor="#1e293b" stopOpacity="0.85" />
+              <stop offset="100%" stopColor="#0f172a" stopOpacity="1" />
             </linearGradient>
 
             <linearGradient id="tech-cord-grad-4" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#a3a3a3" stopOpacity="0" />
-              <stop offset="30%" stopColor="#a3a3a3" stopOpacity="0.45" />
-              <stop offset="85%" stopColor="#bbf7d0" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="#22c55e" stopOpacity="1" />
+              <stop offset="0%" stopColor="#334155" stopOpacity="0" />
+              <stop offset="30%" stopColor="#475569" stopOpacity="0.5" />
+              <stop offset="85%" stopColor="#1e293b" stopOpacity="0.85" />
+              <stop offset="100%" stopColor="#0f172a" stopOpacity="1" />
             </linearGradient>
 
             <linearGradient id="tech-cord-grad-5" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#a3a3a3" stopOpacity="0" />
-              <stop offset="30%" stopColor="#a3a3a3" stopOpacity="0.45" />
-              <stop offset="85%" stopColor="#93c5fd" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="#60a5fa" stopOpacity="1" />
+              <stop offset="0%" stopColor="#334155" stopOpacity="0" />
+              <stop offset="30%" stopColor="#475569" stopOpacity="0.5" />
+              <stop offset="85%" stopColor="#1e293b" stopOpacity="0.85" />
+              <stop offset="100%" stopColor="#0f172a" stopOpacity="1" />
             </linearGradient>
 
             <linearGradient id="tech-cord-grad-6" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#a3a3a3" stopOpacity="0" />
-              <stop offset="30%" stopColor="#a3a3a3" stopOpacity="0.45" />
-              <stop offset="85%" stopColor="#d9f99d" stopOpacity="0.9" />
-              <stop offset="100%" stopColor="#a3e635" stopOpacity="1" />
+              <stop offset="0%" stopColor="#334155" stopOpacity="0" />
+              <stop offset="30%" stopColor="#475569" stopOpacity="0.5" />
+              <stop offset="85%" stopColor="#1e293b" stopOpacity="0.85" />
+              <stop offset="100%" stopColor="#0f172a" stopOpacity="1" />
             </linearGradient>
 
             <linearGradient id="tech-cord-line-grad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#a3a3a3" stopOpacity="0" />
-              <stop offset="30%" stopColor="#a3a3a3" stopOpacity="0.45" />
-              <stop offset="100%" stopColor="#a3a3a3" stopOpacity="0.95" />
+              <stop offset="0%" stopColor="#334155" stopOpacity="0" />
+              <stop offset="30%" stopColor="#475569" stopOpacity="0.5" />
+              <stop offset="100%" stopColor="#1e293b" stopOpacity="0.95" />
             </linearGradient>
           </defs>
 
