@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
+import MagneticButton from './MagneticButton';
 
 function NavRollText({ text, className = '' }) {
   return (
@@ -570,14 +571,16 @@ export default function Navbar() {
           {/* 3. Right Action Area */}
           <div className="nav-actions">
             {/* Primary CTA on desktop */}
-            <Link href="/contact" className="nav-cta-btn">
-              <span className="cta-shimmer-sweep" />
-              <NavRollText text="Get a Quote" className="nav-roll-cta" />
-              <svg className="cta-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </Link>
+            <MagneticButton strength={12}>
+              <Link href="/contact" className="nav-cta-btn">
+                <span className="cta-shimmer-sweep" />
+                <NavRollText text="Get a Quote" className="nav-roll-cta" />
+                <svg className="cta-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </Link>
+            </MagneticButton>
 
             {/* Mobile Hamburger (Standard 3-Line Menu, easy tap) */}
             <button

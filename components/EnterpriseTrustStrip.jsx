@@ -1,10 +1,13 @@
 'use client';
 
 import React from 'react';
+import TiltCard from './TiltCard';
+import AnimatedCounter from './AnimatedCounter';
 
 const STATS = [
   {
-    num: '120+',
+    target: 120,
+    suffix: '+',
     label: 'Projects Completed',
     sub: 'Web, Mobile & SaaS Deployments',
     icon: (
@@ -16,7 +19,8 @@ const STATS = [
     ),
   },
   {
-    num: '99%',
+    target: 99,
+    suffix: '%',
     label: 'Client Satisfaction',
     sub: 'Long-Term Client Partnerships',
     icon: (
@@ -26,7 +30,8 @@ const STATS = [
     ),
   },
   {
-    num: '25+',
+    target: 25,
+    suffix: '+',
     label: 'Tech Specialists',
     sub: 'Designers, Engineers & Marketers',
     icon: (
@@ -39,7 +44,8 @@ const STATS = [
     ),
   },
   {
-    num: '6+ Years',
+    target: 6,
+    suffix: '+ Years',
     label: 'Industry Experience',
     sub: 'Coimbatore Engineering Hub',
     icon: (
@@ -66,14 +72,16 @@ export default function EnterpriseTrustStrip() {
 
           <div className="trust-strip-grid">
             {STATS.map((stat, idx) => (
-              <div key={idx} className="trust-stat-card spotlight-card">
+              <TiltCard key={idx} className="trust-stat-card spotlight-card" maxTilt={6}>
                 <div className="trust-stat-icon-wrap">{stat.icon}</div>
                 <div className="trust-stat-content">
-                  <div className="trust-stat-num">{stat.num}</div>
+                  <div className="trust-stat-num">
+                    <AnimatedCounter target={stat.target} suffix={stat.suffix} />
+                  </div>
                   <div className="trust-stat-label">{stat.label}</div>
                   <div className="trust-stat-sub">{stat.sub}</div>
                 </div>
-              </div>
+              </TiltCard>
             ))}
           </div>
         </div>

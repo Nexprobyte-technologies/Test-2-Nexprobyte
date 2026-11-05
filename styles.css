@@ -5201,6 +5201,94 @@ input, textarea, select {
 .nav-cta-btn:hover .cta-arrow {
   transform: translateX(3px);
 }
+
+/* ==========================================================================
+   ADVANCED 3D & CINEMATIC MOTION SYSTEM (FRAMER SPRING + GPU ACCELERATED)
+   ========================================================================== */
+
+@keyframes ambientFloat1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, 30px) scale(1.08); }
+  100% { transform: translate(-30px, 50px) scale(0.95); }
+}
+
+@keyframes ambientFloat2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-50px, 40px) scale(1.12); }
+  100% { transform: translate(25px, -35px) scale(0.92); }
+}
+
+@keyframes ambientFloat3 {
+  0% { transform: translate(0, 0) scale(0.95); }
+  50% { transform: translate(35px, -25px) scale(1.05); }
+  100% { transform: translate(-20px, 20px) scale(1); }
+}
+
+.tilt-card-container {
+  will-change: transform;
+}
+
+.tilt-card-inner {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.magnetic-button-wrap {
+  will-change: transform;
+}
+
+.animated-counter {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* Enhanced 3D Card Hover & Border Sheen */
+.trust-stat-card {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
+}
+
+.trust-stat-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 102, 255, 0.28);
+  box-shadow: 0 16px 36px -6px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.feature-folder-card {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
+}
+
+.feature-folder-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(0, 102, 255, 0.35);
+  box-shadow: 0 18px 40px -8px rgba(0, 102, 255, 0.12), 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.feature-folder-card:hover .folder-icon svg {
+  transform: scale(1.12) rotate(4deg);
+  transition: transform 0.25s var(--ease-spring);
+}
+
+.testimonial-card-review {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.testimonial-card-review:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 38px -8px rgba(15, 23, 42, 0.1), 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-orb {
+    animation: none !important;
+  }
+  .tilt-card-inner {
+    transform: none !important;
+    transition: none !important;
+  }
+  .magnetic-button-wrap {
+    transform: none !important;
+  }
+}
 .ham-line {
   display: block;
   width: 20px;
@@ -5520,4 +5608,92 @@ input, textarea, select {
 
 .nav-cta-btn:hover .cta-arrow {
   transform: translateX(3px);
+}
+
+/* ==========================================================================
+   ADVANCED 3D & CINEMATIC MOTION SYSTEM (FRAMER SPRING + GPU ACCELERATED)
+   ========================================================================== */
+
+@keyframes ambientFloat1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, 30px) scale(1.08); }
+  100% { transform: translate(-30px, 50px) scale(0.95); }
+}
+
+@keyframes ambientFloat2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-50px, 40px) scale(1.12); }
+  100% { transform: translate(25px, -35px) scale(0.92); }
+}
+
+@keyframes ambientFloat3 {
+  0% { transform: translate(0, 0) scale(0.95); }
+  50% { transform: translate(35px, -25px) scale(1.05); }
+  100% { transform: translate(-20px, 20px) scale(1); }
+}
+
+.tilt-card-container {
+  will-change: transform;
+}
+
+.tilt-card-inner {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.magnetic-button-wrap {
+  will-change: transform;
+}
+
+.animated-counter {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* Enhanced 3D Card Hover & Border Sheen */
+.trust-stat-card {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
+}
+
+.trust-stat-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 102, 255, 0.28);
+  box-shadow: 0 16px 36px -6px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.feature-folder-card {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
+}
+
+.feature-folder-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(0, 102, 255, 0.35);
+  box-shadow: 0 18px 40px -8px rgba(0, 102, 255, 0.12), 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+.feature-folder-card:hover .folder-icon svg {
+  transform: scale(1.12) rotate(4deg);
+  transition: transform 0.25s var(--ease-spring);
+}
+
+.testimonial-card-review {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.testimonial-card-review:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 38px -8px rgba(15, 23, 42, 0.1), 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-orb {
+    animation: none !important;
+  }
+  .tilt-card-inner {
+    transform: none !important;
+    transition: none !important;
+  }
+  .magnetic-button-wrap {
+    transform: none !important;
+  }
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import TiltCard from './TiltCard';
 
 const TN_REVIEWS = [
   {
@@ -147,23 +148,25 @@ export default function Testimonials() {
         {/* Tamil Nadu Tanglish Reviews Grid */}
         <div className="tn-reviews-grid stagger-group" style={{ marginTop: '32px' }}>
           {TN_REVIEWS.map((rev, idx) => (
-            <div key={idx} className="tn-review-card spotlight-card reveal-up">
-              <div className="tn-rev-header">
-                <div className="tn-rev-avatar" style={{ background: rev.color }}>
-                  {rev.initials}
+            <TiltCard key={idx} maxTilt={5} className="tn-review-card-tilt">
+              <div className="tn-review-card spotlight-card reveal-up" style={{ width: '100%', height: '100%' }}>
+                <div className="tn-rev-header">
+                  <div className="tn-rev-avatar" style={{ background: rev.color }}>
+                    {rev.initials}
+                  </div>
+                  <div>
+                    <div className="tn-rev-name">{rev.name}</div>
+                    <div className="tn-rev-company">{rev.company} • 📍 {rev.city}</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="tn-rev-name">{rev.name}</div>
-                  <div className="tn-rev-company">{rev.company} • 📍 {rev.city}</div>
+                <div className="tn-rev-stars">★★★★★</div>
+                <p className="tn-rev-text">&ldquo;{rev.text}&rdquo;</p>
+                <div className="tn-rev-footer">
+                  <span className="tn-rev-badge">VERIFIED CLIENT • 2024</span>
+                  <span className="tn-rev-status">5.0 Star Rating</span>
                 </div>
               </div>
-              <div className="tn-rev-stars">★★★★★</div>
-              <p className="tn-rev-text">&ldquo;{rev.text}&rdquo;</p>
-              <div className="tn-rev-footer">
-                <span className="tn-rev-badge">VERIFIED CLIENT • 2024</span>
-                <span className="tn-rev-status">5.0 Star Rating</span>
-              </div>
-            </div>
+            </TiltCard>
           ))}
         </div>
       </div>

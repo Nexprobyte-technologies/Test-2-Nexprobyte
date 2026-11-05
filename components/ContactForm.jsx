@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import MagneticButton from './MagneticButton';
 
 const TOPICS = [
   'New website',
@@ -11,7 +12,7 @@ const TOPICS = [
   'Dedicated Developers',
   'Virtual Assistants',
   'AI & Automation',
-  'Careers / Hiring',
+  'Enterprise Tech Partnership',
 ];
 
 export default function ContactForm() {
@@ -195,14 +196,16 @@ export default function ContactForm() {
                 />
               </div>
 
-              <button
-                type="submit"
-                className="btn-primary-hero"
-                style={{ width: '100%', justifyContent: 'center', marginTop: '10px' }}
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Transmitting Request…' : 'Send Message →'}
-              </button>
+              <MagneticButton strength={8} style={{ width: '100%', marginTop: '10px' }}>
+                <button
+                  type="submit"
+                  className="btn-primary-hero"
+                  style={{ width: '100%', justifyContent: 'center' }}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Transmitting Request…' : 'Send Message →'}
+                </button>
+              </MagneticButton>
             </form>
           </div>
         </div>

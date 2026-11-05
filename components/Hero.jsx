@@ -3,11 +3,14 @@
 import React from 'react';
 import Link from 'next/link';
 import HeroCords from './HeroCords';
+import HeroBackgroundGlow from './HeroBackgroundGlow';
+import TiltCard from './TiltCard';
 
 export default function Hero() {
   return (
     <section className="hero-section" id="hero">
       <div className="hero-glow"></div>
+      <HeroBackgroundGlow />
 
       {/* Hanging threads and suspended technology squircles */}
       <HeroCords />
@@ -48,74 +51,84 @@ export default function Hero() {
           <span style={{ color: 'var(--accent-green)' }}>120+ PROJECTS COMPLETED</span>
         </div>
 
-        {/* 5 Quick Hero Service Folders */}
+        {/* 5 Quick Hero Service Folders with 3D Tilt */}
         <div className="hero-features-grid stagger-group">
-          <Link href="/services#service-va" className="feature-folder-card spotlight-card reveal-up">
-            <div className="folder-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-              </svg>
-            </div>
-            <div className="folder-info">
-              <span className="folder-title">Virtual Assistants</span>
-              <span className="folder-caption">Top 1% Vetted Talent</span>
-            </div>
-          </Link>
+          <TiltCard maxTilt={5}>
+            <Link href="/services#service-va" className="feature-folder-card spotlight-card reveal-up" style={{ width: '100%', height: '100%', textDecoration: 'none' }}>
+              <div className="folder-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <div className="folder-info">
+                <span className="folder-title">Virtual Assistants</span>
+                <span className="folder-caption">Top 1% Vetted Talent</span>
+              </div>
+            </Link>
+          </TiltCard>
 
-          <Link href="/services#service-dev" className="feature-folder-card spotlight-card reveal-up">
-            <div className="folder-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polyline points="16 18 22 12 16 6"></polyline>
-                <polyline points="8 6 2 12 8 18"></polyline>
-              </svg>
-            </div>
-            <div className="folder-info">
-              <span className="folder-title">Dev Manpower</span>
-              <span className="folder-caption">Full-Stack &amp; Mobile</span>
-            </div>
-          </Link>
+          <TiltCard maxTilt={5}>
+            <Link href="/services#service-dev" className="feature-folder-card spotlight-card reveal-up" style={{ width: '100%', height: '100%', textDecoration: 'none' }}>
+              <div className="folder-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <div className="folder-info">
+                <span className="folder-title">Dev Manpower</span>
+                <span className="folder-caption">Full-Stack &amp; Mobile</span>
+              </div>
+            </Link>
+          </TiltCard>
 
-          <Link href="/services#service-ai" className="feature-folder-card spotlight-card reveal-up">
-            <div className="folder-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="2" y="3" width="20" height="14" rx="2"></rect>
-                <line x1="8" y1="21" x2="16" y2="21"></line>
-                <line x1="12" y1="17" x2="12" y2="21"></line>
-              </svg>
-            </div>
-            <div className="folder-info">
-              <span className="folder-title">AI Automation</span>
-              <span className="folder-caption">n8n, Zapier &amp; Agents</span>
-            </div>
-          </Link>
+          <TiltCard maxTilt={5}>
+            <Link href="/services#service-ai" className="feature-folder-card spotlight-card reveal-up" style={{ width: '100%', height: '100%', textDecoration: 'none' }}>
+              <div className="folder-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+              </div>
+              <div className="folder-info">
+                <span className="folder-title">AI Automation</span>
+                <span className="folder-caption">n8n, Zapier &amp; Agents</span>
+              </div>
+            </Link>
+          </TiltCard>
 
-          <Link href="/services#service-support" className="feature-folder-card spotlight-card reveal-up">
-            <div className="folder-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="2" y1="12" x2="22" y2="12"></line>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path>
-              </svg>
-            </div>
-            <div className="folder-info">
-              <span className="folder-title">Web &amp; E-Commerce</span>
-              <span className="folder-caption">Shopify &amp; WordPress</span>
-            </div>
-          </Link>
+          <TiltCard maxTilt={5}>
+            <Link href="/services#service-support" className="feature-folder-card spotlight-card reveal-up" style={{ width: '100%', height: '100%', textDecoration: 'none' }}>
+              <div className="folder-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+              </div>
+              <div className="folder-info">
+                <span className="folder-title">Web &amp; E-Commerce</span>
+                <span className="folder-caption">Shopify &amp; WordPress</span>
+              </div>
+            </Link>
+          </TiltCard>
 
-          <Link href="/services#service-custom" className="feature-folder-card spotlight-card reveal-up">
-            <div className="folder-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
-                <path d="M3 9h18"></path>
-              </svg>
-            </div>
-            <div className="folder-info">
-              <span className="folder-title">Custom Software</span>
-              <span className="folder-caption">CRM, ERP &amp; SaaS</span>
-            </div>
-          </Link>
+          <TiltCard maxTilt={5}>
+            <Link href="/services#service-custom" className="feature-folder-card spotlight-card reveal-up" style={{ width: '100%', height: '100%', textDecoration: 'none' }}>
+              <div className="folder-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                  <path d="M3 9h18"></path>
+                </svg>
+              </div>
+              <div className="folder-info">
+                <span className="folder-title">Custom Software</span>
+                <span className="folder-caption">CRM, ERP &amp; SaaS</span>
+              </div>
+            </Link>
+          </TiltCard>
         </div>
       </div>
     </section>
