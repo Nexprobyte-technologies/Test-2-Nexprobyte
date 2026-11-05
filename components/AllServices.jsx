@@ -15,7 +15,7 @@ export default function AllServices() {
           <div className="badge-tag">Service Architecture</div>
           <h2 className="section-title">The Complete Nexprobyte Suite</h2>
           <p className="section-subtitle">
-            Everything your business needs to scale without friction. From 52 specialized PDF services to 12 core production disciplines.
+            Everything your business needs to scale without friction. From specialized enterprise solutions to core production disciplines.
           </p>
         </div>
 
@@ -26,7 +26,7 @@ export default function AllServices() {
             className={`services-nav-tab ${activeTab === 'pdf' ? 'active' : ''}`}
             onClick={() => setActiveTab('pdf')}
           >
-            <span>52 Specialized PDF Services (5 Pillars)</span>
+            <span>Enterprise Service Pillars</span>
           </button>
           <button
             type="button"
@@ -329,7 +329,7 @@ export default function AllServices() {
 
         <div style={{ textAlign: 'center', marginTop: '40px' }}>
           <Link href="/services" className="btn-primary-hero" style={{ padding: '14px 32px', fontSize: '1rem' }}>
-            Explore All 12 Production Disciplines &amp; 52 Turnkey Capabilities &rarr;
+            Explore All Production Disciplines &amp; Turnkey Capabilities &rarr;
           </Link>
         </div>
       </div>

@@ -20,6 +20,7 @@ export default function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [hoveredNav, setHoveredNav] = useState(null);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [openCategories, setOpenCategories] = useState({ it: false, va: false });
   const progressBarRef = useRef(null);
 
   useEffect(() => {
@@ -347,88 +348,181 @@ export default function Navbar() {
                       <div className="dropdown-split-container" style={{ gridTemplateColumns: '1.15fr 1fr' }}>
                         {/* Col 1: Information Technology */}
                         <div className="dropdown-split-col">
-                          <div className="dropdown-col-heading" style={{ color: 'var(--accent-blue)', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                            <span className="badge-dot" style={{ background: 'var(--accent-blue)', width: 6, height: 6 }} />
-                            <span>INFORMATION TECHNOLOGY</span>
-                          </div>
-                          <div className="dropdown-items-stack">
-                            {servicesIT.map((item, idx) => (
-                              <Link
-                                key={idx}
-                                href={item.href}
-                                className="dropdown-item-row has-desc"
-                                onClick={() => setServicesOpen(false)}
+                          <button
+                            type="button"
+                            className="dropdown-col-heading-btn"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              setOpenCategories((prev) => ({ ...prev, it: !prev.it }));
+                            }}
+                            aria-expanded={openCategories.it}
+                            style={{
+                              width: '100%',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'space-between',
+                              padding: '11px 14px',
+                              background: openCategories.it ? 'rgba(0, 102, 255, 0.08)' : '#f8fafc',
+                              border: '1.5px solid',
+                              borderColor: openCategories.it ? 'rgba(0, 102, 255, 0.35)' : '#e2e8f0',
+                              borderRadius: '12px',
+                              cursor: 'pointer',
+                              transition: 'all 0.22s ease',
+                              textAlign: 'left',
+                              marginBottom: openCategories.it ? '10px' : '0',
+                            }}
+                          >
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                              <span className="badge-dot" style={{ background: 'var(--accent-blue)', width: 8, height: 8, borderRadius: '50%' }} />
+                              <span style={{ color: 'var(--accent-blue)', fontWeight: 800, fontSize: '0.82rem', letterSpacing: '0.04em' }}>
+                                INFORMATION TECHNOLOGY
+                              </span>
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                              <span style={{ fontSize: '0.74rem', color: '#64748b', fontWeight: 600 }}>
+                                {openCategories.it ? 'Collapse' : 'Click to View'}
+                              </span>
+                              <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="var(--accent-blue)"
+                                strokeWidth="2.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                style={{
+                                  transform: openCategories.it ? 'rotate(180deg)' : 'rotate(0deg)',
+                                  transition: 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+                                }}
                               >
-                                <div className="dropdown-item-left">
-                                  <div className="dropdown-item-icon-box">{item.icon}</div>
-                                  <div>
-                                    <span className="dropdown-item-title">{item.title}</span>
-                                    <span className="dropdown-item-desc">{item.desc}</span>
-                                  </div>
+                                <polyline points="6 9 12 15 18 9" />
+                              </svg>
+                            </div>
+                          </button>
+
+                          <AnimatePresence>
+                            {openCategories.it && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                                style={{ overflow: 'hidden' }}
+                              >
+                                <div className="dropdown-items-stack">
+                                  {servicesIT.map((item, idx) => (
+                                    <Link
+                                      key={idx}
+                                      href={item.href}
+                                      className="dropdown-item-row has-desc"
+                                      onClick={() => setServicesOpen(false)}
+                                    >
+                                      <div className="dropdown-item-left">
+                                        <div className="dropdown-item-icon-box">{item.icon}</div>
+                                        <div>
+                                          <span className="dropdown-item-title">{item.title}</span>
+                                          <span className="dropdown-item-desc">{item.desc}</span>
+                                        </div>
+                                      </div>
+                                      <span className="dropdown-item-arrow">→</span>
+                                    </Link>
+                                  ))}
                                 </div>
-                                <span className="dropdown-item-arrow">→</span>
-                              </Link>
-                            ))}
-                          </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
                         </div>
 
                         {/* Col 2: Virtual Assistant */}
                         <div className="dropdown-split-col dropdown-split-col-secondary">
-                          <div className="dropdown-col-heading" style={{ color: 'var(--accent-purple)', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                            <span className="badge-dot" style={{ background: 'var(--accent-purple)', width: 6, height: 6 }} />
-                            <span>VIRTUAL ASSISTANT</span>
-                          </div>
-                          <div className="dropdown-items-stack">
-                            {servicesVA.map((item, idx) => (
-                              <Link
-                                key={idx}
-                                href={item.href}
-                                className="dropdown-item-row has-desc"
-                                onClick={() => setServicesOpen(false)}
+                          <button
+                            type="button"
+                            className="dropdown-col-heading-btn"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              setOpenCategories((prev) => ({ ...prev, va: !prev.va }));
+                            }}
+                            aria-expanded={openCategories.va}
+                            style={{
+                              width: '100%',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'space-between',
+                              padding: '11px 14px',
+                              background: openCategories.va ? 'rgba(99, 91, 255, 0.08)' : '#f8fafc',
+                              border: '1.5px solid',
+                              borderColor: openCategories.va ? 'rgba(99, 91, 255, 0.35)' : '#e2e8f0',
+                              borderRadius: '12px',
+                              cursor: 'pointer',
+                              transition: 'all 0.22s ease',
+                              textAlign: 'left',
+                              marginBottom: openCategories.va ? '10px' : '0',
+                            }}
+                          >
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                              <span className="badge-dot" style={{ background: 'var(--accent-purple)', width: 8, height: 8, borderRadius: '50%' }} />
+                              <span style={{ color: 'var(--accent-purple)', fontWeight: 800, fontSize: '0.82rem', letterSpacing: '0.04em' }}>
+                                VIRTUAL ASSISTANT
+                              </span>
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                              <span style={{ fontSize: '0.74rem', color: '#64748b', fontWeight: 600 }}>
+                                {openCategories.va ? 'Collapse' : 'Click to View'}
+                              </span>
+                              <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="var(--accent-purple)"
+                                strokeWidth="2.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                style={{
+                                  transform: openCategories.va ? 'rotate(180deg)' : 'rotate(0deg)',
+                                  transition: 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+                                }}
                               >
-                                <div className="dropdown-item-left">
-                                  <div className="dropdown-item-icon-box">{item.icon}</div>
-                                  <div>
-                                    <span className="dropdown-item-title">{item.title}</span>
-                                    <span className="dropdown-item-desc">{item.desc}</span>
-                                  </div>
-                                </div>
-                                <span className="dropdown-item-arrow">→</span>
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
+                                <polyline points="6 9 12 15 18 9" />
+                              </svg>
+                            </div>
+                          </button>
 
-                      {/* Dropdown Bottom Navigation Bar */}
-                      <div
-                        style={{
-                          marginTop: '16px',
-                          paddingTop: '12px',
-                          borderTop: '1px solid #edf2f7',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                          fontSize: '0.82rem'
-                        }}
-                      >
-                        <span style={{ color: 'var(--text-secondary)' }}>
-                          5 Core Pillars • 52 Verified Enterprise Services
-                        </span>
-                        <Link
-                          href="/services"
-                          onClick={() => setServicesOpen(false)}
-                          style={{
-                            color: 'var(--accent-blue)',
-                            fontWeight: 700,
-                            textDecoration: 'none',
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '4px'
-                          }}
-                        >
-                          <span>Explore All 52 Services &rarr;</span>
-                        </Link>
+                          <AnimatePresence>
+                            {openCategories.va && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                                style={{ overflow: 'hidden' }}
+                              >
+                                <div className="dropdown-items-stack">
+                                  {servicesVA.map((item, idx) => (
+                                    <Link
+                                      key={idx}
+                                      href={item.href}
+                                      className="dropdown-item-row has-desc"
+                                      onClick={() => setServicesOpen(false)}
+                                    >
+                                      <div className="dropdown-item-left">
+                                        <div className="dropdown-item-icon-box">{item.icon}</div>
+                                        <div>
+                                          <span className="dropdown-item-title">{item.title}</span>
+                                          <span className="dropdown-item-desc">{item.desc}</span>
+                                        </div>
+                                      </div>
+                                      <span className="dropdown-item-arrow">→</span>
+                                    </Link>
+                                  ))}
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
                       </div>
                     </motion.div>
                   )}
