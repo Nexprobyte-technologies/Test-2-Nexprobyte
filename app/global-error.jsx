@@ -11,17 +11,18 @@ export default function GlobalError({ error, reset }) {
 
   return (
     <html lang="en">
-      <body style={{ margin: 0, padding: 0, fontFamily: 'system-ui, -apple-system, sans-serif', background: '#0a0a0a', color: '#ffffff' }}>
+      <body style={{ margin: 0, padding: 0, fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", background: '#ffffff', color: '#141414' }}>
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '24px', textAlign: 'center' }}>
-          <div style={{ maxWidth: '520px', padding: '40px 32px', background: '#141414', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.12)', boxShadow: '0 20px 50px rgba(0,0,0,0.6)' }}>
-            <div style={{ fontSize: '13px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#0066ff', marginBottom: '12px' }}>
+          <div style={{ maxWidth: '520px', padding: '40px 32px', background: '#ffffff', borderRadius: '20px', border: '1px solid #ebebeb', boxShadow: '0 16px 40px rgba(0,0,0,0.06)' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', borderRadius: '9999px', background: '#ebf3ff', color: '#0066ff', fontSize: '12px', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '16px' }}>
+              <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#0066ff' }} />
               Nexprobyte System Recovery
             </div>
-            <h1 style={{ fontSize: '1.8rem', fontWeight: 700, margin: '0 0 16px', color: '#ffffff' }}>
+            <h1 style={{ fontSize: '1.85rem', fontWeight: 800, margin: '0 0 14px', color: '#141414', letterSpacing: '-0.025em' }}>
               Application Recovered
             </h1>
-            <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.6, marginBottom: '28px' }}>
-              A transient browser state or cache synchronization issue was automatically isolated. Click below to refresh your view smoothly.
+            <p style={{ fontSize: '0.96rem', color: '#5a5d62', lineHeight: 1.65, marginBottom: '28px' }}>
+              A transient browser cache or module synchronization issue occurred. You can restore your session or return to the main portal.
             </p>
             <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
               <button
@@ -30,13 +31,13 @@ export default function GlobalError({ error, reset }) {
                   if (typeof reset === 'function') reset();
                   else if (typeof window !== 'undefined') window.location.reload();
                 }}
-                style={{ padding: '12px 28px', borderRadius: '999px', background: '#0066ff', color: '#ffffff', fontWeight: 600, fontSize: '0.9rem', border: 'none', cursor: 'pointer', boxShadow: '0 4px 14px rgba(0,102,255,0.3)' }}
+                style={{ padding: '12px 28px', borderRadius: '9999px', background: '#0066ff', color: '#ffffff', fontWeight: 600, fontSize: '0.92rem', border: 'none', cursor: 'pointer', boxShadow: '0 4px 14px rgba(0,102,255,0.25)' }}
               >
-                Restore Session
+                Restore Session &rarr;
               </button>
               <a
                 href="/"
-                style={{ padding: '12px 28px', borderRadius: '999px', background: 'rgba(255,255,255,0.1)', color: '#ffffff', fontWeight: 600, fontSize: '0.9rem', textDecoration: 'none', border: '1px solid rgba(255,255,255,0.2)' }}
+                style={{ padding: '12px 28px', borderRadius: '9999px', background: '#f7f7f7', color: '#141414', fontWeight: 600, fontSize: '0.92rem', textDecoration: 'none', border: '1px solid #ebebeb' }}
               >
                 Return to Home
               </a>

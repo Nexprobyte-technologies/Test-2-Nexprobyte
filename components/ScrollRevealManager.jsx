@@ -8,11 +8,9 @@ export default function ScrollRevealManager() {
 
   useEffect(() => {
     // -------------------------------------------------------------
-    // 1. ROBUST, ROUTE-AWARE SCROLL REVEAL OBSERVER
+    // HIGH-PERFORMANCE, ZERO-LAYOUT-THRASH SCROLL REVEAL OBSERVER
     // -------------------------------------------------------------
     let observer = null;
-    let mutationObserver = null;
-    let safetyTimer = null;
     let scheduledTimers = [];
 
     function revealElement(el) {
@@ -25,32 +23,7 @@ export default function ScrollRevealManager() {
       }
     }
 
-    function scanAndReveal() {
-      const reveals = document.querySelectorAll(
-        '.reveal, .reveal-up, .reveal-scale, .reveal-fade'
-      );
-
-      if (reveals.length === 0) return;
-
-      const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 800;
-
-      reveals.forEach((el) => {
-        if (el.classList.contains('is-revealed')) return;
-
-        const rect = el.getBoundingClientRect();
-        // If element is in viewport or very close to it, reveal immediately
-        if (rect.top <= viewportHeight * 0.95 && rect.bottom >= -50) {
-          revealElement(el);
-        } else if (observer) {
-          observer.observe(el);
-        } else {
-          // If no IntersectionObserver, reveal immediately
-          revealElement(el);
-        }
-      });
-    }
-
-    // Initialize IntersectionObserver with forgiving margins
+    // Initialize IntersectionObserver with forgiving margins to reveal off-thread
     if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
       observer = new IntersectionObserver(
         (entries) => {
@@ -60,94 +33,109 @@ export default function ScrollRevealManager() {
             }
           });
         },
-        { threshold: 0.01, rootMargin: '40px 0px 40px 0px' }
+        { threshold: 0.01, rootMargin: '60px 0px 60px 0px' }
       );
     }
 
-    // Initialize MutationObserver to catch any asynchronously mounted components on route transitions
-    if (typeof window !== 'undefined' && 'MutationObserver' in window) {
-      mutationObserver = new MutationObserver(() => {
-        scanAndReveal();
-      });
-      mutationObserver.observe(document.body, {
-        childList: true,
-        subtree: true,
+    function scanAndObserve() {
+      const reveals = document.querySelectorAll(
+        '.reveal:not(.is-revealed), .reveal-up:not(.is-revealed), .reveal-scale:not(.is-revealed), .reveal-fade:not(.is-revealed)'
+      );
+
+      if (reveals.length === 0) return;
+
+      reveals.forEach((el) => {
+        if (observer) {
+          observer.observe(el);
+        } else {
+          revealElement(el);
+        }
       });
     }
 
-    // Staged scans to eliminate any blank-screen delays during React 19 hydration & navigation transitions
-    scanAndReveal();
-    const t0 = requestAnimationFrame(scanAndReveal);
-    const t1 = setTimeout(scanAndReveal, 60);
-    const t2 = setTimeout(scanAndReveal, 160);
-    const t3 = setTimeout(scanAndReveal, 320);
+    // Staged passive observations after DOM is ready
+    scanAndObserve();
+    const t0 = requestAnimationFrame(scanAndObserve);
+    const t1 = setTimeout(scanAndObserve, 80);
+    const t2 = setTimeout(scanAndObserve, 250);
 
-    // Absolute failsafe: after 450ms, guarantee all elements on screen are revealed
-    // so user NEVER sees stuck opacity: 0 content under any circumstances
-    safetyTimer = setTimeout(() => {
+    // Failsafe: reveal any remaining visible elements after initial render
+    const safetyTimer = setTimeout(() => {
       const remaining = document.querySelectorAll(
         '.reveal:not(.is-revealed), .reveal-up:not(.is-revealed), .reveal-scale:not(.is-revealed), .reveal-fade:not(.is-revealed)'
       );
       remaining.forEach(revealElement);
     }, 450);
 
-    scheduledTimers = [t1, t2, t3];
+    scheduledTimers = [t1, t2, safetyTimer];
 
-    // Resize listener throttled with RAF (No scroll listener needed: IntersectionObserver handles scroll off-thread with zero layout thrashing)
-    let resizeRaf = null;
+    // Throttled resize observer
+    let resizeTimer = null;
     const handleResize = () => {
-      if (!resizeRaf) {
-        resizeRaf = requestAnimationFrame(() => {
-          resizeRaf = null;
-          scanAndReveal();
-        });
-      }
+      if (resizeTimer) return;
+      resizeTimer = setTimeout(() => {
+        resizeTimer = null;
+        scanAndObserve();
+      }, 150);
     };
     window.addEventListener('resize', handleResize, { passive: true });
 
     // -------------------------------------------------------------
-    // 2. SPOTLIGHT CARD CURSOR GLOW TRACKER (Unified for All Pages)
+    // OPTIMIZED SPOTLIGHT CARD CURSOR GLOW TRACKER
     // -------------------------------------------------------------
     const cards = document.querySelectorAll(
       '.spotlight-card, .platform-card, .service-card, .pricing-card, .feature-folder-card, .service-catalog-card, .about-stat-card, .value-card, .career-job-card, .post-card-full'
     );
 
-    let rafId = null;
-    const handleMouseMove = (e) => {
-      if (rafId) return;
-      const card = e.currentTarget;
-      if (!card) return;
-      const clientX = e.clientX;
-      const clientY = e.clientY;
-      rafId = requestAnimationFrame(() => {
-        try {
-          if (card && card.style && typeof card.getBoundingClientRect === 'function') {
-            const rect = card.getBoundingClientRect();
-            card.style.setProperty('--mouse-x', `${clientX - rect.left}px`);
-            card.style.setProperty('--mouse-y', `${clientY - rect.top}px`);
-          }
-        } catch (_) {}
-        rafId = null;
-      });
-    };
-
+    const cardCleanups = [];
     cards.forEach((card) => {
-      card.addEventListener('mousemove', handleMouseMove, { passive: true });
+      let isHovered = false;
+      let rafId = null;
+
+      const onMouseEnter = () => {
+        isHovered = true;
+      };
+
+      const onMouseLeave = () => {
+        isHovered = false;
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+      };
+
+      const onMouseMove = (e) => {
+        if (!isHovered || rafId) return;
+        const clientX = e.clientX;
+        const clientY = e.clientY;
+
+        rafId = requestAnimationFrame(() => {
+          rafId = null;
+          if (!isHovered || !card) return;
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', `${clientX - rect.left}px`);
+          card.style.setProperty('--mouse-y', `${clientY - rect.top}px`);
+        });
+      };
+
+      card.addEventListener('mouseenter', onMouseEnter, { passive: true });
+      card.addEventListener('mouseleave', onMouseLeave, { passive: true });
+      card.addEventListener('mousemove', onMouseMove, { passive: true });
+
+      cardCleanups.push(() => {
+        card.removeEventListener('mouseenter', onMouseEnter);
+        card.removeEventListener('mouseleave', onMouseLeave);
+        card.removeEventListener('mousemove', onMouseMove);
+        if (rafId) cancelAnimationFrame(rafId);
+      });
     });
 
-    // Cleanup on route change or unmount
     return () => {
       cancelAnimationFrame(t0);
       scheduledTimers.forEach(clearTimeout);
-      if (safetyTimer) clearTimeout(safetyTimer);
       if (observer) observer.disconnect();
-      if (mutationObserver) mutationObserver.disconnect();
-      if (rafId) cancelAnimationFrame(rafId);
-      if (resizeRaf) cancelAnimationFrame(resizeRaf);
       window.removeEventListener('resize', handleResize);
-      cards.forEach((card) => {
-        card.removeEventListener('mousemove', handleMouseMove);
-      });
+      cardCleanups.forEach((cleanup) => cleanup());
     };
   }, [pathname]);
 

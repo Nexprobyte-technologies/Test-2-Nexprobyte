@@ -349,6 +349,16 @@ export default function HeroCords() {
     updateLayout();
     window.addEventListener('resize', updateLayout, { passive: true });
 
+    let lastTime = performance.now();
+    let isVisible = true;
+
+    function wakeAnimation() {
+      if (isVisible && !animFrameRef.current) {
+        lastTime = performance.now();
+        animFrameRef.current = requestAnimationFrame(renderVerletFrame);
+      }
+    }
+
     const cleanups = [];
     cords.forEach((cord) => {
       const badge = cord.badgeEl;
@@ -357,6 +367,7 @@ export default function HeroCords() {
       const onPointerDown = (e) => {
         if (e.button && e.button !== 0) return;
         e.preventDefault();
+        wakeAnimation();
         const stageRect = stage.getBoundingClientRect();
         const pointerX = e.clientX - stageRect.left;
         const pointerY = e.clientY - stageRect.top;
@@ -442,9 +453,12 @@ export default function HeroCords() {
       });
     });
 
-    let lastTime = performance.now();
-
     function renderVerletFrame(time) {
+      if (!isVisible) {
+        animFrameRef.current = null;
+        return;
+      }
+
       const dt = Math.min(0.033, Math.max(0.001, (time - lastTime) / 1000));
       lastTime = time;
       const timeSec = time / 1000;
@@ -479,8 +493,8 @@ export default function HeroCords() {
           cord.bx = cx;
           cord.by = cy;
         } else {
-          const subDt = dt / 4;
-          for (let s = 0; s < 4; s++) {
+          const subDt = dt / 2;
+          for (let s = 0; s < 2; s++) {
             let wind = prefersReducedMotion ? 0 : Math.sin(timeSec * 0.8 + cord.phase) * 26;
             let grav = GRAVITY;
             const dx = cord.bx - cord.ax;
@@ -554,7 +568,7 @@ export default function HeroCords() {
           pts[p2y] -= ry * diff * w2;
         };
 
-        for (let pass = 0; pass < 12; pass++) {
+        for (let pass = 0; pass < 4; pass++) {
           for (let i = 0; i < U; i++) relax(i);
           for (let i = U - 1; i >= 0; i--) relax(i);
         }
@@ -611,10 +625,30 @@ export default function HeroCords() {
       }
     }
 
+    // High performance IntersectionObserver: automatically pauses Verlet physics when off-screen
+    let stageObserver = null;
+    if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+      stageObserver = new IntersectionObserver(([entry]) => {
+        const nowVisible = entry.isIntersecting;
+        if (nowVisible && !isVisible) {
+          isVisible = true;
+          wakeAnimation();
+        } else if (!nowVisible) {
+          isVisible = false;
+          if (animFrameRef.current) {
+            cancelAnimationFrame(animFrameRef.current);
+            animFrameRef.current = null;
+          }
+        }
+      }, { rootMargin: '80px 0px' });
+      stageObserver.observe(stage);
+    }
+
     animFrameRef.current = requestAnimationFrame(renderVerletFrame);
 
     return () => {
       if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
+      if (stageObserver) stageObserver.disconnect();
       window.removeEventListener('resize', updateLayout);
       cleanups.forEach((c) => c());
     };

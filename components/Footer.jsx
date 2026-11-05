@@ -5,9 +5,10 @@ import Link from 'next/link';
 
 const COMPANY_LINKS = [
   { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
+  { label: 'Company', to: '/company' },
   { label: 'Services', to: '/services' },
-  { label: 'Blog', to: '/blog' },
+  { label: 'Products', to: '/products' },
+  { label: 'Industries', to: '/industries' },
   { label: 'Contact', to: '/contact' }
 ];
 

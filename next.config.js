@@ -9,6 +9,7 @@ const nextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
+  devIndicators: false,
   webpack: (config) => {
     // Disable persistent disk caching on Windows
     // This prevents stale pack manifests and 'Cannot find module' prerender errors

@@ -98,8 +98,8 @@ export default function ServicesPage() {
                 <Link href="/contact" className="btn-primary-hero">
                   Request Custom Scope Proposal &rarr;
                 </Link>
-                <a href="tel:+919500042426" className="btn-outline-hero">
-                  📞 Call +91 95000 42426
+                <a href={`tel:${SERVICES ? '+919500042426' : ''}`} className="btn-outline-hero">
+                  <span>Direct Line: +91 95000 42426</span>
                 </a>
               </div>
             </div>

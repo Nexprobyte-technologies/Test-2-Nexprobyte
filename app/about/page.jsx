@@ -66,8 +66,8 @@ export default function AboutPage() {
                 <Link href="/contact" className="btn-primary-hero">
                   Work With Our Studio &rarr;
                 </Link>
-                <Link href="/careers" className="btn-outline-hero">
-                  Join Our Coimbatore Team
+                <Link href="/contact" className="btn-outline-hero">
+                  Careers &amp; Inquiries &rarr;
                 </Link>
               </div>
             </div>

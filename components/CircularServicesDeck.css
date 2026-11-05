@@ -1,0 +1,581 @@
+/* ==========================================================================
+   NEXPROBYTE TECHNOLOGIES - CIRCULAR SERVICES CARD DECK SCROLL ANIMATION
+   Reverse-Engineered from Kexsio Arc Geometry with Nexprobyte Brand Palette
+   ========================================================================== */
+
+.circular-deck-section {
+  position: relative;
+  width: 100%;
+  padding: 100px 0 80px;
+  background: radial-gradient(120% 80% at 50% 20%, rgba(0, 102, 255, 0.05) 0%, rgba(15, 16, 19, 0) 70%),
+              linear-gradient(180deg, #0d0e12 0%, #12141a 50%, #0d0e12 100%);
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.circular-deck-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 102, 255, 0.4), transparent);
+}
+
+.circular-deck-section::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(99, 91, 255, 0.3), transparent);
+}
+
+/* Ambient glow accents */
+.deck-ambient-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(140px);
+  pointer-events: none;
+  opacity: 0.18;
+  z-index: 1;
+}
+
+.deck-ambient-glow--left {
+  top: 15%;
+  left: -200px;
+  background: #0066ff;
+}
+
+.deck-ambient-glow--right {
+  bottom: 10%;
+  right: -200px;
+  background: #635bff;
+}
+
+/* Header */
+.circular-deck-header {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  max-width: 840px;
+  margin: 0 auto 36px;
+  padding: 0 20px;
+}
+
+.circular-deck-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  background: rgba(0, 102, 255, 0.12);
+  border: 1px solid rgba(0, 102, 255, 0.3);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #38bdf8;
+  margin-bottom: 16px;
+  box-shadow: 0 0 20px rgba(0, 102, 255, 0.2);
+}
+
+.circular-deck-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00d6b2;
+  box-shadow: 0 0 10px #00d6b2;
+  animation: badge-pulse-ring 2s infinite;
+}
+
+.circular-deck-title {
+  font-size: clamp(2.2rem, 4.4vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #ffffff;
+  margin: 0 0 16px;
+}
+
+.circular-deck-title .gradient-text {
+  background: linear-gradient(135deg, #0066ff 0%, #635bff 50%, #00d6b2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.circular-deck-subtitle {
+  font-size: clamp(0.98rem, 1.6vw, 1.15rem);
+  line-height: 1.6;
+  color: #94a3b8;
+  margin: 0 auto;
+  max-width: 680px;
+}
+
+/* Outer Scene */
+.circular-deck-scene {
+  position: relative;
+  z-index: 4;
+  width: 100%;
+  height: clamp(560px, 72vh, 680px);
+  margin: 0 auto;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Center Stage */
+.circular-deck-stage {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: min(94vw, 540px);
+  height: 100%;
+  transform: translateX(-50%);
+  touch-action: none;
+  cursor: grab;
+}
+
+.circular-deck-stage:active {
+  cursor: grabbing;
+}
+
+/* Individual Arc Card */
+.arc-deck-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 92%;
+  aspect-ratio: 1.76 / 1;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  will-change: transform, filter, opacity;
+  transition: opacity 0.15s linear;
+  cursor: pointer;
+}
+
+.arc-deck-card-motion {
+  position: absolute;
+  inset: 0;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* Card Surface with Nexprobyte Glassmorphism */
+.arc-deck-card-surface {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #151821;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 12px 32px -8px rgba(0, 0, 0, 0.65),
+    0 0 24px -6px rgba(0, 0, 0, 0.4);
+  transform: translateZ(0) scale(1);
+  transform-origin: center;
+  backface-visibility: hidden;
+  will-change: transform, box-shadow, border-color;
+  transition: transform 0.38s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.38s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.38s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 22px 26px 20px;
+}
+
+/* Active or Center Card Elevation */
+.arc-deck-card:hover .arc-deck-card-surface,
+.arc-deck-card.is-center .arc-deck-card-surface {
+  transform: translateZ(0) scale(1.04);
+}
+
+.arc-deck-card:hover .arc-deck-card-surface {
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 24px 56px -12px rgba(0, 0, 0, 0.85),
+    0 0 35px var(--card-glow, rgba(0, 102, 255, 0.35));
+  border-color: var(--card-accent, rgba(0, 102, 255, 0.6));
+}
+
+/* Surface Ambient Mesh Grid Pattern */
+.arc-deck-card-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Surface Accent Gradient Sheen */
+.arc-deck-card-surface::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, var(--card-sheen, rgba(0, 102, 255, 0.08)) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Theme Color Palettes */
+.theme-cobalt {
+  --card-accent: #0066ff;
+  --card-glow: rgba(0, 102, 255, 0.4);
+  --card-sheen: rgba(0, 102, 255, 0.15);
+  background: linear-gradient(145deg, #091224 0%, #101c36 100%) !important;
+}
+
+.theme-mint {
+  --card-accent: #00d6b2;
+  --card-glow: rgba(0, 214, 178, 0.4);
+  --card-sheen: rgba(0, 214, 178, 0.15);
+  background: linear-gradient(145deg, #071917 0%, #0d2c27 100%) !important;
+}
+
+.theme-berry {
+  --card-accent: #635bff;
+  --card-glow: rgba(99, 91, 255, 0.4);
+  --card-sheen: rgba(99, 91, 255, 0.15);
+  background: linear-gradient(145deg, #130f29 0%, #1f173f 100%) !important;
+}
+
+.theme-fire {
+  --card-accent: #ff6b1a;
+  --card-glow: rgba(255, 107, 26, 0.4);
+  --card-sheen: rgba(255, 107, 26, 0.15);
+  background: linear-gradient(145deg, #21120b 0%, #351a0e 100%) !important;
+}
+
+.theme-sapphire {
+  --card-accent: #0284c7;
+  --card-glow: rgba(2, 132, 199, 0.4);
+  --card-sheen: rgba(2, 132, 199, 0.15);
+  background: linear-gradient(145deg, #081628 0%, #0f2744 100%) !important;
+}
+
+.theme-cyan {
+  --card-accent: #06b6d4;
+  --card-glow: rgba(6, 182, 212, 0.4);
+  --card-sheen: rgba(6, 182, 212, 0.15);
+  background: linear-gradient(145deg, #061922 0%, #0b2a38 100%) !important;
+}
+
+.theme-iris {
+  --card-accent: #8b5cf6;
+  --card-glow: rgba(139, 92, 246, 0.4);
+  --card-sheen: rgba(139, 92, 246, 0.15);
+  background: linear-gradient(145deg, #160f2b 0%, #241845 100%) !important;
+}
+
+.theme-amber {
+  --card-accent: #f59e0b;
+  --card-glow: rgba(245, 158, 11, 0.4);
+  --card-sheen: rgba(245, 158, 11, 0.15);
+  background: linear-gradient(145deg, #221808 0%, #36260a 100%) !important;
+}
+
+.theme-coral {
+  --card-accent: #f43f5e;
+  --card-glow: rgba(244, 63, 94, 0.4);
+  --card-sheen: rgba(244, 63, 94, 0.15);
+  background: linear-gradient(145deg, #220b12 0%, #38121e 100%) !important;
+}
+
+/* Card Header */
+.arc-deck-card-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.arc-deck-kicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono, monospace);
+  font-size: clamp(9px, 1.8cqw, 11px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--card-accent, #0066ff);
+}
+
+.arc-deck-kicker-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.arc-deck-serial {
+  font-family: var(--font-mono, monospace);
+  font-size: clamp(9px, 1.8cqw, 11px);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #64748b;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Card Body */
+.arc-deck-card-body {
+  position: relative;
+  z-index: 2;
+  margin: 6px 0;
+}
+
+.arc-deck-card-title {
+  margin: 0 0 4px;
+  font-size: clamp(17px, 4.4cqw, 24px);
+  font-weight: 750;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: #ffffff;
+}
+
+.arc-deck-card-serif {
+  display: block;
+  font-size: clamp(11px, 2.4cqw, 13px);
+  font-weight: 500;
+  color: #94a3b8;
+  letter-spacing: 0.01em;
+}
+
+/* Card Artwork Box */
+.arc-deck-card-art {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: auto;
+}
+
+.arc-deck-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono, monospace);
+  font-size: clamp(8px, 1.7cqw, 10px);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 4px 10px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.arc-deck-art-metrics {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: clamp(9px, 1.8cqw, 11px);
+  color: #cbd5e1;
+}
+
+.arc-deck-art-tag {
+  color: var(--card-accent, #38bdf8);
+  font-weight: 600;
+}
+
+.arc-deck-explore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: clamp(10px, 2cqw, 12px);
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--card-accent, #0066ff);
+  padding: 5px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  box-shadow: 0 4px 12px var(--card-glow, rgba(0, 102, 255, 0.3));
+}
+
+.arc-deck-explore-btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+  box-shadow: 0 6px 16px var(--card-glow, rgba(0, 102, 255, 0.5));
+}
+
+/* Interactive Controls Toolbar */
+.circular-deck-controls {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 860px;
+  margin: 18px auto 0;
+  padding: 0 20px;
+  gap: 16px;
+}
+
+.deck-control-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.deck-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.deck-nav-btn:hover {
+  background: rgba(0, 102, 255, 0.2);
+  border-color: rgba(0, 102, 255, 0.5);
+  color: #38bdf8;
+  transform: translateY(-1px);
+  box-shadow: 0 0 16px rgba(0, 102, 255, 0.3);
+}
+
+.deck-nav-btn:active {
+  transform: translateY(1px);
+}
+
+/* Active Service Pill */
+.deck-active-indicator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(18, 20, 26, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 8px 18px;
+  border-radius: 9999px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.deck-active-counter {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #00d6b2;
+}
+
+.deck-active-separator {
+  width: 1px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.deck-active-name {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Hint Text */
+.deck-hint-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.deck-hint-pill span {
+  opacity: 0.8;
+}
+
+.deck-hint-sep {
+  width: 14px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* View All Link */
+.deck-view-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #38bdf8;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.deck-view-all-link:hover {
+  color: #ffffff;
+  transform: translateX(2px);
+}
+
+/* Responsive queries */
+@media (max-width: 768px) {
+  .circular-deck-section {
+    padding: 70px 0 50px;
+  }
+
+  .circular-deck-scene {
+    height: 520px;
+  }
+
+  .circular-deck-stage {
+    width: 95vw;
+  }
+
+  .arc-deck-card-surface {
+    padding: 16px 18px 14px;
+    border-radius: 14px;
+  }
+
+  .circular-deck-controls {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .deck-active-indicator {
+    padding: 6px 14px;
+  }
+
+  .deck-active-name {
+    max-width: 180px;
+  }
+
+  .deck-hint-pill {
+    display: none;
+  }
+}

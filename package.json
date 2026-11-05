@@ -6,7 +6,7 @@
     "dev": "next dev",
     "dev:clean": "node -e \"try{require('fs').rmSync('.next',{recursive:true,force:true})}catch(e){}\" && next dev",
     "dev:turbo": "next dev --turbopack",
-    "build": "next build",
+    "build": "node scripts/prepare_build.js && next build",
     "start": "node server.js",
     "serve": "node server.js",
     "test": "node verify_build.js && node verify_animations.js"
@@ -27,6 +27,5 @@
     "framer-motion"
   ],
   "author": "Nexprobyte Technologies",
-  "license": "ISC",
-  "type": "commonjs"
+  "license": "ISC"
 }

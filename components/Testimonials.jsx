@@ -156,7 +156,7 @@ export default function Testimonials() {
                   </div>
                   <div>
                     <div className="tn-rev-name">{rev.name}</div>
-                    <div className="tn-rev-company">{rev.company} • 📍 {rev.city}</div>
+                    <div className="tn-rev-company">{rev.company} • {rev.city}</div>
                   </div>
                 </div>
                 <div className="tn-rev-stars">★★★★★</div>

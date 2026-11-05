@@ -4,13 +4,13 @@ import React, { useEffect, useRef, useState } from 'react';
 
 /**
  * AnimatedCounter — Smooth requestAnimationFrame count-up animation
- * Triggers when scrolled into viewport. Respects prefers-reduced-motion.
+ * Triggers reliably as soon as mounted or scrolled into viewport. Respects prefers-reduced-motion.
  */
 export default function AnimatedCounter({
   target,
   prefix = '',
   suffix = '',
-  duration = 1600,
+  duration = 1800,
   className = '',
 }) {
   const [count, setCount] = useState(0);
@@ -68,9 +68,16 @@ export default function AnimatedCounter({
             }
           });
         },
-        { threshold: 0.15 }
+        { threshold: 0.01, rootMargin: '60px 0px 60px 0px' }
       );
       observer.observe(node);
+
+      // Fast check if already in viewport
+      const rect = node.getBoundingClientRect();
+      const vh = window.innerHeight || 800;
+      if (rect.top <= vh && rect.bottom >= 0) {
+        startCounting();
+      }
     } else {
       startCounting();
     }
@@ -89,4 +96,3 @@ export default function AnimatedCounter({
     </span>
   );
 }
-

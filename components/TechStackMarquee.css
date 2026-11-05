@@ -1,0 +1,183 @@
+/* ==========================================================================
+   TECH STACK MARQUEE — "BUILT WITH MODERN TECHNOLOGY"
+   Authentic Capsule Pills & Seamless 60FPS Infinite Marquee
+   ========================================================================== */
+
+.tech-marquee-section {
+  position: relative;
+  width: 100%;
+  padding: 48px 0 36px;
+  background: transparent;
+  overflow: hidden;
+  user-select: none;
+}
+
+.tech-marquee-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 26px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.tech-marquee-dash {
+  display: inline-block;
+  width: 28px;
+  height: 2px;
+  background: #f59e0b;
+  border-radius: 2px;
+}
+
+.tech-marquee-title {
+  color: #f59e0b;
+  font-family: var(--font-mono, 'Geist Mono', monospace);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1;
+}
+
+.tech-marquee-viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+}
+
+/* Smooth gradient edge fade masks */
+.tech-marquee-fade-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: clamp(50px, 8vw, 140px);
+  background: linear-gradient(to right, var(--bg-primary, #ffffff) 0%, rgba(255, 255, 255, 0) 100%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.tech-marquee-fade-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: clamp(50px, 8vw, 140px);
+  background: linear-gradient(to left, var(--bg-primary, #ffffff) 0%, rgba(255, 255, 255, 0) 100%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.tech-marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: techMarqueeScroll 38s linear infinite;
+}
+
+.tech-marquee-viewport:hover .tech-marquee-track {
+  animation-play-state: paused;
+}
+
+.tech-marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-right: 16px;
+  flex-shrink: 0;
+}
+
+/* Individual Pill */
+.tech-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 20px;
+  border-radius: 9999px;
+  background: #f1f5f9;
+  background: light-dark(#f1f5f9, rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border: 1px solid light-dark(rgba(226, 232, 240, 0.9), rgba(255, 255, 255, 0.1));
+  box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  cursor: default;
+}
+
+.tech-pill:hover {
+  transform: translateY(-2px);
+  background: #ffffff;
+  border-color: rgba(0, 102, 255, 0.35);
+  box-shadow: 0 8px 20px -4px rgba(0, 102, 255, 0.12), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+}
+
+.tech-pill-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.tech-pill-icon svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.tech-pill-name {
+  color: #334155;
+  color: light-dark(#334155, #e2e8f0);
+  font-family: var(--font-sans, sans-serif);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+
+@keyframes techMarqueeScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-marquee-track {
+    animation: none;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .tech-marquee-section {
+    padding: 36px 0 24px;
+  }
+
+  .tech-marquee-header {
+    margin-bottom: 20px;
+  }
+
+  .tech-marquee-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+  }
+
+  .tech-pill {
+    padding: 8px 16px;
+    gap: 8px;
+  }
+
+  .tech-pill-name {
+    font-size: 0.82rem;
+  }
+}

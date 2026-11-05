@@ -128,7 +128,10 @@ export default function Portfolio() {
               <div className="portfolio-card-top">
                 <div>
                   <span className="portfolio-cat-badge">{b.category} • {b.year}</span>
-                  <div className="portfolio-location">📍 {b.location}</div>
+                  <div className="portfolio-location" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span>{b.location}</span>
+                  </div>
                 </div>
                 <div className="portfolio-metric-pill">
                   <span className="portfolio-metric-num">{b.metric}</span>

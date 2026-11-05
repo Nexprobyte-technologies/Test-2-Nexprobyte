@@ -73,7 +73,10 @@ export default function CareersSection() {
                   <span className="job-dept-pill">{job.dept}</span>
                   <h3 className="job-title">{job.title}</h3>
                   <div className="job-meta-row">
-                    <span>📍 {job.location}</span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      <span>{job.location}</span>
+                    </span>
                     <span>•</span>
                     <span>{job.type}</span>
                     <span>•</span>
@@ -105,7 +108,7 @@ export default function CareersSection() {
         </div>
 
         <div style={{ textAlign: 'center', marginTop: '36px' }}>
-          <Link href="/careers" className="btn-primary-hero">
+          <Link href="/contact" className="btn-primary-hero">
             Explore All 5 Careers &amp; Apply Online &rarr;
           </Link>
         </div>
@@ -191,7 +194,9 @@ export default function CareersSection() {
               <div className="modal-body">
                 {submitted ? (
                   <div style={{ textAlign: 'center', padding: '30px 10px' }}>
-                    <div style={{ fontSize: '2.5rem', marginBottom: '12px' }}>🎉</div>
+                    <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '56px', height: '56px', borderRadius: '50%', background: 'var(--accent-blue-tint)', color: 'var(--accent-blue)', margin: '0 auto 16px' }}>
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
                     <h4 style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--text-primary)' }}>Application Received!</h4>
                     <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', marginTop: '8px' }}>
                       Thank you, {candidateName}. Our hiring team in Coimbatore will review your profile and reach out within 48 hours.

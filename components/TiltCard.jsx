@@ -19,6 +19,7 @@ export default function TiltCard({
   ...rest
 }) {
   const cardRef = useRef(null);
+  const rectRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
 
@@ -38,9 +39,16 @@ export default function TiltCard({
   const rotateX = useTransform(smoothY, [0, 1], [maxTilt, -maxTilt]);
   const rotateY = useTransform(smoothX, [0, 1], [-maxTilt, maxTilt]);
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    if (cardRef.current) {
+      rectRef.current = cardRef.current.getBoundingClientRect();
+    }
+  };
+
   const handleMouseMove = (e) => {
     if (reducedMotion || !cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
+    const rect = rectRef.current || cardRef.current.getBoundingClientRect();
     const clientX = e.clientX - rect.left;
     const clientY = e.clientY - rect.top;
 
@@ -52,12 +60,9 @@ export default function TiltCard({
     cardRef.current.style.setProperty('--mouse-y', `${clientY}px`);
   };
 
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
-
   const handleMouseLeave = () => {
     setIsHovered(false);
+    rectRef.current = null;
     x.set(0.5);
     y.set(0.5);
   };

@@ -263,9 +263,18 @@ export default function ContactPage() {
                 <span className="info-card-badge">VERIFIED REPUTATION</span>
                 <h4 className="ratings-card-title">Top-Rated Studio in Tamil Nadu</h4>
                 <div className="ratings-pills">
-                  <span className="rating-pill">⭐ Google 4.9/5</span>
-                  <span className="rating-pill">⭐ Clutch 5.0/5</span>
-                  <span className="rating-pill">⭐ Justdial 4.8/5</span>
+                  <span className="rating-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffb800" stroke="#ffb800" strokeWidth="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                    <span>Google 4.9/5</span>
+                  </span>
+                  <span className="rating-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffb800" stroke="#ffb800" strokeWidth="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                    <span>Clutch 5.0/5</span>
+                  </span>
+                  <span className="rating-pill" style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="#ffb800" stroke="#ffb800" strokeWidth="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                    <span>Justdial 4.8/5</span>
+                  </span>
                 </div>
               </div>
             </aside>

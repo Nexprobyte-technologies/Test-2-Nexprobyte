@@ -70,7 +70,7 @@ export default function AllServices() {
               </div>
               <div className="service-bottom">
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--text-muted)' }}>10 Core Disciplines</span>
-                <a href="#contact" className="service-link">Deploy Assistant &rarr;</a>
+                <Link href="/contact" className="service-link">Deploy Assistant &rarr;</Link>
               </div>
             </div>
 
@@ -108,7 +108,7 @@ export default function AllServices() {
               </div>
               <div className="service-bottom">
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--accent-blue)', fontWeight: 600 }}>12 Core Disciplines • 48h Ramp</span>
-                <a href="#contact" className="service-link">Hire Developers &rarr;</a>
+                <Link href="/contact" className="service-link">Hire Developers &rarr;</Link>
               </div>
             </div>
 
@@ -147,7 +147,7 @@ export default function AllServices() {
               </div>
               <div className="service-bottom">
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--accent-purple)', fontWeight: 600 }}>12 Core Disciplines • 85% Effort Reduction</span>
-                <a href="#contact" className="service-link">Deploy AI Automations &rarr;</a>
+                <Link href="/contact" className="service-link">Deploy AI Automations &rarr;</Link>
               </div>
             </div>
 
@@ -180,7 +180,7 @@ export default function AllServices() {
               </div>
               <div className="service-bottom">
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--text-muted)' }}>10 Core Disciplines</span>
-                <a href="#contact" className="service-link">Get Support &rarr;</a>
+                <Link href="/contact" className="service-link">Get Support &rarr;</Link>
               </div>
             </div>
 
@@ -214,8 +214,8 @@ export default function AllServices() {
                 </div>
               </div>
               <div className="service-bottom">
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--accent-cyan)', fontWeight: 600 }}>8 Core Disciplines • Enterprise Architecture</span>
-                <a href="#contact" className="service-link">Build Custom Software &rarr;</a>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--accent-blue)', fontWeight: 600 }}>8 Core Disciplines • Enterprise Architecture</span>
+                <Link href="/contact" className="service-link">Build Custom Software &rarr;</Link>
               </div>
             </div>
           </div>
